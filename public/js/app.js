@@ -547,7 +547,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   btnPreviewShare.addEventListener('click', () => {
-    if (navigator.clipboard) {
+    if (window.NovaFlixAds && typeof window.NovaFlixAds.openShareModal === 'function' && activePreviewMovie) {
+      window.NovaFlixAds.openShareModal(activePreviewMovie);
+    } else if (navigator.clipboard) {
       navigator.clipboard.writeText(window.location.href);
       alert('Movie link copied to clipboard!');
     }

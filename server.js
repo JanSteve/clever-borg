@@ -311,6 +311,35 @@ const server = http.createServer((req, res) => {
     return res.end(svg);
   }
 
+  // SEO: Dynamic Robots.txt
+  if (pathname === '/robots.txt' && req.method === 'GET') {
+    const robots = `User-agent: *\nAllow: /\nSitemap: http://${req.headers.host || 'localhost:3001'}/sitemap.xml\n`;
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    return res.end(robots);
+  }
+
+  // SEO: Dynamic XML Sitemap for Google & Bing indexing
+  if (pathname === '/sitemap.xml' && req.method === 'GET') {
+    const host = req.headers.host || 'localhost:3001';
+    const proto = req.headers['x-forwarded-proto'] || 'http';
+    const baseUrl = `${proto}://${host}`;
+    const { MOVIES_CATALOG } = require('./public/js/movies-data.js');
+
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+    xml += `  <url><loc>${baseUrl}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n`;
+
+    (MOVIES_CATALOG || []).forEach(m => {
+      if (!m.hidden && m.slug !== 'a-moment-to-remember' && m.id !== '15859') {
+        xml += `  <url><loc>${baseUrl}/#movie/${m.slug || m.id}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+      }
+    });
+
+    xml += `</urlset>`;
+    res.writeHead(200, { 'Content-Type': 'application/xml; charset=UTF-8' });
+    return res.end(xml);
+  }
+
   // Static File Serving
   let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
 
