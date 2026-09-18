@@ -1,7 +1,7 @@
 {
-  "name": "kflix-movie-streaming",
+  "name": "streambert-web",
   "version": "1.0.0",
-  "description": "Korean Movie Streaming Platform with Custom Video Player and Local Movie Hosting",
+  "description": "Streambert - Global Cinema & Movie Streaming Platform with Custom Video Player and Extensive Catalog",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,9 +9,10 @@
   },
   "keywords": [
     "streaming",
-    "korean-movies",
-    "video-player",
-    "hallyu",
+    "movies",
+    "streambert",
+    "blockbusters",
+    "anime",
     "cinema"
   ],
   "author": "",

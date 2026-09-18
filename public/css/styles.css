@@ -103,27 +103,27 @@ body {
 }
 
 .logo-icon {
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, var(--accent) 0%, #b30710 100%);
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #9333ea 0%, #6b21a8 100%);
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: 19px;
+  font-size: 20px;
   color: #fff;
-  box-shadow: 0 0 16px var(--accent-glow);
+  box-shadow: 0 0 18px rgba(147, 51, 234, 0.55);
 }
 
 .logo-text {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 1.5px;
   color: #ffffff;
 }
 .logo-text span {
-  color: var(--accent);
+  color: #a855f7;
 }
 
 .nav-links {

@@ -1,6 +1,7 @@
-// Cineby / K-FLIX Official Korean Cinema Catalog
-// Massive 50+ Verified Korean Titles with 100% Local 0ms Artwork & 18+ Advisory Warnings
-// Prank Platform Simulation: Zero Upload Clues, 100% Commercial Streaming Look
+// Streambert Official Global Entertainment Catalog
+// Features 75+ Major Hollywood Blockbusters, Global Anime, World Cinema & Korean Hits
+// Powered by Streambert Engine (https://github.com/truelockmc/streambert)
+// 100% Zero-Black-Screen Local Vector Art & 18+ Advisory System
 
 const KOREAN_MOVIES_CATALOG = [
   {
@@ -13,6 +14,7 @@ const KOREAN_MOVIES_CATALOG = [
     "releaseDate": "November 5, 2004",
     "rating": "18+",
     "is18Plus": true,
+    "hidden": true,
     "contentWarning": "⚠️ 18+ CONTENT ADVISORY: Rated 18+ for mature themes, intense emotional heartbreak, adult situations, and romantic intimacy. Viewer discretion is strongly advised.",
     "advisoryTags": [
       "18+ Restricted",
@@ -81,6 +83,1057 @@ const KOREAN_MOVIES_CATALOG = [
     "backdrop": "/api/backdrop/15859",
     "trailerUrl": "https://www.youtube.com/watch?v=Fj-yZ_42u8M",
     "fallbackColor": "#3b1122"
+  },
+  {
+    "id": "dune-part-two",
+    "slug": "dune-part-two",
+    "title": "Dune: Part Two",
+    "koreanTitle": "듄: 파트 2",
+    "tagline": "Long live the fighters.",
+    "year": "2024",
+    "releaseDate": "March 1, 2024",
+    "rating": "13+",
+    "imdbRating": "8.6",
+    "matchScore": "99% Match",
+    "duration": "2h 46m",
+    "country": "United States",
+    "studio": "Warner Bros. / Legendary",
+    "resolution": "4K IMAX Enhanced",
+    "audio": "English (Dolby Atmos / 5.1)",
+    "category": "blockbusters",
+    "genres": [
+      "Sci-Fi",
+      "Adventure",
+      "Action"
+    ],
+    "director": "Denis Villeneuve",
+    "cast": [
+      "Timothée Chalamet",
+      "Zendaya",
+      "Rebecca Ferguson",
+      "Javier Bardem",
+      "Austin Butler"
+    ],
+    "castDetails": [
+      {
+        "name": "Timothée Chalamet",
+        "character": "Paul Atreides",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Zendaya",
+        "character": "Chani",
+        "role": "Leading Actress"
+      },
+      {
+        "name": "Austin Butler",
+        "character": "Feyd-Rautha",
+        "role": "Antagonist"
+      }
+    ],
+    "synopsis": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.",
+    "storyline": "Following the devastating destruction of House Atreides on Arrakis, Paul Atreides and his mother Lady Jessica take sanctuary deep within the desert among the Fremen tribe. Embraced by the northern Fremen and trained in their warrior ways, Paul falls in love with the fiery warrior Chani while wrestling with ominous prophetic visions of a holy war consuming the cosmos.",
+    "poster": "/api/poster/dune-part-two",
+    "backdrop": "/api/backdrop/dune-part-two",
+    "fallbackColor": "#c27829"
+  },
+  {
+    "id": "oppenheimer",
+    "slug": "oppenheimer",
+    "title": "Oppenheimer",
+    "koreanTitle": "오펜하이머",
+    "tagline": "The world forever changes.",
+    "year": "2023",
+    "releaseDate": "July 21, 2023",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for intense psychological drama, historical warfare themes, and brief sexuality.",
+    "advisoryTags": [
+      "18+ Restricted",
+      "Psychological Trauma",
+      "Nuclear Themes"
+    ],
+    "imdbRating": "8.9",
+    "matchScore": "99% Match",
+    "duration": "3h 00m",
+    "country": "United States",
+    "studio": "Universal Pictures / Syncopy",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "director": "Christopher Nolan",
+    "cast": [
+      "Cillian Murphy",
+      "Emily Blunt",
+      "Matt Damon",
+      "Robert Downey Jr.",
+      "Florence Pugh"
+    ],
+    "castDetails": [
+      {
+        "name": "Cillian Murphy",
+        "character": "J. Robert Oppenheimer",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Robert Downey Jr.",
+        "character": "Lewis Strauss",
+        "role": "Supporting Actor"
+      },
+      {
+        "name": "Emily Blunt",
+        "character": "Kitty Oppenheimer",
+        "role": "Leading Actress"
+      }
+    ],
+    "synopsis": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during the Manhattan Project.",
+    "storyline": "Theoretical physicist J. Robert Oppenheimer leads the secret Manhattan Project laboratory in Los Alamos, New Mexico during World War II, culminating in the Trinity test that forever altered human history.",
+    "poster": "/api/poster/oppenheimer",
+    "backdrop": "/api/backdrop/oppenheimer",
+    "fallbackColor": "#d9531e"
+  },
+  {
+    "id": "deadpool-and-wolverine",
+    "slug": "deadpool-and-wolverine",
+    "title": "Deadpool & Wolverine",
+    "koreanTitle": "데드풀과 울버린",
+    "tagline": "Come together.",
+    "year": "2024",
+    "releaseDate": "July 26, 2024",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for strong bloody violence, persistent profanity, and irreverent adult humor.",
+    "advisoryTags": [
+      "18+ Violence",
+      "Strong Language",
+      "Adult Humor"
+    ],
+    "imdbRating": "7.8",
+    "matchScore": "97% Match",
+    "duration": "2h 08m",
+    "country": "United States",
+    "studio": "Marvel Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "director": "Shawn Levy",
+    "cast": [
+      "Ryan Reynolds",
+      "Hugh Jackman",
+      "Emma Corrin",
+      "Morena Baccarin",
+      "Matthew Macfadyen"
+    ],
+    "castDetails": [
+      {
+        "name": "Ryan Reynolds",
+        "character": "Wade Wilson / Deadpool",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Hugh Jackman",
+        "character": "Logan / Wolverine",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "Deadpool is recruited by the TVA to safeguard the multiverse, forcing him to team up with a reluctant, weathered Wolverine on a wild, high-stakes mission.",
+    "storyline": "Wade Wilson's peaceful civilian life is shattered when Time Variance Authority agents whisk him away to preserve the timeline, requiring him to recruit a battle-weary Wolverine variant.",
+    "poster": "/api/poster/deadpool-and-wolverine",
+    "backdrop": "/api/backdrop/deadpool-and-wolverine",
+    "fallbackColor": "#b91c1c"
+  },
+  {
+    "id": "interstellar",
+    "slug": "interstellar",
+    "title": "Interstellar",
+    "koreanTitle": "인터스텔라",
+    "tagline": "Mankind was born on Earth. It was never meant to die here.",
+    "year": "2014",
+    "releaseDate": "November 7, 2014",
+    "rating": "13+",
+    "imdbRating": "8.7",
+    "matchScore": "99% Match",
+    "duration": "2h 49m",
+    "country": "United States",
+    "studio": "Paramount / Warner Bros.",
+    "resolution": "4K IMAX Remastered",
+    "audio": "English (Dolby 5.1 / Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Sci-Fi",
+      "Adventure",
+      "Drama"
+    ],
+    "director": "Christopher Nolan",
+    "cast": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Jessica Chastain",
+      "Michael Caine",
+      "Matt Damon"
+    ],
+    "castDetails": [
+      {
+        "name": "Matthew McConaughey",
+        "character": "Cooper",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Anne Hathaway",
+        "character": "Dr. Brand",
+        "role": "Leading Actress"
+      }
+    ],
+    "synopsis": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+    "storyline": "A global crop blight and second Dust Bowl slowly render Earth uninhabitable. Ex-test pilot Cooper leads an interstellar expedition through a newly opened wormhole near Saturn to survey habitable worlds across another galaxy.",
+    "poster": "/api/poster/interstellar",
+    "backdrop": "/api/backdrop/interstellar",
+    "fallbackColor": "#172b4d"
+  },
+  {
+    "id": "the-dark-knight",
+    "slug": "the-dark-knight",
+    "title": "The Dark Knight",
+    "koreanTitle": "다크 나이트",
+    "tagline": "Why so serious?",
+    "year": "2008",
+    "releaseDate": "July 18, 2008",
+    "rating": "15+",
+    "imdbRating": "9.0",
+    "matchScore": "99% Match",
+    "duration": "2h 32m",
+    "country": "United States",
+    "studio": "Warner Bros. / DC",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby TrueHD 5.1)",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "director": "Christopher Nolan",
+    "cast": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine",
+      "Maggie Gyllenhaal"
+    ],
+    "castDetails": [
+      {
+        "name": "Christian Bale",
+        "character": "Bruce Wayne / Batman",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Heath Ledger",
+        "character": "The Joker",
+        "role": "Antagonist"
+      }
+    ],
+    "synopsis": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    "storyline": "With the help of allies Lt. Jim Gordon and DA Harvey Dent, Batman has been able to keep a tight lid on crime in Gotham City. But when a vile young criminal calling himself the Joker suddenly throws the town into chaos, the caped crusader begins to tread a fine line between heroism and vigilantism.",
+    "poster": "/api/poster/the-dark-knight",
+    "backdrop": "/api/backdrop/the-dark-knight",
+    "fallbackColor": "#0f172a"
+  },
+  {
+    "id": "inception",
+    "slug": "inception",
+    "title": "Inception",
+    "koreanTitle": "인셉션",
+    "tagline": "Your mind is the scene of the crime.",
+    "year": "2010",
+    "releaseDate": "July 16, 2010",
+    "rating": "13+",
+    "imdbRating": "8.8",
+    "matchScore": "98% Match",
+    "duration": "2h 28m",
+    "country": "United States",
+    "studio": "Warner Bros. / Syncopy",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby 5.1)",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "director": "Christopher Nolan",
+    "cast": [
+      "Leonardo DiCaprio",
+      "Joseph Gordon-Levitt",
+      "Elliot Page",
+      "Tom Hardy",
+      "Ken Watanabe"
+    ],
+    "castDetails": [
+      {
+        "name": "Leonardo DiCaprio",
+        "character": "Dom Cobb",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+    "storyline": "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state.",
+    "poster": "/api/poster/inception",
+    "backdrop": "/api/backdrop/inception",
+    "fallbackColor": "#1e293b"
+  },
+  {
+    "id": "avengers-endgame",
+    "slug": "avengers-endgame",
+    "title": "Avengers: Endgame",
+    "koreanTitle": "어벤져스: 엔드게임",
+    "tagline": "Part of the journey is the end.",
+    "year": "2019",
+    "releaseDate": "April 26, 2019",
+    "rating": "13+",
+    "imdbRating": "8.4",
+    "matchScore": "99% Match",
+    "duration": "3h 01m",
+    "country": "United States",
+    "studio": "Marvel Studios",
+    "resolution": "4K IMAX Enhanced",
+    "audio": "English (Dolby Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "director": "Anthony Russo, Joe Russo",
+    "cast": [
+      "Robert Downey Jr.",
+      "Chris Evans",
+      "Mark Ruffalo",
+      "Chris Hemsworth",
+      "Scarlett Johansson"
+    ],
+    "castDetails": [
+      {
+        "name": "Robert Downey Jr.",
+        "character": "Tony Stark / Iron Man",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Chris Evans",
+        "character": "Steve Rogers / Captain America",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "After the devastating events of Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more to reverse Thanos' actions.",
+    "storyline": "Following the cataclysmic snap of Thanos, the surviving Avengers devise a daring time-heist across their past history to gather the Infinity Stones and restore life across the universe.",
+    "poster": "/api/poster/avengers-endgame",
+    "backdrop": "/api/backdrop/avengers-endgame",
+    "fallbackColor": "#431407"
+  },
+  {
+    "id": "spider-man-across-the-spider-verse",
+    "slug": "spider-man-across-the-spider-verse",
+    "title": "Spider-Man: Across the Spider-Verse",
+    "koreanTitle": "스파이더맨: 어크로스 더 유니버스",
+    "tagline": "It's how you wear the mask that matters.",
+    "year": "2023",
+    "releaseDate": "June 2, 2023",
+    "rating": "PG",
+    "imdbRating": "8.6",
+    "matchScore": "99% Match",
+    "duration": "2h 20m",
+    "country": "United States",
+    "studio": "Sony Pictures Animation",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Animation",
+      "Action",
+      "Adventure"
+    ],
+    "director": "Joaquim Dos Santos, Kemp Powers",
+    "cast": [
+      "Shameik Moore",
+      "Hailee Steinfeld",
+      "Oscar Isaac",
+      "Daniel Kaluuya"
+    ],
+    "castDetails": [
+      {
+        "name": "Shameik Moore",
+        "character": "Miles Morales / Spider-Man",
+        "role": "Voice"
+      },
+      {
+        "name": "Hailee Steinfeld",
+        "character": "Gwen Stacy",
+        "role": "Voice"
+      }
+    ],
+    "synopsis": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
+    "storyline": "Reunited with Gwen Stacy, Brooklyn's full-time friendly neighborhood Spider-Man is catapulted across the Multiverse, colliding with the Spider-Society led by Miguel O'Hara.",
+    "poster": "/api/poster/spider-man-across-the-spider-verse",
+    "backdrop": "/api/backdrop/spider-man-across-the-spider-verse",
+    "fallbackColor": "#311042"
+  },
+  {
+    "id": "gladiator-ii",
+    "slug": "gladiator-ii",
+    "title": "Gladiator II",
+    "koreanTitle": "글래디에이터 II",
+    "tagline": "What we do in life echoes in eternity.",
+    "year": "2024",
+    "releaseDate": "November 22, 2024",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for intense visceral combat, bloody violence, and political brutality.",
+    "advisoryTags": [
+      "18+ Violence",
+      "Brutal Combat",
+      "Mature Themes"
+    ],
+    "imdbRating": "7.7",
+    "matchScore": "96% Match",
+    "duration": "2h 28m",
+    "country": "United States / UK",
+    "studio": "Paramount Pictures",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "director": "Ridley Scott",
+    "cast": [
+      "Paul Mescal",
+      "Pedro Pascal",
+      "Denzel Washington",
+      "Connie Nielsen",
+      "Joseph Quinn"
+    ],
+    "castDetails": [
+      {
+        "name": "Paul Mescal",
+        "character": "Lucius Verus",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Denzel Washington",
+        "character": "Macrinus",
+        "role": "Supporting Actor"
+      }
+    ],
+    "synopsis": "Years after witnessing the death of Maximus at the hands of his uncle, Lucius must enter the Colosseum after the powerful emperors of Rome conquer his home.",
+    "storyline": "Forced into slavery after Roman forces conquer Numidia, Lucius enters the arena as a gladiator to challenge the tyrannical dual emperors Caracalla and Geta.",
+    "poster": "/api/poster/gladiator-ii",
+    "backdrop": "/api/backdrop/gladiator-ii",
+    "fallbackColor": "#78350f"
+  },
+  {
+    "id": "your-name",
+    "slug": "your-name",
+    "title": "Your Name",
+    "koreanTitle": "君の名は。 (너의 이름은.)",
+    "tagline": "I feel like I'm always searching for someone, or something.",
+    "year": "2016",
+    "releaseDate": "August 26, 2016",
+    "rating": "12+",
+    "imdbRating": "8.4",
+    "matchScore": "99% Match",
+    "duration": "1h 46m",
+    "country": "Japan",
+    "studio": "CoMix Wave Films / Toho",
+    "resolution": "4K Remastered",
+    "audio": "Japanese (Dolby 5.1 / Stereo)",
+    "category": "anime",
+    "genres": [
+      "Anime",
+      "Romance",
+      "Fantasy",
+      "Drama"
+    ],
+    "director": "Makoto Shinkai",
+    "cast": [
+      "Ryunosuke Kamiki",
+      "Mone Kamishiraishi",
+      "Ryo Narita",
+      "Aoi Yuki"
+    ],
+    "castDetails": [
+      {
+        "name": "Ryunosuke Kamiki",
+        "character": "Taki Tachibana",
+        "role": "Leading Voice"
+      },
+      {
+        "name": "Mone Kamishiraishi",
+        "character": "Mitsuha Miyamizu",
+        "role": "Leading Voice"
+      }
+    ],
+    "synopsis": "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things become even more complicated when the boy and girl decide to meet in person.",
+    "storyline": "Mitsuha, a high school girl living in rural Itomori, and Taki, a high school boy living in Tokyo, wake up in each other's bodies. As they learn to communicate by leaving notes, they realize their fates are tied to a cosmic celestial event.",
+    "poster": "/api/poster/your-name",
+    "backdrop": "/api/backdrop/your-name",
+    "fallbackColor": "#1e1b4b"
+  },
+  {
+    "id": "demon-slayer-mugen-train",
+    "slug": "demon-slayer-mugen-train",
+    "title": "Demon Slayer: Mugen Train",
+    "koreanTitle": "劇場版 鬼滅の刃 無限列車編",
+    "tagline": "Set your heart ablaze.",
+    "year": "2020",
+    "releaseDate": "October 16, 2020",
+    "rating": "15+",
+    "imdbRating": "8.2",
+    "matchScore": "98% Match",
+    "duration": "1h 57m",
+    "country": "Japan",
+    "studio": "ufotable / Aniplex",
+    "resolution": "4K Ultra HD",
+    "audio": "Japanese (Dolby 5.1)",
+    "category": "anime",
+    "genres": [
+      "Anime",
+      "Action",
+      "Supernatural",
+      "Fantasy"
+    ],
+    "director": "Haruo Sotozaki",
+    "cast": [
+      "Natsuki Hanae",
+      "Akari Kito",
+      "Satoshi Hino",
+      "Daisuke Hirakawa",
+      "Akira Ishida"
+    ],
+    "castDetails": [
+      {
+        "name": "Natsuki Hanae",
+        "character": "Tanjiro Kamado",
+        "role": "Leading Voice"
+      },
+      {
+        "name": "Satoshi Hino",
+        "character": "Kyojuro Rengoku",
+        "role": "Flame Hashira"
+      }
+    ],
+    "synopsis": "After his family was brutally murdered and his sister turned into a demon, Tanjiro Kamado's journey takes him aboard the mysterious Mugen Train alongside the Flame Hashira Rengoku.",
+    "storyline": "Tanjiro, Nezuko, Zenitsu, and Inosuke board the Mugen Train to investigate a series of mysterious disappearances, joining forces with Flame Hashira Kyojuro Rengoku to battle deadly Lower and Upper Rank demons.",
+    "poster": "/api/poster/demon-slayer-mugen-train",
+    "backdrop": "/api/backdrop/demon-slayer-mugen-train",
+    "fallbackColor": "#7f1d1d"
+  },
+  {
+    "id": "suzume",
+    "slug": "suzume",
+    "title": "Suzume",
+    "koreanTitle": "すずめの戸締まり (스즈메의 문단속)",
+    "tagline": "Closing the doors of calamity.",
+    "year": "2022",
+    "releaseDate": "November 11, 2022",
+    "rating": "PG",
+    "imdbRating": "7.7",
+    "matchScore": "97% Match",
+    "duration": "2h 02m",
+    "country": "Japan",
+    "studio": "CoMix Wave Films / Toho",
+    "resolution": "4K Ultra HD",
+    "audio": "Japanese (Dolby 5.1)",
+    "category": "anime",
+    "genres": [
+      "Anime",
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": "Makoto Shinkai",
+    "cast": [
+      "Nanoka Hara",
+      "Hokuto Matsumura",
+      "Eri Fukatsu",
+      "Shota Sometani"
+    ],
+    "castDetails": [
+      {
+        "name": "Nanoka Hara",
+        "character": "Suzume Iwato",
+        "role": "Leading Voice"
+      }
+    ],
+    "synopsis": "A modern action adventure road story where a 17-year-old girl named Suzume helps a mysterious young man close mystical doors releasing disasters across Japan.",
+    "storyline": "When teenage Suzume accidentally unleashes a calamity by opening an ancient door in ruins, she journeys across Japan alongside Souta to lock down portals before catastrophic earthquakes strike.",
+    "poster": "/api/poster/suzume",
+    "backdrop": "/api/backdrop/suzume",
+    "fallbackColor": "#065f46"
+  },
+  {
+    "id": "spirited-away",
+    "slug": "spirited-away",
+    "title": "Spirited Away",
+    "koreanTitle": "千と千尋の神隠し (센과 치히로의 행방불명)",
+    "tagline": "Tunnel to the spirit world.",
+    "year": "2001",
+    "releaseDate": "July 20, 2001",
+    "rating": "PG",
+    "imdbRating": "8.6",
+    "matchScore": "99% Match",
+    "duration": "2h 05m",
+    "country": "Japan",
+    "studio": "Studio Ghibli",
+    "resolution": "4K Remastered",
+    "audio": "Japanese (Dolby 5.1 / Stereo)",
+    "category": "anime",
+    "genres": [
+      "Anime",
+      "Adventure",
+      "Family",
+      "Fantasy"
+    ],
+    "director": "Hayao Miyazaki",
+    "cast": [
+      "Rumi Hiiragi",
+      "Miyu Irino",
+      "Mari Natsuki",
+      "Takashi Naito"
+    ],
+    "castDetails": [
+      {
+        "name": "Rumi Hiiragi",
+        "character": "Chihiro Ogino",
+        "role": "Leading Voice"
+      },
+      {
+        "name": "Miyu Irino",
+        "character": "Haku",
+        "role": "Supporting Voice"
+      }
+    ],
+    "synopsis": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, where humans are changed into beasts.",
+    "storyline": "Hayao Miyazaki's Academy Award-winning masterpiece follows young Chihiro as she navigates the fantastical bathhouse of spirits operated by the sorceress Yubaba to free her transformed parents.",
+    "poster": "/api/poster/spirited-away",
+    "backdrop": "/api/backdrop/spirited-away",
+    "fallbackColor": "#14532d"
+  },
+  {
+    "id": "attack-on-titan-final",
+    "slug": "attack-on-titan-final",
+    "title": "Attack on Titan: The Final Attack",
+    "koreanTitle": "進撃の巨人 (진격의 거인 극장판)",
+    "tagline": "If we kill all our enemies over there, will we finally be free?",
+    "year": "2024",
+    "releaseDate": "November 8, 2024",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for extreme apocalyptic violence, body horror, existential dread, and intense trauma.",
+    "advisoryTags": [
+      "18+ Restricted",
+      "Extreme Violence",
+      "Apocalyptic Dread"
+    ],
+    "imdbRating": "9.1",
+    "matchScore": "99% Match",
+    "duration": "2h 25m",
+    "country": "Japan",
+    "studio": "MAPPA / Pony Canyon",
+    "resolution": "4K Ultra HD",
+    "audio": "Japanese (Dolby Atmos)",
+    "category": "anime",
+    "genres": [
+      "Anime",
+      "Action",
+      "Dark Fantasy",
+      "Horror"
+    ],
+    "director": "Yuichiro Hayashi",
+    "cast": [
+      "Yuki Kaji",
+      "Yui Ishikawa",
+      "Marina Inoue",
+      "Hiroshi Kamiya"
+    ],
+    "castDetails": [
+      {
+        "name": "Yuki Kaji",
+        "character": "Eren Yeager",
+        "role": "Protagonist / Antagonist"
+      },
+      {
+        "name": "Hiroshi Kamiya",
+        "character": "Levi Ackerman",
+        "role": "Captain"
+      }
+    ],
+    "synopsis": "The colossal conclusion to the global phenomenon: Armin, Mikasa, and the remaining Survey Corps wage a desperate final battle against the earth-shaking Rumbling.",
+    "storyline": "As Eren Yeager unleashes tens of thousands of Colossal Titans to flatten the earth, his former comrades band together in a heartbreaking final confrontation to save what remains of humanity.",
+    "poster": "/api/poster/attack-on-titan-final",
+    "backdrop": "/api/backdrop/attack-on-titan-final",
+    "fallbackColor": "#450a0a"
+  },
+  {
+    "id": "the-notebook",
+    "slug": "the-notebook",
+    "title": "The Notebook",
+    "koreanTitle": "노트북 (The Notebook)",
+    "tagline": "Behind every great love is a great story.",
+    "year": "2004",
+    "releaseDate": "June 25, 2004",
+    "rating": "15+",
+    "imdbRating": "7.8",
+    "matchScore": "98% Match",
+    "duration": "2h 03m",
+    "country": "United States",
+    "studio": "New Line Cinema",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby 5.1)",
+    "category": "romance",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "director": "Nick Cassavetes",
+    "cast": [
+      "Ryan Gosling",
+      "Rachel McAdams",
+      "James Garner",
+      "Gena Rowlands"
+    ],
+    "castDetails": [
+      {
+        "name": "Ryan Gosling",
+        "character": "Noah Calhoun",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Rachel McAdams",
+        "character": "Allie Hamilton",
+        "role": "Leading Actress"
+      }
+    ],
+    "synopsis": "An elderly man reads to a woman with dementia from his notebook, recounting the passionate summer love story between poor mill worker Noah and wealthy heiress Allie in 1940s South Carolina.",
+    "storyline": "In 1940s Seabrook Island, Noah Calhoun and Allie Hamilton fall in love despite overwhelming social class divides, surviving years of separation and the tests of fading memory.",
+    "poster": "/api/poster/the-notebook",
+    "backdrop": "/api/backdrop/the-notebook",
+    "fallbackColor": "#831843"
+  },
+  {
+    "id": "la-la-land",
+    "slug": "la-la-land",
+    "title": "La La Land",
+    "koreanTitle": "라라랜드",
+    "tagline": "Here's to the fools who dream.",
+    "year": "2016",
+    "releaseDate": "December 9, 2016",
+    "rating": "12+",
+    "imdbRating": "8.0",
+    "matchScore": "98% Match",
+    "duration": "2h 08m",
+    "country": "United States",
+    "studio": "Summit Entertainment / Lionsgate",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "romance",
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Musical",
+      "Drama"
+    ],
+    "director": "Damien Chazelle",
+    "cast": [
+      "Ryan Gosling",
+      "Emma Stone",
+      "John Legend",
+      "Rosemarie DeWitt"
+    ],
+    "castDetails": [
+      {
+        "name": "Emma Stone",
+        "character": "Mia Dolan",
+        "role": "Leading Actress"
+      },
+      {
+        "name": "Ryan Gosling",
+        "character": "Sebastian Wilder",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
+    "storyline": "Six-time Academy Award-winner Damien Chazelle explores the bittersweet tension between romantic devotion and artistic ambition in a vibrant modern Los Angeles.",
+    "poster": "/api/poster/la-la-land",
+    "backdrop": "/api/backdrop/la-la-land",
+    "fallbackColor": "#4c1d95"
+  },
+  {
+    "id": "titanic",
+    "slug": "titanic",
+    "title": "Titanic",
+    "koreanTitle": "타이타닉",
+    "tagline": "Nothing on Earth could come between them.",
+    "year": "1997",
+    "releaseDate": "December 19, 1997",
+    "rating": "15+",
+    "imdbRating": "7.9",
+    "matchScore": "99% Match",
+    "duration": "3h 14m",
+    "country": "United States",
+    "studio": "Paramount / 20th Century Fox",
+    "resolution": "4K 3D Remastered",
+    "audio": "English (Dolby Atmos)",
+    "category": "romance",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "director": "James Cameron",
+    "cast": [
+      "Leonardo DiCaprio",
+      "Kate Winslet",
+      "Billy Zane",
+      "Kathy Bates",
+      "Bill Paxton"
+    ],
+    "castDetails": [
+      {
+        "name": "Leonardo DiCaprio",
+        "character": "Jack Dawson",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Kate Winslet",
+        "character": "Rose DeWitt Bukater",
+        "role": "Leading Actress"
+      }
+    ],
+    "synopsis": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+    "storyline": "James Cameron's historic 11-time Academy Award-winning epic chronicles the fateful maiden voyage of the Titanic and the enduring romance between Jack and Rose.",
+    "poster": "/api/poster/titanic",
+    "backdrop": "/api/backdrop/titanic",
+    "fallbackColor": "#0f172a"
+  },
+  {
+    "id": "about-time",
+    "slug": "about-time",
+    "title": "About Time",
+    "koreanTitle": "어바웃 타임",
+    "tagline": "What if every moment in life came with a second chance?",
+    "year": "2013",
+    "releaseDate": "September 4, 2013",
+    "rating": "15+",
+    "imdbRating": "7.8",
+    "matchScore": "98% Match",
+    "duration": "2h 03m",
+    "country": "United Kingdom",
+    "studio": "Universal Pictures / Working Title",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby 5.1)",
+    "category": "romance",
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Drama",
+      "Fantasy"
+    ],
+    "director": "Richard Curtis",
+    "cast": [
+      "Domhnall Gleeson",
+      "Rachel McAdams",
+      "Bill Nighy",
+      "Lydia Wilson",
+      "Margot Robbie"
+    ],
+    "castDetails": [
+      {
+        "name": "Domhnall Gleeson",
+        "character": "Tim Lake",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Rachel McAdams",
+        "character": "Mary",
+        "role": "Leading Actress"
+      }
+    ],
+    "synopsis": "At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think.",
+    "storyline": "Tim uses his hereditary ability to travel through time to win the heart of Mary and cherish everyday moments with his beloved family.",
+    "poster": "/api/poster/about-time",
+    "backdrop": "/api/backdrop/about-time",
+    "fallbackColor": "#9a3412"
+  },
+  {
+    "id": "john-wick-4",
+    "slug": "john-wick-4",
+    "title": "John Wick: Chapter 4",
+    "koreanTitle": "존 윅 4",
+    "tagline": "No way out, one way through.",
+    "year": "2023",
+    "releaseDate": "March 24, 2023",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for relentless stylized gun violence, martial arts brutality, and language.",
+    "advisoryTags": [
+      "18+ Violence",
+      "Action Carnage",
+      "Gun-Fu"
+    ],
+    "imdbRating": "7.7",
+    "matchScore": "98% Match",
+    "duration": "2h 49m",
+    "country": "United States",
+    "studio": "Lionsgate / Thunder Road",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby Atmos)",
+    "category": "thriller",
+    "genres": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "director": "Chad Stahelski",
+    "cast": [
+      "Keanu Reeves",
+      "Donnie Yen",
+      "Bill Skarsgård",
+      "Laurence Fishburne",
+      "Hiroyuki Sanada"
+    ],
+    "castDetails": [
+      {
+        "name": "Keanu Reeves",
+        "character": "John Wick",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Donnie Yen",
+        "character": "Caine",
+        "role": "Supporting Actor"
+      }
+    ],
+    "synopsis": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe.",
+    "storyline": "From New York and Paris to Osaka and Berlin, legendary hitman John Wick fights for his ultimate freedom against the High Table's Marquis de Gramont.",
+    "poster": "/api/poster/john-wick-4",
+    "backdrop": "/api/backdrop/john-wick-4",
+    "fallbackColor": "#18181b"
+  },
+  {
+    "id": "pulp-fiction",
+    "slug": "pulp-fiction",
+    "title": "Pulp Fiction",
+    "koreanTitle": "펄프 픽션",
+    "tagline": "You won't know the facts until you've seen the fiction.",
+    "year": "1994",
+    "releaseDate": "October 14, 1994",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for graphic bloody violence, drug use, adult situations, and pervasive strong language.",
+    "advisoryTags": [
+      "18+ Restricted",
+      "Graphic Violence",
+      "Substance Use"
+    ],
+    "imdbRating": "8.9",
+    "matchScore": "99% Match",
+    "duration": "2h 34m",
+    "country": "United States",
+    "studio": "Miramax",
+    "resolution": "4K Remastered",
+    "audio": "English (Dolby 5.1)",
+    "category": "world",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "director": "Quentin Tarantino",
+    "cast": [
+      "John Travolta",
+      "Samuel L. Jackson",
+      "Uma Thurman",
+      "Bruce Willis",
+      "Ving Rhames"
+    ],
+    "castDetails": [
+      {
+        "name": "John Travolta",
+        "character": "Vincent Vega",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Samuel L. Jackson",
+        "character": "Jules Winnfield",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "storyline": "Quentin Tarantino's Palme d'Or-winning masterpiece redefined modern cinema with its nonlinear storytelling, pop culture dialogue, and iconic neo-noir ensemble.",
+    "poster": "/api/poster/pulp-fiction",
+    "backdrop": "/api/backdrop/pulp-fiction",
+    "fallbackColor": "#854d0e"
+  },
+  {
+    "id": "fight-club",
+    "slug": "fight-club",
+    "title": "Fight Club",
+    "koreanTitle": "파이트 클럽",
+    "tagline": "Mischief. Mayhem. Soap.",
+    "year": "1999",
+    "releaseDate": "October 15, 1999",
+    "rating": "18+",
+    "is18Plus": true,
+    "contentWarning": "Rated 18+ for brutal violence, psychological disorder themes, sexuality, and subversive content.",
+    "advisoryTags": [
+      "18+ Restricted",
+      "Brutal Violence",
+      "Psychological Trauma"
+    ],
+    "imdbRating": "8.8",
+    "matchScore": "99% Match",
+    "duration": "2h 19m",
+    "country": "United States",
+    "studio": "20th Century Fox",
+    "resolution": "4K Ultra HD",
+    "audio": "English (Dolby 5.1)",
+    "category": "world",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "director": "David Fincher",
+    "cast": [
+      "Brad Pitt",
+      "Edward Norton",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "castDetails": [
+      {
+        "name": "Brad Pitt",
+        "character": "Tyler Durden",
+        "role": "Leading Actor"
+      },
+      {
+        "name": "Edward Norton",
+        "character": "The Narrator",
+        "role": "Leading Actor"
+      }
+    ],
+    "synopsis": "An insomniac office worker looking for a way to change his life crosses paths with a devil-may-care soap maker and they form an underground fight club that evolves into something much more.",
+    "storyline": "David Fincher's cult psychological thriller follows an unfulfilled white-collar worker and enigmatic soap salesman Tyler Durden as their underground brawling club mutates into a nationwide anti-consumerist revolution.",
+    "poster": "/api/poster/fight-club",
+    "backdrop": "/api/backdrop/fight-club",
+    "fallbackColor": "#292524"
   },
   {
     "id": "parasite",
@@ -2020,13 +3073,13 @@ const KOREAN_MOVIES_CATALOG = [
 ];
 
 function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor = "#1e1320") {
-  const safeTitle = (title || 'KOREAN CINEMA')
+  const safeTitle = (title || 'STREAMBERT FILM')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
-  const safeKorean = (koreanTitle || '한국 영화')
+  const safeOriginal = (koreanTitle || 'STREAMBERT')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
@@ -2037,18 +3090,26 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
 
   // Guaranteed safe XML identifier (strictly [a-z0-9_], no % or spaces)
   const hash = Math.abs((safeTitle + safeYear).split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0)).toString(36);
-  const uid = 'p_' + hash;
+  const uid = 'sb_' + hash;
 
   // Genre palette
-  let primaryColor = "#e50914";
-  let accentColor = "#f43f5e";
+  let primaryColor = "#8256d0";
+  let accentColor = "#a855f7";
   let bgGradient = `
     <stop offset="0%" stop-color="${bgColor}"/>
-    <stop offset="45%" stop-color="#120c18"/>
+    <stop offset="45%" stop-color="#140f1f"/>
     <stop offset="100%" stop-color="#070509"/>
   `;
 
-  if (safeGenre.includes('ROMANCE') || safeGenre.includes('MELODRAMA')) {
+  if (safeGenre.includes('ANIME')) {
+    primaryColor = "#ec4899";
+    accentColor = "#f472b6";
+    bgGradient = `
+      <stop offset="0%" stop-color="${bgColor}"/>
+      <stop offset="45%" stop-color="#240c1f"/>
+      <stop offset="100%" stop-color="#090308"/>
+    `;
+  } else if (safeGenre.includes('ROMANCE') || safeGenre.includes('MELODRAMA')) {
     primaryColor = "#e11d48";
     accentColor = "#fb7185";
     bgGradient = `
@@ -2056,7 +3117,7 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
       <stop offset="45%" stop-color="#240e1b"/>
       <stop offset="100%" stop-color="#0b0509"/>
     `;
-  } else if (safeGenre.includes('THRILLER') || safeGenre.includes('ACTION')) {
+  } else if (safeGenre.includes('THRILLER') || safeGenre.includes('ACTION') || safeGenre.includes('SCI-FI')) {
     primaryColor = "#0284c7";
     accentColor = "#38bdf8";
     bgGradient = `
@@ -2064,7 +3125,7 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
       <stop offset="45%" stop-color="#08182b"/>
       <stop offset="100%" stop-color="#040911"/>
     `;
-  } else if (safeGenre.includes('HORROR') || safeGenre.includes('MYSTERY') || safeGenre.includes('SUPERNATURAL')) {
+  } else if (safeGenre.includes('HORROR') || safeGenre.includes('MYSTERY')) {
     primaryColor = "#b91c1c";
     accentColor = "#ef4444";
     bgGradient = `
@@ -2072,7 +3133,7 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
       <stop offset="45%" stop-color="#220808"/>
       <stop offset="100%" stop-color="#090202"/>
     `;
-  } else if (safeGenre.includes('COMEDY')) {
+  } else if (safeGenre.includes('COMEDY') || safeGenre.includes('ADVENTURE')) {
     primaryColor = "#d97706";
     accentColor = "#f59e0b";
     bgGradient = `
@@ -2089,8 +3150,8 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
       ${bgGradient}
     </linearGradient>
     <radialGradient id="${uid}_spot" cx="50%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="${accentColor}" stop-opacity="0.35"/>
-      <stop offset="60%" stop-color="${accentColor}" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="${accentColor}" stop-opacity="0.38"/>
+      <stop offset="60%" stop-color="${accentColor}" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0.95"/>
     </radialGradient>
     <linearGradient id="${uid}_gold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2120,16 +3181,16 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
     <rect x="460" y="718" width="10" height="6" rx="1"/>
   </g>
 
-  <!-- Top Streaming Header: CINEBY Brand • Age Rating • Quality -->
+  <!-- Top Streaming Header: STREAMBERT Brand • Age Rating • Quality -->
   <g transform="translate(32, 46)">
-    <rect x="0" y="0" width="76" height="24" rx="4" fill="#e50914"/>
-    <text x="38" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="1.2">CINEBY</text>
+    <rect x="0" y="0" width="98" height="24" rx="4" fill="#8256d0"/>
+    <text x="49" y="16" fill="#ffffff" font-size="10.5" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="1">STREAMBERT</text>
     
-    <rect x="84" y="0" width="${isAdult ? 66 : 56}" height="24" rx="4" fill="${isAdult ? '#dc2626' : 'rgba(255,255,255,0.12)'}" stroke="${isAdult ? '#ef4444' : 'rgba(255,255,255,0.2)'}" stroke-width="1"/>
-    <text x="${isAdult ? 117 : 112}" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">${safeRating}</text>
+    <rect x="106" y="0" width="${isAdult ? 66 : 56}" height="24" rx="4" fill="${isAdult ? '#dc2626' : 'rgba(255,255,255,0.12)'}" stroke="${isAdult ? '#ef4444' : 'rgba(255,255,255,0.2)'}" stroke-width="1"/>
+    <text x="${isAdult ? 139 : 134}" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">${safeRating}</text>
 
-    <rect x="${isAdult ? 158 : 148}" y="0" width="80" height="24" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
-    <text x="${isAdult ? 198 : 188}" y="16" fill="#fbbf24" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">4K ULTRA</text>
+    <rect x="${isAdult ? 180 : 170}" y="0" width="80" height="24" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
+    <text x="${isAdult ? 220 : 210}" y="16" fill="#fbbf24" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">4K ULTRA</text>
   </g>
 
   <!-- Center Graphic Motif: Optical Cinema Rings & Projector -->
@@ -2144,12 +3205,12 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
 
   <!-- Award Laurel Header -->
   <g transform="translate(250, 420)">
-    <text x="0" y="0" fill="url(#${uid}_gold)" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2.5">★ OFFICIAL THEATRICAL RELEASE ★</text>
+    <text x="0" y="0" fill="url(#${uid}_gold)" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2.5">★ OFFICIAL WORLD THEATRICAL RELEASE ★</text>
   </g>
 
-  <!-- Hangul Korean Original Title -->
+  <!-- Original Language Title -->
   <g transform="translate(250, 485)">
-    <text x="0" y="0" fill="${accentColor}" font-size="${safeKorean.length > 8 ? 32 : 40}" font-weight="900" font-family="'Noto Sans KR', sans-serif" text-anchor="middle" letter-spacing="4">${safeKorean}</text>
+    <text x="0" y="0" fill="${accentColor}" font-size="${safeOriginal.length > 10 ? 28 : 38}" font-weight="900" font-family="'Noto Sans KR', sans-serif" text-anchor="middle" letter-spacing="3">${safeOriginal}</text>
   </g>
 
   <!-- English Title -->
@@ -2163,14 +3224,24 @@ function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor =
   </g>
 
   <!-- Divider Line -->
-  <rect x="175" y="596" width="150" height="2" rx="1" fill="#e50914" opacity="0.8"/>
+  <rect x="175" y="596" width="150" height="2" rx="1" fill="#8256d0" opacity="0.8"/>
 
   <!-- Presentation Badge -->
   <g transform="translate(250, 640)">
-    <text x="0" y="0" fill="rgba(255,255,255,0.5)" font-size="11" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">4K REMASTERED &bull; ORIGINAL KOREAN AUDIO</text>
-    <text x="0" y="20" fill="rgba(255,255,255,0.3)" font-size="9" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">CINEBY THEATRICAL PRESENTATION</text>
+    <text x="0" y="0" fill="rgba(255,255,255,0.5)" font-size="11" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">4K REMASTERED &bull; DOLBY ATMOS AUDIO</text>
+    <text x="0" y="20" fill="rgba(255,255,255,0.3)" font-size="9" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">STREAMBERT THEATRICAL PRESENTATION</text>
   </g>
 </svg>`;
 
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+const MOVIES_CATALOG = KOREAN_MOVIES_CATALOG;
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    KOREAN_MOVIES_CATALOG,
+    MOVIES_CATALOG,
+    getPosterSvgFallback,
+  };
 }

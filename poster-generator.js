@@ -58,33 +58,47 @@ function generatePosterSvg(movie) {
   const bgColor = movie.fallbackColor || '#18121f';
 
   // Festival Award Text based on movie
-  let laurelAward = '★ OFFICIAL SELECTION • BUSAN INT\'L FILM FESTIVAL ★';
-  if (movie.id === 'parasite') {
-    laurelAward = '★ CANNES PALME D\'OR & 4X ACADEMY AWARD WINNER ★';
+  let laurelAward = '★ OFFICIAL WORLD THEATRICAL SELECTION ★';
+  if (movie.id === 'oppenheimer' || movie.id === 'parasite') {
+    laurelAward = '★ 7X ACADEMY AWARD WINNER • BEST PICTURE ★';
+  } else if (movie.id === 'dune-part-two' || movie.id === 'interstellar') {
+    laurelAward = '★ 6X ACADEMY AWARD WINNER • SCI-FI MASTERPIECE ★';
+  } else if (movie.id === 'your-name' || movie.id === 'demon-slayer-mugen-train') {
+    laurelAward = '★ ALL-TIME HIGHEST GROSSING ANIME WORLDWIDE ★';
+  } else if (movie.id === 'spirited-away') {
+    laurelAward = '★ ACADEMY AWARD WINNER • BEST ANIMATED FEATURE ★';
+  } else if (movie.id === 'the-dark-knight') {
+    laurelAward = '★ 2X ACADEMY AWARD WINNER • CRITICS CHOICE ★';
   } else if (movie.id === '15859') {
     laurelAward = '★ GRAND BELL AWARDS & BLUE DRAGON NOMINEE ★';
   } else if (movie.id === 'oldboy') {
     laurelAward = '★ CANNES FILM FESTIVAL GRAND PRIX WINNER ★';
-  } else if (movie.id === 'decision-to-leave') {
-    laurelAward = '★ CANNES FILM FESTIVAL BEST DIRECTOR WINNER ★';
-  } else if (movie.id === 'the-handmaiden') {
-    laurelAward = '★ BAFTA AWARDS BEST FILM NOT IN ENGLISH LANGUAGE ★';
-  } else if (movie.id === 'train-to-busan') {
-    laurelAward = '★ BLUE DRAGON FILM AWARDS BOX OFFICE HIT ★';
-  } else if (movie.id === '12-12-the-day' || movie.id === 'exhuma') {
-    laurelAward = '★ #1 BOX OFFICE SENSATION • BAEKSANG ARTS AWARDS ★';
+  } else if (movie.id === 'titanic') {
+    laurelAward = '★ 11X ACADEMY AWARD WINNER • GLOBAL BOX OFFICE RECORD ★';
+  } else if (movie.id === 'la-la-land') {
+    laurelAward = '★ 6X ACADEMY AWARD WINNER • BEST DIRECTOR ★';
+  } else if (movie.id === 'pulp-fiction' || movie.id === 'fight-club') {
+    laurelAward = '★ CANNES PALME D\'OR & CULT CINEMA MASTERPIECE ★';
   }
 
   // Genre-themed lighting
-  let primaryGlow = '#e11d48';
-  let accentColor = '#f43f5e';
+  let primaryGlow = '#8256d0';
+  let accentColor = '#a855f7';
   let gradStops = `
     <stop offset="0%" stop-color="${bgColor}"/>
-    <stop offset="40%" stop-color="#120c18"/>
+    <stop offset="40%" stop-color="#140e1f"/>
     <stop offset="100%" stop-color="#070509"/>
   `;
 
-  if (safeGenre.includes('ROMANCE')) {
+  if (safeGenre.includes('ANIME')) {
+    primaryGlow = '#ec4899';
+    accentColor = '#f472b6';
+    gradStops = `
+      <stop offset="0%" stop-color="${bgColor}"/>
+      <stop offset="45%" stop-color="#240c1f"/>
+      <stop offset="100%" stop-color="#090308"/>
+    `;
+  } else if (safeGenre.includes('ROMANCE')) {
     primaryGlow = '#e11d48';
     accentColor = '#fb7185';
     gradStops = `
@@ -92,7 +106,7 @@ function generatePosterSvg(movie) {
       <stop offset="45%" stop-color="#1f0c18"/>
       <stop offset="100%" stop-color="#0a0509"/>
     `;
-  } else if (safeGenre.includes('THRILLER') || safeGenre.includes('ACTION')) {
+  } else if (safeGenre.includes('THRILLER') || safeGenre.includes('ACTION') || safeGenre.includes('SCI-FI')) {
     primaryGlow = '#0284c7';
     accentColor = '#38bdf8';
     gradStops = `
@@ -108,12 +122,12 @@ function generatePosterSvg(movie) {
       <stop offset="45%" stop-color="#1f0808"/>
       <stop offset="100%" stop-color="#090202"/>
     `;
-  } else if (safeGenre.includes('COMEDY') || safeGenre.includes('DISASTER')) {
+  } else if (safeGenre.includes('COMEDY') || safeGenre.includes('ADVENTURE')) {
     primaryGlow = '#d97706';
     accentColor = '#f59e0b';
     gradStops = `
       <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#1a1408"/>
+      <stop offset="45%" stop-color="#1c1407"/>
       <stop offset="100%" stop-color="#090703"/>
     `;
   }
@@ -125,8 +139,8 @@ function generatePosterSvg(movie) {
       ${gradStops}
     </linearGradient>
     <radialGradient id="stageSpotlight" cx="50%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="${accentColor}" stop-opacity="0.32"/>
-      <stop offset="60%" stop-color="${accentColor}" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="${accentColor}" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="${accentColor}" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0.95"/>
     </radialGradient>
     <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -160,19 +174,19 @@ function generatePosterSvg(movie) {
     <rect x="460" y="718" width="10" height="6" rx="1"/>
   </g>
 
-  <!-- Top Streaming Header: CINEBY Brand • Age Rating • Quality -->
+  <!-- Top Streaming Header: STREAMBERT Brand • Age Rating • Quality -->
   <g transform="translate(32, 46)">
     <!-- Brand Box -->
-    <rect x="0" y="0" width="76" height="24" rx="4" fill="#e50914"/>
-    <text x="38" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', -apple-system, sans-serif" text-anchor="middle" letter-spacing="1.2">CINEBY</text>
+    <rect x="0" y="0" width="98" height="24" rx="4" fill="#8256d0"/>
+    <text x="49" y="16" fill="#ffffff" font-size="10.5" font-weight="900" font-family="'Inter', -apple-system, sans-serif" text-anchor="middle" letter-spacing="1">STREAMBERT</text>
     
     <!-- Age Rating Pill -->
-    <rect x="84" y="0" width="${isAdult ? 66 : 56}" height="24" rx="4" fill="${isAdult ? '#dc2626' : 'rgba(255,255,255,0.12)'}" stroke="${isAdult ? '#ef4444' : 'rgba(255,255,255,0.2)'}" stroke-width="1"/>
-    <text x="${isAdult ? 117 : 112}" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">${safeRating}</text>
+    <rect x="106" y="0" width="${isAdult ? 66 : 56}" height="24" rx="4" fill="${isAdult ? '#dc2626' : 'rgba(255,255,255,0.12)'}" stroke="${isAdult ? '#ef4444' : 'rgba(255,255,255,0.2)'}" stroke-width="1"/>
+    <text x="${isAdult ? 139 : 134}" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">${safeRating}</text>
 
     <!-- 4K UHD Badge -->
-    <rect x="${isAdult ? 158 : 148}" y="0" width="80" height="24" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
-    <text x="${isAdult ? 198 : 188}" y="16" fill="#fbbf24" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">4K ULTRA</text>
+    <rect x="${isAdult ? 180 : 170}" y="0" width="80" height="24" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
+    <text x="${isAdult ? 220 : 210}" y="16" fill="#fbbf24" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">4K ULTRA</text>
 
     <!-- Match Score -->
     <text x="436" y="16" fill="#46d369" font-size="11.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="end">${safeMatch}</text>

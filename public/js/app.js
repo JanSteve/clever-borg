@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prank perfection: Hide "A Moment to Remember" from main screen browsing rows & category tabs
     // so the friend only discovers it when explicitly searching for it!
     if (searchQuery.trim() === '') {
-      filtered = filtered.filter(m => m.id !== '15859' && m.slug !== 'a-moment-to-remember');
+      filtered = filtered.filter(m => !m.hidden && m.id !== '15859' && m.slug !== 'a-moment-to-remember');
     }
 
     if (currentCategory !== 'all') {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchQuery.trim() !== '') {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(m => {
-        if (m.id === '15859' || m.slug === 'a-moment-to-remember') {
+        if (m.id === '15859' || m.slug === 'a-moment-to-remember' || m.hidden) {
           // Prank logic: ONLY match A Moment to Remember if the query explicitly targets it!
           return q.includes('moment') ||
                  q.includes('remember') ||
@@ -175,10 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (currentCategory === 'all' && searchQuery.trim() === '') {
       const sections = [
-        { key: 'romance', title: '💖 Romance & Melodrama Hits', korean: '가슴 뭉클한 로맨스' },
-        { key: 'trending', title: '🔥 Trending in Seoul • Top 10', korean: '인기 급상승 영화' },
-        { key: 'thriller', title: '⚡ Korean Thrillers & Dark Action', korean: '심장 쫄깃한 스릴러' },
-        { key: 'mystery', title: '🧟 Mystery & Supernatural', korean: '미스터리 & 공포' }
+        { key: 'blockbusters', title: '🌍 Global Trending & Hollywood Blockbusters', korean: '글로벌 블록버스터 톱 10' },
+        { key: 'anime', title: '⛩️ Anime Masterpieces & Animation', korean: '극장판 애니메이션 명작' },
+        { key: 'romance', title: '💖 Romance & Melodrama Worldwide', korean: '세계적인 감성 로맨스 명작' },
+        { key: 'world', title: '🔥 Top Rated World Cinema', korean: '월드 시네마 명작 컬렉션' },
+        { key: 'thriller', title: '⚡ Action, Sci-Fi & Dark Thrillers', korean: '스릴러 & 액션 대작' }
       ];
 
       sections.forEach(sec => {
@@ -449,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'parasite') || KOREAN_MOVIES_CATALOG[1];
+  const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
 
   btnHeroPlay.addEventListener('click', () => {
     launchMoviePlayback(heroMovie);
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnHeroWatchlist.addEventListener('click', () => {
     btnHeroWatchlist.classList.toggle('active');
-    alert('Added "Parasite" to your Watchlist!');
+    alert(`Added "${heroMovie.title}" to your Watchlist!`);
   });
 
   btnPreviewTrailer.addEventListener('click', () => {

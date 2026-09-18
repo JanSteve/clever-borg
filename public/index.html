@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cineby - Watch Free Movies & TV Shows Online | Korean Cinema HD</title>
+  <title>Streambert - Watch Any Movie, TV Series &amp; Anime in the World</title>
+  <meta name="description" content="Stream any Movie, Anime or TV Series from around the World with zero ads and 4K Ultra HD quality on Streambert.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/player.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/player.css">
 </head>
 <body>
-
   <!-- =========================================================================
-       Site Header / Navigation Bar (100% Authentic Streaming Platform)
+       Site Header / Navigation Bar (Streambert Global Platform)
        ========================================================================= -->
   <header class="site-header">
     <div class="nav-left">
       <a class="brand-logo" id="nav-logo" href="#">
-        <div class="logo-icon">C</div>
-        <div class="logo-text">CINE<span>BY</span></div>
+        <div class="logo-icon">S</div>
+        <div class="logo-text">STREAM<span>BERT</span></div>
       </a>
       <ul class="nav-links">
         <li><a class="nav-link active" id="nav-home-link" href="#">Home</a></li>
-        <li><a class="nav-link" href="#catalog-container">Movies</a></li>
-        <li><a class="nav-link" href="#catalog-container">Romance & Melodrama</a></li>
-        <li><a class="nav-link" href="#catalog-container">Trending Top 10</a></li>
-        <li><a class="nav-link" href="#catalog-container">Korean Cinema</a></li>
+        <li><a class="nav-link" href="#catalog-container">Blockbusters</a></li>
+        <li><a class="nav-link" href="#catalog-container">Anime</a></li>
+        <li><a class="nav-link" href="#catalog-container">World Cinema</a></li>
+        <li><a class="nav-link" href="#catalog-container">Romance</a></li>
+        <li><a class="nav-link" href="#catalog-container">Thrillers</a></li>
       </ul>
     </div>
 
@@ -38,62 +39,62 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search titles, actors, genres..." autocomplete="off">
+          <input type="text" id="search-input" class="search-input" placeholder="Search any movie, anime, actor..." autocomplete="off">
           <button id="search-clear-btn" class="search-clear-btn" style="display: none;">&times;</button>
         </div>
         <!-- Live Instant Search Results Popup -->
         <div id="search-results-popup" class="search-results-popup"></div>
       </div>
 
-      <!-- VIP Account Profile Dropdown (Commercial Streaming Look) -->
+      <!-- VIP Account Profile Dropdown (Streambert Look) -->
       <div class="user-profile-menu">
-        <div class="profile-trigger" id="profile-trigger" title="VIP Premium Account">
-          <div class="profile-avatar">VIP</div>
+        <div class="profile-trigger" id="profile-trigger" title="Streambert Pro Account">
+          <div class="profile-avatar">PRO</div>
           <span class="profile-plan-badge">4K ULTRA</span>
         </div>
         <div class="profile-dropdown" id="profile-dropdown">
           <div class="dropdown-header">
-            <div style="font-weight: 700; color: #fff;">VIP Premium Member</div>
-            <div style="font-size: 11px; color: #22c55e;">● Active • 4K UHD Streaming</div>
+            <div style="font-weight: 700; color: #fff;">Streambert Pro Member</div>
+            <div style="font-size: 11px; color: #8256d0;">● Active • Global Fast CDN</div>
           </div>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#catalog-container">My Watchlist</a>
-          <a class="dropdown-item" href="#catalog-container">Playback Preferences</a>
-          <a class="dropdown-item" href="#catalog-container">Streaming Servers</a>
+          <a class="dropdown-item" href="#catalog-container">My Library &amp; Watchlist</a>
+          <a class="dropdown-item" href="#catalog-container">Subtitle Settings</a>
+          <a class="dropdown-item" href="#catalog-container">CDN Speed Test</a>
           <div class="dropdown-divider"></div>
-          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Server: Seoul HighSpeed CDN-1</div>
+          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Server: FastCDN Global Edge (0ms)</div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- =========================================================================
-       Main Home View (Billboard & Curated Rows)
+       Main Home View (Billboard & Curated World Cinema Rows)
        ========================================================================= -->
   <div id="home-view">
-    <!-- Billboard Hero Section (Featuring A Moment to Remember) -->
-    <section id="hero-banner" class="hero-banner" style="background-image: linear-gradient(180deg, rgba(11, 12, 16, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%), url('/api/backdrop/parasite');">
+    <!-- Billboard Hero Section (Featuring Dune: Part Two) -->
+    <section id="hero-banner" class="hero-banner" style="background-image: linear-gradient(180deg, rgba(11, 12, 16, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%), url('/api/backdrop/dune-part-two');">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div id="hero-eyebrow" class="hero-eyebrow">
           <span class="hero-badge-pill">
-            <span class="badge-pulse"></span> #1 TRENDING IN SOUTH KOREA
+            <span class="badge-pulse"></span> #1 GLOBAL BLOCKBUSTER
           </span>
-          <span class="meta-badge uhd">4K ULTRA HD</span>
-          <span class="hero-badge-pill" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.5); color: #fbbf24;">★ 4X ACADEMY AWARD WINNER</span>
+          <span class="meta-badge uhd">4K IMAX ENHANCED</span>
+          <span class="hero-badge-pill" style="background: rgba(130, 86, 208, 0.2); border-color: rgba(130, 86, 208, 0.6); color: #c084fc;">★ 6X ACADEMY AWARD WINNER</span>
         </div>
-        <div id="hero-korean-title" class="hero-korean-title">기생충</div>
-        <h1 id="hero-title" class="hero-title">Parasite</h1>
+        <div id="hero-korean-title" class="hero-korean-title">듄: 파트 2 (Dune: Part Two)</div>
+        <h1 id="hero-title" class="hero-title">Dune: Part Two</h1>
         <div id="hero-meta" class="hero-meta">
-          <div class="rating-star-badge" style="padding: 2px 8px; font-size: 12px;">★ 8.5</div>
+          <div class="rating-star-badge" style="padding: 2px 8px; font-size: 12px;">★ 8.6</div>
           <span class="meta-match">99% Match</span>
-          <span>2019</span>
-          <span id="hero-age-badge" class="meta-badge badge-18">18+</span>
-          <span>2h 12m</span>
+          <span>2024</span>
+          <span id="hero-age-badge" class="meta-badge">13+</span>
+          <span>2h 46m</span>
           <span class="meta-badge uhd">Dolby Atmos</span>
         </div>
         <p id="hero-synopsis" class="hero-synopsis">
-          Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan in Bong Joon-ho's historic Palme d'Or and 4x Academy Award-winning masterpiece.
+          Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.
         </p>
         <div class="hero-actions">
           <button id="btn-hero-play" class="btn-play-hero">
@@ -118,18 +119,19 @@
       </div>
     </section>
 
-    <!-- Curated Cinema Rows -->
+    <!-- Curated World Cinema Rows -->
     <main class="catalog-section">
       <div class="catalog-nav">
         <div class="category-tabs">
           <button class="tab-btn active" data-category="all">All Movies</button>
-          <button class="tab-btn" data-category="romance">💖 Romance & Melodrama</button>
-          <button class="tab-btn" data-category="trending">🔥 Trending Top 10</button>
-          <button class="tab-btn" data-category="thriller">⚡ Thriller & Action</button>
-          <button class="tab-btn" data-category="mystery">🧟 Mystery & Supernatural</button>
+          <button class="tab-btn" data-category="blockbusters">🌍 Global Blockbusters</button>
+          <button class="tab-btn" data-category="anime">⛩️ Anime &amp; Animation</button>
+          <button class="tab-btn" data-category="romance">💖 Romance Worldwide</button>
+          <button class="tab-btn" data-category="world">🔥 Top Rated World Cinema</button>
+          <button class="tab-btn" data-category="thriller">⚡ Action &amp; Thrillers</button>
         </div>
         <div class="catalog-info-tag">
-          <span style="color: #22c55e;">● Stream HD Online • No Buffering</span>
+          <span style="color: #8256d0; font-weight: 700;">● Streambert FastCDN • Zero Ads</span>
         </div>
       </div>
 
@@ -320,7 +322,7 @@
        ========================================================================= -->
   <footer class="site-footer">
     <div class="footer-top">
-      <div class="footer-brand">CINE<span>BY</span> 한국 영화 HD</div>
+      <div class="footer-brand">STREAM<span>BERT</span> Worldwide 4K HD</div>
       <div style="font-size: 12px; color: var(--text-muted);">
         Player Shortcuts: <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">Space</kbd> Play/Pause &bull; 
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">&larr;/&rarr;</kbd> &plusmn;10s Skip &bull; 
@@ -329,7 +331,7 @@
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">C</kbd> Subtitles
       </div>
     </div>
-    <p>Watch free Korean cinema and TV shows in 4K Ultra HD on Cineby. Stream the latest films, romantic blockbusters, and classics online, no signup required.</p>
+    <p>Stream any movie, anime, or TV series from around the world in 4K Ultra HD on Streambert. Powered by the high-speed Streambert engine with zero ads and zero tracking.</p>
   </footer>
 
   <!-- =========================================================================

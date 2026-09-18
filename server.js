@@ -316,7 +316,7 @@ server.on('error', (err) => {
 
 server.listen(currentPort, () => {
   console.log(`====================================================`);
-  console.log(`🎬 K-FLIX Korean Movie Streaming Server is Running!`);
+  console.log(`🎬 Streambert Global Movie Streaming Platform is Running!`);
   console.log(`📡 URL: http://localhost:${currentPort}`);
   console.log(`📂 Movie Storage Directory: ${MOVIES_DIR}`);
   console.log(`====================================================`);
