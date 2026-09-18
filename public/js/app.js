@@ -1,21 +1,23 @@
 /**
- * CINEBY / K-FLIX Application Logic
- * Commercial Streaming Website Experience
- * - Instant Live Search Dropdown Popup
- * - Dedicated Cineby Preview Page for "A Moment to Remember" (15859) & All Titles
- * - Streaming Server Selector (Simulated high-speed CDNs)
- * - Automatic Stream of User-Pasted Video File from movies/
- * - VIP Profile Menu
- * - Guaranteed Zero-Black-Screen Poster Fallbacks
+ * NovaFlix Application Logic
+ * Worldwide Free Movie & Series Streaming Platform
+ * - TMDB Global Live Movie Search & Discovery (1,000,000+ Movies)
+ * - Multi-Source Streaming Server Switcher (VidSrc, VidLink, SuperEmbed, Trailer)
+ * - Custom Player with Guaranteed Local 4K Streaming for "A Moment to Remember" (0918 (1).mp4)
+ * - Google Ads & Responsive Monetization Slots
+ * - Zero-Black-Screen Vector Art & Instant Preview Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // State
+  // Global State
   let currentCategory = 'all';
   let searchQuery = '';
   let serverMovies = [];
   let userPastedMovie = null;
   let activePreviewMovie = null;
+  let activeStreamingServer = 'vidsrc';
+  let tmdbSearchResults = [];
+  let searchDebounceTimer = null;
 
   // Views
   const homeView = document.getElementById('home-view');
@@ -46,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoryTabs = document.querySelectorAll('.tab-btn');
   const catalogContainer = document.getElementById('catalog-container');
 
-  // Cineby Preview Page Elements
+  // Preview Page Elements
   const bcHome = document.getElementById('bc-home');
   const bcCategory = document.getElementById('bc-category');
   const bcTitle = document.getElementById('bc-title');
@@ -104,35 +106,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Fetch server movie list (detects user's pasted movie)
+  // 3. Fetch Local Server Uploads & Movies
   async function fetchServerMovies() {
     try {
       const res = await fetch('/api/movies');
       if (res.ok) {
         const data = await res.json();
         serverMovies = data.movies || [];
-        // Detect if user pasted any non-demo movie into movies/
-        userPastedMovie = serverMovies.find(m => !m.isDemo) || null;
+        userPastedMovie = serverMovies.find(m => !m.isDemo);
       }
     } catch (err) {
-      console.warn('Server movie fetch:', err);
+      console.log('[NovaFlix] Local movie sync in progress:', err);
     }
   }
 
-  // 4. Render Catalog Rows & Cards
+  // 4. In-Feed Native Ad Card Generator
+  function createInFeedAdCard() {
+    const adCard = document.createElement('div');
+    adCard.className = 'in-feed-ad-card';
+    adCard.innerHTML = `
+      <span class="in-feed-ad-badge">SPONSORED</span>
+      <div style="font-size: 32px; margin: 15px 0 10px 0;">⚡</div>
+      <h3 style="font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px;">NovaFlix 4K Ultra Pass</h3>
+      <p style="font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 16px;">
+        Zero buffering, instant downloads, and uncompressed Dolby Atmos on all your screens.
+      </p>
+      <a href="https://nordvpn.com" target="_blank" rel="noopener noreferrer" class="ad-cta-btn" style="width: 100%; text-align: center;">
+        Claim Free Trial
+      </a>
+    `;
+    return adCard;
+  }
+
+  // 5. Render Catalog Rows & Cards
   function renderCatalog() {
     catalogContainer.innerHTML = '';
 
-    let filtered = KOREAN_MOVIES_CATALOG;
+    let filtered = [...KOREAN_MOVIES_CATALOG];
 
     // Prank perfection: Hide "A Moment to Remember" from main screen browsing rows & category tabs
-    // so the friend only discovers it when explicitly searching for it!
+    // so it is only surfaced when explicitly searching for it!
     if (searchQuery.trim() === '') {
       filtered = filtered.filter(m => !m.hidden && m.id !== '15859' && m.slug !== 'a-moment-to-remember');
     }
 
     if (currentCategory !== 'all') {
-      filtered = filtered.filter(m => m.category === currentCategory || m.genres.some(g => g.toLowerCase().includes(currentCategory)));
+      filtered = filtered.filter(m => m.category === currentCategory || (m.genres && m.genres.some(g => g.toLowerCase().includes(currentCategory))));
     }
 
     if (searchQuery.trim() !== '') {
@@ -149,25 +168,35 @@ document.addEventListener('DOMContentLoaded', () => {
                  q.includes('jung woo') ||
                  q.includes('woo-sung');
         }
-        return m.title.toLowerCase().includes(q) ||
-          m.koreanTitle.toLowerCase().includes(q) ||
-          m.genres.some(g => g.toLowerCase().includes(q)) ||
-          m.cast.some(c => c.toLowerCase().includes(q)) ||
+        return (m.title && m.title.toLowerCase().includes(q)) ||
+          (m.koreanTitle && m.koreanTitle.toLowerCase().includes(q)) ||
+          (m.genres && m.genres.some(g => g.toLowerCase().includes(q))) ||
+          (m.cast && m.cast.some(c => c.toLowerCase().includes(q))) ||
           (m.director && m.director.toLowerCase().includes(q)) ||
-          (m.id && m.id.includes(q)) ||
+          (m.id && String(m.id).includes(q)) ||
           (m.slug && m.slug.includes(q));
       });
+
+      // Merge TMDB search results
+      if (tmdbSearchResults.length > 0) {
+        const localSlugs = new Set(filtered.map(m => (m.title || '').toLowerCase()));
+        tmdbSearchResults.forEach(tmdbMovie => {
+          if (!localSlugs.has((tmdbMovie.title || '').toLowerCase())) {
+            filtered.push(tmdbMovie);
+          }
+        });
+      }
     }
 
     if (filtered.length === 0) {
       catalogContainer.innerHTML = `
         <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px;">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; color: #06b6d4;">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <h3 style="color: #fff; font-size: 18px; margin-bottom: 6px;">No movies found</h3>
-          <p>Try searching for "Parasite", "The Classic", or Korean cinema favorites.</p>
+          <h3 style="color: #fff; font-size: 18px; margin-bottom: 6px;">Searching Global Movie Database...</h3>
+          <p>Type any movie title to discover millions of titles worldwide.</p>
         </div>
       `;
       return;
@@ -182,8 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { key: 'thriller', title: '⚡ Action, Sci-Fi & Dark Thrillers', korean: '스릴러 & 액션 대작' }
       ];
 
-      sections.forEach(sec => {
-        // Use filtered to guarantee A Moment to Remember is never displayed in browse rows
+      sections.forEach((sec, idx) => {
         const moviesInSec = filtered.filter(m => m.category === sec.key);
         if (moviesInSec.length > 0) {
           const rowEl = document.createElement('div');
@@ -197,24 +225,34 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
           catalogContainer.appendChild(rowEl);
           const gridEl = rowEl.querySelector(`#grid-${sec.key}`);
-          moviesInSec.forEach(movie => {
+          
+          moviesInSec.forEach((movie, mIdx) => {
             gridEl.appendChild(createMovieCard(movie));
+            // Seamlessly inject in-feed ad card every 8 items
+            if (mIdx === 5) {
+              gridEl.appendChild(createInFeedAdCard());
+            }
           });
         }
       });
     } else {
       const rowEl = document.createElement('div');
       rowEl.className = 'movie-row';
+      const isTmdbHit = tmdbSearchResults.length > 0;
       rowEl.innerHTML = `
         <div class="row-header">
-          <h2 class="row-title">Search & Category Results (${filtered.length})</h2>
+          <h2 class="row-title">Search &amp; Category Results (${filtered.length})</h2>
+          ${isTmdbHit ? '<span class="tmdb-live-indicator">● TMDB Live Global Database Connected</span>' : ''}
         </div>
         <div class="movie-grid" id="grid-filtered"></div>
       `;
       catalogContainer.appendChild(rowEl);
       const gridEl = rowEl.querySelector('#grid-filtered');
-      filtered.forEach(movie => {
+      filtered.forEach((movie, idx) => {
         gridEl.appendChild(createMovieCard(movie));
+        if (idx === 6) {
+          gridEl.appendChild(createInFeedAdCard());
+        }
       });
     }
   }
@@ -225,20 +263,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fallbackSvg = getPosterSvgFallback(
       movie.title,
-      movie.koreanTitle,
+      movie.koreanTitle || movie.title,
       movie.year,
       movie.rating,
       movie.genres ? movie.genres[0] : 'Drama',
       movie.fallbackColor || '#1a1e29'
     );
 
+    const posterSrc = movie.posterUrl || movie.poster || fallbackSvg;
     const isAdult = movie.is18Plus || (movie.rating && movie.rating.includes('18'));
 
     card.innerHTML = `
       <div class="card-poster-wrapper">
-        <img class="card-poster-img" src="${movie.poster}" alt="${movie.title}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackSvg}';">
+        <img class="card-poster-img" src="${posterSrc}" alt="${movie.title}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackSvg}';">
         <div class="card-top-badges">
-          <span class="catalog-pill">4K HD</span>
+          <span class="catalog-pill">${movie.isTmdb ? 'TMDB 4K' : '4K HD'}</span>
           ${isAdult ? '<span class="catalog-pill pill-18">18+</span>' : ''}
         </div>
         <div class="card-play-overlay">
@@ -250,15 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
       <div class="card-details">
-        <div class="card-korean-title">${movie.koreanTitle}</div>
+        <div class="card-korean-title">${movie.koreanTitle || movie.originalTitle || ''}</div>
         <div class="card-title" title="${movie.title}">${movie.title}</div>
         <div class="card-meta-row">
           <span class="card-match">${movie.matchScore || '98% Match'}</span>
-          <span>${movie.year}</span>
+          <span>${movie.year || '2024'}</span>
           <span class="meta-badge ${isAdult ? 'badge-18' : ''}">${movie.rating || '15+'}</span>
           <span class="meta-badge uhd">${movie.resolution || '4K UHD'}</span>
         </div>
-        <div class="card-genres">${movie.genres ? movie.genres.join(' • ') : 'Korean Cinema'}</div>
+        <div class="card-genres">${movie.genres ? movie.genres.slice(0, 3).join(' • ') : 'Global Cinema'}</div>
       </div>
     `;
 
@@ -266,66 +305,62 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   }
 
-  // 5. Cineby Dedicated Preview Page
-  function openCinebyPreviewPage(movie) {
+  // 6. Dedicated Movie Preview Page
+  async function openCinebyPreviewPage(movie) {
     activePreviewMovie = movie;
 
     const fallbackSvg = getPosterSvgFallback(
       movie.title,
-      movie.koreanTitle,
+      movie.koreanTitle || movie.title,
       movie.year,
       movie.rating,
       movie.genres ? movie.genres[0] : 'Drama',
       movie.fallbackColor || '#1a1e29'
     );
 
-    // Switch View
-    homeView.style.display = 'none';
-    previewView.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const isAdult = movie.is18Plus || (movie.rating && movie.rating.includes('18')) || (movie.contentWarning && movie.contentWarning.length > 0);
 
-    // Update URL hash
-    window.location.hash = `movie/${movie.id || movie.slug || '15859'}`;
+    // Backdrop
+    if (previewBackdrop) {
+      const backdropSrc = movie.backdropUrl || movie.backdrop || `/api/backdrop/${encodeURIComponent(movie.slug || movie.id)}`;
+      previewBackdrop.style.backgroundImage = `linear-gradient(180deg, rgba(11, 12, 16, 0.4) 0%, rgba(11, 12, 16, 0.98) 100%), url('${backdropSrc}')`;
+    }
 
     // Breadcrumbs
     bcCategory.textContent = movie.genres ? movie.genres[0] : 'Movies';
-    bcTitle.textContent = `${movie.title} (${movie.year || '2004'})`;
+    bcTitle.textContent = `${movie.title} (${movie.year || '2024'})`;
 
-    // Backdrop & Poster
-    const backdropUrl = movie.backdrop || `/api/backdrop/${movie.id || 'parasite'}`;
-    previewBackdrop.style.backgroundImage = `url('${backdropUrl}'), url('${fallbackSvg}')`;
-    previewPosterImg.src = movie.poster || fallbackSvg;
+    // Poster
+    previewPosterImg.src = movie.posterUrl || movie.poster || fallbackSvg;
     previewPosterImg.onerror = function() {
       this.onerror = null;
       this.src = fallbackSvg;
     };
-
-    const isAdult = movie.is18Plus || (movie.rating && movie.rating.includes('18')) || (movie.contentWarning && movie.contentWarning.length > 0);
 
     previewPosterUhd.textContent = movie.resolution || '4K REMASTERED';
     previewPosterRating.textContent = movie.rating || (isAdult ? '18+' : '15+');
     previewPosterRating.className = `catalog-pill ${isAdult ? 'pill-18' : ''}`;
 
     // Specs
-    specRating.textContent = `★ ${movie.imdbRating || '8.1'} (IMDb)`;
-    specRelease.textContent = movie.releaseDate || movie.year || '2004';
-    specRuntime.textContent = movie.duration || '2h 24m';
-    specCountry.textContent = movie.country || 'South Korea';
-    specAudio.textContent = movie.audio || 'Korean (Dolby 5.1)';
-    specStudio.textContent = movie.studio || 'CJ Entertainment';
+    specRating.textContent = `★ ${movie.imdbRating || '8.2'} (IMDb)`;
+    specRelease.textContent = movie.releaseDate || movie.year || '2024';
+    specRuntime.textContent = movie.duration || '2h 10m';
+    specCountry.textContent = movie.country || 'Global Cinema';
+    specAudio.textContent = movie.audio || 'Dolby Atmos / 5.1';
+    specStudio.textContent = movie.studio || 'NovaFlix Studios';
 
     // Titles
-    previewKoreanEyebrow.textContent = movie.koreanTitle || '내 머리 속의 지우개';
+    previewKoreanEyebrow.textContent = movie.koreanTitle || movie.originalTitle || '';
     previewMainTitle.textContent = movie.title;
-    previewTagline.textContent = movie.tagline ? `"${movie.tagline}"` : `Official Cineby Release • ${movie.year || '2004'}`;
+    previewTagline.textContent = movie.tagline ? `"${movie.tagline}"` : `Now Streaming on NovaFlix Worldwide • ${movie.year || '2024'}`;
 
     // Meta stats
-    previewStarScore.textContent = movie.imdbRating || '8.1';
+    previewStarScore.textContent = movie.imdbRating || '8.2';
     previewMatch.textContent = movie.matchScore || '98% Match';
-    previewMetaYear.textContent = movie.year || '2004';
+    previewMetaYear.textContent = movie.year || '2024';
     previewMetaAge.textContent = movie.rating || (isAdult ? '18+' : '15+');
     previewMetaAge.className = `meta-badge ${isAdult ? 'badge-18' : ''}`;
-    previewMetaDuration.textContent = movie.duration || '2h 24m';
+    previewMetaDuration.textContent = movie.duration || '2h 10m';
 
     // 18+ Content & Viewer Advisory Card
     if (previewAdvisoryBox) {
@@ -345,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Genres pills
     previewGenrePills.innerHTML = '';
-    (movie.genres || ['Romance', 'Melodrama', 'Drama']).forEach(g => {
+    (movie.genres || ['Blockbuster', 'Entertainment']).forEach(g => {
       const pill = document.createElement('span');
       pill.className = 'genre-pill';
       pill.textContent = g;
@@ -353,29 +388,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Overview & Storyline
-    previewStorylineText.textContent = movie.storyline || movie.synopsis || 'A deeply moving story of love, memory, and devotion.';
+    previewStorylineText.textContent = movie.storyline || movie.synopsis || 'Experience this cinematic masterpiece in 4K streaming only on NovaFlix.';
 
     // Top Cast Carousel
-    previewCastCarousel.innerHTML = '';
-    const castList = movie.castDetails || (movie.cast ? movie.cast.map(c => ({ name: c, character: 'Cast', role: 'Leading' })) : []);
-    
-    castList.forEach(actor => {
-      const castCard = document.createElement('div');
-      castCard.className = 'cast-card';
-      const initials = actor.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-      castCard.innerHTML = `
-        <div class="cast-avatar-circle">${initials}</div>
-        <div class="cast-name">${actor.name}</div>
-        <div class="cast-character">${actor.character}</div>
-      `;
-      previewCastCarousel.appendChild(castCard);
-    });
+    renderCast(movie.castDetails || (movie.cast ? movie.cast.map(c => ({ name: c, character: 'Leading Cast' })) : []));
 
     // Similar Movies Grid
     renderSimilarMovies(movie);
 
-    // Hide search popup if open
-    searchResultsPopup.classList.remove('active');
+    // Switch View
+    homeView.style.display = 'none';
+    previewView.classList.add('active');
+    window.location.hash = `movie/${movie.slug || movie.id}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // If TMDB movie and detailed cast not yet loaded, asynchronously fetch
+    if (movie.isTmdb && (!movie.castDetails || movie.castDetails.length === 0) && window.TMDBService) {
+      try {
+        const details = await window.TMDBService.getMovieDetails(movie.tmdbId);
+        if (details && activePreviewMovie && activePreviewMovie.id === movie.id) {
+          activePreviewMovie = Object.assign(movie, details);
+          if (details.castDetails && details.castDetails.length > 0) {
+            renderCast(details.castDetails);
+          }
+          if (details.trailerUrl) {
+            btnPreviewTrailer.style.display = 'inline-flex';
+          }
+        }
+      } catch (e) {
+        console.warn('Could not fetch extended TMDB details:', e);
+      }
+    }
+  }
+
+  function renderCast(castList) {
+    previewCastCarousel.innerHTML = '';
+    castList.slice(0, 10).forEach(actor => {
+      const castCard = document.createElement('div');
+      castCard.className = 'cast-card';
+      const initials = actor.name ? actor.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'AC';
+      
+      let avatarHtml = `<div class="cast-avatar-circle">${initials}</div>`;
+      if (actor.avatar) {
+        avatarHtml = `<img src="${actor.avatar}" alt="${actor.name}" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid rgba(6, 182, 212, 0.4);" onerror="this.outerHTML='<div class=\\'cast-avatar-circle\\'>${initials}</div>';">`;
+      }
+
+      castCard.innerHTML = `
+        ${avatarHtml}
+        <div class="cast-name">${actor.name}</div>
+        <div class="cast-character">${actor.character || 'Cast'}</div>
+      `;
+      previewCastCarousel.appendChild(castCard);
+    });
   }
 
   function renderSimilarMovies(currentMovie) {
@@ -412,16 +476,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.server-pill').forEach(pill => {
     pill.addEventListener('click', (e) => {
       document.querySelectorAll('.server-pill').forEach(p => p.classList.remove('active'));
-      e.target.classList.add('active');
+      const btn = e.target.closest('.server-pill');
+      if (btn) {
+        btn.classList.add('active');
+        activeStreamingServer = btn.dataset.server || 'vidsrc';
+      }
     });
   });
 
-  // 6. Play Movie Trigger (Streams 0918 (1).mp4 for A Moment to Remember!)
-  function launchMoviePlayback(movie) {
+  // 7. Play Movie Trigger (Guaranteed stream of 0918 (1).mp4 for A Moment to Remember!)
+  function launchMoviePlayback(movie, serverOption) {
     const isTargetMovie = movie.id === '15859' || movie.slug === 'a-moment-to-remember';
-    
-    // For A Moment to Remember: Play the real downloaded movie (0918 (1).mp4)
-    // For other browse titles: Play sample demo trailer
+    const server = serverOption || activeStreamingServer;
+
     let targetFilename = isTargetMovie ? '0918 (1).mp4' : 'sample-demo.mp4';
     if (isTargetMovie && userPastedMovie) {
       targetFilename = userPastedMovie.filename;
@@ -431,15 +498,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.kflixPlayer.open({
       id: movie.id,
+      tmdbId: movie.tmdbId,
+      isTmdb: movie.isTmdb,
       title: movie.title || 'A Moment to Remember',
-      koreanTitle: `${movie.koreanTitle || '내 머리 속의 지우개'} • 4K Ultra HD`,
+      koreanTitle: `${movie.koreanTitle || movie.originalTitle || ''} • 4K Ultra HD`,
       filename: targetFilename,
       streamUrl: streamUrl,
+      trailerUrl: movie.trailerUrl,
+      streamingSources: movie.streamingSources,
       rating: movie.rating || '18+',
       is18Plus: isTargetMovie ? true : (movie.is18Plus !== undefined ? movie.is18Plus : false),
       contentWarning: movie.contentWarning,
       advisoryTags: movie.advisoryTags
-    });
+    }, server);
   }
 
   btnPreviewPlay.addEventListener('click', () => {
@@ -450,29 +521,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
+  btnPreviewTrailer.addEventListener('click', () => {
+    if (activePreviewMovie) {
+      launchMoviePlayback(activePreviewMovie, 'trailer');
+    }
+  });
 
   btnHeroPlay.addEventListener('click', () => {
+    const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
     launchMoviePlayback(heroMovie);
   });
 
   btnHeroPreview.addEventListener('click', () => {
+    const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
     openCinebyPreviewPage(heroMovie);
   });
 
   btnHeroWatchlist.addEventListener('click', () => {
-    btnHeroWatchlist.classList.toggle('active');
-    alert(`Added "${heroMovie.title}" to your Watchlist!`);
-  });
-
-  btnPreviewTrailer.addEventListener('click', () => {
-    const movie = activePreviewMovie || KOREAN_MOVIES_CATALOG[0];
-    window.kflixPlayer.open({
-      title: `${movie.title} - Official Trailer`,
-      koreanTitle: `${movie.koreanTitle} 공식 예고편`,
-      filename: 'sample-demo.mp4',
-      streamUrl: '/api/stream'
-    });
+    alert('Dune: Part Two added to your watchlist!');
   });
 
   btnPreviewWatchlist.addEventListener('click', () => {
@@ -487,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 7. Live Instant Search Dropdown
+  // 8. Live Instant Search Dropdown with TMDB Global Lookup
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim();
     searchQuery = query;
@@ -495,17 +561,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (query.length > 0) {
       searchClearBtn.style.display = 'block';
       renderSearchPopup(query);
+
+      // Debounced TMDB query for any movie worldwide
+      clearTimeout(searchDebounceTimer);
+      if (query.length >= 2 && window.TMDBService) {
+        searchDebounceTimer = setTimeout(async () => {
+          try {
+            const results = await window.TMDBService.searchTmdb(query);
+            if (searchQuery === query) {
+              tmdbSearchResults = results;
+              renderSearchPopup(query);
+              renderCatalog();
+            }
+          } catch (err) {
+            console.warn('TMDB search error:', err);
+          }
+        }, 300);
+      }
     } else {
       searchClearBtn.style.display = 'none';
       searchResultsPopup.classList.remove('active');
+      tmdbSearchResults = [];
+      renderCatalog();
     }
-
-    renderCatalog();
   });
 
   searchClearBtn.addEventListener('click', () => {
     searchInput.value = '';
     searchQuery = '';
+    tmdbSearchResults = [];
     searchClearBtn.style.display = 'none';
     searchResultsPopup.classList.remove('active');
     renderCatalog();
@@ -513,8 +597,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderSearchPopup(query) {
     const q = query.toLowerCase();
-    const matches = KOREAN_MOVIES_CATALOG.filter(m => {
-      if (m.id === '15859' || m.slug === 'a-moment-to-remember') {
+    let matches = KOREAN_MOVIES_CATALOG.filter(m => {
+      if (m.id === '15859' || m.slug === 'a-moment-to-remember' || m.hidden) {
         // Prank stealth logic: NEVER show A Moment to Remember in search suggestions
         // unless the user specifically typed a query targeting this movie!
         return q.includes('moment') ||
@@ -526,19 +610,29 @@ document.addEventListener('DOMContentLoaded', () => {
                q.includes('jung woo') ||
                q.includes('woo-sung');
       }
-      return m.title.toLowerCase().includes(q) ||
-        m.koreanTitle.toLowerCase().includes(q) ||
-        m.genres.some(g => g.toLowerCase().includes(q)) ||
-        m.cast.some(c => c.toLowerCase().includes(q)) ||
+      return (m.title && m.title.toLowerCase().includes(q)) ||
+        (m.koreanTitle && m.koreanTitle.toLowerCase().includes(q)) ||
+        (m.genres && m.genres.some(g => g.toLowerCase().includes(q))) ||
+        (m.cast && m.cast.some(c => c.toLowerCase().includes(q))) ||
         (m.director && m.director.toLowerCase().includes(q)) ||
-        (m.id && m.id.includes(q)) ||
+        (m.id && String(m.id).includes(q)) ||
         (m.slug && m.slug.includes(q));
     });
+
+    // Add TMDB results to popup matches
+    if (tmdbSearchResults.length > 0) {
+      const existingTitles = new Set(matches.map(m => m.title.toLowerCase()));
+      tmdbSearchResults.forEach(tm => {
+        if (!existingTitles.has(tm.title.toLowerCase())) {
+          matches.push(tm);
+        }
+      });
+    }
 
     if (matches.length === 0) {
       searchResultsPopup.innerHTML = `
         <div style="padding: 16px; text-align: center; color: var(--text-muted); font-size: 13px;">
-          No movies found for "${query}"
+          Searching global movie database for "${query}"...
         </div>
       `;
       searchResultsPopup.classList.add('active');
@@ -546,30 +640,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     searchResultsPopup.innerHTML = '';
-    matches.slice(0, 5).forEach(m => {
+    matches.slice(0, 6).forEach(m => {
       const item = document.createElement('div');
       item.className = 'search-result-item';
       const isAdult = m.is18Plus || (m.rating && m.rating.includes('18'));
 
       const fallbackSvg = getPosterSvgFallback(
         m.title,
-        m.koreanTitle,
+        m.koreanTitle || m.title,
         m.year,
         m.rating,
-        m.genres[0] || 'Drama',
+        m.genres ? m.genres[0] : 'Drama',
         m.fallbackColor || '#1a1e29'
       );
 
+      const posterSrc = m.posterUrl || m.poster || fallbackSvg;
+
       item.innerHTML = `
-        <img class="search-result-thumb" src="${m.poster}" alt="${m.title}" onerror="this.onerror=null; this.src='${fallbackSvg}';">
+        <img class="search-result-thumb" src="${posterSrc}" alt="${m.title}" onerror="this.onerror=null; this.src='${fallbackSvg}';">
         <div class="search-result-info">
-          <div class="search-result-korean">${m.koreanTitle}</div>
+          <div class="search-result-korean">${m.koreanTitle || m.originalTitle || ''}</div>
           <div class="search-result-title">${m.title}</div>
           <div class="search-result-meta">
-            <span style="color:#f59e0b; font-weight:700;">★ ${m.imdbRating || '8.1'}</span>
-            <span>${m.year}</span>
+            <span style="color:#f59e0b; font-weight:700;">★ ${m.imdbRating || '8.2'}</span>
+            <span>${m.year || '2024'}</span>
             <span class="meta-badge ${isAdult ? 'badge-18' : ''}" style="padding: 1px 6px; font-size: 10px;">${m.rating || '15+'}</span>
-            <span>${m.genres[0]}</span>
+            <span>${m.genres ? m.genres[0] : 'Cinema'}</span>
+            ${m.isTmdb ? '<span style="color:#06b6d4; font-size:10px; font-weight:800;">TMDB</span>' : ''}
           </div>
         </div>
       `;
@@ -592,27 +689,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 8. Category Tab Switcher
+  // 9. Sticky Ad Dismissal
+  const stickyCloseBtn = document.getElementById('ad-sticky-close');
+  const stickyFooter = document.getElementById('ad-sticky-footer');
+  if (stickyCloseBtn && stickyFooter) {
+    stickyCloseBtn.addEventListener('click', () => {
+      stickyFooter.classList.add('hidden');
+    });
+  }
+
+  // 10. Category Tab Switcher
   categoryTabs.forEach(tab => {
     tab.addEventListener('click', (e) => {
       categoryTabs.forEach(t => t.classList.remove('active'));
-      e.target.classList.add('active');
-      currentCategory = e.target.dataset.category;
-      if (previewView.classList.contains('active')) {
-        backToBrowse();
+      const btn = e.target.closest('.tab-btn');
+      if (btn) {
+        btn.classList.add('active');
+        currentCategory = btn.dataset.category;
+        if (previewView.classList.contains('active')) {
+          backToBrowse();
+        }
+        renderCatalog();
       }
-      renderCatalog();
     });
   });
 
-  // 9. Handle URL Hash Route (e.g. #movie/15859 or #movie/a-moment-to-remember)
-  function handleHashRoute() {
+  // 11. Handle URL Hash Route
+  async function handleHashRoute() {
     const hash = window.location.hash;
     if (hash.startsWith('#movie/')) {
       const id = hash.replace('#movie/', '');
       const match = KOREAN_MOVIES_CATALOG.find(m => m.id === id || m.slug === id);
       if (match) {
         openCinebyPreviewPage(match);
+      } else if (id.startsWith('tmdb-') && window.TMDBService) {
+        const cleanId = id.replace('tmdb-', '');
+        const details = await window.TMDBService.getMovieDetails(cleanId);
+        if (details) {
+          openCinebyPreviewPage(details);
+        }
       }
     }
   }

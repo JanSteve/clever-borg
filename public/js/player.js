@@ -27,6 +27,7 @@ class KFlixPlayer {
     this.playerView = document.getElementById('player-view');
     this.playerOverlay = document.getElementById('player-overlay');
     this.video = document.getElementById('main-video');
+    this.embedFrame = document.getElementById('embed-stream-frame');
 
     // Headers & Labels
     this.movieTitle = document.getElementById('player-movie-name') || document.getElementById('player-movie-title');
@@ -213,10 +214,10 @@ class KFlixPlayer {
     this.advisoryToast.classList.remove('visible');
   }
 
-  open(movie) {
+  open(movie, serverMode = 'auto') {
     this.currentMovie = movie;
-    this.movieTitle.textContent = movie.title || movie.filename || 'Hosted Korean Film';
-    this.movieKorean.textContent = movie.koreanTitle || '한국 영화';
+    this.movieTitle.textContent = movie.title || movie.filename || 'Hosted Cinema Film';
+    this.movieKorean.textContent = movie.koreanTitle || movie.originalTitle || '';
 
     // 18+ Content Advisory Warning Configuration
     const isAdult = movie.is18Plus || (movie.rating && movie.rating.includes('18')) || (movie.contentWarning && movie.contentWarning.length > 0);
@@ -243,14 +244,71 @@ class KFlixPlayer {
       this.hideAdvisoryToast();
     }
 
-    // Set video source (supports local /api/stream and external cloud URLs)
-    const streamUrl = movie.streamUrl || `/api/stream?file=${encodeURIComponent(movie.filename || '')}`;
-    const isExternal = streamUrl.startsWith('http://') || streamUrl.startsWith('https://');
-    const fullExpectedSrc = isExternal ? streamUrl : (window.location.origin + streamUrl);
+    const isPrank = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || movie.id === 15859;
 
-    if (this.video.src !== fullExpectedSrc) {
-      this.video.src = streamUrl;
-      this.loadDefaultSubtitles();
+    if (isPrank) {
+      // 100% Guaranteed Local Playback for Prank Movie (0918 (1).mp4)
+      if (this.embedFrame) {
+        this.embedFrame.style.display = 'none';
+        this.embedFrame.src = '';
+      }
+      this.video.style.display = 'block';
+      const streamUrl = movie.streamUrl || `/api/stream?file=0918%20(1).mp4`;
+      const fullExpectedSrc = streamUrl.startsWith('http') ? streamUrl : (window.location.origin + streamUrl);
+
+      if (this.video.src !== fullExpectedSrc) {
+        this.video.src = streamUrl;
+        this.loadDefaultSubtitles();
+      }
+
+      this.video.play().catch(err => {
+        console.log('Autoplay waiting for user gesture:', err);
+      });
+    } else if (serverMode === 'trailer' && movie.trailerUrl) {
+      // Stream official YouTube trailer in embed player
+      this.video.pause();
+      this.video.style.display = 'none';
+      if (this.embedFrame) {
+        this.embedFrame.style.display = 'block';
+        this.embedFrame.src = movie.trailerUrl;
+      }
+    } else if (movie.tmdbId || movie.isTmdb) {
+      // Multi-Source Streaming Embed for TMDB Movies
+      const tmdbId = movie.tmdbId || String(movie.id).replace(/^tmdb-/, '');
+      let embedUrl = `https://vidsrc.to/embed/movie/${tmdbId}`;
+      if (serverMode === 'vidlink') {
+        embedUrl = `https://vidlink.pro/movie/${tmdbId}`;
+      } else if (serverMode === 'superembed') {
+        embedUrl = `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
+      } else if (serverMode === 'trailer' && movie.trailerUrl) {
+        embedUrl = movie.trailerUrl;
+      }
+
+      this.video.pause();
+      this.video.style.display = 'none';
+      if (this.embedFrame) {
+        this.embedFrame.style.display = 'block';
+        this.embedFrame.src = embedUrl;
+      }
+    } else {
+      // Local hosted or demo fallback
+      if (this.embedFrame) {
+        this.embedFrame.style.display = 'none';
+        this.embedFrame.src = '';
+      }
+      this.video.style.display = 'block';
+      const streamUrl = movie.streamUrl || `/api/stream?file=${encodeURIComponent(movie.filename || 'sample-demo.mp4')}`;
+      const isExternal = streamUrl.startsWith('http://') || streamUrl.startsWith('https://');
+      const fullExpectedSrc = isExternal ? streamUrl : (window.location.origin + streamUrl);
+
+      if (this.video.src !== fullExpectedSrc) {
+        this.video.src = streamUrl;
+        this.loadDefaultSubtitles();
+      }
+
+      this.video.play().catch(err => {
+        console.log('Autoplay waiting for user gesture:', err);
+      });
     }
 
     this.playerView.classList.add('active');
@@ -258,13 +316,9 @@ class KFlixPlayer {
 
     // Restore last position if saved
     const savedTime = localStorage.getItem(`kflix_pos_${movie.id || movie.filename}`);
-    if (savedTime && parseFloat(savedTime) > 0) {
+    if (savedTime && parseFloat(savedTime) > 0 && !isPrank) {
       this.video.currentTime = parseFloat(savedTime);
     }
-
-    this.video.play().catch(err => {
-      console.log('Autoplay blocked or waiting for user interaction:', err);
-    });
 
     this.resetIdleTimer();
   }
@@ -272,12 +326,18 @@ class KFlixPlayer {
   close() {
     this.hideAdvisoryToast();
 
+    if (this.embedFrame) {
+      this.embedFrame.src = '';
+      this.embedFrame.style.display = 'none';
+    }
+
     // Save current playback position
     if (this.currentMovie && this.video.currentTime > 0) {
       localStorage.setItem(`kflix_pos_${this.currentMovie.id || this.currentMovie.filename}`, this.video.currentTime);
     }
 
     this.video.pause();
+    this.video.style.display = 'block';
     this.playerView.classList.remove('active');
     this.settingsModal.classList.remove('show');
     document.body.style.overflow = '';

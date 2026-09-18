@@ -247,6 +247,44 @@ const server = http.createServer((req, res) => {
     return handleUploadRequest(req, res);
   }
 
+  // API: TMDB Global Search Proxy
+  if (pathname === '/api/tmdb/search' && req.method === 'GET') {
+    const q = (parsedUrl.query.q || '').trim();
+    if (!q) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ results: [] }));
+    }
+    const TMDBService = require('./public/js/tmdb-service.js');
+    TMDBService.searchTmdb(q).then(results => {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ results }));
+    }).catch(err => {
+      console.error('TMDB search error:', err);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ results: [] }));
+    });
+    return;
+  }
+
+  // API: TMDB Movie Details Proxy
+  if (pathname.startsWith('/api/tmdb/movie/') && req.method === 'GET') {
+    const tmdbId = pathname.replace('/api/tmdb/movie/', '');
+    const TMDBService = require('./public/js/tmdb-service.js');
+    TMDBService.getMovieDetails(tmdbId).then(movie => {
+      if (!movie) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Movie not found' }));
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ movie }));
+    }).catch(err => {
+      console.error('TMDB details error:', err);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Failed to fetch movie details' }));
+    });
+    return;
+  }
+
   // API: Dynamic Cinema Poster SVG (0ms, 100% reliable, zero external network dependency)
   if (pathname.startsWith('/api/poster/')) {
     const id = pathname.replace('/api/poster/', '').replace(/\.svg$/, '');
@@ -316,7 +354,7 @@ server.on('error', (err) => {
 
 server.listen(currentPort, () => {
   console.log(`====================================================`);
-  console.log(`🎬 Streambert Global Movie Streaming Platform is Running!`);
+  console.log(`🎬 NovaFlix Worldwide Movie Platform is Running!`);
   console.log(`📡 URL: http://localhost:${currentPort}`);
   console.log(`📂 Movie Storage Directory: ${MOVIES_DIR}`);
   console.log(`====================================================`);

@@ -3,23 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Streambert - Watch Any Movie, TV Series &amp; Anime in the World</title>
-  <meta name="description" content="Stream any Movie, Anime or TV Series from around the World with zero ads and 4K Ultra HD quality on Streambert.">
+  <title>NovaFlix - Watch Any Movie, Anime &amp; TV Series in the World Free in 4K</title>
+  <meta name="description" content="Watch every movie in the world in 4K Ultra HD on NovaFlix. Search millions of movies, anime, and series with official ratings, cast, and multi-source streaming.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/player.css">
+  <!-- Structured Schema Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NovaFlix",
+    "url": "https://novaflix.app",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://novaflix.app/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body>
   <!-- =========================================================================
-       Site Header / Navigation Bar (Streambert Global Platform)
+       Site Header / Navigation Bar (NovaFlix Global Platform)
        ========================================================================= -->
   <header class="site-header">
     <div class="nav-left">
       <a class="brand-logo" id="nav-logo" href="#">
-        <div class="logo-icon">S</div>
-        <div class="logo-text">STREAM<span>BERT</span></div>
+        <div class="logo-icon nova">N</div>
+        <div class="logo-text">NOVA<span class="nova-gradient">FLIX</span></div>
       </a>
       <ul class="nav-links">
         <li><a class="nav-link active" id="nav-home-link" href="#">Home</a></li>
@@ -39,34 +53,57 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search any movie, anime, actor..." autocomplete="off">
+          <input type="text" id="search-input" class="search-input" placeholder="Search 1,000,000+ movies, anime..." autocomplete="off">
           <button id="search-clear-btn" class="search-clear-btn" style="display: none;">&times;</button>
         </div>
         <!-- Live Instant Search Results Popup -->
         <div id="search-results-popup" class="search-results-popup"></div>
       </div>
 
-      <!-- VIP Account Profile Dropdown (Streambert Look) -->
+      <!-- VIP Account Profile Dropdown (NovaFlix Look) -->
       <div class="user-profile-menu">
-        <div class="profile-trigger" id="profile-trigger" title="Streambert Pro Account">
-          <div class="profile-avatar">PRO</div>
+        <div class="profile-trigger" id="profile-trigger" title="NovaFlix VIP Account">
+          <div class="profile-avatar">VIP</div>
           <span class="profile-plan-badge">4K ULTRA</span>
         </div>
         <div class="profile-dropdown" id="profile-dropdown">
           <div class="dropdown-header">
-            <div style="font-weight: 700; color: #fff;">Streambert Pro Member</div>
-            <div style="font-size: 11px; color: #8256d0;">● Active • Global Fast CDN</div>
+            <div style="font-weight: 700; color: #fff;">NovaFlix Premium Member</div>
+            <div style="font-size: 11px; color: #06b6d4;">● Active • Ultra Fast CDN</div>
           </div>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#catalog-container">My Library &amp; Watchlist</a>
           <a class="dropdown-item" href="#catalog-container">Subtitle Settings</a>
           <a class="dropdown-item" href="#catalog-container">CDN Speed Test</a>
           <div class="dropdown-divider"></div>
-          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Server: FastCDN Global Edge (0ms)</div>
+          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Server: NovaEdge Global Network (0ms)</div>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- Google Ads / Monetization Unit 1: Top Leaderboard Banner (728x90 Responsive) -->
+  <div class="ad-banner-container" id="ad-header-banner">
+    <div class="ad-badge">SPONSORED ADVERTISEMENT</div>
+    <div class="ad-slot-wrapper">
+      <!-- Google AdSense Tag Placeholder:
+           <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="1234567890"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+      -->
+      <div class="ad-placeholder-content">
+        <span class="ad-brand-icon">⚡</span>
+        <div class="ad-text-group">
+          <div class="ad-title">Stream Any Movie Securely &amp; Anonymously in 4K HDR</div>
+          <div class="ad-desc">Bypass ISP throttling &bull; Ultra-fast streaming speeds &bull; 30-Day Risk-Free Guarantee</div>
+        </div>
+        <a href="https://nordvpn.com" target="_blank" rel="noopener noreferrer" class="ad-cta-btn">Claim 70% Discount &rarr;</a>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        Main Home View (Billboard & Curated World Cinema Rows)
@@ -233,13 +270,14 @@
             <span class="genre-pill">Drama</span>
           </div>
 
-          <!-- Cineby Server Selector Row -->
+          <!-- Streaming Server Selector Row -->
           <div class="server-selector-container">
             <span class="server-label">STREAMING SERVERS:</span>
-            <div class="server-pills">
-              <button class="server-pill active">Server 1 (StreamHD 4K)</button>
-              <button class="server-pill">Server 2 (Cineby Cloud)</button>
-              <button class="server-pill">Server 3 (HallyuStream)</button>
+            <div class="server-pills" id="server-pills-group">
+              <button class="server-pill active" data-server="vidsrc">Server 1 (VidSrc 4K)</button>
+              <button class="server-pill" data-server="vidlink">Server 2 (VidLink Ultra)</button>
+              <button class="server-pill" data-server="superembed">Server 3 (SuperEmbed HD)</button>
+              <button class="server-pill" data-server="trailer">Official HD Trailer</button>
             </div>
           </div>
 
@@ -278,7 +316,7 @@
             <div class="advisory-box-content">
               <div class="advisory-box-header">
                 <span class="advisory-box-title">CONTENT & VIEWER DISCRETION ADVISORY</span>
-                <span class="advisory-box-sub">OFFICIAL CINEBY CENSORSHIP CLASSIFICATION</span>
+                <span class="advisory-box-sub">OFFICIAL NOVAFLIX CENSORSHIP CLASSIFICATION</span>
               </div>
               <p id="preview-advisory-text" class="advisory-box-desc">
                 ⚠️ Rated 18+ for mature themes, intense emotional heartbreak, adult situations, and romantic intimacy. Viewer discretion is strongly advised.
@@ -301,7 +339,7 @@
             </p>
           </div>
 
-          <!-- Cast & Characters Carousel (Cineby style) -->
+          <!-- Cast & Characters Carousel (NovaFlix style) -->
           <div class="preview-cast-section">
             <h3>Top Cast & Characters</h3>
             <div id="preview-cast-carousel" class="cast-carousel"></div>
@@ -310,7 +348,22 @@
       </div>
     </div>
 
-    <!-- You May Also Like / Similars (Cineby style) -->
+    <!-- Google Ads / Monetization Unit 2: Mid-Page Content Banner -->
+    <div class="ad-banner-container" id="ad-mid-banner" style="margin: 30px auto 10px auto;">
+      <div class="ad-badge">SPONSORED PROMOTION</div>
+      <div class="ad-slot-wrapper">
+        <div class="ad-placeholder-content">
+          <span class="ad-brand-icon">🍿</span>
+          <div class="ad-text-group">
+            <div class="ad-title">Stream In 4K UHD Without Buffering &bull; Free Global Access</div>
+            <div class="ad-desc">Experience over 1,000,000+ movies and series in cinema surround sound on any device.</div>
+          </div>
+          <a href="#catalog-container" class="ad-cta-btn">Browse Movies &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- You May Also Like / Similars (NovaFlix style) -->
     <div class="preview-similar-section">
       <h2>You May Also Like</h2>
       <div id="preview-similar-grid" class="movie-grid"></div>
@@ -318,11 +371,11 @@
   </section>
 
   <!-- =========================================================================
-       Footer (Commercial Cineby Look)
+       Footer (Commercial NovaFlix Look)
        ========================================================================= -->
   <footer class="site-footer">
     <div class="footer-top">
-      <div class="footer-brand">STREAM<span>BERT</span> Worldwide 4K HD</div>
+      <div class="footer-brand">NOVA<span>FLIX</span> Worldwide 4K HD</div>
       <div style="font-size: 12px; color: var(--text-muted);">
         Player Shortcuts: <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">Space</kbd> Play/Pause &bull; 
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">&larr;/&rarr;</kbd> &plusmn;10s Skip &bull; 
@@ -331,15 +384,18 @@
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">C</kbd> Subtitles
       </div>
     </div>
-    <p>Stream any movie, anime, or TV series from around the world in 4K Ultra HD on Streambert. Powered by the high-speed Streambert engine with zero ads and zero tracking.</p>
+    <p>Watch any movie, anime, or TV series from around the world in 4K Ultra HD on NovaFlix. Powered by TMDB Global Discovery and high-speed streaming CDN.</p>
   </footer>
 
   <!-- =========================================================================
        Custom Cinematic Fullscreen Video Player View (Commercial Streaming UI)
        ========================================================================= -->
   <div id="player-view" class="player-view">
-    <!-- Video Element -->
+    <!-- Video Element (Local Streaming) -->
     <video id="main-video" class="video-element" playsinline crossorigin="anonymous"></video>
+
+    <!-- Embed Stream Iframe (Multi-Source Global Streaming) -->
+    <iframe id="embed-stream-frame" class="embed-stream-frame" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" style="display: none; width: 100%; height: 100%; border: none; position: absolute; inset: 0; z-index: 2;"></iframe>
 
     <!-- Center Feedback Icon (Play / Pause) -->
     <div id="center-feedback" class="center-feedback-icon">
@@ -537,7 +593,18 @@
     </div>
   </div>
 
+  <!-- Google Ads / Monetization Unit 4: Sticky Bottom Floating Ad -->
+  <div class="ad-sticky-footer" id="ad-sticky-footer">
+    <button class="ad-close-btn" id="ad-sticky-close" title="Dismiss Ad">&times;</button>
+    <div class="ad-sticky-content">
+      <span class="ad-badge-mini">PROMO</span>
+      <span class="ad-sticky-text">🍿 Enjoying NovaFlix? Support free worldwide 4K streaming by sharing this website with your friends!</span>
+      <a href="#catalog-container" class="ad-sticky-btn">Browse 4K Titles</a>
+    </div>
+  </div>
+
   <!-- Scripts -->
+  <script src="/js/tmdb-service.js"></script>
   <script src="/js/movies-data.js"></script>
   <script src="/js/player.js"></script>
   <script src="/js/app.js"></script>

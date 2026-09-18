@@ -1,19 +1,20 @@
 {
-  "name": "streambert-web",
-  "version": "1.0.0",
-  "description": "Streambert - Global Cinema & Movie Streaming Platform with Custom Video Player and Extensive Catalog",
+  "name": "novaflix-platform",
+  "version": "2.0.0",
+  "description": "NovaFlix - Worldwide Free Movie & Series Streaming Platform with TMDB Global Database, Ad Monetization, and Multi-Source Player",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
   "keywords": [
+    "novaflix",
     "streaming",
     "movies",
-    "streambert",
-    "blockbusters",
-    "anime",
-    "cinema"
+    "tmdb",
+    "free-movies",
+    "cinema",
+    "video-player"
   ],
   "author": "",
   "license": "ISC"
