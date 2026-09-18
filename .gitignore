@@ -1,0 +1,9 @@
+# Large movie files (GitHub 100MB limit; exclude large downloaded movies)
+movies/*
+!movies/README.md
+!movies/sample-demo.mp4
+
+# OS & Environment
+.DS_Store
+*.log
+node_modules/

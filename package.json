@@ -1,0 +1,19 @@
+{
+  "name": "kflix-movie-streaming",
+  "version": "1.0.0",
+  "description": "Korean Movie Streaming Platform with Custom Video Player and Local Movie Hosting",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "streaming",
+    "korean-movies",
+    "video-player",
+    "hallyu",
+    "cinema"
+  ],
+  "author": "",
+  "license": "ISC"
+}
