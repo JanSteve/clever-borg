@@ -284,7 +284,7 @@
         <!-- User Profile Avatar with thin brass ring -->
         <div class="relative">
           <div class="w-9 h-9 rounded-full p-[1.5px] border border-brass/60 hover:border-brass transition-colors cursor-pointer overflow-hidden shadow-sm" onclick="switchMainScreen('library')">
-            <img alt="Curator portrait" class="w-full h-full object-cover rounded-full grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKydjcbOsi8uHYv3XtT0OAo8PrwqNlSCVeVmBwTC_lCH1x3ycdsxRVtjaZTB3QjbIx-5Jt44qrPpJP9fz2TvT2Ui0mV-nQsSDQp3My5zxEkep2zInuEYCisJmK8txfcfKuL2hkJhQ1DFkI0Y2HJfNeRtjMLBlIEp-yAy8CeCy95XHLr33m-dFKP56Iudx3cGXuZhVOk8AyOM2cMLYUoJ6gCxq0ki7vUYzjahXOQQ3j8AFIG1MZzKOW-g"/>
+            <img alt="Curator portrait" class="w-full h-full object-cover rounded-full grayscale contrast-125" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
           </div>
         </div>
       </div>
@@ -292,59 +292,172 @@
   </header>
 
   <!-- =========================================================================
-       HERO CINEMATIC BACKDROP BANNER (From Stitch export)
+       CINEXA FEATURED SLIDESHOW HERO ENGINE (Top Recommendations, People's Fav, Trending)
        ========================================================================= -->
-  <section class="relative -mt-[72px] pt-32 pb-20 px-6 overflow-hidden border-b border-border-hairline/60" id="hero-editorial-section">
-    <!-- Atmospheric hero film backdrop with art-house tone -->
-    <div class="absolute inset-0 z-0">
-      <img alt="Cinema screen ambient light" class="w-full h-full object-cover opacity-20 filter contrast-125 brightness-75 transition-all duration-700" id="hero-ambient-img" src="/images/dune-desert-backdrop.jpg"/>
-      <div class="absolute inset-0 bg-gradient-to-b from-petrol-base/70 via-petrol-base/90 to-petrol-base"></div>
-      <!-- Subtle radial brass aura -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brass/[0.06] blur-[120px] rounded-full pointer-events-none"></div>
+  <section class="relative -mt-[72px] pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden border-b border-border-hairline/60 bg-surface select-none" id="hero-slideshow-container">
+    <!-- Atmospheric Ambient Backdrops with Crossfade -->
+    <div class="absolute inset-0 z-0 overflow-hidden" id="slideshow-backdrop-layer">
+      <img alt="Cinema backdrop" class="w-full h-full object-cover opacity-35 filter contrast-125 brightness-90 transition-all duration-1000 scale-105" id="slide-bg-img" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'"/>
+      <!-- Multi-layered cinematic scrims -->
+      <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-surface/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent"></div>
+      <!-- Radial brass ambient aura -->
+      <div class="absolute top-1/3 left-1/4 w-[600px] h-[350px] bg-brass/[0.08] blur-[140px] rounded-full pointer-events-none"></div>
     </div>
 
-    <div class="max-w-[1320px] mx-auto relative z-10">
-      <!-- Breadcrumb / Editorial kicker -->
-      <div class="flex items-center gap-3 mb-4">
-        <span class="font-mono text-xs uppercase tracking-[0.08em] text-brass px-2.5 py-1 bg-brass/10 border border-brass/30 rounded-full">
-          Curated Retrospective
-        </span>
-        <span class="font-mono text-xs uppercase tracking-[0.08em] text-text-muted">
-          Updated Today • 35mm Archive
-        </span>
+    <div class="max-w-[1320px] mx-auto relative z-10 pt-4 sm:pt-6">
+      <!-- TOP SLIDESHOW CATEGORY TABS -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="slideshow-category-tabs">
+          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-semibold shadow-sm transition-all duration-200 cursor-pointer" data-cat="all" onclick="filterSlideshowCategory('all')">
+            All Featured
+          </button>
+          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="top-recommendation" onclick="filterSlideshowCategory('top-recommendation')">
+            ✨ Top Recommendations
+          </button>
+          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="peoples-favorite" onclick="filterSlideshowCategory('peoples-favorite')">
+            🔥 People's Favorites
+          </button>
+          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="current-trending" onclick="filterSlideshowCategory('current-trending')">
+            ⚡ Current Trending
+          </button>
+          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="award-winners" onclick="filterSlideshowCategory('award-winners')">
+            🏆 Criterion Laureates
+          </button>
+        </div>
+
+        <!-- Slide Index & Quick Nav Arrows -->
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-xs text-text-muted tracking-wider" id="slide-counter-text">01 / 07</span>
+          <div class="flex items-center gap-1.5">
+            <button aria-label="Previous Slide" class="w-9 h-9 rounded-full bg-surface-container/90 backdrop-blur-md border border-border-hairline/60 text-on-surface-variant hover:text-on-surface hover:border-primary/60 flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95" onclick="prevSlide()">
+              <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+            </button>
+            <button aria-label="Next Slide" class="w-9 h-9 rounded-full bg-surface-container/90 backdrop-blur-md border border-border-hairline/60 text-on-surface-variant hover:text-on-surface hover:border-primary/60 flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95" onclick="nextSlide()">
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="max-w-3xl">
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-parchment leading-[1.1] mb-6">
-          Cinema through the lens of pure intention.
-        </h1>
-        <p class="font-sans text-base sm:text-lg text-driftwood leading-relaxed mb-8 max-w-2xl">
-          Discover films across international archives, explore theatrical releases and verified legal streaming services, and maintain a thoughtful personal logbook.
-        </p>
-
-        <!-- Fast interactive toggles to review all required states -->
-        <div class="p-5 rounded-2xl bg-surface/90 border border-border-hairline/80 shadow-warm-diffuse max-w-2xl">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-mono text-xs uppercase tracking-wider text-parchment font-medium flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-brass animate-pulse"></span>
-              State Preview Switcher
+      <!-- MAIN FEATURED SLIDE DISPLAY CARD -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" id="featured-slide-card">
+        <!-- Left Content Deck -->
+        <div class="lg:col-span-8 space-y-5">
+          <!-- Curatorial Kicker & Resolution Badges -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="font-mono text-xs uppercase tracking-[0.08em] text-primary px-3 py-1 bg-primary/10 border border-primary/30 rounded-full flex items-center gap-1.5 shadow-sm" id="slide-badge-category">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span id="slide-category-text">✨ Top Recommendation</span>
             </span>
-            <span class="font-mono text-[11px] text-text-muted">Interactive Showcase</span>
+            <span class="font-mono text-xs uppercase tracking-[0.08em] text-secondary bg-secondary/10 px-2.5 py-1 rounded-full border border-secondary/30 hidden sm:inline" id="slide-resolution-badge">
+              4K IMAX Enhanced
+            </span>
+            <span class="font-mono text-xs uppercase tracking-[0.08em] text-tertiary bg-tertiary/10 px-2.5 py-1 rounded-full border border-tertiary/30 hidden sm:inline" id="slide-audio-badge">
+              Dolby Atmos 5.1
+            </span>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            <button class="text-xs font-mono py-2 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-petrol-base text-driftwood hover:text-parchment text-left transition-colors cursor-pointer" onclick="toggleScrollState(false)">
-              1. Nav: Transparent
+
+          <!-- Title & Tagline -->
+          <div>
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-parchment leading-[1.08] transition-all duration-300" id="slide-title">
+              Dune: Part Two
+            </h1>
+            <p class="font-serif italic text-sm sm:text-base text-primary/90 mt-2 line-clamp-1" id="slide-quote">
+              “A visual and sonic triumph of contemporary sci-fi filmmaking.” — Sight & Sound
+            </p>
+          </div>
+
+          <!-- Metadata Chips Row -->
+          <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-driftwood">
+            <span class="text-parchment font-medium" id="slide-year">2024</span>
+            <span>•</span>
+            <span id="slide-duration">2h 46m</span>
+            <span>•</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container-high border border-border-hairline text-parchment" id="slide-rating">PG-13</span>
+            <span>•</span>
+            <span class="text-primary font-medium flex items-center gap-1" id="slide-imdb">
+              <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6 IMDb
+            </span>
+            <span>•</span>
+            <span class="text-tertiary font-medium" id="slide-match">99% Match</span>
+            <span>•</span>
+            <span class="text-driftwood hidden sm:inline" id="slide-director">Dir. Denis Villeneuve</span>
+          </div>
+
+          <!-- Synopsis Logline -->
+          <p class="font-sans text-sm sm:text-base text-driftwood leading-relaxed max-w-2xl line-clamp-3" id="slide-synopsis">
+            Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family, wrestling with ominous visions of a holy war.
+          </p>
+
+          <!-- Cast Principals -->
+          <div class="flex items-center gap-2 text-xs font-sans text-text-muted">
+            <span class="font-mono uppercase text-outline">Cast:</span>
+            <span class="text-driftwood truncate" id="slide-cast">Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler</span>
+          </div>
+
+          <!-- ACTION BUTTON CLUSTER -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button class="h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2.5 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch Now</span>
             </button>
-            <button class="text-xs font-mono py-2 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-petrol-base text-driftwood hover:text-parchment text-left transition-colors cursor-pointer" onclick="toggleScrollState(true)">
-              2. Nav: Frosted Bar
+            <button class="h-12 px-5 rounded-full bg-surface-container-high/90 hover:bg-surface-bright text-parchment font-sans text-sm flex items-center gap-2 border border-border-hairline/80 transition-all active:scale-95 cursor-pointer shadow-sm" id="slide-btn-dossier" onclick="openSlideDossier()">
+              <span class="material-symbols-outlined text-[18px]">info</span>
+              <span>Film Dossier</span>
             </button>
-            <button class="text-xs font-mono py-2 px-3 rounded-lg border border-brass/60 bg-brass/10 text-brass hover:bg-brass/20 text-left transition-colors cursor-pointer" onclick="openModal('results')">
-              3. Search Modal (Hits)
+            <button class="h-12 px-4 rounded-full bg-surface-container/80 hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-border-hairline/60 transition-colors active:scale-95 cursor-pointer" id="slide-btn-watchlist" onclick="toggleSlideWatchlist()">
+              <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+              <span class="hidden sm:inline" id="slide-watchlist-text">Watchlist</span>
             </button>
-            <button class="text-xs font-mono py-2 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-petrol-base text-driftwood hover:text-parchment text-left transition-colors cursor-pointer" onclick="openModal('empty')">
-              4. Search Modal (Empty)
+            <button class="h-12 w-12 rounded-full bg-surface-container/80 hover:bg-surface-container-high text-primary flex items-center justify-center border border-border-hairline/60 transition-colors active:scale-95 cursor-pointer" title="Rate this Film" onclick="openSlideRating()">
+              <span class="material-symbols-outlined text-[20px]">star_rate</span>
             </button>
           </div>
+        </div>
+
+        <!-- Right Side: Poster Card & Slide Thumbnails Strip -->
+        <div class="lg:col-span-4 flex flex-col items-center lg:items-end gap-4">
+          <!-- Active Hero Poster Badge with 35mm Frame -->
+          <div class="relative w-44 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-border-hairline/80 bg-surface-container group cursor-pointer" onclick="openSlideDossier()">
+            <img alt="Active Film Poster" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="slide-poster-img" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-border-hairline/60 font-mono text-[10px] text-primary">
+              35MM ARCHIVE
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-surface/40 backdrop-blur-[2px]">
+              <div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-[24px]">visibility</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide Progress Dots with Animated Timer -->
+          <div class="flex items-center gap-2 pt-2" id="slide-progress-dots">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM DECK: INTERACTIVE MINI-THUMBNAIL STRIP & STATE TESTERS -->
+      <div class="mt-8 pt-6 border-t border-border-hairline/40 flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Interactive Thumbnails Row -->
+        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1" id="slide-thumbnails-deck">
+          <!-- Rendered dynamically by JS -->
+        </div>
+
+        <!-- Quick Nav & Search Preview Switcher -->
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="font-mono text-[11px] text-text-muted uppercase tracking-wider hidden sm:inline">Preview:</span>
+          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-surface-container text-driftwood hover:text-parchment transition-colors cursor-pointer" onclick="toggleScrollState(false)">
+            Nav: Transparent
+          </button>
+          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-surface-container text-driftwood hover:text-parchment transition-colors cursor-pointer" onclick="toggleScrollState(true)">
+            Nav: Frosted
+          </button>
+          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-brass/60 bg-brass/10 text-brass hover:bg-brass/20 transition-colors cursor-pointer" onclick="openModal('results')">
+            ⌘K Search
+          </button>
         </div>
       </div>
     </div>
@@ -580,7 +693,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Movement Tile 1: Sci-Fi & Cyberpunk -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('sci-fi')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0_yLr7Ct125QeXtpZOdSn1EzyjA7PNGekPtIChoxfblotVfsRZGWg6f7E6vkHT8bUBtIq881YYsXP8seUg3_NQe6ogJhnc-MCUWVkwE0cztoR_DCg6d06RfrlYw6zmvLXWmq4vNZ78x3a8Y0C1UK6YmhDMwGgrFHoTfGzYhjpxs13pajRrtIVY5GRZfWoZtF8Q_CWB3Q_0hpnhRMVC-X39L38oQSlzG61NSd_NsAPcPUnReGo-hTD2A" alt="Sci-Fi & Cyberpunk"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Sci-Fi & Cyberpunk"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -599,7 +712,7 @@
 
           <!-- Movement Tile 2: Korean Melodrama -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('korean')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/moment-to-remember-backdrop.jpg" alt="Korean Melodrama"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Korean Melodrama"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -618,7 +731,7 @@
 
           <!-- Movement Tile 3: French New Wave -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('french')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa_ExOsi5aN-DpGrQbpVey3sefsl5USJpfQ4BWnag-b1EfwSOUbMmvmZ_oSxwsdYP8TVlVR2KIvtJ-N6x9CJ16I0krrkauJbVhFMMoVhY7tqLC2Sc9lbsDddp_8Hwlnf7qfifDfMPQp1PweQ6XotDos1reelLtwYj7ALRJRduTcS2VEvvS0APiqVUOxekrdGyg4XSpSRRoSZE-DwYxyM0kLPr-3OG94pjqImS21uBBXqsQSEYCe29stA" alt="French New Wave"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="French New Wave"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -637,7 +750,7 @@
 
           <!-- Movement Tile 4: Psychological Horror & Thriller -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('thriller')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSF2DrlQDyeh_hEWr1E9aOGzcGNQB60il-TRa9exUfZa60TtVm7wJi1LQ3JufwaJOYxNs-aKvXk7x-RerZDuXy2NJ2JESasX7Og_2LAEnXy_r8TasNcRV4PPYM9uVuwCWzhfkqM6AgJxhVKEpqFXgOSk3GFaCUe3BKAgP1d4IeWODymmrK1sRPKGX1nt9hqpO3Z-tB0tpA7l3jLHlwOYeBZe_9YdwepUorrRpfPs7diJ7BAV_B-kf5Ig" alt="Psychological Horror"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/7CENyUim29IEsaJhUxIGymCRvPu.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Psychological Horror"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -656,7 +769,7 @@
 
           <!-- Movement Tile 5: Japanese Neo-Noir -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('japanese')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1shZf07d7_R8s-pOQCwW89dTtd_Wk8a4VGE8d7Ikr00qHRY8rgAkYYsco6YPulXFXLvfsU9nuVm5e1ubk-ekUeAfWlptrbqnOTZcTpOkRIGzZcQ6MzxtPp1PctqodxVekHNv93mUrPGl9bMse-Cf9Q5mLkq9eaDBuYj6g5wjVo4tGh1J6l2X7vnvelUZ0xAFJYUSekIKuAY2y8Q1tGiuz8SycnKgMUHch51JcjPWZLFb9Qx_ZOszhWA" alt="Japanese Neo-Noir"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Japanese Neo-Noir"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -675,7 +788,7 @@
 
           <!-- Movement Tile 6: Poetic Realism -->
           <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('poetic')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1pOCP7Hi-lvHohu0e_Dt2mJhKBp1SZUyj4qyy1YdDJmEd_YurPFEgcRKS1GaKdPBkOKUO37-Jo3ZlEh0zg9FvKxY9LCnPbZ_j8z1ZOfI-QUuUv_uwrvpg_wRrduo-fNW529YoZLnpY4apa9yTEfDHvti_mypgAArh-LTrKQu8zVdD6RPqbwT6UCMrSKr6E-Hxv75L99d9rYQddO3EzVejzaoc5DBvLjyYMWUyWVd1OuIi7lARnEt1hw" alt="Poetic Realism"/>
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/7HR38hMBl23lf38MAN63y4pKsHz.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Poetic Realism"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
             <div class="absolute inset-0 p-6 flex flex-col justify-between">
               <div class="flex justify-between items-start">
@@ -786,7 +899,7 @@
             <!-- Card 1: Past Lives -->
             <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('past-lives')">
               <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJQBhxIM7ZOag2-gVRQ8WgbdFs1PNb9ZgyUeiBvINekYtkrsc-EqErXEyZM-5SgOKaUSigo-XKncQ8wWjtfpv5WYFDxQomGwcwqsx_Rxt_PZj7_fys9Kx39caUTO5VrxeA_f2OtDp47o2R-l6QABxPLBsyPG-aLIN8rwdIBxZdaoahbHpO0Mgmtxi0t3qPip1TMaHCg9WyEIecyiWKSaJtyk_DfR9YceIrJyo27_EeGV3vQ_UheucGQw" alt="Past Lives"/>
+                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Past Lives"/>
                 <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
                 <div class="absolute top-2.5 left-2.5 z-10">
                   <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">PG-13</span>
@@ -817,7 +930,7 @@
             <!-- Card 2: Anatomy of a Fall -->
             <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('anatomy-of-a-fall')">
               <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Pq_JN4qeBPermKZffyqu9j8lNfB9Ak32VI16_l4Sez0VA0D387zawjywFv-fzREq-WBPI20VRKYfLVFVtkq0Ri6T0Hy7Bq7RuB57wa7MImY0Q5PafUQ1bJfyEZ1i90RFlPQj2xjdboscizwlGtetQxSs9gvyvxPH94MT7cGlArpmosbrY_DEq6h7S-Y4BW5FeBLFykp-9gojIWj4K3SUWxQmXNrVehXX-ztzPbGwRNePjjQ27PD8Ng" alt="Anatomy of a Fall"/>
+                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/1ho0d4LNZw3Y0voeKmSvPSgJOJ2.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Anatomy of a Fall"/>
                 <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
                 <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5">
                   <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">R</span>
@@ -848,7 +961,7 @@
             <!-- Card 3: Poor Things -->
             <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('poor-things')">
               <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-N7UkAbwfoa2mCSM58TRr7Ielhy8EtIul1d3RkDDKRPjxWkynvkZPgATLGm3aghY1hW52yKKMft5Kcw9GEu_FaXIIAnicgGWsYersvr7pU3xVNb5RmEltxjC0AEkyj0PkfqstPhjrwcxhTUMHEwV6av3bH26ndS-Rc9EhflqA2dlh0kOHbb4ZEggi2EDCcCuUWWXtNVoDefMfiO3WKZ33crI_dk73UZzaKl_lmuKCxDvH47Y1aFBPMw" alt="Poor Things"/>
+                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Poor Things"/>
                 <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
                 <div class="absolute top-2.5 left-2.5 z-10">
                   <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">R</span>
@@ -878,7 +991,7 @@
             <!-- Card 4: Perfect Days -->
             <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('perfect-days')">
               <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkBLmPDgwVV1-7FZ_PGR61GLAmhyD6ap_B7-91BzRAmcrfeNFsC5YL4G_Pd8RWHBBordHNGDvCCYh29w0HqghZKGkeswd6OpYWRJGsPZ8j_aWlKuqRSAx_AqUDRkynSxj4wmbpnttsrggl9lfG3TILdwX1RWHxmsJHraQmUi9e7xTG2kPifrynybo0WmpLCExEBV6bGkqS5vMEEc19V69nq9s9pEDO2LIgUSpKMvlob50fzznsxEZ7dQ" alt="Perfect Days"/>
+                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/ep90I5U7z0nO1g60l8Ecf426L2m.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Perfect Days"/>
                 <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
                 <div class="absolute top-2.5 left-2.5 z-10">
                   <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">PG</span>
@@ -921,78 +1034,130 @@
           </div>
 
           <div class="flex items-start gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-3 -mx-2 px-2 snap-x snap-mandatory" id="carousel-numbered">
-            <!-- NUMBER 1: La Chimera -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('drive-my-car')">
+            <!-- NUMBER 1: Dune Part Two -->
+            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('dune-part-two')">
               <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
                 1
               </span>
               <div class="relative w-[190px] z-10">
                 <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlsRiVx7u6-y1tXqcGVDd7xQVmLaJ-PetyYhFiuav8YPQzXejXCNHCh4uMrcLNxZMal8BTKFqv9W2QZdUHhsVyxE47hPN1GvWn8m8Dh7XAuv5YJI8-Qc83vgTL0NE3oGF49l0agfqDy5hEQtTB5hz28iIfvFNLqxdNk3mEGcmoMh-RHseVJjOhU43Qc8QUGOXRn5UCVNSlV--iEiQrGW6igMTYesOmIVF2bGGFb2gL5C99BkK5ynCO1A" alt="La Chimera"/>
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
                   <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
                   <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Italy</span>
+                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">USA • 4K</span>
                   </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">La Chimera</h4>
+                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Dune: Part Two</h4>
                   <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2023</span>
+                    <span>2024</span>
                     <span class="text-outline-variant">•</span>
                     <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.1
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- NUMBER 2: Fallen Leaves -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('decision-to-leave')">
+            <!-- NUMBER 2: Oppenheimer -->
+            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('oppenheimer')">
               <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
                 2
               </span>
               <div class="relative w-[190px] z-10">
                 <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeKs3vHo-saSnBeNv5TTItrtR_PuIT3YGBHxdKsMrKI1354BVOgkC3HMVthQ5E6i7emipXxt3-BhXCSr3ms-kCXXqB_v0EEJ3fj4vhP8W-YfccmvXcLkh6MR5HMCSoWVNxmWXhVMQq4Y88j4yl7ZOCMZ2U7PWO-0BheP_nZArCzlboGqu4VSO0Qbjug50AjsS3S9rDeQtHIh8_Kk6Qf9tOkl52KoTskGfajnNgnjXGVtrqCFMo1JfBKw" alt="Fallen Leaves"/>
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Oppenheimer"/>
                   <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
                   <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Finland</span>
+                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">70MM</span>
                   </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Fallen Leaves</h4>
+                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Oppenheimer</h4>
                   <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
                     <span>2023</span>
                     <span class="text-outline-variant">•</span>
                     <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 7.9
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.9
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- NUMBER 3: Evil Does Not Exist -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('the-zone-of-interest')">
+            <!-- NUMBER 3: Spirited Away -->
+            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('spirited-away')">
               <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
                 3
               </span>
               <div class="relative w-[190px] z-10">
                 <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL-oaTcepG0SbaJn0G7Zi00hetEzdeYresjHyAgc2zPENXlqvu_Y6MXd8SY4fwyQp_3JtN0dnE3ndfOJiZIa9YdoKCnVrsSdyY4H--cCgvgoAx2sp_Cg5PjXxdy1Qt50i791HFb3mLeR7tuA_h_WPIlXOzwti3AWeCwWElJmRAPTkY0X49TjoCxPApzI9ZKThJZ9WZZoP3_4mmC0Q2P6WaFrYDC846MCAfpzaFeC5RVxF1a4ZJKpNVqQ" alt="Evil Does Not Exist"/>
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Spirited Away"/>
                   <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
                   <div class="absolute top-2.5 left-2.5">
                     <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Japan</span>
                   </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Evil Does Not Exist</h4>
+                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Spirited Away</h4>
                   <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2023</span>
+                    <span>2001</span>
                     <span class="text-outline-variant">•</span>
                     <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 7.8
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NUMBER 4: Parasite -->
+            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('parasite')">
+              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
+                4
+              </span>
+              <div class="relative w-[190px] z-10">
+                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Parasite"/>
+                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
+                  <div class="absolute top-2.5 left-2.5">
+                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Korea</span>
+                  </div>
+                </div>
+                <div class="mt-3 space-y-1">
+                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Parasite</h4>
+                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+                    <span>2019</span>
+                    <span class="text-outline-variant">•</span>
+                    <span class="text-primary font-medium flex items-center gap-0.5">
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.5
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NUMBER 5: Interstellar -->
+            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('interstellar')">
+              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
+                5
+              </span>
+              <div class="relative w-[190px] z-10">
+                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Interstellar"/>
+                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
+                  <div class="absolute top-2.5 left-2.5">
+                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">4K IMAX</span>
+                  </div>
+                </div>
+                <div class="mt-3 space-y-1">
+                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Interstellar</h4>
+                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+                    <span>2014</span>
+                    <span class="text-outline-variant">•</span>
+                    <span class="text-primary font-medium flex items-center gap-0.5">
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.7
                     </span>
                   </div>
                 </div>
@@ -1016,9 +1181,9 @@
 
           <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-wide">
             <!-- WIDE CARD 1 -->
-            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer()">
+            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('drive-my-car')">
               <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuWTUstFpRiYwLPYZiVBF3s4k6Qmd8fmiVnXtHzUooC8G5EztN4exsF3omxuSdds0mq6UgBi_3RS5VR_21RhcWw05f27U-gtswWNRHAmg8sFgxB06wdRqlTQ5GCgbI6wYxKngn5wYUIbam-Z3EYRltreLY9KwUpWVqV6OdLrmt-u5_Fb-loSoZ2dFksHc_3eTkgloa3XbEKUaed3vPtpr2HePpb3nV21ByEYc5PmYyrrJKcjLYHjbX0g" alt="Drive My Car"/>
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/original/6q1gR0R8uS4D9uV7p1m4V6X7b4w.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Drive My Car"/>
                 <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
@@ -1041,9 +1206,9 @@
             </div>
 
             <!-- WIDE CARD 2 -->
-            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer()">
+            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('a-moment-to-remember')">
               <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/images/moment-to-remember-backdrop.jpg" alt="A Moment to Remember"/>
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
                 <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
@@ -1145,7 +1310,7 @@
       <section class="flex flex-col gap-3 mb-8" id="library-film-rows">
         <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('a-moment-to-remember')">
           <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-            <img class="w-full h-full object-cover" src="/images/moment-to-remember-backdrop.jpg" alt="A Moment to Remember"/>
+            <img class="w-full h-full object-cover" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between gap-1 mb-0.5">
@@ -1166,7 +1331,7 @@
 
         <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('dune-part-two')">
           <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-            <img class="w-full h-full object-cover" src="/images/dune-desert-backdrop.jpg" alt="Dune: Part Two"/>
+            <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between gap-1 mb-0.5">
@@ -1215,7 +1380,7 @@
       <!-- Overlapping Poster & Metadata -->
       <div class="relative -mt-20 px-4 sm:px-6 z-10 flex flex-col sm:flex-row gap-6 items-start">
         <div class="w-36 sm:w-48 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl bg-surface-container border border-border-hairline/80 shrink-0">
-          <img class="w-full h-full object-cover" id="details-poster-img" src="/images/moment-to-remember-backdrop.jpg" alt="Film Poster"/>
+          <img class="w-full h-full object-cover" id="details-poster-img" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Film Poster"/>
         </div>
         <div class="flex-1 min-w-0 pt-2 space-y-2">
           <div class="flex items-center gap-2">

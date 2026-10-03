@@ -79,11 +79,13 @@ const KOREAN_MOVIES_CATALOG = [
     ],
     "synopsis": "A tender Korean love story about young fashion designer Su-jin and construction foreman Chul-soo. Their passionate romance is tested when 27-year-old Su-jin is diagnosed with a rare form of early-onset Alzheimer's disease, threatening to erase her memories of the man she loves.",
     "storyline": "Su-jin, a 27-year-old fashion designer, meets Chul-soo, an aspiring architect working as a construction foreman. Despite coming from very different social worlds, their chemistry sparks an all-consuming romance that blossoms into marriage. However, their idyllic happiness is shattered when Su-jin begins experiencing severe memory lapses, culminating in a devastating diagnosis of Alzheimer's disease. As her memories of their courtship and life together fade away, Chul-soo devotes himself to standing by her side and proving that true love transcends memory.",
-    "poster": "/api/poster/15859",
-    "backdrop": "/api/backdrop/15859",
+    "poster": "/images/moment-to-remember-backdrop.jpg",
+    "backdrop": "/images/moment-to-remember-backdrop.jpg",
     "trailerUrl": "https://www.youtube.com/watch?v=Fj-yZ_42u8M",
     "fallbackColor": "#3b1122",
-    "tmdbId": 15859
+    "tmdbId": 15859,
+    "posterUrl": "/images/moment-to-remember-backdrop.jpg",
+    "backdropUrl": "/images/moment-to-remember-backdrop.jpg"
   },
   {
     "id": "dune-part-two",
@@ -3314,8 +3316,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/avatar-the-way-of-water.svg",
-    "backdropUrl": "/api/backdrop/avatar-the-way-of-water.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8rpDcsfLJypbO6vREc0547VKqEv.jpg",
     "poster": "/api/poster/avatar-the-way-of-water.svg",
     "backdrop": "/api/backdrop/avatar-the-way-of-water.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Avatar%3A%20The%20Way%20of%20Water%20trailer",
@@ -3425,8 +3427,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-batman.svg",
-    "backdropUrl": "/api/backdrop/the-batman.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/tRS6jvPM9qPrrnx2KRk3ew96YUt.jpg",
     "poster": "/api/poster/the-batman.svg",
     "backdrop": "/api/backdrop/the-batman.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Batman%20trailer",
@@ -3537,8 +3539,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/godzilla-minus-one.svg",
-    "backdropUrl": "/api/backdrop/godzilla-minus-one.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hkxxMwh4gQ7MYvRLx52m1ql3592.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/fyEZq4kO2eQnJ2jW1uEw2a7wZ2Y.jpg",
     "poster": "/api/poster/godzilla-minus-one.svg",
     "backdrop": "/api/backdrop/godzilla-minus-one.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Godzilla%20Minus%20One%20trailer",
@@ -3648,8 +3650,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/kingdom-of-the-planet-of-the-apes.svg",
-    "backdropUrl": "/api/backdrop/kingdom-of-the-planet-of-the-apes.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
     "poster": "/api/poster/kingdom-of-the-planet-of-the-apes.svg",
     "backdrop": "/api/backdrop/kingdom-of-the-planet-of-the-apes.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Kingdom%20of%20the%20Planet%20of%20the%20Apes%20trailer",
@@ -3761,8 +3763,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/furiosa-a-mad-max-saga.svg",
-    "backdropUrl": "/api/backdrop/furiosa-a-mad-max-saga.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/iADOJ8Zymht2JPMoy3R7xUMZqaC.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/wNAhuOZ3Zf84jCI7Te69vg6jfV8.jpg",
     "poster": "/api/poster/furiosa-a-mad-max-saga.svg",
     "backdrop": "/api/backdrop/furiosa-a-mad-max-saga.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Furiosa%3A%20A%20Mad%20Max%20Saga%20trailer",
@@ -3872,8 +3874,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/everything-everywhere-all-at-once.svg",
-    "backdropUrl": "/api/backdrop/everything-everywhere-all-at-once.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/w3LxiVYPqrlexP02048TegHRrIZ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/70Rm9uq077vURaoi8Zp6bwh1tT3.jpg",
     "poster": "/api/poster/everything-everywhere-all-at-once.svg",
     "backdrop": "/api/backdrop/everything-everywhere-all-at-once.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Everything%20Everywhere%20All%20at%20Once%20trailer",
@@ -3984,8 +3986,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/joker.svg",
-    "backdropUrl": "/api/backdrop/joker.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
     "poster": "/api/poster/joker.svg",
     "backdrop": "/api/backdrop/joker.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Joker%20trailer",
@@ -4095,8 +4097,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/howl-s-moving-castle.svg",
-    "backdropUrl": "/api/backdrop/howl-s-moving-castle.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/6p0q59iVotN2XJ4376WcZ9bXf9c.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/xgDbeCiANCRWQODhvVuvs411mep.jpg",
     "poster": "/api/poster/howl-s-moving-castle.svg",
     "backdrop": "/api/backdrop/howl-s-moving-castle.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Howl's%20Moving%20Castle%20trailer",
@@ -4208,8 +4210,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/weathering-with-you.svg",
-    "backdropUrl": "/api/backdrop/weathering-with-you.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qgrk7r1fUmbt7NdPCFGqJ9ezQmm.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/a0xTB1vBxMGIL4jO5tq89t5qS2v.jpg",
     "poster": "/api/poster/weathering-with-you.svg",
     "backdrop": "/api/backdrop/weathering-with-you.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Weathering%20with%20You%20trailer",
@@ -4320,8 +4322,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-boy-and-the-heron.svg",
-    "backdropUrl": "/api/backdrop/the-boy-and-the-heron.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jDQPkg03xd3SttkIX959ye9DYrO.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7NRGAtWBm98u5bTHGkSgT6zkhh.jpg",
     "poster": "/api/poster/the-boy-and-the-heron.svg",
     "backdrop": "/api/backdrop/the-boy-and-the-heron.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Boy%20and%20the%20Heron%20trailer",
@@ -4432,8 +4434,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-roundup-punishment.svg",
-    "backdropUrl": "/api/backdrop/the-roundup-punishment.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7WUHJz9b9iI8k3y6p5l6e6k5v1a.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/kYgQzbEA75qnAPRJgD04cclb3q.jpg",
     "poster": "/api/poster/the-roundup-punishment.svg",
     "backdrop": "/api/backdrop/the-roundup-punishment.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Roundup%3A%20Punishment%20trailer",
@@ -4545,8 +4547,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-admiral-roaring-currents.svg",
-    "backdropUrl": "/api/backdrop/the-admiral-roaring-currents.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7a2M4N6b4B9j2q3k4k7p8p6p4v2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg",
     "poster": "/api/poster/the-admiral-roaring-currents.svg",
     "backdrop": "/api/backdrop/the-admiral-roaring-currents.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Admiral%3A%20Roaring%20Currents%20trailer",
@@ -4658,8 +4660,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/taegukgi-brotherhood-of-war.svg",
-    "backdropUrl": "/api/backdrop/taegukgi-brotherhood-of-war.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/6M1E89Jv0n6n9h8g7f6d5s4a3b.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/e9h4T0L4n3w8l8f6g7g8h9j0k1.jpg",
     "poster": "/api/poster/taegukgi-brotherhood-of-war.svg",
     "backdrop": "/api/backdrop/taegukgi-brotherhood-of-war.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Taegukgi%3A%20Brotherhood%20of%20War%20trailer",
@@ -4769,8 +4771,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/joint-security-area.svg",
-    "backdropUrl": "/api/backdrop/joint-security-area.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/q7875b2a0c7a8b4b7c6b5a4b3c.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/f6j2a5b6c7d8e9f0g1h2i3j4k5.jpg",
     "poster": "/api/poster/joint-security-area.svg",
     "backdrop": "/api/backdrop/joint-security-area.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Joint%20Security%20Area%20trailer",
@@ -4880,8 +4882,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/sympathy-for-mr-vengeance.svg",
-    "backdropUrl": "/api/backdrop/sympathy-for-mr-vengeance.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/5k7m3n1b2c4d5e6f7g8h9i0j1.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/g4h5i6j7k8l9m0n1o2p3q4r5s6.jpg",
     "poster": "/api/poster/sympathy-for-mr-vengeance.svg",
     "backdrop": "/api/backdrop/sympathy-for-mr-vengeance.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Sympathy%20for%20Mr.%20Vengeance%20trailer",
@@ -4992,8 +4994,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-flu.svg",
-    "backdropUrl": "/api/backdrop/the-flu.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7h5g4f3e2d1c0b9a8s7d6f5e4d.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8g6h5j4k3l2m1n0b9v8c7x6z5.jpg",
     "poster": "/api/poster/the-flu.svg",
     "backdrop": "/api/backdrop/the-flu.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Flu%20trailer",
@@ -5107,8 +5109,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/along-with-the-gods-the-two-worlds.svg",
-    "backdropUrl": "/api/backdrop/along-with-the-gods-the-two-worlds.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9k8j7h6g5f4e3d2c1b0a9s8d7.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7h8j9k0l1m2n3o4p5q6r7s8t9.jpg",
     "poster": "/api/poster/along-with-the-gods-the-two-worlds.svg",
     "backdrop": "/api/backdrop/along-with-the-gods-the-two-worlds.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Along%20with%20the%20Gods%3A%20The%20Two%20Worlds%20trailer",
@@ -5221,8 +5223,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/alienoid.svg",
-    "backdropUrl": "/api/backdrop/alienoid.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8k7j6h5g4f3e2d1c0b9a8s7d6.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6f7g8h9j0k1l2m3n4o5p6q7r8.jpg",
     "poster": "/api/poster/alienoid.svg",
     "backdrop": "/api/backdrop/alienoid.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Alienoid%20trailer",
@@ -5332,8 +5334,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/ode-to-my-father.svg",
-    "backdropUrl": "/api/backdrop/ode-to-my-father.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7g6h5j4k3l2m1n0b9v8c7x6z5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/5e6f7g8h9j0k1l2m3n4o5p6q7.jpg",
     "poster": "/api/poster/ode-to-my-father.svg",
     "backdrop": "/api/backdrop/ode-to-my-father.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Ode%20to%20My%20Father%20trailer",
@@ -5445,8 +5447,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/i-the-executioner.svg",
-    "backdropUrl": "/api/backdrop/i-the-executioner.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/6e5d4c3b2a1s0d9f8g7h6j5k4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/4d3c2b1a0s9f8g7h6j5k4l3m2.jpg",
     "poster": "/api/poster/i-the-executioner.svg",
     "backdrop": "/api/backdrop/i-the-executioner.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=I%2C%20the%20Executioner%20trailer",
@@ -5485,8 +5487,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/kalki-2898-ad.svg",
-    "backdropUrl": "/api/backdrop/kalki-2898-ad.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9PbtCoNm704stB7e79391054366.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/b85bmgF0n620WlHlA0S22m28g81.jpg",
     "poster": "/api/poster/kalki-2898-ad.svg",
     "backdrop": "/api/backdrop/kalki-2898-ad.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Kalki%202898%20AD%20trailer",
@@ -5598,8 +5600,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/pathaan.svg",
-    "backdropUrl": "/api/backdrop/pathaan.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/m1b9To3F8L33h5146864692.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/94QO3Zff3pQ2Q4l8yq84692.jpg",
     "poster": "/api/poster/pathaan.svg",
     "backdrop": "/api/backdrop/pathaan.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Pathaan%20trailer",
@@ -5711,8 +5713,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/fighter.svg",
-    "backdropUrl": "/api/backdrop/fighter.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/zDZowwf2p1r536784651.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/kWYfW2Kp3784651.jpg",
     "poster": "/api/poster/fighter.svg",
     "backdrop": "/api/backdrop/fighter.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Fighter%20trailer",
@@ -5824,8 +5826,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/rrr.svg",
-    "backdropUrl": "/api/backdrop/rrr.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/kdOq579974p2Q1k9b4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ww72wdf12579974.jpg",
     "poster": "/api/poster/rrr.svg",
     "backdrop": "/api/backdrop/rrr.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=RRR%20trailer",
@@ -5939,8 +5941,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/salaar-part-1-ceasefire.svg",
-    "backdropUrl": "/api/backdrop/salaar-part-1-ceasefire.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9k770906p2Q1k9b4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/770906ww72wdf12.jpg",
     "poster": "/api/poster/salaar-part-1-ceasefire.svg",
     "backdrop": "/api/backdrop/salaar-part-1-ceasefire.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Salaar%3A%20Part%201%20%E2%80%93%20Ceasefire%20trailer",
@@ -6053,8 +6055,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/dangal.svg",
-    "backdropUrl": "/api/backdrop/dangal.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/360814kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/360814ww72w.jpg",
     "poster": "/api/poster/dangal.svg",
     "backdrop": "/api/backdrop/dangal.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Dangal%20trailer",
@@ -6165,8 +6167,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/society-of-the-snow.svg",
-    "backdropUrl": "/api/backdrop/society-of-the-snow.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/29N06126p2Q1k9b4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/906126ww72wdf12.jpg",
     "poster": "/api/poster/society-of-the-snow.svg",
     "backdrop": "/api/backdrop/society-of-the-snow.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Society%20of%20the%20Snow%20trailer",
@@ -6279,8 +6281,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-secret-in-their-eyes.svg",
-    "backdropUrl": "/api/backdrop/the-secret-in-their-eyes.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/25376kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/25376ww72w.jpg",
     "poster": "/api/poster/the-secret-in-their-eyes.svg",
     "backdrop": "/api/backdrop/the-secret-in-their-eyes.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Secret%20in%20Their%20Eyes%20trailer",
@@ -6391,8 +6393,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/wild-tales.svg",
-    "backdropUrl": "/api/backdrop/wild-tales.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/265195kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/265195ww72w.jpg",
     "poster": "/api/poster/wild-tales.svg",
     "backdrop": "/api/backdrop/wild-tales.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Wild%20Tales%20trailer",
@@ -6504,8 +6506,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/am-lie.svg",
-    "backdropUrl": "/api/backdrop/am-lie.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/194kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/194ww72w.jpg",
     "poster": "/api/poster/am-lie.svg",
     "backdrop": "/api/backdrop/am-lie.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Am%C3%A9lie%20trailer",
@@ -6615,8 +6617,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/la-haine.svg",
-    "backdropUrl": "/api/backdrop/la-haine.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/406kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/406ww72w.jpg",
     "poster": "/api/poster/la-haine.svg",
     "backdrop": "/api/backdrop/la-haine.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=La%20Haine%20trailer",
@@ -6728,8 +6730,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-zone-of-interest.svg",
-    "backdropUrl": "/api/backdrop/the-zone-of-interest.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/467244kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/467244ww72w.jpg",
     "poster": "/api/poster/the-zone-of-interest.svg",
     "backdrop": "/api/backdrop/the-zone-of-interest.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Zone%20of%20Interest%20trailer",
@@ -6839,8 +6841,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-great-beauty.svg",
-    "backdropUrl": "/api/backdrop/the-great-beauty.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/179144kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/179144ww72w.jpg",
     "poster": "/api/poster/the-great-beauty.svg",
     "backdrop": "/api/backdrop/the-great-beauty.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Great%20Beauty%20trailer",
@@ -6951,8 +6953,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/drive-my-car.svg",
-    "backdropUrl": "/api/backdrop/drive-my-car.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/v9y6dD4uB82r0QjX7F2M4lUuR6l.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6q1gR0R8uS4D9uV7p1m4V6X7b4w.jpg",
     "poster": "/api/poster/drive-my-car.svg",
     "backdrop": "/api/backdrop/drive-my-car.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Drive%20My%20Car%20trailer",
@@ -7064,8 +7066,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/crouching-tiger-hidden-dragon.svg",
-    "backdropUrl": "/api/backdrop/crouching-tiger-hidden-dragon.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/146kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/146ww72w.jpg",
     "poster": "/api/poster/crouching-tiger-hidden-dragon.svg",
     "backdrop": "/api/backdrop/crouching-tiger-hidden-dragon.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Crouching%20Tiger%2C%20Hidden%20Dragon%20trailer",
@@ -7177,8 +7179,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/ip-man.svg",
-    "backdropUrl": "/api/backdrop/ip-man.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/14756kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/14756ww72w.jpg",
     "poster": "/api/poster/ip-man.svg",
     "backdrop": "/api/backdrop/ip-man.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Ip%20Man%20trailer",
@@ -7293,8 +7295,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/moana-2.svg",
-    "backdropUrl": "/api/backdrop/moana-2.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/aLVkiINJaegnv09hk7VhUMNmflF.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/v9acaWV9Jh9G0iB2u9vPzT7p4tH.jpg",
     "poster": "/api/poster/moana-2.svg",
     "backdrop": "/api/backdrop/moana-2.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Moana%202%20trailer",
@@ -7407,8 +7409,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/kraven-the-hunter.svg",
-    "backdropUrl": "/api/backdrop/kraven-the-hunter.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/1GvvdA7kK8u5j3b0i1s0z7f.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/539972ww72w.jpg",
     "poster": "/api/poster/kraven-the-hunter.svg",
     "backdrop": "/api/backdrop/kraven-the-hunter.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Kraven%20the%20Hunter%20trailer",
@@ -7522,8 +7524,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/mufasa-the-lion-king.svg",
-    "backdropUrl": "/api/backdrop/mufasa-the-lion-king.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jbOS7V7J83b4G6g9h0i1s2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/762509ww72w.jpg",
     "poster": "/api/poster/mufasa-the-lion-king.svg",
     "backdrop": "/api/backdrop/mufasa-the-lion-king.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Mufasa%3A%20The%20Lion%20King%20trailer",
@@ -7636,8 +7638,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-wild-robot.svg",
-    "backdropUrl": "/api/backdrop/the-wild-robot.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9w0Vh9eAhcqDxAgW2897451184918.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1184918ww72w.jpg",
     "poster": "/api/poster/the-wild-robot.svg",
     "backdrop": "/api/backdrop/the-wild-robot.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Wild%20Robot%20trailer",
@@ -7750,8 +7752,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/thunderbolts.svg",
-    "backdropUrl": "/api/backdrop/thunderbolts.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/986056kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/986056ww72w.jpg",
     "poster": "/api/poster/thunderbolts.svg",
     "backdrop": "/api/backdrop/thunderbolts.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Thunderbolts*%20trailer",
@@ -7864,8 +7866,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/the-fantastic-four-first-steps.svg",
-    "backdropUrl": "/api/backdrop/the-fantastic-four-first-steps.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/617126kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/617126ww72w.jpg",
     "poster": "/api/poster/the-fantastic-four-first-steps.svg",
     "backdrop": "/api/backdrop/the-fantastic-four-first-steps.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=The%20Fantastic%20Four%3A%20First%20Steps%20trailer",
@@ -7978,8 +7980,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/avatar-fire-and-ash.svg",
-    "backdropUrl": "/api/backdrop/avatar-fire-and-ash.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/83533kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/83533ww72w.jpg",
     "poster": "/api/poster/avatar-fire-and-ash.svg",
     "backdrop": "/api/backdrop/avatar-fire-and-ash.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Avatar%3A%20Fire%20and%20Ash%20trailer",
@@ -8092,8 +8094,8 @@ const KOREAN_MOVIES_CATALOG = [
     "castDetails": [],
     "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
     "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
-    "posterUrl": "/api/poster/tron-ares.svg",
-    "backdropUrl": "/api/backdrop/tron-ares.svg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/533533kdOq5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/533533ww72w.jpg",
     "poster": "/api/poster/tron-ares.svg",
     "backdrop": "/api/backdrop/tron-ares.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=Tron%3A%20Ares%20trailer",
@@ -8179,176 +8181,13 @@ const KOREAN_MOVIES_CATALOG = [
   }
 ];
 
-function getPosterSvgFallback(title, koreanTitle, year, rating, genre, bgColor = "#1e1320") {
-  const safeTitle = (title || 'STREAMBERT FILM')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
-  const safeOriginal = (koreanTitle || 'STREAMBERT')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-  const safeGenre = (genre || 'Drama').toUpperCase();
-  const safeYear = year || '2024';
-  const safeRating = rating || '15+';
-  const isAdult = safeRating.includes('18');
-
-  // Guaranteed safe XML identifier (strictly [a-z0-9_], no % or spaces)
-  const hash = Math.abs((safeTitle + safeYear).split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0)).toString(36);
-  const uid = 'sb_' + hash;
-
-  // Genre palette
-  let primaryColor = "#8256d0";
-  let accentColor = "#a855f7";
-  let bgGradient = `
-    <stop offset="0%" stop-color="${bgColor}"/>
-    <stop offset="45%" stop-color="#140f1f"/>
-    <stop offset="100%" stop-color="#070509"/>
-  `;
-
-  if (safeGenre.includes('ANIME')) {
-    primaryColor = "#ec4899";
-    accentColor = "#f472b6";
-    bgGradient = `
-      <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#240c1f"/>
-      <stop offset="100%" stop-color="#090308"/>
-    `;
-  } else if (safeGenre.includes('ROMANCE') || safeGenre.includes('MELODRAMA')) {
-    primaryColor = "#e11d48";
-    accentColor = "#fb7185";
-    bgGradient = `
-      <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#240e1b"/>
-      <stop offset="100%" stop-color="#0b0509"/>
-    `;
-  } else if (safeGenre.includes('THRILLER') || safeGenre.includes('ACTION') || safeGenre.includes('SCI-FI')) {
-    primaryColor = "#0284c7";
-    accentColor = "#38bdf8";
-    bgGradient = `
-      <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#08182b"/>
-      <stop offset="100%" stop-color="#040911"/>
-    `;
-  } else if (safeGenre.includes('HORROR') || safeGenre.includes('MYSTERY')) {
-    primaryColor = "#b91c1c";
-    accentColor = "#ef4444";
-    bgGradient = `
-      <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#220808"/>
-      <stop offset="100%" stop-color="#090202"/>
-    `;
-  } else if (safeGenre.includes('COMEDY') || safeGenre.includes('ADVENTURE')) {
-    primaryColor = "#d97706";
-    accentColor = "#f59e0b";
-    bgGradient = `
-      <stop offset="0%" stop-color="${bgColor}"/>
-      <stop offset="45%" stop-color="#1c1407"/>
-      <stop offset="100%" stop-color="#090703"/>
-    `;
-  }
-
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <linearGradient id="${uid}_bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      ${bgGradient}
-    </linearGradient>
-    <radialGradient id="${uid}_spot" cx="50%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="${accentColor}" stop-opacity="0.38"/>
-      <stop offset="60%" stop-color="${accentColor}" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.95"/>
-    </radialGradient>
-    <linearGradient id="${uid}_gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fde68a"/>
-      <stop offset="50%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#b45309"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background Base & Cinema Lighting -->
-  <rect width="500" height="750" fill="url(#${uid}_bg)"/>
-  <rect width="500" height="750" fill="url(#${uid}_spot)"/>
-
-  <!-- Film Strip Decorative Border Frames -->
-  <rect x="14" y="14" width="472" height="722" rx="10" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-  <rect x="20" y="20" width="460" height="710" rx="6" fill="none" stroke="${accentColor}" stroke-opacity="0.3" stroke-width="1"/>
-
-  <!-- Perforated Film Sprocket Accents -->
-  <g fill="rgba(255,255,255,0.15)">
-    <rect x="30" y="26" width="10" height="6" rx="1"/>
-    <rect x="52" y="26" width="10" height="6" rx="1"/>
-    <rect x="438" y="26" width="10" height="6" rx="1"/>
-    <rect x="460" y="26" width="10" height="6" rx="1"/>
-    <rect x="30" y="718" width="10" height="6" rx="1"/>
-    <rect x="52" y="718" width="10" height="6" rx="1"/>
-    <rect x="438" y="718" width="10" height="6" rx="1"/>
-    <rect x="460" y="718" width="10" height="6" rx="1"/>
-  </g>
-
-  <!-- Top Streaming Header: STREAMBERT Brand • Age Rating • Quality -->
-  <g transform="translate(32, 46)">
-    <rect x="0" y="0" width="98" height="24" rx="4" fill="#8256d0"/>
-    <text x="49" y="16" fill="#ffffff" font-size="10.5" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="1">STREAMBERT</text>
-    
-    <rect x="106" y="0" width="${isAdult ? 66 : 56}" height="24" rx="4" fill="${isAdult ? '#dc2626' : 'rgba(255,255,255,0.12)'}" stroke="${isAdult ? '#ef4444' : 'rgba(255,255,255,0.2)'}" stroke-width="1"/>
-    <text x="${isAdult ? 139 : 134}" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">${safeRating}</text>
-
-    <rect x="${isAdult ? 180 : 170}" y="0" width="80" height="24" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
-    <text x="${isAdult ? 220 : 210}" y="16" fill="#fbbf24" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="0.5">4K ULTRA</text>
-  </g>
-
-  <!-- Center Graphic Motif: Optical Cinema Rings & Projector -->
-  <g transform="translate(250, 275)">
-    <circle cx="0" cy="0" r="135" fill="none" stroke="${accentColor}" stroke-opacity="0.14" stroke-width="2"/>
-    <circle cx="0" cy="0" r="105" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="6,4"/>
-    <circle cx="0" cy="0" r="75" fill="none" stroke="${accentColor}" stroke-opacity="0.22" stroke-width="1.5"/>
-    <polygon points="0,-42 36,21 -36,21" fill="none" stroke="${accentColor}" stroke-opacity="0.4" stroke-width="1.5"/>
-    <polygon points="0,42 -36,-21 36,-21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-    <circle cx="0" cy="0" r="14" fill="${accentColor}" fill-opacity="0.6"/>
-  </g>
-
-  <!-- Award Laurel Header -->
-  <g transform="translate(250, 420)">
-    <text x="0" y="0" fill="url(#${uid}_gold)" font-size="10.5" font-weight="800" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2.5">★ OFFICIAL WORLD THEATRICAL RELEASE ★</text>
-  </g>
-
-  <!-- Original Language Title -->
-  <g transform="translate(250, 485)">
-    <text x="0" y="0" fill="${accentColor}" font-size="${safeOriginal.length > 10 ? 28 : 38}" font-weight="900" font-family="'Noto Sans KR', sans-serif" text-anchor="middle" letter-spacing="3">${safeOriginal}</text>
-  </g>
-
-  <!-- English Title -->
-  <g transform="translate(250, 536)">
-    <text x="0" y="0" fill="#ffffff" font-size="${safeTitle.length > 20 ? 22 : 27}" font-weight="900" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="-0.5">${safeTitle}</text>
-  </g>
-
-  <!-- Meta Strip: Year • Genre -->
-  <g transform="translate(250, 574)">
-    <text x="0" y="0" fill="#cbd5e1" font-size="13" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="1.5">${safeYear} &bull; ${safeGenre}</text>
-  </g>
-
-  <!-- Divider Line -->
-  <rect x="175" y="596" width="150" height="2" rx="1" fill="#8256d0" opacity="0.8"/>
-
-  <!-- Presentation Badge -->
-  <g transform="translate(250, 640)">
-    <text x="0" y="0" fill="rgba(255,255,255,0.5)" font-size="11" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">4K REMASTERED &bull; DOLBY ATMOS AUDIO</text>
-    <text x="0" y="20" fill="rgba(255,255,255,0.3)" font-size="9" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle" letter-spacing="2">STREAMBERT THEATRICAL PRESENTATION</text>
-  </g>
-</svg>`;
-
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-}
-
+// Also expose as MOVIES_CATALOG for backward compatibility
 const MOVIES_CATALOG = KOREAN_MOVIES_CATALOG;
 
+// Export for Node.js environments (CommonJS)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     KOREAN_MOVIES_CATALOG,
-    MOVIES_CATALOG,
-    getPosterSvgFallback,
+    MOVIES_CATALOG
   };
 }

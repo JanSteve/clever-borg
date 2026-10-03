@@ -1,7 +1,7 @@
 /**
  * CINEXA: Google Stitch Master Controller & Architecture
- * Complete implementation of Stitch Navigation, Discover Filter Matrix,
- * Trending Snap Carousels, Resilient States, 5★ Rating Dialog, and 4K Player.
+ * Complete implementation of Stitch Navigation, Featured Hero Slideshow,
+ * Discover Filter Matrix, Trending Snap Carousels, 5★ Rating Dialog, and 4K Player.
  */
 
 // Global State
@@ -12,7 +12,419 @@ let toastTimer = null;
 let currentSelectedRating = 5;
 
 // =========================================================================
-// 1. NAVIGATION & SCREEN CONTROLLER
+// 1. FEATURED HERO SLIDESHOW DATA & ENGINE
+// =========================================================================
+
+const FEATURED_SLIDES = [
+  {
+    id: 'dune-part-two',
+    slug: 'dune-part-two',
+    title: 'Dune: Part Two',
+    category: 'top-recommendation',
+    categoryLabel: '✨ Top Recommendation',
+    year: '2024',
+    duration: '2h 46m',
+    rating: 'PG-13',
+    score: '8.6',
+    matchScore: '99% Match',
+    resolution: '4K IMAX Enhanced',
+    audio: 'Dolby Atmos 5.1',
+    director: 'Denis Villeneuve',
+    cast: 'Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler',
+    synopsis: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family, wrestling with ominous visions of a holy war consuming the universe.',
+    quote: '“A visual and sonic triumph of contemporary sci-fi filmmaking.” — Sight & Sound',
+    backdrop: 'https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg',
+    accentColor: '#ecc077'
+  },
+  {
+    id: 'oppenheimer',
+    slug: 'oppenheimer',
+    title: 'Oppenheimer',
+    category: 'current-trending',
+    categoryLabel: '⚡ Current Trending',
+    year: '2023',
+    duration: '3h 00m',
+    rating: 'R',
+    score: '8.9',
+    matchScore: '99% Match',
+    resolution: '70MM Ultra Panavision',
+    audio: 'Dolby Atmos',
+    director: 'Christopher Nolan',
+    cast: 'Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.',
+    synopsis: 'The pulse-pounding chronicle of J. Robert Oppenheimer and his role leading the secret Los Alamos laboratory in the creation of the atomic bomb.',
+    quote: '“Nolan’s magnum opus: terrifying, monumental, and visually breathtaking.” — Cahiers du Cinéma',
+    backdrop: 'https://image.tmdb.org/t/p/original/7CENyUim29IEsaJhUxIGymCRvPu.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+    accentColor: '#ffb5a1'
+  },
+  {
+    id: 'past-lives',
+    slug: 'past-lives',
+    title: 'Past Lives',
+    category: 'peoples-favorite',
+    categoryLabel: '🔥 People’s Favorite',
+    year: '2023',
+    duration: '1h 45m',
+    rating: 'PG-13',
+    score: '8.4',
+    matchScore: '98% Match',
+    resolution: '35MM Restored',
+    audio: 'Korean/English Stereo',
+    director: 'Celine Song',
+    cast: 'Greta Lee, Teo Yoo, John Magaro',
+    synopsis: 'Nora and Hae Sung, two deeply connected childhood friends, are separated when her family emigrates from South Korea. Two decades later, they are reunited for one fateful week in New York.',
+    quote: '“A heartbreakingly delicate exploration of In-Yun (destiny) and enduring love.” — The New Yorker',
+    backdrop: 'https://image.tmdb.org/t/p/original/7HR38hMBl23lf38MAN63y4pKsHz.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',
+    accentColor: '#b1cdbb'
+  },
+  {
+    id: 'spirited-away',
+    slug: 'spirited-away',
+    title: 'Spirited Away',
+    category: 'top-recommendation',
+    categoryLabel: '✨ Top Recommendation',
+    year: '2001',
+    duration: '2h 05m',
+    rating: 'PG',
+    score: '8.6',
+    matchScore: '99% Match',
+    resolution: '4K Studio Ghibli Master',
+    audio: 'Japanese 5.1 / Atmos',
+    director: 'Hayao Miyazaki',
+    cast: 'Rumi Hiiragi, Miyu Irino, Mari Natsuki',
+    synopsis: 'Ten-year-old Chihiro wanders into a wondrous world ruled by gods, witches, and spirits, where humans are changed into beasts.',
+    quote: '“One of the greatest achievements in hand-drawn animation in human history.” — Roger Ebert',
+    backdrop: 'https://image.tmdb.org/t/p/original/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg',
+    accentColor: '#c9a05b'
+  },
+  {
+    id: 'parasite',
+    slug: 'parasite',
+    title: 'Parasite',
+    category: 'award-winners',
+    categoryLabel: '🏆 Criterion Laureate',
+    year: '2019',
+    duration: '2h 12m',
+    rating: 'R',
+    score: '8.5',
+    matchScore: '99% Match',
+    resolution: '4K UHD Master',
+    audio: 'Korean Dolby Atmos',
+    director: 'Bong Joon-ho',
+    cast: 'Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong, Choi Woo-shik',
+    synopsis: 'A destitute family schemes to become employed by a wealthy household and infiltrate their domestic life with unexpected consequences.',
+    quote: '“A masterclass in razor-sharp social satire, pacing, and tension.” — Criterion Collection',
+    backdrop: 'https://image.tmdb.org/t/p/original/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
+    accentColor: '#ecc077'
+  },
+  {
+    id: 'interstellar',
+    slug: 'interstellar',
+    title: 'Interstellar',
+    category: 'peoples-favorite',
+    categoryLabel: '🔥 People’s Favorite',
+    year: '2014',
+    duration: '2h 49m',
+    rating: 'PG-13',
+    score: '8.7',
+    matchScore: '99% Match',
+    resolution: '4K IMAX Laser',
+    audio: 'Dolby Atmos',
+    director: 'Christopher Nolan',
+    cast: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine',
+    synopsis: 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot is tasked to pilot a spacecraft through a wormhole to find a new planet for humanity.',
+    quote: '“An emotional, cosmic adventure that transcends space and time.” — Empire Magazine',
+    backdrop: 'https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg',
+    accentColor: '#8DA897'
+  },
+  {
+    id: '15859',
+    slug: 'a-moment-to-remember',
+    title: 'A Moment to Remember',
+    category: 'top-recommendation',
+    categoryLabel: '✨ Top Recommendation',
+    year: '2004',
+    duration: '2h 24m',
+    rating: '18+',
+    score: '8.1',
+    matchScore: '99% Match',
+    resolution: '4K Remastered',
+    audio: 'Korean Dolby 5.1',
+    director: 'John H. Lee (Lee Jae-han)',
+    cast: 'Son Ye-jin, Jung Woo-sung, Baek Jong-hak',
+    synopsis: 'A tender romance between Su-jin and Chul-soo faces the ultimate test when early-onset Alzheimer’s threatens to erase the memories of their love.',
+    quote: '“A timeless masterpiece of Korean melodrama that captures the pure essence of devotion.” — Cine21',
+    backdrop: '/images/moment-to-remember-backdrop.jpg',
+    poster: '/images/moment-to-remember-backdrop.jpg',
+    accentColor: '#C0705A'
+  }
+];
+
+let slideshowState = {
+  activeCategory: 'all',
+  filteredSlides: [...FEATURED_SLIDES],
+  currentIndex: 0,
+  timer: null,
+  timerInterval: 5000,
+  isPaused: false
+};
+
+function initFeaturedSlideshow() {
+  renderSlideThumbnails();
+  renderSlideProgressDots();
+  renderSlide(0);
+  startSlideTimer();
+
+  // Pause on hover or touch
+  const container = document.getElementById('hero-slideshow-container');
+  if (container) {
+    container.onmouseenter = () => { slideshowState.isPaused = true; };
+    container.onmouseleave = () => { slideshowState.isPaused = false; };
+    
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    container.ontouchstart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      slideshowState.isPaused = true;
+    };
+    container.ontouchend = (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      slideshowState.isPaused = false;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    };
+  }
+}
+
+function filterSlideshowCategory(cat) {
+  slideshowState.activeCategory = cat;
+  
+  // Update Tab Button Styles
+  const tabBtns = document.querySelectorAll('#slideshow-category-tabs .slide-cat-btn');
+  tabBtns.forEach(btn => {
+    const btnCat = btn.getAttribute('data-cat');
+    if (btnCat === cat) {
+      btn.className = 'slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-semibold shadow-sm transition-all duration-200 cursor-pointer';
+    } else {
+      btn.className = 'slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer';
+    }
+  });
+
+  if (cat === 'all') {
+    slideshowState.filteredSlides = [...FEATURED_SLIDES];
+  } else {
+    slideshowState.filteredSlides = FEATURED_SLIDES.filter(s => s.category === cat);
+    if (slideshowState.filteredSlides.length === 0) {
+      slideshowState.filteredSlides = [...FEATURED_SLIDES];
+    }
+  }
+
+  slideshowState.currentIndex = 0;
+  renderSlideThumbnails();
+  renderSlideProgressDots();
+  renderSlide(0);
+  restartSlideTimer();
+}
+
+function renderSlide(index) {
+  const slides = slideshowState.filteredSlides;
+  if (!slides || slides.length === 0) return;
+
+  if (index < 0) index = slides.length - 1;
+  if (index >= slides.length) index = 0;
+  slideshowState.currentIndex = index;
+
+  const slide = slides[index];
+
+  // Update Backdrop Image
+  const bgImg = document.getElementById('slide-bg-img');
+  if (bgImg) {
+    bgImg.style.opacity = '0.1';
+    setTimeout(() => {
+      bgImg.src = slide.backdrop || slide.poster || '/images/dune-desert-backdrop.jpg';
+      bgImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
+      bgImg.style.opacity = '0.35';
+    }, 150);
+  }
+
+  // Update Texts
+  const titleEl = document.getElementById('slide-title');
+  const quoteEl = document.getElementById('slide-quote');
+  const catTextEl = document.getElementById('slide-category-text');
+  const resBadge = document.getElementById('slide-resolution-badge');
+  const audioBadge = document.getElementById('slide-audio-badge');
+  const yearEl = document.getElementById('slide-year');
+  const durationEl = document.getElementById('slide-duration');
+  const ratingEl = document.getElementById('slide-rating');
+  const imdbEl = document.getElementById('slide-imdb');
+  const matchEl = document.getElementById('slide-match');
+  const directorEl = document.getElementById('slide-director');
+  const synopsisEl = document.getElementById('slide-synopsis');
+  const castEl = document.getElementById('slide-cast');
+  const posterImg = document.getElementById('slide-poster-img');
+  const counterText = document.getElementById('slide-counter-text');
+  const watchlistText = document.getElementById('slide-watchlist-text');
+
+  if (titleEl) titleEl.innerText = slide.title;
+  if (quoteEl) quoteEl.innerText = slide.quote || '';
+  if (catTextEl) catTextEl.innerText = slide.categoryLabel || '✨ Curated Feature';
+  if (resBadge) resBadge.innerText = slide.resolution || '4K Ultra HD';
+  if (audioBadge) audioBadge.innerText = slide.audio || 'Dolby Atmos';
+  if (yearEl) yearEl.innerText = slide.year || '2024';
+  if (durationEl) durationEl.innerText = slide.duration || '2h';
+  if (ratingEl) ratingEl.innerText = slide.rating || 'PG-13';
+  if (imdbEl) imdbEl.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${slide.score || '8.5'} IMDb`;
+  if (matchEl) matchEl.innerText = slide.matchScore || '99% Match';
+  if (directorEl) directorEl.innerText = `Dir. ${slide.director || 'Curated Master'}`;
+  if (synopsisEl) synopsisEl.innerText = slide.synopsis || '';
+  if (castEl) castEl.innerText = slide.cast || '';
+  
+  if (posterImg) {
+    posterImg.src = slide.poster || slide.backdrop || '/images/moment-to-remember-backdrop.jpg';
+    posterImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
+  }
+
+  if (counterText) {
+    counterText.innerText = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+  }
+
+  if (watchlistText) {
+    const isSaved = watchlistSet.has(slide.id) || watchlistSet.has(slide.slug);
+    watchlistText.innerText = isSaved ? 'In Watchlist' : 'Watchlist';
+  }
+
+  // Update Active Thumbnail & Progress Dots
+  updateActiveThumbnailUI(index);
+}
+
+function renderSlideThumbnails() {
+  const deck = document.getElementById('slide-thumbnails-deck');
+  if (!deck) return;
+
+  const slides = slideshowState.filteredSlides;
+  deck.innerHTML = slides.map((s, idx) => `
+    <button class="slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 transition-all duration-300 hover:border-primary cursor-pointer ${idx === slideshowState.currentIndex ? 'ring-2 ring-primary border-primary scale-105 shadow-md' : 'opacity-60 hover:opacity-100'}" data-index="${idx}" onclick="goToSlide(${idx})">
+      <img src="${s.poster || s.backdrop || '/images/moment-to-remember-backdrop.jpg'}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
+      <div class="absolute inset-0 bg-surface/30 group-hover:bg-transparent transition-colors"></div>
+    </button>
+  `).join('');
+}
+
+function renderSlideProgressDots() {
+  const dotsContainer = document.getElementById('slide-progress-dots');
+  if (!dotsContainer) return;
+
+  const slides = slideshowState.filteredSlides;
+  dotsContainer.innerHTML = slides.map((_, idx) => `
+    <button class="slide-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === slideshowState.currentIndex ? 'w-8 bg-primary shadow-[0_0_8px_rgba(201,160,91,0.5)]' : 'w-2 bg-surface-container-highest hover:bg-outline'}" onclick="goToSlide(${idx})" aria-label="Go to slide ${idx + 1}"></button>
+  `).join('');
+}
+
+function updateActiveThumbnailUI(activeIndex) {
+  // Update thumbnails
+  const thumbs = document.querySelectorAll('#slide-thumbnails-deck .slide-thumb-btn');
+  thumbs.forEach((th, idx) => {
+    if (idx === activeIndex) {
+      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-primary ring-2 ring-primary scale-105 shadow-md opacity-100 cursor-pointer';
+      th.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    } else {
+      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 opacity-60 hover:opacity-100 transition-all cursor-pointer';
+    }
+  });
+
+  // Update dots
+  const dots = document.querySelectorAll('#slide-progress-dots .slide-dot');
+  dots.forEach((dot, idx) => {
+    if (idx === activeIndex) {
+      dot.className = 'slide-dot h-1.5 w-8 rounded-full bg-primary shadow-[0_0_8px_rgba(201,160,91,0.5)] transition-all duration-300 cursor-pointer';
+    } else {
+      dot.className = 'slide-dot h-1.5 w-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+    }
+  });
+}
+
+function nextSlide() {
+  const nextIdx = slideshowState.currentIndex + 1;
+  renderSlide(nextIdx);
+  restartSlideTimer();
+}
+
+function prevSlide() {
+  const prevIdx = slideshowState.currentIndex - 1;
+  renderSlide(prevIdx);
+  restartSlideTimer();
+}
+
+function goToSlide(index) {
+  renderSlide(index);
+  restartSlideTimer();
+}
+
+function startSlideTimer() {
+  if (slideshowState.timer) clearInterval(slideshowState.timer);
+  slideshowState.timer = setInterval(() => {
+    if (!slideshowState.isPaused) {
+      nextSlide();
+    }
+  }, slideshowState.timerInterval);
+}
+
+function stopSlideTimer() {
+  if (slideshowState.timer) clearInterval(slideshowState.timer);
+}
+
+function restartSlideTimer() {
+  stopSlideTimer();
+  startSlideTimer();
+}
+
+function getCurrentSlideMovie() {
+  const slides = slideshowState.filteredSlides;
+  return slides[slideshowState.currentIndex] || FEATURED_SLIDES[0];
+}
+
+function playSlideMovie() {
+  const slide = getCurrentSlideMovie();
+  playCurrentFilmInPlayer(slide.slug || slide.id);
+}
+
+function openSlideDossier() {
+  const slide = getCurrentSlideMovie();
+  openFilmDetails(slide.slug || slide.id);
+}
+
+function toggleSlideWatchlist() {
+  const slide = getCurrentSlideMovie();
+  const id = slide.slug || slide.id;
+  const btnText = document.getElementById('slide-watchlist-text');
+
+  if (watchlistSet.has(id)) {
+    watchlistSet.delete(id);
+    if (btnText) btnText.innerText = 'Watchlist';
+    showToast(`Removed "${slide.title}" from your Watchlist.`);
+  } else {
+    watchlistSet.add(id);
+    if (btnText) btnText.innerText = 'In Watchlist';
+    showToast(`Added "${slide.title}" to your Watchlist.`);
+  }
+}
+
+function openSlideRating() {
+  const slide = getCurrentSlideMovie();
+  openRatingDialogModal(slide.slug || slide.id);
+}
+
+// =========================================================================
+// 2. NAVIGATION & SCREEN CONTROLLER
 // =========================================================================
 
 function switchMainScreen(screenName) {
@@ -42,16 +454,6 @@ function switchMainScreen(screenName) {
     }
   });
 
-  // Ambient backdrop switcher
-  const ambientImg = document.getElementById('hero-ambient-img');
-  if (ambientImg) {
-    if (screenName === 'home' || screenName === 'details') {
-      ambientImg.src = '/images/moment-to-remember-backdrop.jpg';
-    } else {
-      ambientImg.src = '/images/dune-desert-backdrop.jpg';
-    }
-  }
-
   // Render dynamic catalog grids when entering screen
   if (screenName === 'discover') {
     renderDiscoverCatalog();
@@ -62,7 +464,7 @@ function switchMainScreen(screenName) {
 }
 
 // =========================================================================
-// 2. DISCOVER FILTER MATRIX & MOVEMENTS CONTROLLER
+// 3. DISCOVER FILTER MATRIX & MOVEMENTS CONTROLLER
 // =========================================================================
 
 function switchState(state) {
@@ -155,7 +557,7 @@ function handleDiscoverSearch(query) {
 }
 
 // =========================================================================
-// 3. TRENDING ROW CAROUSEL CONTROLS
+// 4. TRENDING ROW CAROUSEL CONTROLS
 // =========================================================================
 
 function scrollRow(rowId, direction) {
@@ -178,7 +580,6 @@ function selectChip(btn, category) {
   btn.classList.remove('text-on-surface-variant', 'border', 'border-outline-variant/40');
   btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 
-  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
   if (category === 'all') {
     showToast('Showing all curated releases');
   } else {
@@ -187,7 +588,7 @@ function selectChip(btn, category) {
 }
 
 // =========================================================================
-// 4. SPECS & RESILIENT STATES CONTROLLER
+// 5. SPECS & RESILIENT STATES CONTROLLER
 // =========================================================================
 
 function switchSpecTab(mode) {
@@ -199,48 +600,53 @@ function switchSpecTab(mode) {
   const tab404 = document.getElementById('spec-tab-404');
   const tabOffline = document.getElementById('spec-tab-offline');
 
-  const inactiveClass = 'px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all cursor-pointer';
-  const activeClass = 'px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all cursor-pointer';
-
-  if (tabGuide) tabGuide.className = inactiveClass;
-  if (tab404) tab404.className = inactiveClass;
-  if (tabOffline) tabOffline.className = inactiveClass;
-
   if (panelGuide) panelGuide.classList.add('hidden');
   if (panel404) panel404.classList.add('hidden');
   if (panelOffline) panelOffline.classList.add('hidden');
 
-  if (mode === 'guide') {
-    if (panelGuide) panelGuide.classList.remove('hidden');
-    if (tabGuide) tabGuide.className = activeClass;
-  } else if (mode === '404') {
-    if (panel404) panel404.classList.remove('hidden');
-    if (tab404) tab404.className = activeClass;
-  } else if (mode === 'offline') {
-    if (panelOffline) panelOffline.classList.remove('hidden');
-    if (tabOffline) tabOffline.className = activeClass;
+  [tabGuide, tab404, tabOffline].forEach(t => {
+    if (t) {
+      t.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface transition-all duration-200 cursor-pointer border border-border-hairline/60';
+    }
+  });
+
+  if (mode === 'guide' && panelGuide && tabGuide) {
+    panelGuide.classList.remove('hidden');
+    tabGuide.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
+  } else if (mode === '404' && panel404 && tab404) {
+    panel404.classList.remove('hidden');
+    tab404.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
+  } else if (mode === 'offline' && panelOffline && tabOffline) {
+    panelOffline.classList.remove('hidden');
+    tabOffline.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
   }
 }
 
 function simulateReconnect() {
-  const text = document.getElementById('retry-btn-text');
-  if (!text) return;
-
-  text.innerText = 'Pinging Registry Node...';
+  const btn = document.getElementById('offline-ping-btn');
+  const status = document.getElementById('offline-status-text');
+  if (btn) {
+    btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> Verifying Vault...';
+    btn.disabled = true;
+  }
   setTimeout(() => {
-    text.innerText = 'Signal Established (24ms)';
-    showToast('Reconnected to Central Cinematheque Archive.');
-    setTimeout(() => {
-      text.innerText = 'Test Network Connection';
-    }, 2500);
-  }, 1200);
+    if (btn) {
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm">check_circle</span> Archive Synchronized!';
+      btn.className = 'h-10 px-5 rounded-full bg-tertiary text-on-tertiary font-mono text-xs uppercase tracking-wider font-bold transition-all';
+    }
+    if (status) {
+      status.innerText = 'ONLINE • Local Vault Connected • 0ms Latency';
+      status.className = 'font-mono text-xs text-tertiary font-medium';
+    }
+    showToast('Vault Synchronized! 159 Master Films Available Locally.');
+  }, 1000);
 }
 
 // =========================================================================
-// 5. GLOBAL COMMAND SEARCH MODAL (⌘K)
+// 6. GLOBAL COMMAND PALETTE (⌘K SEARCH MODAL)
 // =========================================================================
 
-function openModal(state = 'results') {
+function openModal(state) {
   const overlay = document.getElementById('command-modal-overlay');
   const input = document.getElementById('modal-search-input');
   if (overlay) {
@@ -299,29 +705,32 @@ function handleModalSearch(val) {
     return;
   }
 
-  container.innerHTML = matches.slice(0, 10).map(m => `
-    <div class="p-4 hover:bg-surface-hover flex items-center justify-between gap-4 cursor-pointer group transition-colors" onclick="closeModal(); openFilmDetails('${m.slug || m.id}')">
-      <div class="flex items-center gap-3.5 min-w-0">
-        <div class="w-10 h-[60px] rounded-md overflow-hidden bg-petrol-base flex-shrink-0 border border-border-hairline">
-          <img src="${m.poster || m.backdrop || '/images/moment-to-remember-backdrop.jpg'}" alt="${m.title}" class="w-full h-full object-cover">
+  container.innerHTML = matches.slice(0, 10).map(m => {
+    const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+    return `
+      <div class="p-4 hover:bg-surface-hover flex items-center justify-between gap-4 cursor-pointer group transition-colors" onclick="closeModal(); openFilmDetails('${m.slug || m.id}')">
+        <div class="flex items-center gap-3.5 min-w-0">
+          <div class="w-10 h-[60px] rounded-md overflow-hidden bg-petrol-base flex-shrink-0 border border-border-hairline">
+            <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'">
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <h4 class="font-serif font-medium text-base text-parchment group-hover:text-brass truncate">${m.title}</h4>
+              <span class="font-mono text-[11px] text-text-muted shrink-0">${m.year || '2024'}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-[11px] uppercase tracking-wider text-sage bg-sage/10 px-1.5 py-0.5 rounded border border-sage/20">${m.studio || 'CINEXA 4K'}</span>
+              <span class="font-sans text-xs text-driftwood truncate">${m.director || 'Curated Master'}</span>
+            </div>
+          </div>
         </div>
-        <div class="min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <h4 class="font-serif font-medium text-base text-parchment group-hover:text-brass truncate">${m.title}</h4>
-            <span class="font-mono text-[11px] text-text-muted shrink-0">${m.year || '2024'}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="font-mono text-[11px] uppercase tracking-wider text-sage bg-sage/10 px-1.5 py-0.5 rounded border border-sage/20">${m.studio || 'CINEXA 4K'}</span>
-            <span class="font-sans text-xs text-driftwood truncate">${m.director || 'Curated Master'}</span>
-          </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="font-mono text-xs text-brass font-medium">★ ${m.imdbRating || '8.0'}</span>
+          <kbd class="font-mono text-[11px] text-text-muted bg-petrol-base px-1.5 py-0.5 rounded border border-border-hairline/40">↵</kbd>
         </div>
       </div>
-      <div class="flex items-center gap-3 shrink-0">
-        <span class="font-mono text-xs text-brass font-medium">★ ${m.imdbRating || '8.0'}</span>
-        <kbd class="font-mono text-[11px] text-text-muted bg-petrol-base px-1.5 py-0.5 rounded border border-border-hairline/40">↵</kbd>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function setSearchPill(cat) {
@@ -333,7 +742,7 @@ function setSearchPill(cat) {
 }
 
 // =========================================================================
-// 6. 5-STAR RATING & LOGBOOK DIALOG
+// 7. 5-STAR RATING & LOGBOOK DIALOG
 // =========================================================================
 
 function openRatingDialogModal(movieSlugOrId) {
@@ -400,7 +809,7 @@ function saveRatingToJournal() {
 }
 
 // =========================================================================
-// 7. FILM DETAILS & CINEMA 4K PLAYER INTEGRATION
+// 8. FILM DETAILS & CINEMA 4K PLAYER INTEGRATION
 // =========================================================================
 
 function openFilmDetails(movieOrSlug) {
@@ -429,9 +838,14 @@ function openFilmDetails(movieOrSlug) {
   const synopsis = document.getElementById('details-synopsis');
   const trailerPoster = document.getElementById('details-trailer-poster');
 
-  const posterSrc = movie.poster || movie.backdrop || '/images/moment-to-remember-backdrop.jpg';
-  if (heroImg) heroImg.style.backgroundImage = `url('${posterSrc}')`;
-  if (posterImg) posterImg.src = posterSrc;
+  const posterSrc = movie.posterUrl || movie.poster || movie.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+  const backdropSrc = movie.backdropUrl || movie.backdrop || movie.posterUrl || '/images/moment-to-remember-backdrop.jpg';
+
+  if (heroImg) heroImg.style.backgroundImage = `url('${backdropSrc}')`;
+  if (posterImg) {
+    posterImg.src = posterSrc;
+    posterImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
+  }
   if (title) title.innerText = movie.title;
   if (koreanTitle) {
     if (movie.koreanTitle) {
@@ -446,7 +860,7 @@ function openFilmDetails(movieOrSlug) {
   if (duration) duration.innerText = movie.duration || '2h 24m';
   if (age) age.innerText = movie.rating || '18+';
   if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Restored in 4K from the original 35mm negative under curatorial supervision.';
-  if (trailerPoster) trailerPoster.style.backgroundImage = `url('${posterSrc}')`;
+  if (trailerPoster) trailerPoster.style.backgroundImage = `url('${backdropSrc}')`;
 
   switchMainScreen('details');
 }
@@ -469,16 +883,29 @@ function toggleDetailsWatchlist() {
   }
 }
 
-function playCurrentFilmInPlayer(server) {
-  const film = currentActiveMovie || {
-    id: '15859',
-    slug: 'a-moment-to-remember',
-    title: 'A Moment to Remember',
-    year: '2004'
-  };
+function playCurrentFilmInPlayer(serverOrSlug) {
+  let film = currentActiveMovie;
+
+  if (typeof serverOrSlug === 'string' && serverOrSlug !== 'local' && serverOrSlug !== 'fastcdn' && serverOrSlug !== 'vidlink' && serverOrSlug !== 'vidsrc') {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug);
+    if (found) film = found;
+  }
+
+  if (!film) {
+    film = {
+      id: '15859',
+      slug: 'a-moment-to-remember',
+      title: 'A Moment to Remember',
+      year: '2004'
+    };
+  }
+
+  currentActiveMovie = film;
 
   if (typeof CinexaPlayer !== 'undefined') {
-    CinexaPlayer.openPlayer(film, server || 'local');
+    const server = (typeof serverOrSlug === 'string' && ['local', 'fastcdn', 'vidlink', 'vidsrc'].includes(serverOrSlug)) ? serverOrSlug : 'local';
+    CinexaPlayer.openPlayer(film, server);
     return;
   }
 
@@ -516,7 +943,7 @@ function closePlayerModal() {
 }
 
 // =========================================================================
-// 8. TOAST NOTIFICATIONS & CATALOG RENDERING
+// 9. TOAST NOTIFICATIONS & CATALOG RENDERING
 // =========================================================================
 
 function showToast(message) {
@@ -544,7 +971,7 @@ function renderDiscoverCatalog(customList) {
   if (counter) counter.innerText = `${catalog.length} ARCHIVED WORKS`;
 
   grid.innerHTML = catalog.map(m => {
-    const poster = m.poster || m.backdrop || '/images/moment-to-remember-backdrop.jpg';
+    const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
     const rating = m.rating || 'R';
     const score = m.imdbRating || '8.1';
     const format = m.resolution ? m.resolution.toUpperCase() : '35MM';
@@ -552,7 +979,7 @@ function renderDiscoverCatalog(customList) {
     return `
       <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1 hover:bg-surface-container-high cursor-pointer border border-border-hairline/60" onclick="openFilmDetails('${m.slug || m.id}')">
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
-          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy"/>
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
           <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-60"></div>
           <div class="absolute top-2.5 left-2.5">
             <span class="font-label-sm text-xs px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface">${rating}</span>
@@ -588,7 +1015,7 @@ function renderDiscoverCatalog(customList) {
 }
 
 // =========================================================================
-// 9. FROSTED NAVBAR SCROLL TRIGGER & SHORTCUTS
+// 10. FROSTED NAVBAR SCROLL TRIGGER & SHORTCUTS
 // =========================================================================
 
 function applyFrostedNav(isFrosted) {
@@ -625,6 +1052,12 @@ window.addEventListener('keydown', (e) => {
     e.preventDefault();
     openModal('results');
   }
+  if (e.key === 'ArrowRight') {
+    nextSlide();
+  }
+  if (e.key === 'ArrowLeft') {
+    prevSlide();
+  }
   if (e.key === 'Escape') {
     closeModal();
     closeRatingDialogModal();
@@ -633,9 +1066,11 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Toast Undo
+// Toast Undo & DOM Init
 document.addEventListener('DOMContentLoaded', () => {
+  initFeaturedSlideshow();
   renderDiscoverCatalog();
+
   const toastUndo = document.getElementById('toast-undo');
   if (toastUndo) {
     toastUndo.onclick = () => {
