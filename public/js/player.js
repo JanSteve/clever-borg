@@ -300,8 +300,51 @@ const CinexaPlayer = {
       this.iframeEl.style.display = 'block';
       this.iframeEl.src = streamUrl;
     }
+  },
+
+  downloadFilm(quality = '4k') {
+    if (!this.currentMovie) return;
+    const movie = this.currentMovie;
+    const tmdbId = movie.tmdbId || movie.id || '15859';
+    const isLocalFilm = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || (movie.title && movie.title.toLowerCase().includes('moment to remember'));
+
+    if (isLocalFilm) {
+      const link = document.createElement('a');
+      link.href = '/api/stream?file=0918%20(1).mp4&download=1';
+      link.download = `${movie.slug || 'movie'}-4K.mp4`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      const downloadUrls = {
+        '4k': `https://vidlink.pro/movie/${tmdbId}`,
+        '1080p': `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`,
+        '720p': `https://autoembed.co/movie/tmdb/${tmdbId}`
+      };
+      const url = downloadUrls[quality] || downloadUrls['4k'];
+      window.open(url, '_blank');
+    }
+
+    if (typeof showToast === 'function') {
+      showToast(`⬇ Starting ${quality.toUpperCase()} Download for "${movie.title}"`);
+    }
   }
 };
+
+function downloadFilmDirect(slugOrId, quality = '4k') {
+  let film = typeof currentActiveMovie !== 'undefined' ? currentActiveMovie : null;
+  if (slugOrId) {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => m.slug === slugOrId || m.id === slugOrId);
+    if (found) film = found;
+  }
+  if (!film) film = { id: '15859', slug: 'a-moment-to-remember', title: 'A Moment to Remember' };
+
+  CinexaPlayer.currentMovie = film;
+  CinexaPlayer.downloadFilm(quality);
+}
+
+window.downloadFilmDirect = downloadFilmDirect;
 
 // Auto-initialize when DOM ready
 document.addEventListener('DOMContentLoaded', () => {

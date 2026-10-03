@@ -831,29 +831,32 @@
     <div class="flex flex-col w-full screen-view hidden" id="screen-home">
 
       <!-- CATEGORY FILTER STRIP (Sticky / Sub-nav with Edge Gradients) -->
-      <section class="w-full sticky top-[72px] z-30 mb-12 py-3 -mx-2 px-2 backdrop-blur-md bg-surface-dim/80">
+      <section class="w-full sticky top-[72px] z-30 mb-10 py-3 -mx-2 px-2 backdrop-blur-md bg-surface-dim/80">
         <div class="relative w-full overflow-hidden flex items-center">
-          <div class="flex items-center gap-3 overflow-x-auto no-scrollbar py-1 px-4 scroll-smooth w-full" id="chip-container">
+          <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1 px-4 scroll-smooth w-full" id="chip-container">
             <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm font-semibold bg-primary text-on-primary shadow-sm transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'all')">
-              All
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'blockbuster')">
-              Blockbusters
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'indian')">
-              Indian Cinema
+              All Curations
             </button>
             <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'anime')">
-              Anime &amp; Animation
+              🎌 Anime &amp; Animation
+            </button>
+            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'bollywood')">
+              🇮🇳 Bollywood &amp; Hindi Dubs
+            </button>
+            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'telugu')">
+              🇮🇳 Tollywood (Telugu)
+            </button>
+            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'tamil')">
+              🇮🇳 Kollywood (Tamil)
+            </button>
+            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'korean')">
+              🇰🇷 Korean Cinema
+            </button>
+            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'hollywood')">
+              🚀 Hollywood 4K &amp; IMAX
             </button>
             <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'world')">
-              World Cinema
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'romance')">
-              Romance &amp; Drama
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'action')">
-              Action &amp; Thrillers
+              🌍 World Cinema
             </button>
           </div>
         </div>
@@ -862,160 +865,216 @@
       <!-- CONTENT ROWS CONTAINER -->
       <div class="w-full space-y-16" id="catalogue-content">
         <!-- ROW 1: "Trending This Week" (Standard Movie Row) -->
-        <section class="w-full space-y-6">
+        <section class="w-full space-y-5" id="section-row-trending">
           <div class="flex items-end justify-between">
             <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Featured Daily</span>
+              </div>
               <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                Trending This Week
+                ⚡ Trending This Week
               </h3>
               <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                UPDATED DAILY • 35MM &amp; DIGITAL FEEDS
+                UPDATED DAILY • 4K UHD &amp; HIGH-SPEED DOWNLOAD
               </p>
             </div>
-            <div class="flex items-center gap-4">
-              <div class="flex items-center gap-2">
-                <button aria-label="Previous films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', -1)">
-                  <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-                </button>
-                <button aria-label="Next films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', 1)">
-                  <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-                </button>
-              </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
             </div>
           </div>
 
           <!-- Horizontal Snap Carousel -->
           <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-trending">
-            <!-- Card 1: Past Lives -->
-            <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('past-lives')">
-              <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Past Lives"/>
-                <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-                <div class="absolute top-2.5 left-2.5 z-10">
-                  <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">PG-13</span>
-                </div>
-                <!-- Bottom Hover Action Bar -->
-                <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-                    <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                    <span>Trailer</span>
-                  </button>
-                  <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined text-[14px]">info</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-3 space-y-1">
-                <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Past Lives</h4>
-                <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                  <span>2024</span>
-                  <span class="text-outline-variant">•</span>
-                  <span class="text-primary font-medium flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.4
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: Anatomy of a Fall -->
-            <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('anatomy-of-a-fall')">
-              <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/1ho0d4LNZw3Y0voeKmSvPSgJOJ2.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Anatomy of a Fall"/>
-                <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-                <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5">
-                  <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">R</span>
-                  <span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded-full bg-secondary-container/80 text-secondary border border-secondary/30 uppercase">Palme d'Or</span>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/95 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-                    <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                    <span>Trailer</span>
-                  </button>
-                  <button aria-label="Inspect Details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors border border-outline-variant/40">
-                    <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-3 space-y-1">
-                <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Anatomy of a Fall</h4>
-                <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                  <span>2023</span>
-                  <span class="text-outline-variant">•</span>
-                  <span class="text-primary font-medium flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.2
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: Poor Things -->
-            <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('poor-things')">
-              <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Poor Things"/>
-                <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-                <div class="absolute top-2.5 left-2.5 z-10">
-                  <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">R</span>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-                    <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                    <span>Trailer</span>
-                  </button>
-                  <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined text-[14px]">info</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-3 space-y-1">
-                <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Poor Things</h4>
-                <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                  <span>2023</span>
-                  <span class="text-outline-variant">•</span>
-                  <span class="text-primary font-medium flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.0
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: Perfect Days -->
-            <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('perfect-days')">
-              <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-                <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="https://image.tmdb.org/t/p/w500/ep90I5U7z0nO1g60l8Ecf426L2m.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Perfect Days"/>
-                <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-                <div class="absolute top-2.5 left-2.5 z-10">
-                  <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">PG</span>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-                    <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                    <span>Trailer</span>
-                  </button>
-                  <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined text-[14px]">info</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-3 space-y-1">
-                <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Perfect Days</h4>
-                <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                  <span>2023</span>
-                  <span class="text-outline-variant">•</span>
-                  <span class="text-primary font-medium flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.2
-                  </span>
-                </div>
-              </div>
-            </div>
+            <!-- Populated dynamically by JS -->
           </div>
         </section>
 
-        <!-- ROW 2: "Top 10 in World Cinema" (Numbered Row with Oversized Outlined Serif Numerals) -->
+        <!-- ROW 2: 🎌 Anime & Japanese Animation -->
+        <section class="w-full space-y-5" id="section-row-anime">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-secondary font-semibold">Studio Ghibli &amp; Shonen Masterpieces</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🎌 Anime &amp; Japanese Animation
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                ORIGINAL AUDIO + MULTI-LANGUAGE DUBS &amp; SUBTITLES
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous anime" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next anime" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-anime">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 3: 🇮🇳 Bollywood Hits & Hindi Cinema -->
+        <section class="w-full space-y-5" id="section-row-bollywood">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Hindi Blockbusters &amp; High-Octane Action</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🇮🇳 Bollywood Hits &amp; Hindi Dubs
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                DOLBY ATMOS AUDIO • 1080P/4K ULTRA HD
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous bollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next bollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-bollywood">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 4: 🇮🇳 Tollywood Blockbusters (Telugu) -->
+        <section class="w-full space-y-5" id="section-row-telugu">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-tertiary font-semibold">Telugu Cinema Mega Spectacles</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🇮🇳 Tollywood Blockbusters (Telugu)
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                RRR, BAAHUBALI, KALKI, SALAAR &amp; MORE
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous telugu" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next telugu" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-telugu">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 5: 🇮🇳 Kollywood Masterpieces (Tamil) -->
+        <section class="w-full space-y-5" id="section-row-tamil">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-secondary font-semibold">Tamil Cinema Pioneers &amp; Action Masterworks</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🇮🇳 Kollywood Masterpieces (Tamil)
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                LEO, JAILER, VIKRAM, PONNIYIN SELVAN &amp; MASTER
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous tamil" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next tamil" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-tamil">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 6: 🚀 Hollywood 4K & IMAX -->
+        <section class="w-full space-y-5" id="section-row-hollywood">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Global Box Office Titans</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🚀 Hollywood 4K &amp; IMAX
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                DUNE, OPPENHEIMER, INTERSTELLAR, AVATAR &amp; MORE
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous hollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next hollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-hollywood">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 7: 🇰🇷 Korean Cinema & K-Melodrama -->
+        <section class="w-full space-y-5" id="section-row-korean">
+          <div class="flex items-end justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">KOFA &amp; Cannes Laureates</span>
+              </div>
+              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
+                🇰🇷 Korean Cinema &amp; K-Melodrama
+              </h3>
+              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
+                A MOMENT TO REMEMBER, PARASITE, PAST LIVES &amp; THE CLASSIC
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button aria-label="Previous korean" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', -1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button aria-label="Next korean" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', 1)">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-korean">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- ROW 8: "Top 10 in World Cinema" (Numbered Row with Oversized Outlined Serif Numerals) -->
         <section class="w-full space-y-6">
           <div class="flex items-end justify-between">
             <div>
               <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                Top 10 in World Cinema
+                🏆 Top 10 Critics' Choice
               </h3>
               <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
                 CURATED BY CRITICS CIRCLE • GLOBAL BOX &amp; FESTIVALS
@@ -1024,144 +1083,16 @@
           </div>
 
           <div class="flex items-start gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-3 -mx-2 px-2 snap-x snap-mandatory" id="carousel-numbered">
-            <!-- NUMBER 1: Dune Part Two -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('dune-part-two')">
-              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-                1
-              </span>
-              <div class="relative w-[190px] z-10">
-                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
-                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-                  <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">USA • 4K</span>
-                  </div>
-                </div>
-                <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Dune: Part Two</h4>
-                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2024</span>
-                    <span class="text-outline-variant">•</span>
-                    <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- NUMBER 2: Oppenheimer -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('oppenheimer')">
-              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-                2
-              </span>
-              <div class="relative w-[190px] z-10">
-                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Oppenheimer"/>
-                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-                  <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">70MM</span>
-                  </div>
-                </div>
-                <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Oppenheimer</h4>
-                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2023</span>
-                    <span class="text-outline-variant">•</span>
-                    <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.9
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- NUMBER 3: Spirited Away -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('spirited-away')">
-              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-                3
-              </span>
-              <div class="relative w-[190px] z-10">
-                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Spirited Away"/>
-                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-                  <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Japan</span>
-                  </div>
-                </div>
-                <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Spirited Away</h4>
-                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2001</span>
-                    <span class="text-outline-variant">•</span>
-                    <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- NUMBER 4: Parasite -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('parasite')">
-              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-                4
-              </span>
-              <div class="relative w-[190px] z-10">
-                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Parasite"/>
-                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-                  <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">Korea</span>
-                  </div>
-                </div>
-                <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Parasite</h4>
-                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2019</span>
-                    <span class="text-outline-variant">•</span>
-                    <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.5
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- NUMBER 5: Interstellar -->
-            <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('interstellar')">
-              <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-                5
-              </span>
-              <div class="relative w-[190px] z-10">
-                <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Interstellar"/>
-                  <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-                  <div class="absolute top-2.5 left-2.5">
-                    <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">4K IMAX</span>
-                  </div>
-                </div>
-                <div class="mt-3 space-y-1">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Interstellar</h4>
-                  <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-                    <span>2014</span>
-                    <span class="text-outline-variant">•</span>
-                    <span class="text-primary font-medium flex items-center gap-0.5">
-                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.7
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!-- Populated dynamically by JS -->
           </div>
         </section>
 
-        <!-- ROW 3: "Continue Exploring: Trailer Logbook" (Wide 16:9 Row Variant) -->
+        <!-- ROW 9: "Continue Exploring: Trailer Logbook" (Wide 16:9 Row Variant) -->
         <section class="w-full space-y-6">
           <div class="flex items-end justify-between">
             <div>
               <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                Continue Exploring
+                🎬 Theatrical 16:9 Previews
               </h3>
               <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
                 RESUME WATCHED PREVIEWS &amp; ARCHIVAL CLIPS
@@ -1170,55 +1101,7 @@
           </div>
 
           <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-wide">
-            <!-- WIDE CARD 1 -->
-            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('drive-my-car')">
-              <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://image.tmdb.org/t/p/original/6q1gR0R8uS4D9uV7p1m4V6X7b4w.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Drive My Car"/>
-                <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
-                    <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                  </div>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 h-1 bg-surface-container-highest">
-                  <div class="h-full bg-primary" style="width: 65%;"></div>
-                </div>
-              </div>
-              <div class="mt-3 flex items-start justify-between gap-4">
-                <div class="space-y-1 min-w-0">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Drive My Car</h4>
-                  <p class="font-label-sm text-label-sm text-on-surface-variant">Dir. Ryusuke Hamaguchi</p>
-                </div>
-                <button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary font-label-sm text-label-sm uppercase transition-colors">
-                  Resume
-                </button>
-              </div>
-            </div>
-
-            <!-- WIDE CARD 2 -->
-            <div class="group relative flex-shrink-0 w-[330px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('a-moment-to-remember')">
-              <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
-                <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
-                    <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                  </div>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 h-1 bg-surface-container-highest">
-                  <div class="h-full bg-primary" style="width: 40%;"></div>
-                </div>
-              </div>
-              <div class="mt-3 flex items-start justify-between gap-4">
-                <div class="space-y-1 min-w-0">
-                  <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">A Moment to Remember</h4>
-                  <p class="font-label-sm text-label-sm text-on-surface-variant">Dir. John H. Lee</p>
-                </div>
-                <button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary font-label-sm text-label-sm uppercase transition-colors">
-                  Resume
-                </button>
-              </div>
-            </div>
+            <!-- Populated dynamically by JS -->
           </div>
         </section>
       </div>
@@ -1484,6 +1367,10 @@
           <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           <span>Watch Master Film</span>
         </button>
+        <button class="h-12 px-6 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-body-md font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 border border-primary/40 cursor-pointer" onclick="downloadFilmDirect(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '15859', '4k')">
+          <span class="material-symbols-outlined text-[20px]">download</span>
+          <span>Download 4K UHD</span>
+        </button>
         <button class="h-12 px-5 rounded-full bg-surface-container text-on-surface font-body-sm text-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer border border-border-hairline/60" onclick="toggleDetailsWatchlist()">
           <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
           <span id="details-watchlist-text">Add to Watchlist</span>
@@ -1706,6 +1593,10 @@
           <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="flex items-center gap-3">
+          <button class="player-pill-btn font-bold bg-primary text-on-primary hover:bg-brass-hover flex items-center gap-1.5 shadow-lg active:scale-95 cursor-pointer px-4 py-1.5 rounded-full" onclick="CinexaPlayer.downloadFilm('4k')">
+            <span class="material-symbols-outlined text-[16px]">download</span>
+            <span>Download 4K</span>
+          </button>
           <button aria-label="Close cinema player" class="close-player-btn" id="close-player-btn" onclick="closePlayerModal()">&times;</button>
         </div>
       </div>
@@ -1795,6 +1686,23 @@
           </button>
           <span class="font-mono text-xs text-primary font-bold pl-1" id="sub-sync-indicator">0.0s (In Sync)</span>
         </div>
+      </div>
+
+      <!-- 4. 1-Click High-Speed Download Quality Strip -->
+      <div class="stream-control-strip">
+        <span class="strip-label">
+          <span class="material-symbols-outlined text-[14px] text-primary">download</span>
+          <span>DOWNLOAD:</span>
+        </span>
+        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('4k')">
+          <span>⬇ 4K UHD Master (Direct High-Speed)</span>
+        </button>
+        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('1080p')">
+          <span>⬇ 1080p Full HD</span>
+        </button>
+        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('720p')">
+          <span>⬇ 720p HD (Mobile)</span>
+        </button>
       </div>
 
       <!-- Video Viewport -->

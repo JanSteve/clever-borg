@@ -713,103 +713,210 @@ function selectChip(btn, category) {
 
   filterTrendingRows(category);
 
-  if (category === 'all') {
-    showToast('Showing all curated releases');
-  } else {
-    showToast(`Filtering category: ${category.toUpperCase()}`);
-  }
+  const categoryNames = {
+    all: 'All Curations',
+    anime: '🎌 Anime & Animation',
+    bollywood: '🇮🇳 Bollywood & Hindi Cinema',
+    telugu: '🇮🇳 Tollywood (Telugu Blockbusters)',
+    tamil: '🇮🇳 Kollywood (Tamil Masterpieces)',
+    korean: '🇰🇷 Korean Cinema & K-Melodrama',
+    hollywood: '🚀 Hollywood 4K & IMAX',
+    world: '🌍 World Cinema'
+  };
+
+  showToast(`Active Category: ${categoryNames[category] || category.toUpperCase()}`);
 }
 
-function filterTrendingRows(category) {
-  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-  let filtered = catalog;
+function createMovieCardHtml(m, options = {}) {
+  const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
+  const rating = m.rating || 'PG-13';
+  const score = m.imdbRating || '8.2';
+  const id = m.slug || m.id;
+  const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+  const isSaved = watchlistSet.has(id);
+  const tag = options.tag || (m.language ? m.language.toUpperCase() : (m.country || '4K'));
 
-  if (category === 'blockbuster') {
-    filtered = catalog.filter(m => (m.imdbRating && parseFloat(m.imdbRating) >= 8.4) || m.country === 'United States' || m.slug === 'dune-part-two' || m.slug === 'oppenheimer' || m.slug === 'interstellar');
-  } else if (category === 'indian') {
-    filtered = catalog.filter(m => m.country === 'India' || (m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('drama'))));
-  } else if (category === 'anime') {
-    filtered = catalog.filter(m => m.country === 'Japan' || (m.genres && m.genres.some(g => g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime'))));
-  } else if (category === 'world') {
-    filtered = catalog.filter(m => m.country !== 'United States');
-  } else if (category === 'romance') {
-    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('melodrama')));
-  } else if (category === 'action') {
-    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('thriller') || g.toLowerCase().includes('sci-fi')));
-  }
+  return `
+    <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
+      <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
+        <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
+        <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
+        
+        <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
+          <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
+        </div>
 
-  // Render trending row (12 items)
-  const trendingContainer = document.getElementById('carousel-trending');
-  if (trendingContainer) {
-    trendingContainer.innerHTML = filtered.slice(0, 14).map(m => {
-      const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
-      const rating = m.rating || 'PG-13';
-      const score = m.imdbRating || '8.2';
-      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
-      return `
-        <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
-          <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-            <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
-            <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-            <div class="absolute top-2.5 left-2.5 z-10">
-              <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
-            </div>
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${m.slug || m.id}')">
-                <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                <span>Play 4K</span>
-              </button>
-              <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-[14px]">info</span>
-              </button>
-            </div>
-          </div>
-          <div class="mt-3 space-y-1">
-            <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-            <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
-              <span>${m.year || '2024'}</span>
-              <span class="text-outline-variant">•</span>
-              <span class="text-primary font-medium flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
-              </span>
-            </div>
+        <button aria-label="Save to Watchlist" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+          <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
+        </button>
+
+        <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+          <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1 shadow-sm hover:bg-brass-hover transition-colors" title="Watch in 4K" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span>Watch</span>
+          </button>
+          <div class="flex items-center gap-1">
+            <button aria-label="1-Click Download" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+              <span class="material-symbols-outlined text-[14px]">download</span>
+            </button>
+            <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Film Details" onclick="event.stopPropagation(); openFilmDetails('${id}')">
+              <span class="material-symbols-outlined text-[14px]">info</span>
+            </button>
           </div>
         </div>
-      `;
-    }).join('');
+      </div>
+      <div class="mt-2.5 space-y-0.5">
+        <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+        <div class="flex items-center gap-2 font-label-md text-xs text-on-surface-variant">
+          <span>${m.year || '2024'}</span>
+          <span class="text-outline-variant">•</span>
+          <span class="text-primary font-medium flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+          </span>
+          <span class="text-outline-variant">•</span>
+          <span class="text-tertiary text-[10px] uppercase font-bold truncate">${tag}</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function filterTrendingRows(category = 'all') {
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+
+  // Filter lists for all dedicated sections
+  const animeFilms = catalog.filter(m => 
+    m.category === 'anime' || 
+    m.country === 'Japan' || 
+    (m.genres && m.genres.some(g => g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime')))
+  );
+
+  const teluguFilms = catalog.filter(m => 
+    m.category === 'telugu' || 
+    (m.language && m.language.toLowerCase().includes('telugu')) || 
+    (m.audio && m.audio.toLowerCase().includes('telugu')) ||
+    (m.title && /RRR|Baahubali|Salaar|Kalki|Pushpa|Devara|Hanu-Man|Magadheera|Eega/i.test(m.title))
+  );
+
+  const tamilFilms = catalog.filter(m => 
+    m.category === 'tamil' || 
+    (m.language && m.language.toLowerCase().includes('tamil')) || 
+    (m.audio && m.audio.toLowerCase().includes('tamil')) ||
+    (m.title && /Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Super Deluxe|Asuran/i.test(m.title))
+  );
+
+  const bollywoodFilms = catalog.filter(m => 
+    m.category === 'bollywood' ||
+    (m.country === 'India' && !teluguFilms.some(t => t.id === m.id) && !tamilFilms.some(t => t.id === m.id)) ||
+    (m.audio && m.audio.toLowerCase().includes('hindi')) ||
+    (m.title && /Jawan|Pathaan|Animal|Fighter|Stree|Dangal|3 Idiots|Brahmāstra|K\.G\.F/i.test(m.title))
+  );
+
+  const hollywoodFilms = catalog.filter(m => 
+    m.category === 'hollywood' || 
+    m.country === 'United States' || 
+    m.country === 'United Kingdom' || 
+    (m.title && /Dune|Oppenheimer|Interstellar|Dark Knight|Deadpool|Avatar|Inception|Gladiator/i.test(m.title))
+  );
+
+  const koreanFilms = catalog.filter(m => 
+    m.category === 'korean' || 
+    m.category === 'romance' || 
+    m.country === 'South Korea'
+  );
+
+  // Trending (top rated blend)
+  const trendingContainer = document.getElementById('carousel-trending');
+  if (trendingContainer) {
+    let trendingFilms = catalog;
+    if (category === 'anime') trendingFilms = animeFilms;
+    else if (category === 'bollywood') trendingFilms = bollywoodFilms;
+    else if (category === 'telugu') trendingFilms = teluguFilms;
+    else if (category === 'tamil') trendingFilms = tamilFilms;
+    else if (category === 'korean') trendingFilms = koreanFilms;
+    else if (category === 'hollywood') trendingFilms = hollywoodFilms;
+    else if (category === 'world') trendingFilms = catalog.filter(m => m.country !== 'United States');
+
+    trendingContainer.innerHTML = trendingFilms.slice(0, 16).map(m => createMovieCardHtml(m)).join('');
   }
 
-  // Render Top 10 Numbered Row
+  // Dedicated Carousel: Anime
+  const animeContainer = document.getElementById('carousel-anime');
+  if (animeContainer) {
+    animeContainer.innerHTML = animeFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'ANIME 4K' })).join('');
+  }
+
+  // Dedicated Carousel: Bollywood
+  const bollywoodContainer = document.getElementById('carousel-bollywood');
+  if (bollywoodContainer) {
+    bollywoodContainer.innerHTML = bollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'HINDI' })).join('');
+  }
+
+  // Dedicated Carousel: Tollywood (Telugu)
+  const teluguContainer = document.getElementById('carousel-telugu');
+  if (teluguContainer) {
+    teluguContainer.innerHTML = teluguFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TELUGU' })).join('');
+  }
+
+  // Dedicated Carousel: Kollywood (Tamil)
+  const tamilContainer = document.getElementById('carousel-tamil');
+  if (tamilContainer) {
+    tamilContainer.innerHTML = tamilFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TAMIL' })).join('');
+  }
+
+  // Dedicated Carousel: Hollywood 4K
+  const hollywoodContainer = document.getElementById('carousel-hollywood');
+  if (hollywoodContainer) {
+    hollywoodContainer.innerHTML = hollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'IMAX 4K' })).join('');
+  }
+
+  // Dedicated Carousel: Korean Cinema
+  const koreanContainer = document.getElementById('carousel-korean');
+  if (koreanContainer) {
+    koreanContainer.innerHTML = koreanFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'KOFA 35MM' })).join('');
+  }
+
+  // Numbered Top 10 Critics' Choice
   const numberedContainer = document.getElementById('carousel-numbered');
   if (numberedContainer) {
-    // Sort by rating for true top 10
-    const top10 = [...filtered].sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0)).slice(0, 10);
+    const top10 = [...catalog].sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0)).slice(0, 10);
     numberedContainer.innerHTML = top10.map((m, idx) => {
       const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
       const num = idx + 1;
       const score = m.imdbRating || '8.5';
-      const tag = m.country || '4K';
+      const tag = m.language ? m.language.toUpperCase() : (m.country || '4K');
       const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+      const id = m.slug || m.id;
+
       return `
-        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
+        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${id}')">
           <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
             ${num}
           </span>
           <div class="relative w-[190px] z-10">
             <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
-              <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
-              <div class="absolute top-2.5 left-2.5">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
+              <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
+              <div class="absolute top-2.5 left-2.5 z-10">
                 <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${tag}</span>
               </div>
+              <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+                <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1 shadow-sm hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+                  <span class="material-symbols-outlined text-[14px]">play_arrow</span>
+                  <span>Play</span>
+                </button>
+                <button aria-label="1-Click Download" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+                  <span class="material-symbols-outlined text-[14px]">download</span>
+                </button>
+              </div>
             </div>
-            <div class="mt-3 space-y-1">
-              <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-              <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+            <div class="mt-2.5 space-y-0.5">
+              <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+              <div class="flex items-center gap-2 font-label-md text-xs text-on-surface-variant">
                 <span>${m.year || '2024'}</span>
                 <span class="text-outline-variant">•</span>
                 <span class="text-primary font-medium flex items-center gap-0.5">
-                  <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+                  <span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
                 </span>
               </div>
             </div>
@@ -819,17 +926,19 @@ function filterTrendingRows(category) {
     }).join('');
   }
 
-  // Render Continue Exploring (Wide 16:9 Carousel)
+  // Wide 16:9 Theatrical Previews Carousel
   const wideContainer = document.getElementById('carousel-wide');
   if (wideContainer) {
-    const wideFilms = filtered.slice(4, 12);
+    const wideFilms = catalog.slice(0, 10);
     wideContainer.innerHTML = wideFilms.map(m => {
       const backdrop = m.backdropUrl || m.backdrop || m.posterUrl || getPosterFallbackSvg(m.title, m.year);
       const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+      const id = m.slug || m.id;
+
       return `
-        <div class="group relative flex-shrink-0 w-[320px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('${m.slug || m.id}')">
+        <div class="group relative flex-shrink-0 w-[320px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('${id}')">
           <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${backdrop}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${backdrop}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
             <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
@@ -838,13 +947,18 @@ function filterTrendingRows(category) {
             </div>
           </div>
           <div class="mt-3 flex items-start justify-between gap-4">
-            <div class="space-y-1 min-w-0">
-              <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-              <p class="font-label-sm text-label-sm text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
+            <div class="space-y-0.5 min-w-0">
+              <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+              <p class="font-label-sm text-xs text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
             </div>
-            <button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary font-label-sm text-label-sm uppercase transition-colors" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${m.slug || m.id}')">
-              Play 4K
-            </button>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <button class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-xs font-bold uppercase transition-transform active:scale-95 hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+                Play 4K
+              </button>
+              <button class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary flex items-center justify-center transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+                <span class="material-symbols-outlined text-[15px]">download</span>
+              </button>
+            </div>
           </div>
         </div>
       `;
@@ -1413,10 +1527,13 @@ function renderDiscoverCatalog(customList) {
             ${hasMultiAudio ? '<span class="font-label-sm text-[9px] px-1.5 py-0.5 rounded-full bg-secondary/20 text-secondary border border-secondary/30 font-semibold">MULTI-DUB</span>' : ''}
           </div>
 
-          <div class="absolute inset-0 bg-surface-container-lowest/50 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-            <button class="h-10 px-4 rounded-full bg-primary text-on-primary font-body-sm text-xs font-bold flex items-center gap-1.5 shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+          <div class="absolute inset-0 bg-surface-container-lowest/50 backdrop-blur-[2px] flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+            <button class="h-10 px-3.5 rounded-full bg-primary text-on-primary font-body-sm text-xs font-bold flex items-center gap-1.5 shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
               <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch 4K</span>
+            </button>
+            <button class="w-10 h-10 rounded-full bg-surface-bright text-on-surface hover:text-primary flex items-center justify-center shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer border border-border-hairline/60" title="1-Click 4K Download" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+              <span class="material-symbols-outlined text-[18px]">download</span>
             </button>
           </div>
         </div>
