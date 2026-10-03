@@ -253,10 +253,11 @@ class KFlixPlayer {
       this.hideAdvisoryToast();
     }
 
-    const isPrank = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || movie.id === 15859;
+    const isPrank = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || movie.id === 15859 || movie.tmdbId === 15859 || movie.tmdbId === '15859';
 
     if (isPrank) {
       // 100% Guaranteed Local Playback for Prank Movie (0918 (1).mp4)
+      this.playerView.classList.remove('embed-mode');
       if (this.serverSelect) {
         this.serverSelect.innerHTML = '<option value="local">NovaFlix Master Server (4K Remaster)</option>';
         this.serverSelect.value = 'local';
@@ -280,20 +281,21 @@ class KFlixPlayer {
         console.log('Autoplay waiting for user gesture:', err);
       });
     } else if (movie.tmdbId || movie.isTmdb) {
+      this.playerView.classList.add('embed-mode');
       if (this.serverSelect) {
         this.serverSelect.innerHTML = `
-          <option value="vidlink">Server 1 (VidLink Fast 4K)</option>
-          <option value="vidsrc">Server 2 (VidSrc 4K)</option>
-          <option value="superembed">Server 3 (SuperEmbed HD)</option>
-          <option value="autoembed">Server 4 (AutoEmbed VIP)</option>
-          <option value="twoembed">Server 5 (2Embed HD)</option>
+          <option value="vidlink">Server 1 (VidLink Pro 4K)</option>
+          <option value="vidsrc_pm">Server 2 (VidSrc PM 4K)</option>
+          <option value="vidsrc_to">Server 3 (VidSrc To HD)</option>
+          <option value="twoembed">Server 4 (2Embed Backup)</option>
           <option value="trailer">Official 4K Trailer</option>
         `;
         this.serverSelect.value = serverMode || 'vidlink';
       }
       this.switchServer(serverMode || 'vidlink');
     } else {
-      // Local hosted or demo fallback
+      // Fallback
+      this.playerView.classList.remove('embed-mode');
       if (this.serverSelect) {
         this.serverSelect.innerHTML = '<option value="local">NovaFlix FastCDN (1080p)</option>';
       }
@@ -335,6 +337,8 @@ class KFlixPlayer {
     const isPrank = this.currentMovie.slug === 'a-moment-to-remember' || this.currentMovie.id === '15859' || this.currentMovie.id === 15859;
     if (isPrank) return;
 
+    this.playerView.classList.add('embed-mode');
+
     if (serverKey === 'trailer') {
       this.video.pause();
       this.video.style.display = 'none';
@@ -348,12 +352,10 @@ class KFlixPlayer {
 
     const tmdbId = this.currentMovie.tmdbId || String(this.currentMovie.id).replace(/^tmdb-/, '');
     let embedUrl = `https://vidlink.pro/movie/${tmdbId}`;
-    if (serverKey === 'vidsrc') {
+    if (serverKey === 'vidsrc_pm' || serverKey === 'vidsrc') {
+      embedUrl = `https://vidsrc.pm/embed/movie/${tmdbId}`;
+    } else if (serverKey === 'vidsrc_to') {
       embedUrl = `https://vidsrc.to/embed/movie/${tmdbId}`;
-    } else if (serverKey === 'superembed') {
-      embedUrl = `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
-    } else if (serverKey === 'autoembed') {
-      embedUrl = `https://player.autoembed.cc/embed/movie/${tmdbId}`;
     } else if (serverKey === 'twoembed') {
       embedUrl = `https://www.2embed.cc/embed/${tmdbId}`;
     }
@@ -369,6 +371,8 @@ class KFlixPlayer {
 
   close() {
     this.hideAdvisoryToast();
+
+    this.playerView.classList.remove('embed-mode');
 
     if (this.embedFrame) {
       this.embedFrame.src = '';

@@ -101,9 +101,9 @@
       backdropUrl: backdropUrl,
       isTmdb: true,
       streamingSources: {
-        vidsrc: `https://vidsrc.to/embed/movie/${id}`,
         vidlink: `https://vidlink.pro/movie/${id}`,
-        superembed: `https://multiembed.mov/?video_id=${id}&tmdb=1`,
+        vidsrc_pm: `https://vidsrc.pm/embed/movie/${id}`,
+        vidsrc_to: `https://vidsrc.to/embed/movie/${id}`,
         twoembed: `https://www.2embed.cc/embed/${id}`
       }
     };

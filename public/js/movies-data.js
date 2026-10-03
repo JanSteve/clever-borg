@@ -82,7 +82,8 @@ const KOREAN_MOVIES_CATALOG = [
     "poster": "/api/poster/15859",
     "backdrop": "/api/backdrop/15859",
     "trailerUrl": "https://www.youtube.com/watch?v=Fj-yZ_42u8M",
-    "fallbackColor": "#3b1122"
+    "fallbackColor": "#3b1122",
+    "tmdbId": 15859
   },
   {
     "id": "dune-part-two",
@@ -135,7 +136,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Following the devastating destruction of House Atreides on Arrakis, Paul Atreides and his mother Lady Jessica take sanctuary deep within the desert among the Fremen tribe. Embraced by the northern Fremen and trained in their warrior ways, Paul falls in love with the fiery warrior Chani while wrestling with ominous prophetic visions of a holy war consuming the cosmos.",
     "poster": "/api/poster/dune-part-two",
     "backdrop": "/api/backdrop/dune-part-two",
-    "fallbackColor": "#c27829"
+    "fallbackColor": "#c27829",
+    "tmdbId": 693134,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg"
   },
   {
     "id": "oppenheimer",
@@ -195,7 +199,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Theoretical physicist J. Robert Oppenheimer leads the secret Manhattan Project laboratory in Los Alamos, New Mexico during World War II, culminating in the Trinity test that forever altered human history.",
     "poster": "/api/poster/oppenheimer",
     "backdrop": "/api/backdrop/oppenheimer",
-    "fallbackColor": "#d9531e"
+    "fallbackColor": "#d9531e",
+    "tmdbId": 872585,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7CENyUim29IEsaJhUxIGymCRvPu.jpg"
   },
   {
     "id": "deadpool-and-wolverine",
@@ -250,7 +257,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Wade Wilson's peaceful civilian life is shattered when Time Variance Authority agents whisk him away to preserve the timeline, requiring him to recruit a battle-weary Wolverine variant.",
     "poster": "/api/poster/deadpool-and-wolverine",
     "backdrop": "/api/backdrop/deadpool-and-wolverine",
-    "fallbackColor": "#b91c1c"
+    "fallbackColor": "#b91c1c",
+    "tmdbId": 533535,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/by8z9Fe8y7p4jo2YlW2SZDnptyT.jpg"
   },
   {
     "id": "interstellar",
@@ -298,7 +308,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "A global crop blight and second Dust Bowl slowly render Earth uninhabitable. Ex-test pilot Cooper leads an interstellar expedition through a newly opened wormhole near Saturn to survey habitable worlds across another galaxy.",
     "poster": "/api/poster/interstellar",
     "backdrop": "/api/backdrop/interstellar",
-    "fallbackColor": "#172b4d"
+    "fallbackColor": "#172b4d",
+    "tmdbId": 157336,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg"
   },
   {
     "id": "the-dark-knight",
@@ -346,7 +359,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "With the help of allies Lt. Jim Gordon and DA Harvey Dent, Batman has been able to keep a tight lid on crime in Gotham City. But when a vile young criminal calling himself the Joker suddenly throws the town into chaos, the caped crusader begins to tread a fine line between heroism and vigilantism.",
     "poster": "/api/poster/the-dark-knight",
     "backdrop": "/api/backdrop/the-dark-knight",
-    "fallbackColor": "#0f172a"
+    "fallbackColor": "#0f172a",
+    "tmdbId": 155,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/9FE5eD92WfVCiivM9Pq9GVSrlWk.jpg"
   },
   {
     "id": "inception",
@@ -389,7 +405,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state.",
     "poster": "/api/poster/inception",
     "backdrop": "/api/backdrop/inception",
-    "fallbackColor": "#1e293b"
+    "fallbackColor": "#1e293b",
+    "tmdbId": 27205,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
   },
   {
     "id": "avengers-endgame",
@@ -437,7 +456,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Following the cataclysmic snap of Thanos, the surviving Avengers devise a daring time-heist across their past history to gather the Infinity Stones and restore life across the universe.",
     "poster": "/api/poster/avengers-endgame",
     "backdrop": "/api/backdrop/avengers-endgame",
-    "fallbackColor": "#431407"
+    "fallbackColor": "#431407",
+    "tmdbId": 299534,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg"
   },
   {
     "id": "spider-man-across-the-spider-verse",
@@ -484,7 +506,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Reunited with Gwen Stacy, Brooklyn's full-time friendly neighborhood Spider-Man is catapulted across the Multiverse, colliding with the Spider-Society led by Miguel O'Hara.",
     "poster": "/api/poster/spider-man-across-the-spider-verse",
     "backdrop": "/api/backdrop/spider-man-across-the-spider-verse",
-    "fallbackColor": "#311042"
+    "fallbackColor": "#311042",
+    "tmdbId": 569094,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/kVd3a9YeLGkoeR50jGEXM6EqseS.jpg"
   },
   {
     "id": "gladiator-ii",
@@ -539,7 +564,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Forced into slavery after Roman forces conquer Numidia, Lucius enters the arena as a gladiator to challenge the tyrannical dual emperors Caracalla and Geta.",
     "poster": "/api/poster/gladiator-ii",
     "backdrop": "/api/backdrop/gladiator-ii",
-    "fallbackColor": "#78350f"
+    "fallbackColor": "#78350f",
+    "tmdbId": 558449,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/tOqIwliWMovSIZ9DyvHcHI7p2im.jpg"
   },
   {
     "id": "your-name",
@@ -587,7 +615,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Mitsuha, a high school girl living in rural Itomori, and Taki, a high school boy living in Tokyo, wake up in each other's bodies. As they learn to communicate by leaving notes, they realize their fates are tied to a cosmic celestial event.",
     "poster": "/api/poster/your-name",
     "backdrop": "/api/backdrop/your-name",
-    "fallbackColor": "#1e1b4b"
+    "fallbackColor": "#1e1b4b",
+    "tmdbId": 372058,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vfJFJPepRKapMd5G2ro7klIRysq.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/mMtUybQ6hL24FXo0F3Z4j2KG7kZ.jpg"
   },
   {
     "id": "demon-slayer-mugen-train",
@@ -636,7 +667,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Tanjiro, Nezuko, Zenitsu, and Inosuke board the Mugen Train to investigate a series of mysterious disappearances, joining forces with Flame Hashira Kyojuro Rengoku to battle deadly Lower and Upper Rank demons.",
     "poster": "/api/poster/demon-slayer-mugen-train",
     "backdrop": "/api/backdrop/demon-slayer-mugen-train",
-    "fallbackColor": "#7f1d1d"
+    "fallbackColor": "#7f1d1d",
+    "tmdbId": 635302,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qjGrUmKW78MCFG8PTLDBp67S27p.jpg"
   },
   {
     "id": "suzume",
@@ -678,7 +712,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "When teenage Suzume accidentally unleashes a calamity by opening an ancient door in ruins, she journeys across Japan alongside Souta to lock down portals before catastrophic earthquakes strike.",
     "poster": "/api/poster/suzume",
     "backdrop": "/api/backdrop/suzume",
-    "fallbackColor": "#065f46"
+    "fallbackColor": "#065f46",
+    "tmdbId": 916224,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/yStW1TXF5s7Tbtu9KjIZEaWl6HL.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/4tdV5AeojEdbvn6VpeQrbuDlmzs.jpg"
   },
   {
     "id": "spirited-away",
@@ -726,7 +763,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Hayao Miyazaki's Academy Award-winning masterpiece follows young Chihiro as she navigates the fantastical bathhouse of spirits operated by the sorceress Yubaba to free her transformed parents.",
     "poster": "/api/poster/spirited-away",
     "backdrop": "/api/backdrop/spirited-away",
-    "fallbackColor": "#14532d"
+    "fallbackColor": "#14532d",
+    "tmdbId": 129,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg"
   },
   {
     "id": "attack-on-titan-final",
@@ -781,7 +821,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "As Eren Yeager unleashes tens of thousands of Colossal Titans to flatten the earth, his former comrades band together in a heartbreaking final confrontation to save what remains of humanity.",
     "poster": "/api/poster/attack-on-titan-final",
     "backdrop": "/api/backdrop/attack-on-titan-final",
-    "fallbackColor": "#450a0a"
+    "fallbackColor": "#450a0a",
+    "tmdbId": 1333100,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/wgwldDDlTDDMrluOMkpSA8lyKjv.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/yPJyXYfDrlD7bEjAtTAQ8nqmRIf.jpg"
   },
   {
     "id": "the-notebook",
@@ -827,7 +870,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "In 1940s Seabrook Island, Noah Calhoun and Allie Hamilton fall in love despite overwhelming social class divides, surviving years of separation and the tests of fading memory.",
     "poster": "/api/poster/the-notebook",
     "backdrop": "/api/backdrop/the-notebook",
-    "fallbackColor": "#831843"
+    "fallbackColor": "#831843",
+    "tmdbId": 11036,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zdXnJqBaGFVtLoPNuMeKfEYUViZ.jpg"
   },
   {
     "id": "la-la-land",
@@ -875,7 +921,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Six-time Academy Award-winner Damien Chazelle explores the bittersweet tension between romantic devotion and artistic ambition in a vibrant modern Los Angeles.",
     "poster": "/api/poster/la-la-land",
     "backdrop": "/api/backdrop/la-la-land",
-    "fallbackColor": "#4c1d95"
+    "fallbackColor": "#4c1d95",
+    "tmdbId": 313369,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/nlPCdZlHtRNcF6C9hzUH4ebmV1w.jpg"
   },
   {
     "id": "titanic",
@@ -922,7 +971,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "James Cameron's historic 11-time Academy Award-winning epic chronicles the fateful maiden voyage of the Titanic and the enduring romance between Jack and Rose.",
     "poster": "/api/poster/titanic",
     "backdrop": "/api/backdrop/titanic",
-    "fallbackColor": "#0f172a"
+    "fallbackColor": "#0f172a",
+    "tmdbId": 597,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/xXCuto8YVp5RFqBJ7yKmVmLOWpF.jpg"
   },
   {
     "id": "about-time",
@@ -971,7 +1023,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Tim uses his hereditary ability to travel through time to win the heart of Mary and cherish everyday moments with his beloved family.",
     "poster": "/api/poster/about-time",
     "backdrop": "/api/backdrop/about-time",
-    "fallbackColor": "#9a3412"
+    "fallbackColor": "#9a3412",
+    "tmdbId": 122906,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ls6zswrOZVhCXQBh96DlbnLBajM.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/einbto9qLXFx9QXxEHylaxDbKPx.jpg"
   },
   {
     "id": "john-wick-4",
@@ -1026,7 +1081,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "From New York and Paris to Osaka and Berlin, legendary hitman John Wick fights for his ultimate freedom against the High Table's Marquis de Gramont.",
     "poster": "/api/poster/john-wick-4",
     "backdrop": "/api/backdrop/john-wick-4",
-    "fallbackColor": "#18181b"
+    "fallbackColor": "#18181b",
+    "tmdbId": 603692,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7I6VUdPj6tQECNHdviJkUHD2u89.jpg"
   },
   {
     "id": "pulp-fiction",
@@ -1080,7 +1138,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Quentin Tarantino's Palme d'Or-winning masterpiece redefined modern cinema with its nonlinear storytelling, pop culture dialogue, and iconic neo-noir ensemble.",
     "poster": "/api/poster/pulp-fiction",
     "backdrop": "/api/backdrop/pulp-fiction",
-    "fallbackColor": "#854d0e"
+    "fallbackColor": "#854d0e",
+    "tmdbId": 680,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
   },
   {
     "id": "fight-club",
@@ -1133,7 +1194,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "David Fincher's cult psychological thriller follows an unfulfilled white-collar worker and enigmatic soap salesman Tyler Durden as their underground brawling club mutates into a nationwide anti-consumerist revolution.",
     "poster": "/api/poster/fight-club",
     "backdrop": "/api/backdrop/fight-club",
-    "fallbackColor": "#292524"
+    "fallbackColor": "#292524",
+    "tmdbId": 550,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jSziioSwPVrOy9Yow3XhWIBDjq1.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
   },
   {
     "id": "parasite",
@@ -1204,7 +1268,10 @@ const KOREAN_MOVIES_CATALOG = [
     "poster": "/api/poster/parasite",
     "backdrop": "/api/backdrop/parasite",
     "trailerUrl": "https://www.youtube.com/watch?v=5xH0RwpEbSU",
-    "fallbackColor": "#1a2a3a"
+    "fallbackColor": "#1a2a3a",
+    "tmdbId": 496243,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg"
   },
   {
     "id": "the-classic",
@@ -1257,7 +1324,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "In the present day, college student Ji-hye struggles with her feelings for a handsome drama club senior. While organizing her house, Ji-hye finds an old wooden box full of letters and diaries kept by her mother Joo-hee decades ago during the 1960s. As Ji-hye reads them, the story weaves back and forth between past and present.",
     "poster": "/api/poster/the-classic",
     "backdrop": "/api/backdrop/the-classic",
-    "fallbackColor": "#2b141e"
+    "fallbackColor": "#2b141e",
+    "tmdbId": 42190,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/sNe23Tsia9usMBN5TW2KXPJdq2K.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/45N9i1D3OrGZgyqswMcEWAmiupv.jpg"
   },
   {
     "id": "be-with-you",
@@ -1293,7 +1363,10 @@ const KOREAN_MOVIES_CATALOG = [
     "storyline": "Woo-jin is raising his young son Ji-ho alone after his beloved wife Soo-ah passed away. One year later, at the beginning of the summer rainy season, Soo-ah reappears at an abandoned train tunnel, but has zero memory of who they are.",
     "poster": "/api/poster/be-with-you",
     "backdrop": "/api/backdrop/be-with-you",
-    "fallbackColor": "#1a2433"
+    "fallbackColor": "#1a2433",
+    "tmdbId": 499028,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/mvstNgM68EyCRWwpArakLhWvvtk.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/dw9KDRImNzj3jWYSkTte7wvzamO.jpg"
   },
   {
     "id": "always",
@@ -1328,7 +1401,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A former boxer with a dark, violent past working as a parking attendant falls in love with a spirited, blind telemarketer, and enters a dangerous underground fight tournament to pay for her eye surgery.",
     "poster": "/api/poster/always",
     "backdrop": "/api/backdrop/always",
-    "fallbackColor": "#261520"
+    "fallbackColor": "#261520",
+    "tmdbId": 86000,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7PaCGnjY87sc9088zxFf34Tamcz.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/kcIvHVTswx1I7IqrmOcQ6DiqUHv.jpg"
   },
   {
     "id": "the-beauty-inside",
@@ -1365,7 +1441,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Furniture designer Woo-jin wakes up every day in a different body—male, female, young, old, or foreign. His secretive life unravels when he falls deeply in love with Yi-soo, an antique furniture curator.",
     "poster": "/api/poster/the-beauty-inside",
     "backdrop": "/api/backdrop/the-beauty-inside",
-    "fallbackColor": "#221c29"
+    "fallbackColor": "#221c29",
+    "tmdbId": 338729,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/z5gpjqQwo0h8rMvBLedRXfHHDKb.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qZlAyN4y6Tff6mtTD2y2or2EBon.jpg"
   },
   {
     "id": "architecture-101",
@@ -1401,7 +1480,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An architect is approached by his first love from university fifteen years later to design her dream house on Jeju Island, reigniting nostalgic memories of their youth and unspoken feelings.",
     "poster": "/api/poster/architecture-101",
     "backdrop": "/api/backdrop/architecture-101",
-    "fallbackColor": "#172322"
+    "fallbackColor": "#172322",
+    "tmdbId": 107235,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/349EO3Wrvc2d9F58nyTR1Y1hl6r.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6hQqAMD9GnAELB7CgNZRtinbP8G.jpg"
   },
   {
     "id": "my-sassy-girl",
@@ -1436,7 +1518,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A well-meaning college student rescues a drunken, unpredictable girl at a Seoul subway station, unwittingly embarking on a tumultuous, unforgettable relationship with her eccentric personality.",
     "poster": "/api/poster/my-sassy-girl",
     "backdrop": "/api/backdrop/my-sassy-girl",
-    "fallbackColor": "#331620"
+    "fallbackColor": "#331620",
+    "tmdbId": 11178,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/i964xFDEMwZ5uaweParv8ItBfbJ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/13uKAt4M87HQi1lMZAwBmsNZRGg.jpg"
   },
   {
     "id": "tune-in-for-love",
@@ -1471,7 +1556,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1994, on the day a singer became a radio DJ, Mi-soo and Hyun-woo cross paths at a local bakery. Over the next decade, their paths repeatedly cross and diverge as fate tests their timing.",
     "poster": "/api/poster/tune-in-for-love",
     "backdrop": "/api/backdrop/tune-in-for-love",
-    "fallbackColor": "#221a1f"
+    "fallbackColor": "#221a1f",
+    "tmdbId": 570503,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7yaF5BOtPjQH8JDSSiVbzdrsWM4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/5sSCPzLhX9Ho7Llpj5N3ECjqYai.jpg"
   },
   {
     "id": "on-your-wedding-day",
@@ -1506,7 +1594,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A ten-year chronicle of a boy who fell head over heels for a transfer student in high school, following the humor, heartbreak, and missed opportunities of their timing until she sends him a wedding invitation.",
     "poster": "/api/poster/on-your-wedding-day",
     "backdrop": "/api/backdrop/on-your-wedding-day",
-    "fallbackColor": "#281722"
+    "fallbackColor": "#281722",
+    "tmdbId": 532444,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hg45ijXtBiDBPbWE5vvgLUXGPC6.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/Zn02vzXRrHv0nyC8pChFFxX5F4.jpg"
   },
   {
     "id": "more-than-blue",
@@ -1541,7 +1632,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A terminally ill radio producer conceals his fatal cancer diagnosis from the orphaned girl he has loved since childhood, seeking to arrange her marriage to a dependable doctor before he dies.",
     "poster": "/api/poster/more-than-blue",
     "backdrop": "/api/backdrop/more-than-blue",
-    "fallbackColor": "#1d1928"
+    "fallbackColor": "#1d1928",
+    "tmdbId": 45098,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/b6KJB752HdXZhEiiXkoGwzVVV2c.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/g0a62Nui7spwCRGVP8SSJQpD2jQ.jpg"
   },
   {
     "id": "il-mare",
@@ -1576,7 +1670,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Two people living in the same seaside house named Il Mare communicate across a mysterious mailbox that bridges a two-year time difference, developing a profound connection.",
     "poster": "/api/poster/il-mare",
     "backdrop": "/api/backdrop/il-mare",
-    "fallbackColor": "#12202c"
+    "fallbackColor": "#12202c",
+    "tmdbId": 12650,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/csJ2BCbQaaNL4n8dk3W91QiAWmV.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7oIJumqySs4xdYa6NWSgVxuZM09.jpg"
   },
   {
     "id": "windstruck",
@@ -1612,7 +1709,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An energetic, headstrong police officer mistakenly arrests an innocent physics teacher for purse snatching. The two strike up a passionate romance that takes an unexpected, heartbreaking turn.",
     "poster": "/api/poster/windstruck",
     "backdrop": "/api/backdrop/windstruck",
-    "fallbackColor": "#2a1520"
+    "fallbackColor": "#2a1520",
+    "tmdbId": 10103,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8OyugG9zsjK4HT42yIcqXMXc2CR.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/fE3DxK3zjWZwhdNpyPY0guCTTgm.jpg"
   },
   {
     "id": "a-werewolf-boy",
@@ -1647,7 +1747,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An elderly woman recalls her youth when her family moved to a countryside barn and discovered a feral, mute boy. As she patiently civilizes him, an enduring emotional attachment blossoms.",
     "poster": "/api/poster/a-werewolf-boy",
     "backdrop": "/api/backdrop/a-werewolf-boy",
-    "fallbackColor": "#221c17"
+    "fallbackColor": "#221c17",
+    "tmdbId": 128246,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/r8nLI2052swGQ53p5eVVPuEzlAf.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8wKDBmmSoLRMtf42dhu7uUDKS1c.jpg"
   },
   {
     "id": "christmas-in-august",
@@ -1682,7 +1785,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A gentle photo studio owner silently battles a terminal illness in quiet dignity. As he forms a quiet, tender rapport with a young parking enforcement officer who frequents his shop, he chooses not to burden her with his impending fate.",
     "poster": "/api/poster/christmas-in-august",
     "backdrop": "/api/backdrop/christmas-in-august",
-    "fallbackColor": "#1d231b"
+    "fallbackColor": "#1d231b",
+    "tmdbId": 26935,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lJlGScysOQg6kFRkxOqAidw2GRP.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/m6MQ8lGEbU4NScc7NRSnABAmPB0.jpg"
   },
   {
     "id": "failan",
@@ -1723,7 +1829,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A third-rate, washed-up mobster who entered into a sham green-card marriage for cash discovers his nominal wife has died. Upon reading her letters written to him, he experiences devastating, belated love.",
     "poster": "/api/poster/failan",
     "backdrop": "/api/backdrop/failan",
-    "fallbackColor": "#26131c"
+    "fallbackColor": "#26131c",
+    "tmdbId": 18704,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/3DG3eUhXyV0bVOuw3V0a1nIy7Jh.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/uBHNItEzK2OqBb7goGDRXOV47Ru.jpg"
   },
   {
     "id": "20th-century-girl",
@@ -1759,7 +1868,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1999, a 17-year-old high school girl with a heart of gold agrees to observe her best friend's crush while her friend travels abroad for heart surgery, only to find herself unexpectedly entangled in first love.",
     "poster": "/api/poster/20th-century-girl",
     "backdrop": "/api/backdrop/20th-century-girl",
-    "fallbackColor": "#331828"
+    "fallbackColor": "#331828",
+    "tmdbId": 851644,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/od22ftNnyag0TTxcnJhlsu3aLoU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/37y53Jt8K6MvN6s4zJVFa61luO2.jpg"
   },
   {
     "id": "past-lives",
@@ -1793,7 +1905,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Nora and Hae Sung, two deeply connected childhood friends in Seoul, are wrested apart after Nora's family emigrates. Two decades later, they are reunited in New York for one fateful week.",
     "poster": "/api/poster/past-lives",
     "backdrop": "/api/backdrop/past-lives",
-    "fallbackColor": "#1a1e2b"
+    "fallbackColor": "#1a1e2b",
+    "tmdbId": 666277,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7HR38hMBl23lf38MAN63y4pKsHz.jpg"
   },
   {
     "id": "train-to-busan",
@@ -1829,7 +1944,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "While a zombie virus breaks out in South Korea, passengers struggle to survive on the bullet train from Seoul to Busan in this pulse-pounding, emotionally devastating blockbuster.",
     "poster": "/api/poster/train-to-busan",
     "backdrop": "/api/backdrop/train-to-busan",
-    "fallbackColor": "#2b1414"
+    "fallbackColor": "#2b1414",
+    "tmdbId": 396535,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/brnfCYyz8EMbBrHgmh8sCwBi5i1.jpg"
   },
   {
     "id": "exhuma",
@@ -1871,7 +1989,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A prominent feng shui master, a mortician, and two shamans are hired by a wealthy family in Los Angeles to exhume an ancestral grave in Korea, unleashing a sinister force buried within.",
     "poster": "/api/poster/exhuma",
     "backdrop": "/api/backdrop/exhuma",
-    "fallbackColor": "#1e1a14"
+    "fallbackColor": "#1e1a14",
+    "tmdbId": 838209,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/6dasJ58GGFcC62H9KuukAryltUp.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/kYWk8TW5TkpCWkB0mkUm72N0lb8.jpg"
   },
   {
     "id": "12-12-the-day",
@@ -1907,7 +2028,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "On December 12, 1979, military dictator Chun Doo-hwan sparks a coup d'état in Seoul. A lone, principled military commander risks everything to stand against the rogue forces.",
     "poster": "/api/poster/12-12-the-day",
     "backdrop": "/api/backdrop/12-12-the-day",
-    "fallbackColor": "#1a1f29"
+    "fallbackColor": "#1a1f29",
+    "tmdbId": 919207,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/yOn8w3aGd6Rf9JYki7XaC9ZiyDg.jpg"
   },
   {
     "id": "decision-to-leave",
@@ -1942,7 +2066,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A meticulous detective investigating a man's suspicious fatal mountain fall finds himself caught between professional suspicion and intoxicating obsession with the dead man's mysterious widow.",
     "poster": "/api/poster/decision-to-leave",
     "backdrop": "/api/backdrop/decision-to-leave",
-    "fallbackColor": "#14252a"
+    "fallbackColor": "#14252a",
+    "tmdbId": 705996,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/zI8KZ4EdLUymWKX1YEkpZ0gtPUa.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/uUXgaOxPsr0jsBhGnkyIgw0g2ge.jpg"
   },
   {
     "id": "the-roundup",
@@ -1977,7 +2104,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Seven years after the roundup in Vietnam, detective Ma Seok-do joins a new squad to investigate a deadly murder case involving a synthetic drug syndicate and rogue Japanese yakuza.",
     "poster": "/api/poster/the-roundup",
     "backdrop": "/api/backdrop/the-roundup",
-    "fallbackColor": "#1c2230"
+    "fallbackColor": "#1c2230",
+    "tmdbId": 955555,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/n7qqzqhxBn4eiJLb0cVQjSnXjGy.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/5DKVH8KeqFwPacWFMyYqTaECxJP.jpg"
   },
   {
     "id": "extreme-job",
@@ -2013,7 +2143,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A bungling narcotics detective team stakes out an organized crime ring by buying a run-down fried chicken restaurant across the street, which unexpectedly becomes Seoul's hottest eatery.",
     "poster": "/api/poster/extreme-job",
     "backdrop": "/api/backdrop/extreme-job",
-    "fallbackColor": "#2c1d11"
+    "fallbackColor": "#2c1d11",
+    "tmdbId": 567646,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/52oLgq2gEiZyDjpJ7tgkGruoQI0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/3MUwpoEnsSNinnzVQ6mynvXBw7T.jpg"
   },
   {
     "id": "concrete-utopia",
@@ -2048,7 +2181,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "After an apocalyptic earthquake flattens Seoul into rubble, Hwang Gung Apartments stands as the sole surviving high-rise. Outside survivors flock in, sparking a ruthless battle over resources.",
     "poster": "/api/poster/concrete-utopia",
     "backdrop": "/api/backdrop/concrete-utopia",
-    "fallbackColor": "#24201c"
+    "fallbackColor": "#24201c",
+    "tmdbId": 729854,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/4l68KHxnPSow8MvnGUpjqLzJtLJ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/57Nn5HRpMiDY2ODKSI4VAOiuyJg.jpg"
   },
   {
     "id": "smugglers",
@@ -2084,7 +2220,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In a peaceful seaside village during the 1970s, deep-sea diving women (haenyeo) turn to retrieving smuggled luxury goods thrown into the sea, plunging into a vicious criminal web.",
     "poster": "/api/poster/smugglers",
     "backdrop": "/api/backdrop/smugglers",
-    "fallbackColor": "#15242b"
+    "fallbackColor": "#15242b",
+    "tmdbId": 783110,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/vZaIAIX5XcXLsF4jRSp5x7wsRzn.jpg"
   },
   {
     "id": "emergency-declaration",
@@ -2120,7 +2259,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "When a terrorist releases a lethal biochemical pathogen on a commercial flight from Seoul to Honolulu, chaos erupts among passengers as ground authorities frantically negotiate landing permission.",
     "poster": "/api/poster/emergency-declaration",
     "backdrop": "/api/backdrop/emergency-declaration",
-    "fallbackColor": "#17232e"
+    "fallbackColor": "#17232e",
+    "tmdbId": 626872,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/h7kaQG5MbraSLibOuTpo0gtMxRz.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/fI8hv1IqWUIUjx4YRfl6TWhdqHW.jpg"
   },
   {
     "id": "broker",
@@ -2156,7 +2298,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Two men run an unauthorized adoption matchmaking scheme from church baby boxes. When a young mother returns for her baby, they embark on a cross-country journey while being shadowed by two female detectives.",
     "poster": "/api/poster/broker",
     "backdrop": "/api/backdrop/broker",
-    "fallbackColor": "#1f221a"
+    "fallbackColor": "#1f221a",
+    "tmdbId": 736732,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/x86xaUnxU31JYiwlO35corDEV1i.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/dom8lzl2iU46nDu6s4lBolBNjQs.jpg"
   },
   {
     "id": "hunt",
@@ -2192,7 +2337,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1980s South Korea, two rival intelligence chiefs are tasked with uncovering a high-level North Korean mole code-named Donglim inside their agency, suspicion turning into deadly infighting.",
     "poster": "/api/poster/hunt",
     "backdrop": "/api/backdrop/hunt",
-    "fallbackColor": "#181f29"
+    "fallbackColor": "#181f29",
+    "tmdbId": 968051,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/wxPhn4ef1EAo5njxwBkAEVrlJJG.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/evo3crueRIK9Eutb3lnDLVbD2xD.jpg"
   },
   {
     "id": "oldboy",
@@ -2236,7 +2384,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "After being mysteriously kidnapped and held captive in a single room for 15 years with only a television for company, Oh Dae-su is abruptly released and given five days to track down his captor.",
     "poster": "/api/poster/oldboy",
     "backdrop": "/api/backdrop/oldboy",
-    "fallbackColor": "#320b12"
+    "fallbackColor": "#320b12",
+    "tmdbId": 670,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pWDtjs568ZfOTMbURQBYuT4Qxka.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/rwf5SUTiEsmfkXAgy15R0UtJUtv.jpg"
   },
   {
     "id": "the-handmaiden",
@@ -2280,7 +2431,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1930s Japanese-occupied Korea, a pickpocket girl is hired by a smooth con artist to serve as maid to a wealthy Japanese heiress, with plans to seduce and swindle her fortune.",
     "poster": "/api/poster/the-handmaiden",
     "backdrop": "/api/backdrop/the-handmaiden",
-    "fallbackColor": "#2d1624"
+    "fallbackColor": "#2d1624",
+    "tmdbId": 290098,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/dLlH4aNHdnmf62umnInL8xPlPzw.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/9o9ci7ZH9chSy8B7YXCBYih8Kkd.jpg"
   },
   {
     "id": "i-saw-the-devil",
@@ -2322,7 +2476,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "After his pregnant fiancée is brutally murdered by a psychotic serial killer, an elite secret agent embarks on a relentless cat-and-mouse revenge quest, capturing and releasing the killer repeatedly.",
     "poster": "/api/poster/i-saw-the-devil",
     "backdrop": "/api/backdrop/i-saw-the-devil",
-    "fallbackColor": "#2e0c0c"
+    "fallbackColor": "#2e0c0c",
+    "tmdbId": 49797,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/zp5NrmYp80axIGiEiYPmm1CW6uH.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/dXDFWWxiEb6tg4ojMWQJrSI0Tun.jpg"
   },
   {
     "id": "the-man-from-nowhere",
@@ -2364,7 +2521,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A quiet, reclusive pawnshop keeper with a lethal special-ops past unleashes unyielding fury across the Seoul criminal syndicate when the young innocent neighborhood girl who befriended him is abducted.",
     "poster": "/api/poster/the-man-from-nowhere",
     "backdrop": "/api/backdrop/the-man-from-nowhere",
-    "fallbackColor": "#111b26"
+    "fallbackColor": "#111b26",
+    "tmdbId": 51608,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9QJ3cPpYgoPfhRnRPxpQUfx790r.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/uEqrGVBELVFaNVMOE4ExjLCMV3j.jpg"
   },
   {
     "id": "memories-of-murder",
@@ -2400,7 +2560,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1986 provincial South Korea, two detectives with radically opposing methodologies—one instinctual, the other forensic—struggle desperately to solve the country's first confirmed serial murder spree.",
     "poster": "/api/poster/memories-of-murder",
     "backdrop": "/api/backdrop/memories-of-murder",
-    "fallbackColor": "#1e221b"
+    "fallbackColor": "#1e221b",
+    "tmdbId": 11423,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jcgUjx1QcupGzjntTVlnQ15lHqy.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6Kn6qW3an3DkPl3MahWemTzrjCt.jpg"
   },
   {
     "id": "the-chaser",
@@ -2442,7 +2605,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A disgraced ex-detective turned pimp realizes his missing female employees were all called by the same customer phone number. He launches a frantic manhunt across Seoul while police blunder.",
     "poster": "/api/poster/the-chaser",
     "backdrop": "/api/backdrop/the-chaser",
-    "fallbackColor": "#2a1012"
+    "fallbackColor": "#2a1012",
+    "tmdbId": 13855,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hy49xJiKN1nakkN1ZmKuOf6vQYR.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/urBBFQrrVxy7T8uytrn7dOoHqZn.jpg"
   },
   {
     "id": "new-world",
@@ -2484,7 +2650,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An undercover cop embedded for eight years inside Korea's biggest crime syndicate Goldmoon faces a lethal power struggle when the chairman dies, torn between ruthless police superiors and his gangster blood-brother.",
     "poster": "/api/poster/new-world",
     "backdrop": "/api/backdrop/new-world",
-    "fallbackColor": "#151d28"
+    "fallbackColor": "#151d28",
+    "tmdbId": 153037,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/z0T0oVf6vjQxG9eHnI5zS7UeN5q.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ce3prrjh9ZehEl5JinNqr4jIeaB.jpg"
   },
   {
     "id": "a-bittersweet-life",
@@ -2527,7 +2696,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "The enforcer of a cold-blooded mob boss is ordered to shadow the boss's young mistress and kill her if she is cheating. Moved by pity, he lets her go, triggering an all-out extermination contract on his own life.",
     "poster": "/api/poster/a-bittersweet-life",
     "backdrop": "/api/backdrop/a-bittersweet-life",
-    "fallbackColor": "#20131d"
+    "fallbackColor": "#20131d",
+    "tmdbId": 11344,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/iqUGAIQqHMMscatykpR6hVBxezA.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/t8EDE4bkYZBaSCo7Gq8uIWtW4pV.jpg"
   },
   {
     "id": "night-in-paradise",
@@ -2568,7 +2740,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Hunted by a rival mafia syndicate after a bloody assassination, a mobster hides on scenic Jeju Island where he meets a terminally ill woman who has abandoned all hope in life.",
     "poster": "/api/poster/night-in-paradise",
     "backdrop": "/api/backdrop/night-in-paradise",
-    "fallbackColor": "#221118"
+    "fallbackColor": "#221118",
+    "tmdbId": 606523,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/dYCWUAidqgakGETwZkfGxU7CWhL.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/MocpW8Wrp8uireBg6bT6Y6TKWC.jpg"
   },
   {
     "id": "the-witch-subversion",
@@ -2610,7 +2785,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A gentle farm girl with amnesia appears on a national singing show to help her struggling adoptive family, unintentionally alerting the secret laboratory scientists who genetically engineered her as an unstoppable assassin.",
     "poster": "/api/poster/the-witch-subversion",
     "backdrop": "/api/backdrop/the-witch-subversion",
-    "fallbackColor": "#1d1021"
+    "fallbackColor": "#1d1021",
+    "tmdbId": 530254,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/4i2wo2ja5g2PmUxWa1a2eYIboZf.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/f8ng3EDMLkuTMupe4TjgiJS1r0S.jpg"
   },
   {
     "id": "deliver-us-from-evil",
@@ -2651,7 +2829,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An assassin wishing to retire travels to Thailand to investigate a kidnapping connected to his past, but is hunted by a relentless, flamboyantly vicious brother of a man he previously assassinated.",
     "poster": "/api/poster/deliver-us-from-evil",
     "backdrop": "/api/backdrop/deliver-us-from-evil",
-    "fallbackColor": "#291811"
+    "fallbackColor": "#291811",
+    "tmdbId": 581526,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hngKHgBHRD5nbTx92zatBC6eMSP.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/au6YoYkzbcgZ4CTCwc57UdhD8FC.jpg"
   },
   {
     "id": "the-gangster-cop-devil",
@@ -2691,7 +2872,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "After surviving a violent ambush by a serial killer, a feared mob boss forms an uneasy partnership with a fiery detective to hunt down the murderer first.",
     "poster": "/api/poster/the-gangster-cop-devil",
     "backdrop": "/api/backdrop/the-gangster-cop-devil",
-    "fallbackColor": "#1c1926"
+    "fallbackColor": "#1c1926",
+    "tmdbId": 581528,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/oHlM4abRm6BzrRcz9Nup1uidw9H.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/jJJQ1PPXUEchqyZ9YyWzgSNU39Z.jpg"
   },
   {
     "id": "the-wailing",
@@ -2734,7 +2918,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In a remote mountain village, a bizarre viral outbreak drives locals into manic homicidal rampages. A slow-witted police officer investigates a reclusive Japanese stranger when his young daughter displays symptoms.",
     "poster": "/api/poster/the-wailing",
     "backdrop": "/api/backdrop/the-wailing",
-    "fallbackColor": "#1a0b0b"
+    "fallbackColor": "#1a0b0b",
+    "tmdbId": 293670,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lWE9ih9qgjx8HatYboP7fG0nri.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/9qxBNfI1QFbiZS62fsgaUd563t2.jpg"
   },
   {
     "id": "the-call",
@@ -2777,7 +2964,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A woman returns to her childhood home and receives calls on an old landline from another woman living in the same house twenty years prior. Altering past events unleashes an unhinged serial killer into the present.",
     "poster": "/api/poster/the-call",
     "backdrop": "/api/backdrop/the-call",
-    "fallbackColor": "#22111c"
+    "fallbackColor": "#22111c",
+    "tmdbId": 649087,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/33VdppGbeNxICrFUtW2WpGHvfYc.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1GZCV0dwIoAn6jpWPfVAbeMTVC2.jpg"
   },
   {
     "id": "alive",
@@ -2812,7 +3002,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A video gamer is trapped alone inside his high-rise Seoul apartment with dwindling food and no internet as a rabid infection spreads through the city, until he spots a survivor in the opposite building.",
     "poster": "/api/poster/alive",
     "backdrop": "/api/backdrop/alive",
-    "fallbackColor": "#171a23"
+    "fallbackColor": "#171a23",
+    "tmdbId": 614696,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lZPvLUMYEPLTE2df1VW5FHTYC8N.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/k2SY15W9QXH9qL8f4a4BbytV1BE.jpg"
   },
   {
     "id": "a-tale-of-two-sisters",
@@ -2847,7 +3040,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Two sisters return home from a psychiatric hospital to their secluded lakeside estate, clashing with their cold stepmother as terrifying apparitions begin haunting the premises.",
     "poster": "/api/poster/a-tale-of-two-sisters",
     "backdrop": "/api/backdrop/a-tale-of-two-sisters",
-    "fallbackColor": "#221117"
+    "fallbackColor": "#221117",
+    "tmdbId": 4552,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/l3exwhwyGE0NnHJ3lFQ7eXoBSkH.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/syKbZiHVdXw0NcH6NdXWEKZaECv.jpg"
   },
   {
     "id": "gonjiam-haunted-asylum",
@@ -2883,7 +3079,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "An internet horror-webcast crew investigates the notorious abandoned Gonjiam Psychiatric Hospital, broadcasting live to achieve one million views before the building's malicious spirits trap them.",
     "poster": "/api/poster/gonjiam-haunted-asylum",
     "backdrop": "/api/backdrop/gonjiam-haunted-asylum",
-    "fallbackColor": "#14191c"
+    "fallbackColor": "#14191c",
+    "tmdbId": 508642,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/fNqlsmu2tiI1bXcpU31yjHPkiJz.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/x1j5VVU4ypEx1hM0PDYGwCJvwtS.jpg"
   },
   {
     "id": "svaha-the-sixth-finger",
@@ -2919,7 +3118,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A pastor hired to expose fraudulent religious cults uncovers a mysterious esoteric Buddhist sect called Deer Mount, which is linked to ritualistic murders of young teenage girls across the country.",
     "poster": "/api/poster/svaha-the-sixth-finger",
     "backdrop": "/api/backdrop/svaha-the-sixth-finger",
-    "fallbackColor": "#1d1712"
+    "fallbackColor": "#1d1712",
+    "tmdbId": 556509,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/yE6q03pfWg9xZ4a7MoeldDXMV5y.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/vUTx2JxgDPRW3MYzXwGZXkhSWGV.jpg"
   },
   {
     "id": "thirst",
@@ -2961,7 +3163,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A devout Catholic priest volunteers for an experimental medical trial in Africa, resulting in an accidental infection that turns him into a vampire, succumbing to bloodlust and an adulterous romance.",
     "poster": "/api/poster/thirst",
     "backdrop": "/api/backdrop/thirst",
-    "fallbackColor": "#2b0a11"
+    "fallbackColor": "#2b0a11",
+    "tmdbId": 22536,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/sBnFQwOcmL3dAIYfiQ9nLvLSW7B.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/9IMZqBKbALO7d2bwr6ECKP4igoe.jpg"
   },
   {
     "id": "the-host",
@@ -2997,7 +3202,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Toxic chemicals dumped into Seoul's Han River mutate an amphibious monster that abducts a snack bar vendor's schoolgirl daughter, propelling her eccentric family on an unauthorized rescue mission.",
     "poster": "/api/poster/the-host",
     "backdrop": "/api/backdrop/the-host",
-    "fallbackColor": "#162325"
+    "fallbackColor": "#162325",
+    "tmdbId": 1255,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/dEDLY3KeghKFzks5nTDWdigVikr.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/m0wczZyNfWpu5q9wNuhFUGGiLxG.jpg"
   },
   {
     "id": "sleep",
@@ -3032,7 +3240,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "A newlywed couple is terrified when the husband begins severe, macabre sleepwalking behavior, escalating into psychotic and perilous nocturnal episodes that threaten their newborn baby.",
     "poster": "/api/poster/sleep",
     "backdrop": "/api/backdrop/sleep",
-    "fallbackColor": "#1f1821"
+    "fallbackColor": "#1f1821",
+    "tmdbId": 964592,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/b4d90lpmSTLoCP9tkBU7QAQOhh0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/Al5dGk1hBHvnDlRwwDdzrbO3ApI.jpg"
   },
   {
     "id": "hansan-rising-dragon",
@@ -3068,7 +3279,10 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "In 1592, Admiral Yi Sun-sin deploys his turtle ships and groundbreaking crane-wing formation at the Battle of Hansan Island to thwart the invading Japanese naval fleet.",
     "poster": "/api/poster/hansan-rising-dragon",
     "backdrop": "/api/backdrop/hansan-rising-dragon",
-    "fallbackColor": "#17232e"
+    "fallbackColor": "#17232e",
+    "tmdbId": 588108,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vH76IrIrZLHmO0WOD4U7nxBHgkR.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/gqqfN3XeWZcZZ2uQQEEFp3fHfSp.jpg"
   }
 ];
 

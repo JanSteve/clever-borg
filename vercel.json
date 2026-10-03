@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "public": true,
+  "rewrites": [
+    { "source": "/api/stream", "destination": "/api/stream.js" },
+    { "source": "/api/movies", "destination": "/api/movies.js" },
+    { "source": "/api/poster/:id", "destination": "/api/poster.js?id=:id" },
+    { "source": "/api/backdrop/:id", "destination": "/api/backdrop.js?id=:id" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap.js" },
+    { "source": "/robots.txt", "destination": "/api/robots.js" },
+    { "source": "/(.*)", "destination": "/public/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer-when-downgrade"
+        }
+      ]
+    }
+  ]
+}

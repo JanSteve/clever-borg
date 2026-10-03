@@ -479,15 +479,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = e.target.closest('.server-pill');
       if (btn) {
         btn.classList.add('active');
-        activeStreamingServer = btn.dataset.server || 'vidsrc';
+        activeStreamingServer = btn.dataset.server || 'vidlink';
       }
     });
   });
 
   // 7. Play Movie Trigger (Guaranteed stream of 0918 (1).mp4 for A Moment to Remember!)
-  function launchMoviePlayback(movie, serverOption) {
-    const isTargetMovie = movie.id === '15859' || movie.slug === 'a-moment-to-remember';
-    const server = serverOption || activeStreamingServer;
+  async function launchMoviePlayback(movie, serverOption) {
+    if (!movie) return;
+    const isTargetMovie = movie.id === '15859' || movie.slug === 'a-moment-to-remember' || movie.tmdbId === 15859 || movie.tmdbId === '15859';
+    const server = serverOption || activeStreamingServer || 'vidlink';
+
+    // Dynamic TMDB resolution fallback if tmdbId is somehow missing
+    if (!isTargetMovie && !movie.tmdbId && window.TMDBService) {
+      try {
+        const results = await window.TMDBService.searchTmdb(movie.title);
+        if (results && results.length > 0) {
+          movie.tmdbId = results[0].tmdbId;
+          movie.isTmdb = true;
+          if (results[0].posterUrl && (!movie.posterUrl || movie.posterUrl.includes('.svg'))) {
+            movie.posterUrl = results[0].posterUrl;
+          }
+        }
+      } catch (err) {
+        console.warn('Auto TMDB resolution error:', err);
+      }
+    }
 
     let targetFilename = isTargetMovie ? '0918 (1).mp4' : 'sample-demo.mp4';
     if (isTargetMovie && userPastedMovie) {
@@ -499,7 +516,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.kflixPlayer.open({
       id: movie.id,
       tmdbId: movie.tmdbId,
-      isTmdb: movie.isTmdb,
+      isTmdb: movie.isTmdb || Boolean(movie.tmdbId),
+      slug: movie.slug,
       title: movie.title || 'A Moment to Remember',
       koreanTitle: `${movie.koreanTitle || movie.originalTitle || ''} • 4K Ultra HD`,
       filename: targetFilename,

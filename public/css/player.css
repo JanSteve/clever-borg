@@ -21,6 +21,51 @@
   visibility: visible;
 }
 
+/* Embed Mode for Third-Party Multi-Source Streaming (VidLink, VidSrc, 2Embed) */
+.player-view.embed-mode {
+  background: #000000;
+}
+
+.player-view.embed-mode .embed-stream-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 5;
+  pointer-events: auto !important;
+  background: #000000;
+  display: block;
+}
+
+.player-view.embed-mode .video-element {
+  display: none !important;
+}
+
+.player-view.embed-mode .player-overlay {
+  background: transparent !important;
+  pointer-events: none !important;
+  z-index: 20;
+}
+
+.player-view.embed-mode .player-top-bar {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  pointer-events: auto !important;
+  z-index: 30;
+}
+
+.player-view.embed-mode .player-top-bar * {
+  pointer-events: auto !important;
+}
+
+.player-view.embed-mode .player-bottom-controls,
+.player-view.embed-mode .center-feedback-icon,
+.player-view.embed-mode .skip-ripple-zone,
+.player-view.embed-mode .timeline-container {
+  display: none !important;
+  pointer-events: none !important;
+}
+
 .video-element {
   width: 100%;
   height: 100%;
