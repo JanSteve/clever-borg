@@ -245,79 +245,83 @@ function renderSlide(index) {
 
   const slide = slides[index];
 
-  // Update Backdrop Image
-  const bgImg = document.getElementById('slide-bg-img');
-  if (bgImg) {
-    bgImg.style.opacity = '0.1';
-    setTimeout(() => {
-      bgImg.src = slide.backdrop || slide.poster || '/images/dune-desert-backdrop.jpg';
-      bgImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
-      bgImg.style.opacity = '0.35';
-    }, 150);
+    // Update Backdrop Image
+    const bgImg = document.getElementById('slide-bg-img');
+    if (bgImg) {
+      bgImg.style.opacity = '0.1';
+      setTimeout(() => {
+        bgImg.src = slide.backdrop || slide.poster || getPosterFallbackSvg(slide.title, slide.year);
+        bgImg.onerror = function() { handlePosterError(this, slide.title, slide.year); };
+        bgImg.style.opacity = '0.35';
+      }, 150);
+    }
+
+    // Update Texts
+    const titleEl = document.getElementById('slide-title');
+    const quoteEl = document.getElementById('slide-quote');
+    const catTextEl = document.getElementById('slide-category-text');
+    const resBadge = document.getElementById('slide-resolution-badge');
+    const audioBadge = document.getElementById('slide-audio-badge');
+    const yearEl = document.getElementById('slide-year');
+    const durationEl = document.getElementById('slide-duration');
+    const ratingEl = document.getElementById('slide-rating');
+    const imdbEl = document.getElementById('slide-imdb');
+    const matchEl = document.getElementById('slide-match');
+    const directorEl = document.getElementById('slide-director');
+    const synopsisEl = document.getElementById('slide-synopsis');
+    const castEl = document.getElementById('slide-cast');
+    const posterImg = document.getElementById('slide-poster-img');
+    const counterText = document.getElementById('slide-counter-text');
+    const watchlistText = document.getElementById('slide-watchlist-text');
+
+    if (titleEl) titleEl.innerText = slide.title;
+    if (quoteEl) quoteEl.innerText = slide.quote || '';
+    if (catTextEl) catTextEl.innerText = slide.categoryLabel || '✨ Curated Feature';
+    if (resBadge) resBadge.innerText = slide.resolution || '4K Ultra HD';
+    if (audioBadge) audioBadge.innerText = slide.audio || 'Dolby Atmos';
+    if (yearEl) yearEl.innerText = slide.year || '2024';
+    if (durationEl) durationEl.innerText = slide.duration || '2h';
+    if (ratingEl) ratingEl.innerText = slide.rating || 'PG-13';
+    if (imdbEl) imdbEl.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${slide.score || '8.5'} IMDb`;
+    if (matchEl) matchEl.innerText = slide.matchScore || '99% Match';
+    if (directorEl) directorEl.innerText = `Dir. ${slide.director || 'Curated Master'}`;
+    if (synopsisEl) synopsisEl.innerText = slide.synopsis || '';
+    if (castEl) castEl.innerText = slide.cast || '';
+    
+    if (posterImg) {
+      posterImg.src = slide.poster || slide.backdrop || getPosterFallbackSvg(slide.title, slide.year);
+      posterImg.onerror = function() { handlePosterError(this, slide.title, slide.year); };
+    }
+
+    if (counterText) {
+      counterText.innerText = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    }
+
+    if (watchlistText) {
+      const isSaved = watchlistSet.has(slide.id) || watchlistSet.has(slide.slug);
+      watchlistText.innerText = isSaved ? 'In Watchlist' : 'Watchlist';
+    }
+
+    // Update Active Thumbnail & Progress Dots
+    updateActiveThumbnailUI(index);
   }
 
-  // Update Texts
-  const titleEl = document.getElementById('slide-title');
-  const quoteEl = document.getElementById('slide-quote');
-  const catTextEl = document.getElementById('slide-category-text');
-  const resBadge = document.getElementById('slide-resolution-badge');
-  const audioBadge = document.getElementById('slide-audio-badge');
-  const yearEl = document.getElementById('slide-year');
-  const durationEl = document.getElementById('slide-duration');
-  const ratingEl = document.getElementById('slide-rating');
-  const imdbEl = document.getElementById('slide-imdb');
-  const matchEl = document.getElementById('slide-match');
-  const directorEl = document.getElementById('slide-director');
-  const synopsisEl = document.getElementById('slide-synopsis');
-  const castEl = document.getElementById('slide-cast');
-  const posterImg = document.getElementById('slide-poster-img');
-  const counterText = document.getElementById('slide-counter-text');
-  const watchlistText = document.getElementById('slide-watchlist-text');
+  function renderSlideThumbnails() {
+    const deck = document.getElementById('slide-thumbnails-deck');
+    if (!deck) return;
 
-  if (titleEl) titleEl.innerText = slide.title;
-  if (quoteEl) quoteEl.innerText = slide.quote || '';
-  if (catTextEl) catTextEl.innerText = slide.categoryLabel || '✨ Curated Feature';
-  if (resBadge) resBadge.innerText = slide.resolution || '4K Ultra HD';
-  if (audioBadge) audioBadge.innerText = slide.audio || 'Dolby Atmos';
-  if (yearEl) yearEl.innerText = slide.year || '2024';
-  if (durationEl) durationEl.innerText = slide.duration || '2h';
-  if (ratingEl) ratingEl.innerText = slide.rating || 'PG-13';
-  if (imdbEl) imdbEl.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${slide.score || '8.5'} IMDb`;
-  if (matchEl) matchEl.innerText = slide.matchScore || '99% Match';
-  if (directorEl) directorEl.innerText = `Dir. ${slide.director || 'Curated Master'}`;
-  if (synopsisEl) synopsisEl.innerText = slide.synopsis || '';
-  if (castEl) castEl.innerText = slide.cast || '';
-  
-  if (posterImg) {
-    posterImg.src = slide.poster || slide.backdrop || '/images/moment-to-remember-backdrop.jpg';
-    posterImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
+    const slides = slideshowState.filteredSlides;
+    deck.innerHTML = slides.map((s, idx) => {
+      const poster = s.poster || s.backdrop || getPosterFallbackSvg(s.title, s.year);
+      const safeTitle = (s.title || 'Film').replace(/'/g, "\\'");
+      return `
+        <button class="slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 transition-all duration-300 hover:border-primary cursor-pointer ${idx === slideshowState.currentIndex ? 'ring-2 ring-primary border-primary scale-105 shadow-md' : 'opacity-60 hover:opacity-100'}" data-index="${idx}" onclick="goToSlide(${idx})">
+          <img src="${poster}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="handlePosterError(this, '${safeTitle}', '${s.year || '4K'}')"/>
+          <div class="absolute inset-0 bg-surface/30 group-hover:bg-transparent transition-colors"></div>
+        </button>
+      `;
+    }).join('');
   }
-
-  if (counterText) {
-    counterText.innerText = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-  }
-
-  if (watchlistText) {
-    const isSaved = watchlistSet.has(slide.id) || watchlistSet.has(slide.slug);
-    watchlistText.innerText = isSaved ? 'In Watchlist' : 'Watchlist';
-  }
-
-  // Update Active Thumbnail & Progress Dots
-  updateActiveThumbnailUI(index);
-}
-
-function renderSlideThumbnails() {
-  const deck = document.getElementById('slide-thumbnails-deck');
-  if (!deck) return;
-
-  const slides = slideshowState.filteredSlides;
-  deck.innerHTML = slides.map((s, idx) => `
-    <button class="slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 transition-all duration-300 hover:border-primary cursor-pointer ${idx === slideshowState.currentIndex ? 'ring-2 ring-primary border-primary scale-105 shadow-md' : 'opacity-60 hover:opacity-100'}" data-index="${idx}" onclick="goToSlide(${idx})">
-      <img src="${s.poster || s.backdrop || '/images/moment-to-remember-backdrop.jpg'}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
-      <div class="absolute inset-0 bg-surface/30 group-hover:bg-transparent transition-colors"></div>
-    </button>
-  `).join('');
-}
 
 function renderSlideProgressDots() {
   const dotsContainer = document.getElementById('slide-progress-dots');
@@ -329,13 +333,55 @@ function renderSlideProgressDots() {
   `).join('');
 }
 
+function getPosterFallbackSvg(title, year) {
+  const safeTitle = (title || 'Film').replace(/[<>&"]/g, '');
+  const safeYear = (year || '4K').replace(/[<>&"]/g, '');
+  const gradients = [
+    ['#152126', '#09151a', '#ecc077'],
+    ['#1e1424', '#0d0714', '#f472b6'],
+    ['#0e1e18', '#050f0c', '#b1cdbb'],
+    ['#261515', '#120505', '#ffb5a1'],
+    ['#181c26', '#080c14', '#93c5fd']
+  ];
+  let hash = 0;
+  for (let i = 0; i < safeTitle.length; i++) hash = (hash + safeTitle.charCodeAt(i)) % gradients.length;
+  const [c1, c2, cAccent] = gradients[hash];
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" width="100%" height="100%">
+      <defs>
+        <linearGradient id="g${hash}" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="${c1}"/>
+          <stop offset="100%" stop-color="${c2}"/>
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#g${hash})"/>
+      <circle cx="250" cy="300" r="130" fill="${cAccent}" opacity="0.08"/>
+      <rect x="30" y="30" width="440" height="690" fill="none" stroke="${cAccent}" stroke-width="1" stroke-opacity="0.2" rx="16"/>
+      <text x="50%" y="360" text-anchor="middle" fill="#EDE6D6" font-family="Newsreader, serif" font-size="28" font-weight="600">${safeTitle}</text>
+      <text x="50%" y="405" text-anchor="middle" fill="${cAccent}" font-family="Courier Prime, monospace" font-size="14" letter-spacing="2">CINEXA ARCHIVE • ${safeYear}</text>
+    </svg>
+  `)}`;
+}
+
+function handlePosterError(imgElement, title, year) {
+  imgElement.onerror = null;
+  imgElement.src = getPosterFallbackSvg(title, year);
+}
+
 function updateActiveThumbnailUI(activeIndex) {
   // Update thumbnails
   const thumbs = document.querySelectorAll('#slide-thumbnails-deck .slide-thumb-btn');
+  const deck = document.getElementById('slide-thumbnails-deck');
+
   thumbs.forEach((th, idx) => {
     if (idx === activeIndex) {
       th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-primary ring-2 ring-primary scale-105 shadow-md opacity-100 cursor-pointer';
-      th.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+      // ONLY scroll the deck container horizontally; NEVER call window/page scrollIntoView
+      if (deck) {
+        const targetScroll = th.offsetLeft - deck.offsetLeft - (deck.clientWidth / 2) + (th.clientWidth / 2);
+        deck.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+      }
     } else {
       th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 opacity-60 hover:opacity-100 transition-all cursor-pointer';
     }
@@ -658,10 +704,12 @@ function selectChip(btn, category) {
       c.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
       c.classList.add('text-on-surface-variant', 'border', 'border-outline-variant/40');
     });
+    // ONLY scroll the horizontal container; NEVER call window.scrollTo or element.scrollIntoView
+    const targetScroll = btn.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (btn.clientWidth / 2);
+    container.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
   }
   btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
   btn.classList.remove('text-on-surface-variant', 'border', 'border-outline-variant/40');
-  btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 
   filterTrendingRows(category);
 
@@ -690,25 +738,26 @@ function filterTrendingRows(category) {
     filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('thriller') || g.toLowerCase().includes('sci-fi')));
   }
 
-  // Render trending row
+  // Render trending row (12 items)
   const trendingContainer = document.getElementById('carousel-trending');
   if (trendingContainer) {
-    trendingContainer.innerHTML = filtered.slice(0, 12).map(m => {
-      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+    trendingContainer.innerHTML = filtered.slice(0, 14).map(m => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
       const rating = m.rating || 'PG-13';
       const score = m.imdbRating || '8.2';
+      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
       return `
         <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
           <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-            <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="${poster}" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="${m.title}"/>
+            <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
             <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
             <div class="absolute top-2.5 left-2.5 z-10">
               <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
             </div>
             <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+              <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${m.slug || m.id}')">
                 <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                <span>Play</span>
+                <span>Play 4K</span>
               </button>
               <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
                 <span class="material-symbols-outlined text-[14px]">info</span>
@@ -733,11 +782,14 @@ function filterTrendingRows(category) {
   // Render Top 10 Numbered Row
   const numberedContainer = document.getElementById('carousel-numbered');
   if (numberedContainer) {
-    numberedContainer.innerHTML = filtered.slice(0, 10).map((m, idx) => {
-      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+    // Sort by rating for true top 10
+    const top10 = [...filtered].sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0)).slice(0, 10);
+    numberedContainer.innerHTML = top10.map((m, idx) => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
       const num = idx + 1;
       const score = m.imdbRating || '8.5';
       const tag = m.country || '4K';
+      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
       return `
         <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
           <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
@@ -745,7 +797,7 @@ function filterTrendingRows(category) {
           </span>
           <div class="relative w-[190px] z-10">
             <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="${m.title}"/>
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
               <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
               <div class="absolute top-2.5 left-2.5">
                 <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${tag}</span>
@@ -761,6 +813,38 @@ function filterTrendingRows(category) {
                 </span>
               </div>
             </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Render Continue Exploring (Wide 16:9 Carousel)
+  const wideContainer = document.getElementById('carousel-wide');
+  if (wideContainer) {
+    const wideFilms = filtered.slice(4, 12);
+    wideContainer.innerHTML = wideFilms.map(m => {
+      const backdrop = m.backdropUrl || m.backdrop || m.posterUrl || getPosterFallbackSvg(m.title, m.year);
+      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+      return `
+        <div class="group relative flex-shrink-0 w-[320px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('${m.slug || m.id}')">
+          <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${backdrop}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}"/>
+            <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
+                <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 flex items-start justify-between gap-4">
+            <div class="space-y-1 min-w-0">
+              <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+              <p class="font-label-sm text-label-sm text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
+            </div>
+            <button class="flex-shrink-0 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary font-label-sm text-label-sm uppercase transition-colors" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${m.slug || m.id}')">
+              Play 4K
+            </button>
           </div>
         </div>
       `;
@@ -1313,7 +1397,7 @@ function renderDiscoverCatalog(customList) {
     return `
       <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] cursor-pointer border border-border-hairline/60" onclick="openFilmDetails('${id}')">
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
-          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')"/>
           <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
           
           <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
@@ -1435,6 +1519,7 @@ window.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   initFeaturedSlideshow();
   renderDiscoverCatalog();
+  filterTrendingRows('all');
 
   const toastUndo = document.getElementById('toast-undo');
   if (toastUndo) {
