@@ -1613,6 +1613,71 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
+// =========================================================================
+// 8. LEGAL, DMCA & ATTRIBUTION MODAL CONTROLLER
+// =========================================================================
+
+function openLegalModal(type = 'terms') {
+  const overlay = document.getElementById('legal-modal-overlay');
+  const titleEl = document.getElementById('legal-modal-title');
+  const bodyEl = document.getElementById('legal-modal-body');
+
+  if (!overlay || !titleEl || !bodyEl) return;
+
+  if (type === 'terms') {
+    titleEl.innerText = 'Terms of Film & Archival Preservation';
+    bodyEl.innerHTML = `
+      <div class="space-y-3">
+        <p class="font-semibold text-primary">1. Curatorial Mission & Non-Commercial Preservation</p>
+        <p>Cinexa is an open educational and archival catalog curated to celebrate world cinema, photochemical restoration history, and international film preservation. We do not host unauthorized video files on our own servers.</p>
+        <p class="font-semibold text-primary">2. Streaming Aggregation</p>
+        <p>All video content indexed on Cinexa is embedded or linked through third-party decentralized providers and public web registries. We encourage all patrons to support official theatrical releases and physical restorations.</p>
+        <p class="font-semibold text-primary">3. Community Code</p>
+        <p>Patrons agree to utilize Cinexa exclusively for personal study, scholarship, and cultural appreciation under international fair dealing norms.</p>
+      </div>
+    `;
+  } else if (type === 'fairuse') {
+    titleEl.innerText = 'Fair Use & DMCA Notice';
+    bodyEl.innerHTML = `
+      <div class="space-y-3">
+        <p class="font-semibold text-primary">Digital Millennium Copyright Act (DMCA) Compliance</p>
+        <p>Cinexa operates in accordance with 17 U.S.C. § 512 and international intellectual property legislation. We strictly index public third-party video embeds and metadata.</p>
+        <p class="font-semibold text-primary">Takedown Request Protocol</p>
+        <p>If you are a copyright owner or authorized representative and wish to request the removal of any indexed links or archival references, please submit a formal notice containing:</p>
+        <ul class="list-disc pl-5 space-y-1 text-xs">
+          <li>Identification of the copyrighted work claimed to have been infringed.</li>
+          <li>Exact URL or title reference on Cinexa.</li>
+          <li>Your contact information and statement of good faith belief.</li>
+        </ul>
+        <p class="text-xs text-outline">Notices can be submitted directly through our repository issue tracker or community steward email.</p>
+      </div>
+    `;
+  } else if (type === 'tmdb') {
+    titleEl.innerText = 'The Movie Database (TMDB) Attribution';
+    bodyEl.innerHTML = `
+      <div class="space-y-3">
+        <div class="p-3 bg-surface-container-high rounded-xl border border-primary/30 flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary text-2xl">verified</span>
+          <span class="font-mono text-xs text-primary font-bold">TMDB API INTEGRATED DIRECTORY</span>
+        </div>
+        <p>This application uses the TMDB API to fetch movie metadata, high-resolution original posters, synopsis, cast directories, and release dates, but is not officially endorsed or certified by The Movie Database (TMDB).</p>
+        <p>All trademarks, movie artwork, and posters remain the exclusive property of their respective production studios and distributors.</p>
+      </div>
+    `;
+  }
+
+  overlay.classList.remove('hidden');
+  overlay.classList.add('flex');
+}
+
+function closeLegalModal() {
+  const overlay = document.getElementById('legal-modal-overlay');
+  if (overlay) {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+}
+
 window.addEventListener('keydown', (e) => {
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
     e.preventDefault();
@@ -1627,6 +1692,7 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();
     closeRatingDialogModal();
+    closeLegalModal();
     closePlayerModal();
     toggleMobileSheet(false);
   }
@@ -1649,3 +1715,4 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 });
+

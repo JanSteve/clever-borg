@@ -8,6 +8,23 @@
   <meta name="description" content="Stream rare 35mm restorations, international festival masterpieces, and contemporary world cinema in 4K UHD. Curated archives, zero subscription.">
   <meta name="theme-color" content="#0E1A1F">
 
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230E1A1F' stroke='%23C9A05B' stroke-width='6'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23C9A05B'/%3E%3Ccircle cx='28' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='28' cy='68' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='68' r='7' fill='%23ECC077'/%3E%3C/svg%3E"/>
+  <link rel="canonical" href="https://cinexa-films.vercel.app/"/>
+  
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cinexa-films.vercel.app/"/>
+  <meta property="og:title" content="Cinexa — Watch Movies &amp; Anime in 4K UHD"/>
+  <meta property="og:description" content="Stream 200+ curated films, Anime, Bollywood, Tollywood, Kollywood, and Korean Cinema with multi-language dubbing and 1-click 4K downloads."/>
+  <meta property="og:image" content="https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg"/>
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:url" content="https://cinexa-films.vercel.app/"/>
+  <meta name="twitter:title" content="Cinexa — Watch Movies &amp; Anime in 4K UHD"/>
+  <meta name="twitter:description" content="Free 4K movie streaming and downloads. Bollywood, Anime, Hollywood &amp; Korean Cinema."/>
+  <meta name="twitter:image" content="https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg"/>
+
   <!-- Google Fonts: Fraunces, Newsreader, Manrope, DM Mono, Courier Prime -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1548,6 +1565,34 @@
   </div>
 
   <!-- =========================================================================
+       LEGAL, DMCA & TMDB ATTRIBUTION MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="legal-modal-overlay" onclick="closeLegalModal()">
+    <div class="relative w-full max-w-xl rounded-2xl bg-surface-container p-6 sm:p-8 shadow-2xl border border-border-hairline/80 space-y-5" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-border-hairline/60">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+          <h3 class="font-serif text-lg text-on-surface font-semibold" id="legal-modal-title">Terms &amp; Archival Charter</h3>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors cursor-pointer" onclick="closeLegalModal()">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="font-body-sm text-sm text-on-surface-variant space-y-4 max-h-[60vh] overflow-y-auto pr-2 leading-relaxed" id="legal-modal-body">
+        <!-- Injected dynamically by JS -->
+      </div>
+
+      <div class="pt-3 border-t border-border-hairline/60 flex items-center justify-between">
+        <span class="font-mono text-xs text-outline">Cinexa Preservation Guild • 2025</span>
+        <button class="px-5 py-2 rounded-full bg-primary text-on-primary font-sans text-xs font-bold uppercase tracking-wider hover:bg-brass-hover transition-colors cursor-pointer" onclick="closeLegalModal()">
+          I Understand
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
        5-STAR RATING & JOURNAL DIALOG MODAL
        ========================================================================= -->
   <div class="fixed inset-0 z-50 bg-[#0E1A1F]/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="rating-modal-overlay" onclick="closeRatingDialogModal()">
@@ -1831,9 +1876,9 @@
           <div>
             <h4 class="font-mono text-xs uppercase tracking-wider text-primary mb-4 font-semibold">Legal</h4>
             <ul class="space-y-2 font-body-sm text-xs text-on-surface-variant">
-              <li><a class="hover:text-primary transition-colors cursor-pointer">Terms of Film</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer">Fair Use &amp; Citations</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer">TMDB Attribution</a></li>
+              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms of Film</a></li>
+              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">Fair Use &amp; DMCA</a></li>
+              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB Attribution</a></li>
             </ul>
           </div>
         </div>
