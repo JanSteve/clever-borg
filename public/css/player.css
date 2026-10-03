@@ -1,6 +1,187 @@
 /* ==========================================================================
-   K-FLIX: Custom Cinematic Video Player Styles
+   CINEXA: Custom 4K Cinema Video Player & Modal Styles
    ========================================================================== */
+
+.player-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 21, 26, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.player-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.player-container {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  max-height: 94vh;
+  background: #111d22;
+  border: 1px solid rgba(201, 160, 91, 0.3);
+  border-radius: 20px;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 160, 91, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.player-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 16, 21, 0.6);
+}
+
+.playing-badge {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: #ecc077;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.player-movie-title {
+  font-family: 'Newsreader', 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ede6d6;
+  margin: 0;
+}
+
+.close-player-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ede6d6;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.close-player-btn:hover {
+  background: #c9a05b;
+  color: #111d22;
+  transform: scale(1.05);
+}
+
+/* Control Strips: Servers, Dubbing, Subtitles */
+.stream-control-strip {
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: rgba(4, 16, 21, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.strip-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: #9b8f80;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.player-pill-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d8e4eb;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.player-pill-btn:hover {
+  background: rgba(201, 160, 91, 0.15);
+  border-color: rgba(201, 160, 91, 0.4);
+  color: #ede6d6;
+}
+
+.player-pill-btn.active {
+  background: #ecc077;
+  color: #422c00;
+  border-color: #ecc077;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(236, 192, 119, 0.3);
+}
+
+.sync-ctrl-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d8e4eb;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sync-ctrl-btn:hover {
+  background: #ecc077;
+  color: #422c00;
+}
+
+/* Video Wrapper 16:9 Cinema Aspect */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-iframe,
+.custom-video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+}
+
+.player-footer-info {
+  padding: 16px 24px;
+  background: rgba(4, 16, 21, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
 .player-view {
   position: fixed;
@@ -14,48 +195,6 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   user-select: none;
-}
-
-.player-view.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Embed Mode for Third-Party Multi-Source Streaming (VidLink, VidSrc, 2Embed) */
-.player-view.embed-mode {
-  background: #000000;
-}
-
-.player-view.embed-mode .embed-stream-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  z-index: 5;
-  pointer-events: auto !important;
-  background: #000000;
-  display: block;
-}
-
-.player-view.embed-mode .video-element {
-  display: none !important;
-}
-
-.player-view.embed-mode .player-overlay {
-  background: transparent !important;
-  pointer-events: none !important;
-  z-index: 20;
-}
-
-.player-view.embed-mode .player-top-bar {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
-  pointer-events: auto !important;
-  z-index: 30;
-}
-
-.player-view.embed-mode .player-top-bar * {
-  pointer-events: auto !important;
 }
 
 .player-view.embed-mode .player-bottom-controls,

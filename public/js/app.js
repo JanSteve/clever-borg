@@ -570,19 +570,73 @@ let discoverSearchTimer = null;
 function handleDiscoverSearch(query) {
   if (discoverSearchTimer) clearTimeout(discoverSearchTimer);
   discoverSearchTimer = setTimeout(() => {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const q = (query || '').toLowerCase().trim();
-    let matches = catalog;
-    if (q.length > 0) {
-      matches = catalog.filter(m => 
-        (m.title && m.title.toLowerCase().includes(q)) ||
-        (m.director && m.director.toLowerCase().includes(q)) ||
-        (m.country && m.country.toLowerCase().includes(q)) ||
-        (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
-      );
+    applyDiscoverFilters();
+  }, 100);
+}
+
+function applyDiscoverFilters() {
+  const genreSelect = document.getElementById('filter-genre-select');
+  const audioSelect = document.getElementById('filter-audio-select');
+  const regionSelect = document.getElementById('filter-region-select');
+  const sortSelect = document.getElementById('filter-sort-select');
+  const searchInput = document.getElementById('discover-inline-search');
+
+  const genreVal = (genreSelect ? genreSelect.value : 'all').toLowerCase();
+  const audioVal = (audioSelect ? audioSelect.value : 'all').toLowerCase();
+  const regionVal = (regionSelect ? regionSelect.value : 'all').toLowerCase();
+  const sortVal = (sortSelect ? sortSelect.value : 'rating').toLowerCase();
+  const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? [...KOREAN_MOVIES_CATALOG] : [];
+  let filtered = catalog;
+
+  // Search filter
+  if (query.length > 0) {
+    filtered = filtered.filter(m =>
+      (m.title && m.title.toLowerCase().includes(query)) ||
+      (m.director && m.director.toLowerCase().includes(query)) ||
+      (m.country && m.country.toLowerCase().includes(query)) ||
+      (m.genres && m.genres.some(g => g.toLowerCase().includes(query)))
+    );
+  }
+
+  // Genre filter
+  if (genreVal !== 'all') {
+    filtered = filtered.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes(genreVal)));
+  }
+
+  // Audio Dubbing filter
+  if (audioVal !== 'all') {
+    if (audioVal === 'hindi') {
+      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('hindi')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avatar-the-way-of-water', 'avengers-endgame', 'parasite', 'spirited-away', '15859'].includes(m.slug || m.id));
+    } else if (audioVal === 'tamil') {
+      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('tamil')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avengers-endgame'].includes(m.slug || m.id));
+    } else if (audioVal === 'telugu') {
+      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('telugu')) || ['dune-part-two', 'interstellar', 'avengers-endgame'].includes(m.slug || m.id));
+    } else if (audioVal === 'english') {
+      filtered = filtered.filter(m => m.country === 'United States' || m.country === 'United Kingdom' || (m.audio && m.audio.toLowerCase().includes('english')));
+    } else if (audioVal === 'korean') {
+      filtered = filtered.filter(m => m.country === 'South Korea' || (m.audio && m.audio.toLowerCase().includes('korean')));
+    } else if (audioVal === 'japanese') {
+      filtered = filtered.filter(m => m.country === 'Japan' || (m.audio && m.audio.toLowerCase().includes('japanese')));
     }
-    renderDiscoverCatalog(matches);
-  }, 120);
+  }
+
+  // Region filter
+  if (regionVal !== 'all') {
+    filtered = filtered.filter(m => m.country && m.country.toLowerCase().includes(regionVal));
+  }
+
+  // Sort filter
+  if (sortVal === 'rating') {
+    filtered.sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0));
+  } else if (sortVal === 'newest') {
+    filtered.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
+  } else if (sortVal === 'title') {
+    filtered.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+  }
+
+  renderDiscoverCatalog(filtered);
 }
 
 // =========================================================================
@@ -1126,8 +1180,9 @@ function toggleDetailsWatchlist() {
 
 function playCurrentFilmInPlayer(serverOrSlug) {
   let film = currentActiveMovie;
+  const validServers = ['vidlink', 'multiaudio', 'vidsrc_cc', 'autoembed', 'vidsrc_xyz', 'local', 'fastcdn', 'vidsrc'];
 
-  if (typeof serverOrSlug === 'string' && serverOrSlug !== 'local' && serverOrSlug !== 'fastcdn' && serverOrSlug !== 'vidlink' && serverOrSlug !== 'vidsrc') {
+  if (typeof serverOrSlug === 'string' && !validServers.includes(serverOrSlug)) {
     const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
     const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug);
     if (found) film = found;
@@ -1136,6 +1191,7 @@ function playCurrentFilmInPlayer(serverOrSlug) {
   if (!film) {
     film = {
       id: '15859',
+      tmdbId: 15859,
       slug: 'a-moment-to-remember',
       title: 'A Moment to Remember',
       year: '2004'
@@ -1144,9 +1200,17 @@ function playCurrentFilmInPlayer(serverOrSlug) {
 
   currentActiveMovie = film;
 
+  const isLocalFilm = film.slug === 'a-moment-to-remember' || film.id === '15859' || (film.title && film.title.toLowerCase().includes('moment to remember'));
+  let chosenServer = 'vidlink';
+
+  if (typeof serverOrSlug === 'string' && validServers.includes(serverOrSlug)) {
+    chosenServer = serverOrSlug;
+  } else if (isLocalFilm) {
+    chosenServer = 'local';
+  }
+
   if (typeof CinexaPlayer !== 'undefined') {
-    const server = (typeof serverOrSlug === 'string' && ['local', 'fastcdn', 'vidlink', 'vidsrc'].includes(serverOrSlug)) ? serverOrSlug : 'local';
-    CinexaPlayer.openPlayer(film, server);
+    CinexaPlayer.openPlayer(film, chosenServer);
     return;
   }
 
@@ -1154,18 +1218,18 @@ function playCurrentFilmInPlayer(serverOrSlug) {
   const videoEl = document.getElementById('custom-video-player');
   const iframeEl = document.getElementById('video-iframe');
 
-  if (film.slug === 'a-moment-to-remember' || film.id === '15859' || (film.title && film.title.includes('Moment to Remember'))) {
+  if (isLocalFilm && chosenServer === 'local') {
     if (iframeEl) iframeEl.style.display = 'none';
     if (videoEl) {
       videoEl.style.display = 'block';
-      videoEl.src = '/subtitles/0918 (1).mp4';
+      videoEl.src = '/api/stream?file=0918%20(1).mp4';
       videoEl.play().catch(e => console.log('Autoplay handled:', e));
     }
   } else {
     if (videoEl) videoEl.style.display = 'none';
     if (iframeEl) {
       iframeEl.style.display = 'block';
-      iframeEl.src = `https://vidsrc.to/embed/movie/${film.id || '15859'}`;
+      iframeEl.src = `https://vidlink.pro/movie/${film.tmdbId || film.id || '15859'}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
     }
   }
 
@@ -1203,6 +1267,16 @@ function showToast(message) {
   }, 4000);
 }
 
+function toggleSlideWatchlistById(id, title) {
+  if (watchlistSet.has(id)) {
+    watchlistSet.delete(id);
+    showToast(`Removed "${title}" from your Watchlist.`);
+  } else {
+    watchlistSet.add(id);
+    showToast(`Added "${title}" to your Watchlist.`);
+  }
+}
+
 function renderDiscoverCatalog(customList) {
   const grid = document.getElementById('catalogGrid');
   const counter = document.getElementById('discover-counter');
@@ -1211,27 +1285,58 @@ function renderDiscoverCatalog(customList) {
   const catalog = customList || ((typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : []);
   if (counter) counter.innerText = `${catalog.length} ARCHIVED WORKS`;
 
+  if (catalog.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full py-16 text-center text-on-surface-variant font-body-md space-y-3">
+        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mx-auto text-outline">
+          <span class="material-symbols-outlined text-2xl">movie_filter</span>
+        </div>
+        <p class="text-base text-on-surface font-serif">No matching films found for current criteria.</p>
+        <button class="px-4 py-2 rounded-full bg-primary text-on-primary font-mono text-xs uppercase font-bold cursor-pointer" onclick="resetFilters()">
+          Reset All Filters
+        </button>
+      </div>
+    `;
+    return;
+  }
+
   grid.innerHTML = catalog.map(m => {
     const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
-    const rating = m.rating || 'R';
+    const rating = m.rating || 'PG-13';
     const score = m.imdbRating || '8.1';
-    const format = m.resolution ? m.resolution.toUpperCase() : '35MM';
+    const format = m.resolution ? m.resolution.toUpperCase() : '4K UHD';
+    const id = m.slug || m.id;
+    const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+    const isSaved = watchlistSet.has(id);
+    const hasMultiAudio = m.country === 'India' || (m.audio && (m.audio.toLowerCase().includes('hindi') || m.audio.toLowerCase().includes('tamil') || m.audio.toLowerCase().includes('english') || m.audio.toLowerCase().includes('korean')));
 
     return `
-      <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1 hover:bg-surface-container-high cursor-pointer border border-border-hairline/60" onclick="openFilmDetails('${m.slug || m.id}')">
+      <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] cursor-pointer border border-border-hairline/60" onclick="openFilmDetails('${id}')">
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
           <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-60"></div>
-          <div class="absolute top-2.5 left-2.5">
-            <span class="font-label-sm text-xs px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface">${rating}</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
+          
+          <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
+            <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
           </div>
-          <button class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); showToast('Saved ${m.title} to watchlist.');">
-            <span class="material-symbols-outlined text-base">bookmark_border</span>
+          
+          <button aria-label="Save to Watchlist" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+            <span class="material-symbols-outlined text-[16px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
           </button>
-          <div class="absolute bottom-2.5 left-2.5">
-            <span class="font-label-sm text-[10px] px-2 py-0.5 rounded bg-primary-container/20 text-primary font-medium">${format}</span>
+          
+          <div class="absolute bottom-2.5 left-2.5 z-10 flex flex-wrap items-center gap-1.5">
+            <span class="font-label-sm text-[9px] px-2 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30 font-semibold">${format}</span>
+            ${hasMultiAudio ? '<span class="font-label-sm text-[9px] px-1.5 py-0.5 rounded-full bg-secondary/20 text-secondary border border-secondary/30 font-semibold">MULTI-DUB</span>' : ''}
+          </div>
+
+          <div class="absolute inset-0 bg-surface-container-lowest/50 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+            <button class="h-10 px-4 rounded-full bg-primary text-on-primary font-body-sm text-xs font-bold flex items-center gap-1.5 shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch 4K</span>
+            </button>
           </div>
         </div>
+        
         <div class="p-3.5 flex flex-col flex-1 justify-between gap-2">
           <div>
             <div class="flex items-center justify-between gap-1 mb-1">
@@ -1243,11 +1348,14 @@ function renderDiscoverCatalog(customList) {
             <h3 class="font-headline-sm text-base text-on-surface group-hover:text-primary transition-colors truncate font-serif font-semibold">
               ${m.title}
             </h3>
-            <p class="font-body-sm text-xs text-on-surface-variant truncate">${m.director || 'Curated Master'}</p>
+            <p class="font-body-sm text-xs text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
           </div>
           <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between">
-            <span class="font-label-sm text-xs text-tertiary font-semibold">${m.studio || 'CINEXA 4K'}</span>
-            <span class="material-symbols-outlined text-outline text-sm group-hover:text-primary">play_circle</span>
+            <span class="font-label-sm text-[11px] text-tertiary font-semibold uppercase">${m.country || 'CINEXA 4K'}</span>
+            <span class="font-label-sm text-xs text-primary font-medium flex items-center gap-1 group-hover:underline">
+              <span>Details</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </span>
           </div>
         </div>
       </article>

@@ -439,25 +439,11 @@
         </div>
       </div>
 
-      <!-- BOTTOM DECK: INTERACTIVE MINI-THUMBNAIL STRIP & STATE TESTERS -->
-      <div class="mt-8 pt-6 border-t border-border-hairline/40 flex flex-col md:flex-row items-center justify-between gap-4">
+      <!-- BOTTOM DECK: MINI-THUMBNAIL NAVIGATION STRIP -->
+      <div class="mt-6 pt-4 border-t border-border-hairline/40 flex items-center justify-between gap-4">
         <!-- Interactive Thumbnails Row -->
-        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1" id="slide-thumbnails-deck">
+        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full py-1" id="slide-thumbnails-deck">
           <!-- Rendered dynamically by JS -->
-        </div>
-
-        <!-- Quick Nav & Search Preview Switcher -->
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="font-mono text-[11px] text-text-muted uppercase tracking-wider hidden sm:inline">Preview:</span>
-          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-surface-container text-driftwood hover:text-parchment transition-colors cursor-pointer" onclick="toggleScrollState(false)">
-            Nav: Transparent
-          </button>
-          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-border-hairline hover:border-brass/40 bg-surface-container text-driftwood hover:text-parchment transition-colors cursor-pointer" onclick="toggleScrollState(true)">
-            Nav: Frosted
-          </button>
-          <button class="text-xs font-mono py-1.5 px-3 rounded-lg border border-brass/60 bg-brass/10 text-brass hover:bg-brass/20 transition-colors cursor-pointer" onclick="openModal('results')">
-            ⌘K Search
-          </button>
         </div>
       </div>
     </div>
@@ -466,71 +452,102 @@
   <!-- =========================================================================
        MAIN MULTI-SCREEN CONTAINER
        ========================================================================= -->
-  <main class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-12 space-y-16">
+  <main class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-8 space-y-12">
 
     <!-- =======================================================================
-         SCREEN 1: DISCOVER & CATALOGUE (From Stitch media_1791016122086.html)
+         SCREEN 1: DISCOVER & CATALOGUE (Clean, Crisp & User-Friendly)
          ======================================================================= -->
     <div class="flex flex-col w-full screen-view" id="screen-discover">
-      <!-- Interactive State Switcher Control Deck -->
-      <div class="w-full bg-surface-container-low py-4 px-6 rounded-xl shadow-warm-diffuse mb-10 flex flex-wrap items-center justify-between gap-4 border border-border-hairline/60">
-        <div class="flex items-center gap-3">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Curatorial Preview Switcher</span>
-          <span class="font-label-sm text-label-sm text-outline">• Interactive Mode</span>
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <button class="font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-primary-container text-on-primary font-semibold cursor-pointer" id="btn-state-grid" onclick="switchState('grid')">
-            1. Filtered Grid (Active)
-          </button>
-          <button class="font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer" id="btn-state-genres" onclick="switchState('genres')">
-            2. Genre Tiles Landing
-          </button>
-          <button class="font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 cursor-pointer" id="btn-state-mobile" onclick="toggleMobileSheet(true)">
-            <span class="material-symbols-outlined text-sm">tune</span>
-            3. Mobile Filter Sheet
-          </button>
-        </div>
-      </div>
-
-      <!-- Editorial Page Header -->
-      <header class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8">
-        <div class="max-w-3xl">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="font-label-sm text-label-sm uppercase tracking-[0.08em] text-primary bg-surface-container px-2.5 py-1 rounded-full border border-border-hairline/60">
-              Global Directory • Archive 35mm
+      <!-- Clean Editorial Page Header -->
+      <header class="w-full flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border-hairline/60">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="font-mono text-xs uppercase tracking-[0.08em] text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/30">
+              ● 4K Master Directory
             </span>
-            <span class="font-label-sm text-label-sm uppercase tracking-[0.08em] text-outline">
-              Updated 18m ago
+            <span class="font-mono text-xs text-text-muted">
+              159 Verified Works
             </span>
           </div>
-          <h2 class="font-headline-lg text-4xl sm:text-5xl text-on-surface tracking-tight font-serif">
-            Discover
+          <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface tracking-tight font-serif font-semibold">
+            Explore Curated Cinema
           </h2>
-          <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
-            Curated archival cinema, festival laureates, and verified streaming directories across 42 global regions.
+          <p class="font-body-md text-sm text-on-surface-variant mt-1 max-w-xl">
+            Stream rare 35mm restorations, festival laureates, Indian blockbusters, anime, and international master prints in 4K UHD.
           </p>
         </div>
 
-        <!-- View Toggles & Search inside catalog -->
+        <!-- Clean Live Search Input & Quick Filter Controls -->
         <div class="flex flex-wrap items-center gap-3">
-          <div class="inline-flex p-1 rounded-full bg-surface-container border border-border-hairline/60">
-            <button class="font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-medium transition-all cursor-pointer" id="toggle-grid-pill" onclick="switchState('grid')">
-              Film Matrix
-            </button>
-            <button class="font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer" id="toggle-genre-pill" onclick="switchState('genres')">
-              Browse Movements
-            </button>
-          </div>
-          <div class="relative min-w-[240px]">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg pointer-events-none">search</span>
-            <input class="w-full bg-surface-container text-on-surface placeholder:text-outline font-body-sm text-body-sm pl-9 pr-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all border border-border-hairline/40" id="discover-inline-search" oninput="handleDiscoverSearch(this.value)" placeholder="Filter title or author..." type="text"/>
+          <div class="relative min-w-[280px]">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-lg pointer-events-none">search</span>
+            <input class="w-full bg-surface-container text-on-surface placeholder:text-text-muted font-sans text-sm pl-10 pr-4 py-2.5 rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all border border-border-hairline/60 shadow-sm" id="discover-inline-search" oninput="handleDiscoverSearch(this.value)" placeholder="Search 159 films, actors, directors..." type="text"/>
           </div>
         </div>
       </header>
 
+      <!-- Clean Filter Strip (Genre, Dubbing Audio, Sorting) -->
+      <div class="w-full py-4 flex flex-wrap items-center justify-between gap-4 border-b border-border-hairline/40">
+        <!-- Filter Dropdowns -->
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Genre Dropdown -->
+          <div class="relative">
+            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-genre-select" onchange="applyDiscoverFilters()">
+              <option value="all">All Genres</option>
+              <option value="Action">Action &amp; Adventure</option>
+              <option value="Sci-Fi">Sci-Fi &amp; Cyberpunk</option>
+              <option value="Romance">Romance &amp; Melodrama</option>
+              <option value="Drama">Drama &amp; Laureates</option>
+              <option value="Thriller">Psychological Thriller</option>
+              <option value="Animation">Anime &amp; Animation</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
+          </div>
+
+          <!-- Audio Dubbing Dropdown -->
+          <div class="relative">
+            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-audio-select" onchange="applyDiscoverFilters()">
+              <option value="all">All Audio / Dubs</option>
+              <option value="hindi">🇮🇳 Hindi Dubbed</option>
+              <option value="tamil">🇮🇳 Tamil Dubbed</option>
+              <option value="telugu">🇮🇳 Telugu Dubbed</option>
+              <option value="english">🇺🇸 English Dubbed</option>
+              <option value="korean">🇰🇷 Korean Audio</option>
+              <option value="japanese">🇯🇵 Japanese Audio</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
+          </div>
+
+          <!-- Region Dropdown -->
+          <div class="relative">
+            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-region-select" onchange="applyDiscoverFilters()">
+              <option value="all">All Regions</option>
+              <option value="South Korea">South Korea</option>
+              <option value="India">India</option>
+              <option value="Japan">Japan</option>
+              <option value="United States">Hollywood (USA)</option>
+              <option value="France">France &amp; Europe</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Sort Control -->
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-xs text-text-muted uppercase">Sort:</span>
+          <div class="relative">
+            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-sort-select" onchange="applyDiscoverFilters()">
+              <option value="rating">Highest Rated ★</option>
+              <option value="newest">Newest Release</option>
+              <option value="title">Title (A–Z)</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
+          </div>
+        </div>
+      </div>
+
       <!-- VIEW STATE A: FILTERED GRID WORKFLOW -->
-      <div class="w-full flex flex-col lg:flex-row items-start gap-8" id="view-filtered-grid">
+      <div class="w-full mt-6 flex flex-col lg:flex-row gap-8 items-start" id="view-filtered-grid">
         <!-- LEFT SIDEBAR: Deep Filter Engine -->
         <aside class="w-full lg:w-[280px] flex-shrink-0 lg:sticky lg:top-24 space-y-6">
           <div class="bg-surface-container p-5 rounded-2xl shadow-warm-diffuse space-y-6 border border-border-hairline/60">
@@ -809,36 +826,9 @@
     </div>
 
     <!-- =======================================================================
-         SCREEN 2: HOME / TRENDING CAROUSELS (From Stitch media_1791016143409.html)
+         SCREEN 2: HOME / TRENDING CAROUSELS (Clean Cinema Browsing)
          ======================================================================= -->
     <div class="flex flex-col w-full screen-view hidden" id="screen-home">
-      <!-- Interactive View Controls Floating Inspector -->
-      <div class="w-full mb-12 p-6 rounded-[20px] bg-surface-container border border-outline-variant/30 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-        <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
-          <div class="space-y-1.5">
-            <div class="flex items-center gap-2.5">
-              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-              <span class="font-label-md text-label-md text-primary uppercase tracking-[0.08em]">Curatorial Live Engine</span>
-            </div>
-            <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-              Toggle catalogue states to inspect responsive typography, 35mm film grain elevations, quick-action overlays, and editorial shimmer dynamics.
-            </p>
-          </div>
-          <!-- State Action Pills -->
-          <div class="flex flex-wrap items-center gap-2.5">
-            <button class="px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer" id="btn-view-standard" onclick="switchState('standard')">
-              Standard Display
-            </button>
-            <button class="px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer" id="btn-view-hover" onclick="switchState('hover-showcase')">
-              Inspect Card Hover
-            </button>
-            <button class="px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer" id="btn-view-skeleton" onclick="switchState('skeletons-only')">
-              Editorial Shimmer
-            </button>
-          </div>
-        </div>
-      </div>
 
       <!-- CATEGORY FILTER STRIP (Sticky / Sub-nav with Edge Gradients) -->
       <section class="w-full sticky top-[72px] z-30 mb-12 py-3 -mx-2 px-2 backdrop-blur-md bg-surface-dim/80">
@@ -1705,29 +1695,129 @@
   </div>
 
   <!-- =========================================================================
-       CINEMA 4K PLAYER MODAL
+       CINEMA 4K PLAYER MODAL (Multi-Server, Audio Dubbing & Subtitle Sync)
        ========================================================================= -->
   <div class="player-modal" id="player-modal">
     <div class="player-container">
+      <!-- Player Header -->
       <div class="player-header">
         <div class="player-title-info">
-          <div class="playing-badge">● 4K CINEMA STREAM</div>
-          <h2 class="player-movie-title" id="player-movie-title">A Moment to Remember (2004)</h2>
+          <div class="playing-badge">● 4K CINEMA STREAM • DOLBY MULTI-AUDIO</div>
+          <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
-        <div class="player-header-actions">
-          <button class="close-player-btn" id="close-player-btn" onclick="closePlayerModal()">&times;</button>
+        <div class="flex items-center gap-3">
+          <button aria-label="Close cinema player" class="close-player-btn" id="close-player-btn" onclick="closePlayerModal()">&times;</button>
         </div>
       </div>
-      <div class="stream-servers-bar">
-        <span class="servers-label">SERVER:</span>
-        <button class="server-btn active" data-server="local">Cinexa 4K Master</button>
-        <button class="server-btn" data-server="fastcdn">FastCDN Edge</button>
-        <button class="server-btn" data-server="vidlink">VidLink HD</button>
-        <button class="server-btn" data-server="vidsrc">VidSrc Cloud</button>
+
+      <!-- 1. Stream Server Mirrors Bar -->
+      <div class="stream-control-strip">
+        <span class="strip-label">
+          <span class="material-symbols-outlined text-[14px] text-primary">dns</span>
+          <span>SERVER:</span>
+        </span>
+        <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">
+          <span>⚡ Server 1 (VidLink 4K Fast)</span>
+        </button>
+        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">
+          <span>🎧 Server 2 (Multi-Audio &amp; Dubbed)</span>
+        </button>
+        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">
+          <span>🌐 Server 3 (VidSrc CC Edge)</span>
+        </button>
+        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">
+          <span>🚀 Server 4 (AutoEmbed CDN)</span>
+        </button>
+        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">
+          <span>☁️ Server 5 (VidSrc Cloud)</span>
+        </button>
+        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="local" onclick="CinexaPlayer.switchServer('local')">
+          <span>🎞️ Server 6 (Local 4K Master)</span>
+        </button>
       </div>
+
+      <!-- 2. Audio Track & Multi-Language Dubbing Bar -->
+      <div class="stream-control-strip">
+        <span class="strip-label">
+          <span class="material-symbols-outlined text-[14px] text-secondary">graphic_eq</span>
+          <span>AUDIO DUB:</span>
+        </span>
+        <button class="player-pill-btn player-audio-btn active cursor-pointer" data-audio="original" onclick="CinexaPlayer.switchAudio('original')">
+          <span>Original Studio Audio</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="hindi" onclick="CinexaPlayer.switchAudio('hindi')">
+          <span>🇮🇳 Hindi Dubbed (हिंदी)</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="tamil" onclick="CinexaPlayer.switchAudio('tamil')">
+          <span>🇮🇳 Tamil Dubbed (தமிழ்)</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="telugu" onclick="CinexaPlayer.switchAudio('telugu')">
+          <span>🇮🇳 Telugu Dubbed (తెలుగు)</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="english" onclick="CinexaPlayer.switchAudio('english')">
+          <span>🇺🇸 English Dubbed</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="spanish" onclick="CinexaPlayer.switchAudio('spanish')">
+          <span>🇪🇸 Spanish Dubbed</span>
+        </button>
+        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="french" onclick="CinexaPlayer.switchAudio('french')">
+          <span>🇫🇷 French Dubbed</span>
+        </button>
+      </div>
+
+      <!-- 3. Subtitles & Real-Time Sync Timing Bar -->
+      <div class="stream-control-strip justify-between">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="strip-label">
+            <span class="material-symbols-outlined text-[14px] text-tertiary">subtitles</span>
+            <span>SUBTITLES:</span>
+          </span>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="off" onclick="CinexaPlayer.switchSubtitle('off')">Off</button>
+          <button class="player-pill-btn player-sub-btn active cursor-pointer" data-sub="en" onclick="CinexaPlayer.switchSubtitle('en')">English (CC)</button>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="hi" onclick="CinexaPlayer.switchSubtitle('hi')">Hindi (हिंदी)</button>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="ta" onclick="CinexaPlayer.switchSubtitle('ta')">Tamil (தமிழ்)</button>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="ko" onclick="CinexaPlayer.switchSubtitle('ko')">Korean (한국어)</button>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="es" onclick="CinexaPlayer.switchSubtitle('es')">Spanish (Español)</button>
+          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="fr" onclick="CinexaPlayer.switchSubtitle('fr')">French (Français)</button>
+        </div>
+
+        <!-- Real-Time Subtitle Sync Offset Buttons -->
+        <div class="flex items-center gap-2 pt-1 sm:pt-0">
+          <span class="font-mono text-[11px] text-text-muted uppercase tracking-wider hidden md:inline">Sync Offset:</span>
+          <button class="sync-ctrl-btn cursor-pointer" title="Delay subtitles by 0.5s if subtitles are too fast" onclick="CinexaPlayer.adjustSubtitleSync(-0.5)">
+            ⏪ -0.5s Slower
+          </button>
+          <button class="sync-ctrl-btn cursor-pointer" title="Reset subtitle sync" onclick="CinexaPlayer.adjustSubtitleSync(0)">
+            ⏱️ 0.0s
+          </button>
+          <button class="sync-ctrl-btn cursor-pointer" title="Advance subtitles by 0.5s if movie is faster" onclick="CinexaPlayer.adjustSubtitleSync(0.5)">
+            ⏩ +0.5s Faster
+          </button>
+          <span class="font-mono text-xs text-primary font-bold pl-1" id="sub-sync-indicator">0.0s (In Sync)</span>
+        </div>
+      </div>
+
+      <!-- Video Viewport -->
       <div class="video-wrapper" id="video-wrapper">
-        <iframe class="video-iframe" id="video-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; fullscreen"></iframe>
+        <iframe class="video-iframe" id="video-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
         <video class="custom-video-player" id="custom-video-player" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- Quick Helpful Guide on Player Stream -->
+      <div class="player-footer-info flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-outline">
+        <div class="flex items-center gap-3">
+          <span class="text-primary flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">verified</span>
+            <span>4K Ultra HD &amp; Multi-Audio Verified</span>
+          </span>
+          <span>•</span>
+          <span>Press <kbd class="px-1.5 py-0.5 rounded bg-surface-container border border-border-hairline text-on-surface">F</kbd> for Fullscreen</span>
+          <span>•</span>
+          <span>Press <kbd class="px-1.5 py-0.5 rounded bg-surface-container border border-border-hairline text-on-surface">ESC</kbd> to Close</span>
+        </div>
+        <div class="text-on-surface-variant">
+          If any server buffers, switch to <strong class="text-primary">Server 2 (Multi-Audio)</strong> or <strong class="text-primary">Server 1 (VidLink)</strong>.
+        </div>
       </div>
     </div>
   </div>
