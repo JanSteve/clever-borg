@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "public": true,
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/api/stream", "destination": "/api/stream.js" },
     { "source": "/api/movies", "destination": "/api/movies.js" },
