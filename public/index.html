@@ -1,910 +1,1305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Cinexa - Watch Any Movie, Anime &amp; TV Series Free in 4K UHD</title>
-  <meta name="description" content="Stream every movie, anime, and TV series in 4K Ultra HD on Cinexa. Zero subscription, instant fast streaming, multi-source servers, and direct 4K downloads.">
+  <title>Cinexa — Archival Cinema &amp; 4K World Streaming</title>
+  <meta name="description" content="Stream rare 35mm restorations, international festival masterpieces, and contemporary world cinema in 4K UHD. Curated archives, zero subscription.">
   <meta name="theme-color" content="#09151a">
+  
+  <!-- Google Fonts: Newsreader, Fraunces, Manrope, Courier Prime, DM Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Manrope:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <!-- Custom Design System Styles -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/player.css">
+  
   <!-- Monetag MultiTag Official Monetization Script (Zone 290025) -->
   <script src="https://quge5.com/88/tag.min.js" data-zone="290025" async data-cfasync="false"></script>
-  <!-- Structured Schema Data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Cinexa",
-    "alternateName": "Cinexa 4K Cinema Network",
-    "url": "https://cinexa.stream",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://cinexa.stream/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
 </head>
 <body class="film-grain">
-  <!-- Film Perforation Decorative Edge (Art-House Editorial) -->
+  <!-- Film Perforation Decorative Edge -->
   <div class="film-strip-border"></div>
+
   <!-- =========================================================================
-       Site Header / Navigation Bar (Cinexa Global 4K Platform)
+       TOP STICKY NAVBAR (Art-House Editorial Architecture)
        ========================================================================= -->
-  <header class="site-header">
+  <header class="site-header" id="global-navbar">
     <div class="nav-left">
-      <a class="brand-logo" id="nav-logo" href="#" title="Cinexa 4K Cinema">
-        <div class="logo-icon cinexa">
-          <span class="logo-letter">C</span>
+      <a class="brand-logo" id="nav-logo" data-navigate="home" title="Cinexa 4K Cinema">
+        <div class="brand-aperture-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ecc077" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m14.31 8 5.74 9.94"></path>
+            <path d="M9.69 8h11.48"></path>
+            <path d="m7.38 12 5.74-9.94"></path>
+            <path d="M9.69 16 3.95 6.06"></path>
+            <path d="M14.31 16H2.83"></path>
+            <path d="m16.62 12-5.74 9.94"></path>
+          </svg>
         </div>
-        <div class="logo-text">CINE<span class="cinexa-gradient">XA</span></div>
-        <span class="brand-sub-badge">4K ULTRA</span>
+        <span class="brand-wordmark">
+          CINEXA<span class="brand-dot"></span>
+        </span>
       </a>
+
+      <!-- Desktop Editorial Nav Links -->
       <ul class="nav-links">
-        <li><a class="nav-link active" id="nav-home-link" href="#">Home</a></li>
-        <li><a class="nav-link" href="#catalog-container" data-tab="blockbusters">Blockbusters</a></li>
-        <li><a class="nav-link" href="#catalog-container" data-tab="indian">Indian Cinema</a></li>
-        <li><a class="nav-link" href="#catalog-container" data-tab="anime">Anime</a></li>
-        <li><a class="nav-link" href="#catalog-container" data-tab="world">World Cinema</a></li>
-        <li><a class="nav-link" href="#catalog-container" data-tab="upcoming">2024–2026</a></li>
+        <li><a class="nav-link active" data-navigate="home">Trending</a></li>
+        <li><a class="nav-link" data-navigate="discover">Discover</a></li>
+        <li><a class="nav-link" id="nav-genres-trigger">Genres</a></li>
+        <li><a class="nav-link" data-filter="world">World Cinema</a></li>
+        <li><a class="nav-link" data-filter="upcoming">New Releases</a></li>
+        <li><a class="nav-link" data-navigate="library">My Library</a></li>
       </ul>
     </div>
 
     <div class="nav-right">
-      <!-- Search Box with Live Dropdown Preview -->
-      <div class="search-box-container">
-        <div class="search-box">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search movies, series, actors..." autocomplete="off">
-          <button id="search-clear-btn" class="search-clear-btn" style="display: none;">&times;</button>
-          <span class="search-kbd-hint">⌘K</span>
+      <!-- Search Bar Trigger (Opens ⌘K Palette) -->
+      <button class="header-search-trigger" id="header-search-btn" title="Open Global Command Search">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">search</span>
+          <span style="color: var(--text-secondary);">Search films, directors...</span>
         </div>
-        <!-- Live Instant Search Results Popup -->
-        <div id="search-results-popup" class="search-results-popup"></div>
-      </div>
+        <span class="kbd-badge">⌘K</span>
+      </button>
 
-      <!-- VIP Account Profile Dropdown (Cinexa Look) -->
-      <div class="user-profile-menu">
-        <div class="profile-trigger" id="profile-trigger" title="Cinexa VIP Account">
-          <div class="profile-avatar">VIP</div>
-          <span class="profile-plan-badge">4K HDR</span>
-        </div>
-        <div class="profile-dropdown" id="profile-dropdown">
-          <div class="dropdown-header">
-            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Cinexa VIP Member</div>
-            <div style="font-size: 11px; color: #00f2fe; margin-top: 2px;">● Connected • FastCDN 4K Edge</div>
-          </div>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#catalog-container">My Library &amp; Watchlist</a>
-          <a class="dropdown-item" href="#catalog-container">Subtitle Preferences</a>
-          <a class="dropdown-item" href="#catalog-container">CDN Network Status (0ms)</a>
-          <div class="dropdown-divider"></div>
-          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Cluster: Cinexa Global Edge (Tokyo / US / EU)</div>
-        </div>
+      <!-- Notification Bell with Unread Dot -->
+      <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
+        <span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+        <span class="notification-dot"></span>
+      </button>
+
+      <!-- VIP Profile Avatar with Brass Ring -->
+      <div class="user-avatar-btn" id="profile-avatar-trigger" title="Cinexa VIP Account">
+        <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
       </div>
     </div>
   </header>
 
-  <!-- Google Ads / Monetization Unit 1: Top Leaderboard Banner (728x90 Responsive) -->
-  <div class="ad-banner-container" id="ad-header-banner">
-    <div class="ad-badge">SPONSORED ADVERTISEMENT</div>
-    <div class="ad-slot-wrapper">
-      <div class="ad-placeholder-content">
-        <span class="ad-brand-icon">⚡</span>
-        <div class="ad-text-group">
-          <div class="ad-title">Stream Any Movie Securely &amp; Anonymously in 4K HDR</div>
-          <div class="ad-desc">Bypass ISP throttling &bull; Ultra-fast streaming speeds &bull; 30-Day Risk-Free Guarantee</div>
+  <!-- =========================================================================
+       SCREEN 1: HOME / TRENDING VIEW (#view-home)
+       ========================================================================= -->
+  <section class="app-view active-view" id="view-home">
+    <!-- Pull To Refresh Mock Indicator -->
+    <div class="ptr-indicator" id="ptr-indicator">
+      <span class="material-symbols-outlined ptr-spinner">motion_photos_on</span>
+      <span>Refreshing curated feed...</span>
+    </div>
+
+    <!-- Cinematic Hero Spotlight (5-Movie Live Rotator) -->
+    <section class="hero-spotlight" id="hero-spotlight-section">
+      <img class="hero-backdrop-img" id="hero-bg-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-MC-h5lk7YkD5MNIiSZ-1aG4s_CyLuC6rBB6Jt-5lk6-gnpF51DoOlYkcvQfQcMYnxTd7Zvks3VbvFCalX-rVrZ8WeMmNb7jTyEI3iJl1Yt1uhpVf8HS36J7_pye-7LOqeRW7AfPb6eoB8E2svbB_77hO4iX9Zqwq_ucz9x6HqUXFjXl413chiVyIIAzdeRI11RY--zmV8OnL5roAXHlQESvssuTDwSo3DdWpgiu6QS-HMML58BEflA" alt="Featured Cinema">
+      <div class="hero-scrim-top"></div>
+      <div class="hero-scrim-bottom"></div>
+
+      <!-- Floating Film Festival Monogram Badge -->
+      <div class="hero-festival-badge" id="hero-festival-badge">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--secondary);"></span>
+        <span id="hero-badge-text">Cannes 2024 Selection</span>
+      </div>
+
+      <!-- Hero Content Cluster -->
+      <div class="hero-content-cluster">
+        <div class="hero-eyebrow" id="hero-eyebrow-text">
+          Featured Tonight • 35mm Restoration
         </div>
-        <a href="https://nordvpn.com" target="_blank" rel="noopener noreferrer" class="ad-cta-btn">Claim 70% Discount &rarr;</a>
+        <h1 class="hero-display-title" id="hero-display-title">
+          Dune: Part Two
+        </h1>
+        <div class="hero-meta-strip" id="hero-meta-strip">
+          <span class="meta-score"><span class="material-symbols-outlined" style="font-size: 15px; font-variation-settings: 'FILL' 1;">star</span> <span id="hero-score-val">8.6</span></span>
+          <span style="color: var(--outline-variant);">•</span>
+          <span id="hero-year-val">2024</span>
+          <span style="color: var(--outline-variant);">•</span>
+          <span id="hero-runtime-val">2h 46m</span>
+          <span style="color: var(--outline-variant);">•</span>
+          <span class="meta-pill" id="hero-age-val">PG-13</span>
+          <span style="color: var(--outline-variant);">•</span>
+          <span class="meta-pill-sage" id="hero-format-val">4K IMAX</span>
+        </div>
+
+        <!-- Action Cluster -->
+        <div class="hero-actions">
+          <button class="btn-hero-primary" id="btn-hero-play-action">
+            <span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span>Watch Trailer</span>
+          </button>
+          <button class="btn-hero-circle" id="btn-hero-watchlist-action" aria-label="Add to Watchlist" title="Save to Watchlist">
+            <span class="material-symbols-outlined" id="hero-bookmark-icon" style="font-size: 20px;">bookmark_add</span>
+          </button>
+          <button class="btn-hero-circle" id="btn-hero-info-action" aria-label="Film Details" title="View Full Dossier">
+            <span class="material-symbols-outlined" style="font-size: 20px;">info</span>
+          </button>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="hero-pagination-dots" id="hero-dots-container">
+          <span class="hero-dot active" data-index="0"></span>
+          <span class="hero-dot" data-index="1"></span>
+          <span class="hero-dot" data-index="2"></span>
+          <span class="hero-dot" data-index="3"></span>
+          <span class="hero-dot" data-index="4"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Genre / Curated Category Filter Strip -->
+    <nav class="category-filter-strip" id="category-filter-strip">
+      <button class="tab-chip active" data-tab="all">Curated All</button>
+      <button class="tab-chip" data-tab="blockbusters">Blockbusters</button>
+      <button class="tab-chip" data-tab="world">World Cinema</button>
+      <button class="tab-chip" data-tab="auteur">Auteur &amp; Indie</button>
+      <button class="tab-chip" data-tab="scifi">Science Fiction</button>
+      <button class="tab-chip" data-tab="restorations">Restorations</button>
+      <button class="tab-chip" data-tab="4k">4K Master</button>
+    </nav>
+
+    <!-- Content Section 1: Trending This Week -->
+    <section class="editorial-section">
+      <div class="section-header-block">
+        <div>
+          <span class="section-kicker">Curator's Ledger</span>
+          <h2 class="section-headline">Trending This Week</h2>
+        </div>
+        <a class="section-view-all" data-navigate="discover">
+          <span>View all</span>
+          <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Horizontal Film Reel -->
+      <div class="film-reel-scroller">
+        <!-- Card 1 -->
+        <div class="reel-card" data-slug="oppenheimer">
+          <div class="poster-frame">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkMv40JZ4AesNv90iHIKZok5fd242hTID6RcvhHG71fOu_9Hz4n8iCOfK4DXKmVNLchc51kwjB8Xd6mynQ74tMa-3XxwpoWzePizsmfuJwQs4QTv1FMefwIIwbdTjTFldwRKRWBorldnAhbpanskCfxppRmoIbbshdUIyJ713CgkA9Y82jpqSoTClU-h35YHwCfGMMUogPG7fxjRXE_o9V8brO3svkHPbCnXS5a076XWytkIcRQKP9g" alt="Oppenheimer">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left">R</span>
+            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
+            <div class="poster-bottom-bar">
+              <span class="poster-accolade">35mm</span>
+              <span class="poster-rating">★ 8.9</span>
+            </div>
+          </div>
+          <div class="card-title-line">Oppenheimer</div>
+          <div class="card-sub-line">2023 • Christopher Nolan</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reel-card" data-slug="poor-things">
+          <div class="poster-frame">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsV6AknYsRaJ0IxxbnYrmeEqsLhuo-rAiBJPq8h43ZQOsh6XNBiCKkdgT0tHI1Yr1GBHKR3m3qBlE9yBTEhieeRlLYbt1B-cBwxAd1qg-0iUnkVGedR4x1tcQ4Rtl_jyYWFQKLzGJgcTJdpqQYFYNg0VXoOkq8vdUO28-YQV-8asdWDW7HCFVtlR9XG4u4gktUdyhscQ4DsZBsxcJ8jUx07OYUSUHhw_XT2VqOfn9WlpwIJLkMSyY6KQ" alt="Poor Things">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left">R</span>
+            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
+            <div class="poster-bottom-bar">
+              <span class="poster-accolade" style="color: var(--secondary);">Golden Lion</span>
+              <span class="poster-rating">★ 8.2</span>
+            </div>
+          </div>
+          <div class="card-title-line">Poor Things</div>
+          <div class="card-sub-line">2023 • Yorgos Lanthimos</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="reel-card" data-slug="anatomy-of-a-fall">
+          <div class="poster-frame">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqp1TloYON5sn7HHwhf5n1qnUMHEv3Wo02qm31YrLK6zcV2KdKtm3XjV9fDJuqZWM02MqTnbnzGI5I0xd2HFLfhqPZ26ZcLkmkn0u3l5f_Qlt4E-e7bZ7DExoIzWZ_ls5P0wRN2DaO4f99fxuyMwZuODzzIomC8qWZTdj2--FDLZYvaqLvqyZFxk0KfO8Gux3C47ZGRsk7vcF1RIMHX8DvCQl7mYdttIUajWdIru1fgR5osBv4R4Pd-w" alt="Anatomy of a Fall">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left">15</span>
+            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
+            <div class="poster-bottom-bar">
+              <span class="poster-accolade">Palme d'Or</span>
+              <span class="poster-rating">★ 7.9</span>
+            </div>
+          </div>
+          <div class="card-title-line">Anatomy of a Fall</div>
+          <div class="card-sub-line">2023 • Justine Triet</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="reel-card" data-slug="perfect-days">
+          <div class="poster-frame">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCxcRvIMPOf6oqh6BiNQwzLX8p0WBUJypwyBEonVtw0xWcj32FfQ52g73xdtajpXkPxin2GAxI6NICD64dObUnS7dPLu1TVX11dNxImxgTQ6HxZewMlvKqShjZCBPca4PY_Pib3ZrbnHsebd92jLFqy7ePhLpbx2GX8PsTm7xYb3XAYYK-w5_yVuDw_Bmx0J1QtVuSnICPDox7gQNJeZyUJHuEuv4eQilTW07YlEN9uj6qhCNbqc5gYw" alt="Perfect Days">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left">PG</span>
+            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
+            <div class="poster-bottom-bar">
+              <span class="poster-accolade">Auteur</span>
+              <span class="poster-rating">★ 8.0</span>
+            </div>
+          </div>
+          <div class="card-title-line">Perfect Days</div>
+          <div class="card-sub-line">2023 • Wim Wenders</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Spotlight Banner / Curator Insight -->
+    <div class="editorial-article-banner" id="editorial-banner">
+      <div class="article-banner-header">
+        <div class="article-category-badge">
+          <span class="material-symbols-outlined" style="font-size: 16px;">auto_stories</span>
+          <span>Cinematheque Editorial</span>
+        </div>
+        <span class="article-read-time">5 min read</span>
+      </div>
+      <h3 class="article-headline">
+        The Geometry of Desert Light: How Greig Fraser Framed Arrakis
+      </h3>
+      <p class="article-excerpt">
+        An exclusive technical breakdown of custom infrared optics and large-format digital sensors adapted to capture daylight harshness across Jordan and Abu Dhabi.
+      </p>
+      <div class="article-footer">
+        <div class="author-chip">
+          <div class="author-initials">ES</div>
+          <span>Elena S. • Head Archivist</span>
+        </div>
+        <button class="btn-read-piece" id="btn-read-editorial">Read Piece</button>
       </div>
     </div>
-  </div>
 
-  <!-- =========================================================================
-       Main Home View (Billboard & Curated World Cinema Rows)
-       ========================================================================= -->
-  <div id="home-view">
-    <!-- Billboard Hero Section (Featuring Dune: Part Two) -->
-    <section id="hero-banner" class="hero-banner" style="background-image: linear-gradient(180deg, rgba(11, 12, 16, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%), url('/api/backdrop/dune-part-two');">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div id="hero-eyebrow" class="hero-eyebrow">
-          <span class="hero-badge-pill">
-            <span class="badge-pulse"></span> #1 GLOBAL BLOCKBUSTER
-          </span>
-          <span class="meta-badge uhd">4K IMAX ENHANCED</span>
-          <span class="hero-badge-pill" style="background: rgba(130, 86, 208, 0.2); border-color: rgba(130, 86, 208, 0.6); color: #c084fc;">★ 6X ACADEMY AWARD WINNER</span>
+    <!-- Content Section 2: Top 10 in World Cinema (Ranked Carousel) -->
+    <section class="editorial-section">
+      <div class="section-header-block">
+        <div>
+          <span class="section-kicker">Global Canon</span>
+          <h2 class="section-headline">Top 10 in World Cinema</h2>
         </div>
-        <h1 id="hero-title" class="hero-title">Dune: Part Two</h1>
-        <div id="hero-meta" class="hero-meta">
-          <div class="rating-star-badge" style="padding: 2px 8px; font-size: 12px;">★ 8.6</div>
-          <span class="meta-match">99% Match</span>
-          <span>2024</span>
-          <span id="hero-age-badge" class="meta-badge">13+</span>
-          <span>2h 46m</span>
-          <span class="meta-badge uhd">Dolby Atmos</span>
-        </div>
-        <p id="hero-synopsis" class="hero-synopsis">
-          Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.
-        </p>
-        <div class="hero-actions">
-          <button id="btn-hero-play" class="btn-play-hero">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Play 4K
-          </button>
-          <button id="btn-hero-preview" class="btn-secondary-hero">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-            </svg>
-            Movie Details
-          </button>
-          <button id="btn-hero-download" class="btn-secondary-hero btn-hero-dl" title="Direct 4K Master Download">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-            </svg>
-            Download 4K
-          </button>
-          <button id="btn-hero-watchlist" class="btn-secondary-hero">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-            My List
-          </button>
-        </div>
+        <a class="section-view-all" data-navigate="discover">
+          <span>Explore all</span>
+          <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+        </a>
       </div>
 
-      <!-- Hero Featured Carousel Switcher (Stitch Luxury Layout) -->
-      <div class="hero-carousel-nav" id="hero-carousel-nav">
-        <div class="hero-nav-item active" data-hero-id="dune-part-two">
-          <div class="hero-nav-progress"></div>
-          <span class="hero-nav-num">01</span>
-          <div class="hero-nav-info">
-            <div class="hero-nav-title">Dune: Part Two</div>
-            <div class="hero-nav-meta">4K IMAX &bull; 2024</div>
+      <!-- Ranked Cards Slider -->
+      <div class="film-reel-scroller">
+        <!-- Rank #1 -->
+        <div class="ranked-card" data-slug="drive-my-car">
+          <span class="rank-numeral">1</span>
+          <div class="ranked-poster-box">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADgXvxTRcPpfv72kYQg3oJfnlBl6FbycpgRmLdVUo-xaETF0Q6OB5cnuSyDTlI7KPlK-SEDoAJsXb3D7ynKp6YImvgz9jAHbhGwCz4CYJk29vl7ZOfCwO3J_7wp2qjOYw-rGE8U-S0xOGLVNr4T3uSOjpSysw3uJeYR6Q3XBIUZss_qP4pihnQzkiol2V_cGXhYELVtmvEGHSLfLJ4HqSDcXOQmrHxXJVtWeAPHmGrpNMUeGXqZ4xIyw" alt="Drive My Car">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left" style="color: var(--secondary);">Japan</span>
+            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
+              <span class="card-title-line" style="font-size: 12.5px;">Drive My Car</span>
+              <span class="card-sub-line">Ryusuke Hamaguchi</span>
+            </div>
           </div>
         </div>
-        <div class="hero-nav-item" data-hero-id="kalki-2898-ad">
-          <div class="hero-nav-progress"></div>
-          <span class="hero-nav-num">02</span>
-          <div class="hero-nav-info">
-            <div class="hero-nav-title">Kalki 2898 AD</div>
-            <div class="hero-nav-meta">Sci-Fi Epic &bull; 2024</div>
+
+        <!-- Rank #2 -->
+        <div class="ranked-card" data-slug="the-zone-of-interest">
+          <span class="rank-numeral">2</span>
+          <div class="ranked-poster-box">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPMn3o3ket5y3G-43nTELc7Xo5EPTJo1uwer48BZE-DHdlCtTKjyRGnZgUw4I9EB6P7a0fWK9fBazFzBIBw1yg9sDDC9AHk00n0WC50C96T7nZCzEKooF-I7ImsuZ7SLlATLEN7iy9kXtBu7KPhd0-ksWYl2VtKqq36863C5nsdhTQImDx9CvX3GU5egPLR6X1jHHev9yWsdQSQsUV_DiQJvZhpn4t0olnNouRbk_PELLpnTku9ttUrg" alt="The Zone of Interest">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left" style="color: var(--tertiary);">UK</span>
+            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
+              <span class="card-title-line" style="font-size: 12.5px;">The Zone of Interest</span>
+              <span class="card-sub-line">Jonathan Glazer</span>
+            </div>
           </div>
         </div>
-        <div class="hero-nav-item" data-hero-id="oppenheimer">
-          <div class="hero-nav-progress"></div>
-          <span class="hero-nav-num">03</span>
-          <div class="hero-nav-info">
-            <div class="hero-nav-title">Oppenheimer</div>
-            <div class="hero-nav-meta">Oscar Winner &bull; 2023</div>
+
+        <!-- Rank #3 -->
+        <div class="ranked-card" data-slug="past-lives">
+          <span class="rank-numeral">3</span>
+          <div class="ranked-poster-box">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8KbkCHDehCMOk6Imf6VokPlpl0MSeb4orkJCDybSAyC-0BDFxM6MsFfU3cZqfwW8-bcTxianyWQUvGMO6yUbZJ3SjRKKq2iJPlyoEWKGYriu8sP1zOsJ4QgmnZm7p4yhExGalCHDmgTdxakuBL0znrEfRvtuGtF3-5zB6XI5MKjv1ewib5_5STVWIUh3P5wVijloY1kg7tpajrlD9x50q41DdfWeZr7rrz8dXsxKn0Q7moj1wpGEz8A" alt="Past Lives">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left" style="color: var(--secondary);">USA / Korea</span>
+            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
+              <span class="card-title-line" style="font-size: 12.5px;">Past Lives</span>
+              <span class="card-sub-line">Celine Song</span>
+            </div>
           </div>
         </div>
-        <div class="hero-nav-item" data-hero-id="spider-man-across-the-spider-verse">
-          <div class="hero-nav-progress"></div>
-          <span class="hero-nav-num">04</span>
-          <div class="hero-nav-info">
-            <div class="hero-nav-title">Across The Spider-Verse</div>
-            <div class="hero-nav-meta">4K Animation &bull; 2023</div>
-          </div>
-        </div>
-        <div class="hero-nav-item" data-hero-id="demon-slayer-hashira-training">
-          <div class="hero-nav-progress"></div>
-          <span class="hero-nav-num">05</span>
-          <div class="hero-nav-info">
-            <div class="hero-nav-title">Demon Slayer</div>
-            <div class="hero-nav-meta">Hashira Arc &bull; 2024</div>
+
+        <!-- Rank #4 -->
+        <div class="ranked-card" data-slug="decision-to-leave">
+          <span class="rank-numeral">4</span>
+          <div class="ranked-poster-box">
+            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPpBOydCvgzTSlZuzLpIgfwQ67D1vnUqKvj6JU3h6rZW2uWHjfFoJKz_Q6DATPW6wTkZb2c4SLaSGPE2UR1gNBJxfXGxzSCT1dqfk3UbeWOT6Ze1gg8dmsrbHkIVpkzJ0WcACrCTn07klKAxDGt50osBqBHVyEYjXjXwhryIO9yWwy1HLAsDWHMiLEhf6GidIfqtIbFQv-F3U5QJz2rtHon3iEcDJgc93dMHAtoQzpYXMKcmXojdVrrA" alt="Decision to Leave">
+            <div class="poster-overlay-gradient"></div>
+            <span class="poster-tag-top-left" style="color: var(--primary);">Korea</span>
+            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
+              <span class="card-title-line" style="font-size: 12.5px;">Decision to Leave</span>
+              <span class="card-sub-line">Park Chan-wook</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Curated World Cinema Rows -->
-    <main class="catalog-section">
-      <div class="catalog-nav">
-        <div class="category-tabs">
-          <button class="tab-btn active" data-category="all">All Movies</button>
-          <button class="tab-btn" data-category="blockbusters">🌍 Global Blockbusters</button>
-          <button class="tab-btn" data-category="indian">🇮🇳 Indian Cinema</button>
-          <button class="tab-btn" data-category="anime">⛩️ Anime &amp; Animation</button>
-          <button class="tab-btn" data-category="world">🇪🇸 World &amp; European</button>
-          <button class="tab-btn" data-category="upcoming">⚡ 2024–2026 Releases</button>
-          <button class="tab-btn" data-category="romance">💖 Romance &amp; Drama</button>
-          <button class="tab-btn" data-category="thriller">🎬 Action &amp; Thrillers</button>
-        </div>
-        <div class="catalog-info-tag">
-          <span style="color: #06b6d4; font-weight: 700;">● NovaEdge FastCDN • 4K UHD</span>
+    <!-- Comprehensive Main Catalog Grid (All 159+ Films) -->
+    <section class="editorial-section" id="home-catalog-section">
+      <div class="section-header-block" style="margin-bottom: 8px;">
+        <div>
+          <span class="section-kicker">Vault Archive</span>
+          <h2 class="section-headline" id="home-catalog-title">Global Cinematic Catalog</h2>
         </div>
       </div>
-
-      <!-- Movie Rows Container -->
       <div id="catalog-container"></div>
-    </main>
-  </div>
+    </section>
+  </section>
 
   <!-- =========================================================================
-       Cineby-Style Dedicated Movie Preview Page (Exact Cineby Layout)
+       SCREEN 2: DISCOVER / FILTER DIRECTORY VIEW (#view-discover)
        ========================================================================= -->
-  <section id="preview-page-view" class="preview-page-view">
-    <!-- Breadcrumbs Bar -->
-    <div class="preview-breadcrumbs-bar">
-      <div class="breadcrumbs">
-        <a class="breadcrumb-link" id="bc-home">Home</a>
-        <span class="breadcrumb-separator">/</span>
-        <a class="breadcrumb-link" id="bc-category">Movies</a>
-        <span class="breadcrumb-separator">/</span>
-        <span class="breadcrumb-current" id="bc-title">A Moment to Remember (2004)</span>
+  <section class="app-view" id="view-discover">
+    <div class="discover-header-block">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h1 class="section-headline" style="font-size: clamp(26px, 4vw, 36px);">Discover</h1>
+        <span class="edition-badge">Edition 04</span>
       </div>
-      <button id="btn-back-browse" class="btn-back-catalog">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-        </svg>
-        <span>Back to Browse</span>
+      <p style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.08em;">
+        Curated Archival Catalogue
+      </p>
+    </div>
+
+    <!-- Discover Control Bar -->
+    <div class="discover-controls-bar">
+      <button class="btn-filter-drawer-trigger" id="openFilterBtn">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">tune</span>
+        <span>Filters</span>
+        <span class="badge-count" id="activeFilterCountBadge">3</span>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="btn-filter-drawer-trigger" id="sortDropdownBtn">
+          <span style="color: var(--text-secondary);">Sort:</span>
+          <span style="color: var(--primary);" id="sortLabel">Curator's</span>
+          <span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
+        </button>
+
+        <!-- Grid vs List Layout Toggles -->
+        <div style="display: flex; align-items: center; background: var(--bg-surface-highest); border-radius: 9999px; padding: 2px;">
+          <button class="icon-btn" id="viewGridBtn" style="width: 34px; height: 34px; color: var(--primary);" title="Grid View">
+            <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+          </button>
+          <button class="icon-btn" id="viewListBtn" style="width: 34px; height: 34px; color: var(--text-secondary);" title="List View">
+            <span class="material-symbols-outlined" style="font-size: 18px;">view_agenda</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filter Chips Row -->
+    <div class="active-filter-chips-row" id="active-chips-container">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--outline); text-transform: uppercase; margin-right: 4px;" id="discover-film-count-label">48 Films</span>
+      <div class="filter-chip-pill">
+        <span style="color: var(--primary);">Korean Melodrama</span>
+        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
+      </div>
+      <div class="filter-chip-pill">
+        <span style="color: var(--primary);">1990s–2000s</span>
+        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
+      </div>
+      <div class="filter-chip-pill">
+        <span style="color: var(--tertiary);">Stream Only</span>
+        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
+      </div>
+      <button style="background: transparent; border: none; font-family: var(--font-mono); font-size: 11px; color: var(--outline); cursor: pointer; text-transform: uppercase;" id="clearAllFiltersBtn">
+        Clear all
       </button>
     </div>
 
-    <!-- Backdrop Hero -->
-    <div id="preview-backdrop" class="preview-backdrop-wrapper">
-      <div class="preview-backdrop-overlay"></div>
+    <!-- Interactive State Switcher Deck -->
+    <div class="state-switcher-deck">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+        <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-primary);">Curatorial Directory Mode</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="state-btn active" id="btn-state-grid">1. Filtered Grid</button>
+        <button class="state-btn" id="btn-state-genres">2. Genre Tiles</button>
+        <button class="state-btn" id="btn-state-drawer">3. Filters Sheet</button>
+      </div>
+    </div>
 
-      <div class="preview-container">
-        <!-- Left: Poster & Quick Specs -->
-        <div class="preview-poster-col">
-          <div class="preview-poster-card">
-            <img id="preview-poster-img" class="preview-poster-img" src="/api/poster/15859" alt="Movie Poster">
-            <div class="preview-poster-badges">
-              <span id="preview-poster-uhd" class="catalog-pill" style="background:#e50914; color:#fff; font-weight:800;">4K REMASTERED</span>
-              <span id="preview-poster-rating" class="catalog-pill pill-18">18+</span>
-            </div>
-          </div>
+    <!-- Filtered Catalog Grid -->
+    <div class="discover-catalog-grid" id="discover-catalog-grid">
+      <!-- Dynamic posters rendered via app.js -->
+    </div>
 
-          <!-- Spec Card -->
-          <div class="preview-spec-card">
-            <div class="spec-item">
-              <span class="spec-label">Rating:</span>
-              <span class="spec-val" id="spec-rating">★ 8.1 (IMDb)</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Release Date:</span>
-              <span class="spec-val" id="spec-release">November 5, 2004</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Runtime:</span>
-              <span class="spec-val" id="spec-runtime">2h 24m (144 min)</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Country:</span>
-              <span class="spec-val" id="spec-country">South Korea</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Audio:</span>
-              <span class="spec-val" id="spec-audio">Korean (Dolby 5.1)</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Production:</span>
-              <span class="spec-val" id="spec-studio">CJ Entertainment / Sidus</span>
-            </div>
+    <!-- Genre Tiles Landing State (Switchable) -->
+    <div class="genre-tiles-grid" id="discover-genre-tiles" style="display: none;">
+      <div class="genre-tile-card" data-genre-select="French New Wave">
+        <div class="tile-glow" style="background: rgba(236, 192, 119, 0.15);"></div>
+        <div>
+          <span class="article-category-badge">Movement • 1958–1968</span>
+          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">French New Wave</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Godard, Truffaut, Rohmer, Varda radical jump-cuts and location shooting.</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">28 FILMS RESTORED →</span>
+      </div>
+
+      <div class="genre-tile-card" data-genre-select="Neo-Noir">
+        <div class="tile-glow" style="background: rgba(255, 181, 161, 0.15);"></div>
+        <div>
+          <span class="article-category-badge" style="color: var(--secondary);">Discipline • Midnight</span>
+          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Neo-Noir &amp; Crime</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Rain-drenched asphalt, moral ambiguity, and high-contrast anamorphic shadows.</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--secondary);">44 FILMS IN VAULT →</span>
+      </div>
+
+      <div class="genre-tile-card" data-genre-select="Italian Neorealism">
+        <div class="tile-glow" style="background: rgba(177, 205, 187, 0.15);"></div>
+        <div>
+          <span class="article-category-badge" style="color: var(--tertiary);">Movement • 1943–1954</span>
+          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Italian Neorealism</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">De Sica, Rossellini, Visconti unvarnished humanist post-war chronicles.</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--tertiary);">19 ARCHIVAL PRINTS →</span>
+      </div>
+
+      <div class="genre-tile-card" data-genre-select="Korean Melodrama">
+        <div class="tile-glow" style="background: rgba(236, 192, 119, 0.15);"></div>
+        <div>
+          <span class="article-category-badge">Retrospective • 1998–2006</span>
+          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Korean Golden Melodrama</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Heartbreaking romance, intimate umbrella scenes, and bittersweet memory loss.</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">16 MASTER PRINTS →</span>
+      </div>
+    </div>
+
+    <!-- Floating Back to Top Button -->
+    <button class="icon-btn" id="backToTopBtn" style="position: fixed; bottom: 80px; right: 20px; width: 44px; height: 44px; background: var(--bg-surface-highest); border: 1px solid var(--border-hairline); box-shadow: var(--shadow-diffuse); z-index: 40;" title="Back to Top">
+      <span class="material-symbols-outlined" style="font-size: 20px; color: var(--primary);">arrow_upward</span>
+    </button>
+  </section>
+
+  <!-- =========================================================================
+       SCREEN 3: MY LIBRARY / ARCHIVAL VAULT VIEW (#view-library)
+       ========================================================================= -->
+  <section class="app-view" id="view-library">
+    <!-- View State Switcher (Library View vs Search Overlay vs Empty State) -->
+    <div style="padding: 12px 24px 8px 24px; display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none;">
+      <button class="state-btn active" id="lib-switch-main" onclick="switchLibrarySubView('main')">Library View</button>
+      <button class="state-btn" id="lib-switch-search" onclick="openSearchPalette()">Search Overlay</button>
+      <button class="state-btn" id="lib-switch-empty" onclick="switchLibrarySubView('empty')">Empty State</button>
+    </div>
+
+    <!-- Library Main Sub-view -->
+    <div class="library-view-container" id="lib-subview-main">
+      <div class="library-header">
+        <div>
+          <span class="section-kicker">Cinexa Archive</span>
+          <h1 class="section-headline" style="font-size: clamp(24px, 3.5vw, 32px);">My Library</h1>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
+            42 FILMS TRACKED • <span style="color: var(--tertiary);">35MM • ARCHIVAL</span>
           </div>
         </div>
+        <div style="display: flex; align-items: center; background: var(--bg-surface-highest); border-radius: 9999px; padding: 2px;">
+          <button class="icon-btn" id="lib-view-list" style="width: 34px; height: 34px; color: var(--primary);" title="List Layout">
+            <span class="material-symbols-outlined" style="font-size: 18px;">view_list</span>
+          </button>
+          <button class="icon-btn" id="lib-view-grid" style="width: 34px; height: 34px; color: var(--text-secondary);" title="Grid Layout">
+            <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+          </button>
+        </div>
+      </div>
 
-        <!-- Right: Title, Actions, Storyline, Cast -->
-        <div class="preview-details-col">
+      <!-- 2x2 Bento Stats Grid -->
+      <div class="stats-bento-grid">
+        <div class="bento-stat-card">
+          <div class="stat-header">
+            <span>Films Seen</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">theaters</span>
+          </div>
+          <div class="stat-value">148</div>
+          <div class="stat-sub">↑ 12 this month</div>
+        </div>
+
+        <div class="bento-stat-card">
+          <div class="stat-header">
+            <span>Hours Logged</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">schedule</span>
+          </div>
+          <div class="stat-value">312<span style="font-size: 16px; color: var(--text-secondary);">h</span></div>
+          <div class="stat-sub" style="color: var(--text-secondary);">14 curatorial archives</div>
+        </div>
+
+        <div class="bento-stat-card">
+          <div class="stat-header">
+            <span>Top Genre</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--secondary);">local_fire_department</span>
+          </div>
+          <div class="stat-value" style="font-size: 22px;">Melodrama</div>
+          <div class="stat-sub" style="color: var(--secondary);">28% of collection</div>
+        </div>
+
+        <div class="bento-stat-card">
+          <div class="stat-header">
+            <span>Avg Rating</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary); font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <div class="stat-value" style="color: var(--primary);">4.2<span style="font-size: 14px; color: var(--text-secondary);">/5.0</span></div>
+          <div class="stat-sub" style="color: var(--text-secondary);">86 titles reviewed</div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div style="display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-hairline); margin-bottom: 20px; padding-bottom: 10px; overflow-x: auto; scrollbar-width: none;">
+        <button class="nav-link active" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="watchlist">
+          <span>Watchlist</span>
+          <span style="padding: 1px 6px; border-radius: 9999px; background: rgba(236, 192, 119, 0.2); color: var(--primary); font-family: var(--font-mono); font-size: 10px;">42</span>
+        </button>
+        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="seen">
+          <span>Seen</span>
+          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">148</span>
+        </button>
+        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="favorites">
+          <span>Favorites</span>
+          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">24</span>
+        </button>
+        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="lists">
+          <span>Lists</span>
+          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">6</span>
+        </button>
+      </div>
+
+      <!-- High-Density Archival List -->
+      <div class="archival-list-container" id="library-list-container">
+        <!-- Item 1: A Moment to Remember -->
+        <article class="archival-list-row" data-slug="a-moment-to-remember">
+          <div class="list-poster-thumb">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoLI_NKvH2amzJDaJpiaTG6XAcxNfUojUElx7hzfNUeurf_107bygHa1btQxL4ktY1QkPbly0rLdZKRV0TpfnUb1d05MFHSEN_WgckXsQ4INOC6fPysnOyM9GO0t1VpfPg3iHcCuqVAnZcKUkoJhOZk19Z8UTW-C0-YTJlJItdU595Y2jTq2K9Ks82Hl2zwv-Gfbb1KCnbrOtTlHJybM-tx_SwdRjmqAHO2fDBYsOsOH4plL6YGwqskg" alt="A Moment to Remember">
+          </div>
+          <div class="list-row-info">
+            <div class="list-row-title-bar">
+              <h3 class="list-title">A Moment to Remember</h3>
+              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.8</span>
+            </div>
+            <div class="list-meta-line">
+              <span>2004</span>
+              <span>•</span>
+              <span>117 MIN</span>
+              <span>•</span>
+              <span style="color: var(--secondary);">35MM RESTORED</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="list-badge-tag">MUBI</span>
+              <span style="font-size: 12px; color: var(--text-secondary);">Dir. John H. Lee</span>
+            </div>
+          </div>
+          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
+            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+          </button>
+        </article>
+
+        <!-- Item 2: Dune Part Two -->
+        <article class="archival-list-row" data-slug="dune-part-two">
+          <div class="list-poster-thumb">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIou4ReuqHuAjFukvHh-T86sry8HV_nXf6E19l0FTpUVU7APRbo9ICIilRuTvDJ-haIq7q1DLcyBqldJNjIGEkrMUpdJGcc_bQ7o5-WMfJLHkFdahJlz0_gsBNFzQyCgNEtFnoqXEYaTM29LtXHgYSZhh81xYuEWEmFHnP1OCg14bk8_o0WoOOdJTxI0ntIgJBTtRHc1Mj2FTa1-LSxpKT0-mrFmuBq1EfIU3K9Ozhqbc_GeNDyhn9rA" alt="Dune: Part Two">
+          </div>
+          <div class="list-row-info">
+            <div class="list-row-title-bar">
+              <h3 class="list-title">Dune: Part Two</h3>
+              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.5</span>
+            </div>
+            <div class="list-meta-line">
+              <span>2024</span>
+              <span>•</span>
+              <span>166 MIN</span>
+              <span>•</span>
+              <span style="color: var(--tertiary);">IMAX 70MM</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="list-badge-tag" style="background: rgba(255, 255, 255, 0.1); color: var(--text-primary);">MAX</span>
+              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Denis Villeneuve</span>
+            </div>
+          </div>
+          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
+            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+          </button>
+        </article>
+
+        <!-- Item 3: Past Lives -->
+        <article class="archival-list-row" data-slug="past-lives">
+          <div class="list-poster-thumb">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0hOrXNS3hE1AAGc5W2NsG-k_BFSKm9Z4XIJgM1GnZgpS6SCfDGqTYGJUQ8DxHWbqoTNsjhd_YC27k0dcVJ5WQiYrXdqq4BKffs0qJ0kdrKsXewYsZY2QrWFPPIASrn16A43uI_aylwOWKqFLl0BwsV88AzC56ULuESI2qqqQg2wjn5Rl9d6xWhgCEou1lHd47b4O7riW-3PctKzBPDEz9u8WUc08dFC9LBCIGdU0MP-0US4htGGYZUw" alt="Past Lives">
+          </div>
+          <div class="list-row-info">
+            <div class="list-row-title-bar">
+              <h3 class="list-title">Past Lives</h3>
+              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.6</span>
+            </div>
+            <div class="list-meta-line">
+              <span>2023</span>
+              <span>•</span>
+              <span>106 MIN</span>
+              <span>•</span>
+              <span style="color: var(--tertiary);">A24 ARCHIVE</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="list-badge-tag">CRITERION</span>
+              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Celine Song</span>
+            </div>
+          </div>
+          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
+            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+          </button>
+        </article>
+
+        <!-- Item 4: Perfect Days -->
+        <article class="archival-list-row" data-slug="perfect-days">
+          <div class="list-poster-thumb">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQuVrb6zP1SlK_Y1FNx0WhRZf8ucs-Jh2EQnr79R1LWDmtmQy5RZSdsp28AxCTY-mRx0V5M6ionswVskv84210u3OM0fdqbtvG420BEO3J0TF7H2nc5Q0rqGtj8Tc7bbpuxtAZBDLukW_wbLmYmnta1C5mZb8psUsHrlzK0TpdOhFdlnU1zEIOjLo2G33vdRMs1QmOk1YD99VMVQkU9Ivo2DiQWAD43BxafiOHcAf0FH1wboktmOkaUw" alt="Perfect Days">
+          </div>
+          <div class="list-row-info">
+            <div class="list-row-title-bar">
+              <h3 class="list-title">Perfect Days</h3>
+              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.4</span>
+            </div>
+            <div class="list-meta-line">
+              <span>2023</span>
+              <span>•</span>
+              <span>124 MIN</span>
+              <span>•</span>
+              <span style="color: var(--secondary);">CANNES WINNER</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="list-badge-tag">MUBI</span>
+              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Wim Wenders</span>
+            </div>
+          </div>
+          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
+            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+          </button>
+        </article>
+      </div>
+
+      <!-- Curated Folios (Stacked 3D Collages) -->
+      <div style="margin-top: 24px;">
+        <div class="section-header-block" style="margin-bottom: 14px;">
           <div>
-            <div id="preview-korean-eyebrow" class="preview-korean-eyebrow" style="display: none;"></div>
-            <h1 id="preview-main-title" class="preview-main-title">A Moment to Remember</h1>
-            <p id="preview-tagline" class="preview-tagline">"If my memory disappears, what will happen to our love?"</p>
+            <h2 class="section-headline">Curated Folios</h2>
+            <p style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-secondary);">Handcrafted Watchlists</p>
           </div>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">VIEW ALL (6)</span>
+        </div>
 
-          <div class="preview-rating-row">
-            <div class="rating-star-badge">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-              </svg>
-              <span id="preview-star-score">8.1</span>
-            </div>
-            <span id="preview-match" class="meta-match">98% Match</span>
-            <span id="preview-meta-year">2004</span>
-            <span id="preview-meta-age" class="meta-badge badge-18">18+</span>
-            <span id="preview-meta-duration">2h 24m</span>
-            <span class="meta-badge uhd">4K ULTRA HD</span>
-          </div>
-
-          <div id="preview-genre-pills" class="preview-genre-pills">
-            <span class="genre-pill">Romance</span>
-            <span class="genre-pill">Melodrama</span>
-            <span class="genre-pill">Drama</span>
-          </div>
-
-          <!-- Streaming Server Selector Row -->
-          <div class="server-selector-container">
-            <span class="server-label">STREAMING SERVERS:</span>
-            <div class="server-pills" id="server-pills-group">
-              <button class="server-pill active" data-server="vidlink">Server 1 (VidLink Pro 4K)</button>
-              <button class="server-pill" data-server="vidsrc_pm">Server 2 (VidSrc PM 4K)</button>
-              <button class="server-pill" data-server="vidsrc_to">Server 3 (VidSrc To HD)</button>
-              <button class="server-pill" data-server="twoembed">Server 4 (2Embed Backup)</button>
-              <button class="server-pill" data-server="trailer">Official HD Trailer</button>
-            </div>
-          </div>
-
-          <!-- Cineby Style Action Buttons -->
-          <div class="preview-actions-bar">
-            <button id="btn-preview-play" class="btn-cineby-play">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <span>Play Movie</span>
-            </button>
-
-            <button id="btn-preview-trailer" class="btn-cineby-trailer">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
-              </svg>
-              <span>Watch Trailer</span>
-            </button>
-
-            <button id="btn-preview-download" class="btn-cineby-download" title="Download Master Movie in 4K UHD">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-              </svg>
-              <span>Download 4K</span>
-            </button>
-
-            <button id="btn-preview-watchlist" class="btn-cineby-icon-action" title="Add to Watchlist">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-              </svg>
-            </button>
-
-            <button id="btn-preview-share" class="btn-cineby-icon-action" title="Share Title">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Official 18+ Content & Viewer Discretion Advisory Card -->
-          <div id="preview-advisory-box" class="preview-advisory-box">
-            <div class="advisory-badge-18">18+</div>
-            <div class="advisory-box-content">
-              <div class="advisory-box-header">
-                <span class="advisory-box-title">CONTENT &amp; VIEWER DISCRETION ADVISORY</span>
-                <span class="advisory-box-sub">OFFICIAL CINEXA CENSORSHIP CLASSIFICATION</span>
+        <div class="curated-folios-grid">
+          <!-- Folio 1 -->
+          <div class="folio-card">
+            <div class="folio-info">
+              <div style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 9999px; background: rgba(255, 181, 161, 0.2); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">
+                <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--secondary);"></span>
+                Curator's Reel
               </div>
-              <p id="preview-advisory-text" class="advisory-box-desc">
-                ⚠️ Rated 18+ for mature themes, intense emotional heartbreak, adult situations, and romantic intimacy. Viewer discretion is strongly advised.
-              </p>
-              <div id="preview-advisory-tags" class="advisory-box-tags">
-                <span class="advisory-tag">18+ Restricted</span>
-                <span class="advisory-tag">Mature Themes</span>
-                <span class="advisory-tag">Intense Emotional Heartbreak</span>
-                <span class="advisory-tag">Romantic Intimacy</span>
-                <span class="advisory-tag">Medical Heartbreak</span>
-              </div>
+              <h3 class="section-headline" style="font-size: 18px; margin-bottom: 4px;">Melancholy &amp; Rain</h3>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Korean New Wave 1998-2006 retrospectives.</p>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">12 TITLES LOGGED</span>
+            </div>
+            <div class="stacked-poster-cluster">
+              <div class="stacked-thumb stacked-thumb-1"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC65U53YCLoilBV7YiHY-SaYXDKtyXb8_v-3lj-IA5CDy7xa1KfCmpvEXe11JLrwoJhXDLn8xDpffqZpUcs9VgijLqu9WMlbwO_rm2AwfU6l33OJUKaZX7AEcAC5wq2R8wHH1a1anwWLuxB5S9KVXTNb2kat1-OI6NeuTJZaIo1mzE3LPkPyxPXIYlYxtDYAn1oMKRdyjKRnADsmFhN7wLRvS-CgUfb8PRSBpPXz7Cf9CJYlj0Ocz2BIw" alt="Film 1"></div>
+              <div class="stacked-thumb stacked-thumb-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSjeki5E2UaqCCleBnaYRuiXskJs47MiNAjJG9SO37nWWzmaDd6gwFlrL91xzBfMfgaVEbmEEHCbqS8PeYAC3Rw410mk7QW7OUyx3mtHjhQwP1lomE11q-VWiO8QfDxRPz_akd5RQ3ReWp6j3TIuLDG8lW3KpEUnyxdZczHQDSWH0nYrikAXe2kHB4Ygrabmw8BVy85L2QuZyVzQzV3A4Y-EfjY2iyUfHXat_2TxDHIgkAtM48C2MGMg" alt="Film 2"></div>
+              <div class="stacked-thumb stacked-thumb-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAfK7e8viES81KaQH-PNdbqw9IZFpSSrS0XivwWTZNXI4yRNbW54fqWu59-909vAx0rKzXJHhNBSWf-d8NiMzLxp3OYhqgHcyU30Slruvv94oSEqauxmtTE-ZIMmYsAeWXu9UWHAaeT4uDFOcOigWOalyLU1ecJEgIxvCd8HJzehCb1WnBcU38b2MQdzgdVpCKweSv8sTwuvV0Ay_sXn_yc4SNWv-g2_2lKsJpaQ5SmLKc89QLFoujbA" alt="Film 3"></div>
             </div>
           </div>
 
-          <!-- Storyline -->
-          <div class="preview-storyline-box">
-            <h3>Overview</h3>
-            <p id="preview-storyline-text" class="preview-storyline-text">
-              Su-jin, a 27-year-old fashion designer, meets Chul-soo, an aspiring architect working as a construction foreman. Despite their contrasting social backgrounds, they fall deeply in love and marry. Their idyllic marriage soon faces devastating heartbreak when Su-jin begins experiencing severe memory loss, leading to a diagnosis of Alzheimer's disease. Together, they confront the sorrow of forgotten memories while clinging to an unbreakable emotional bond.
-            </p>
-          </div>
-
-          <!-- Cast & Characters Carousel (Cinexa style) -->
-          <div class="preview-cast-section">
-            <h3>Top Cast &amp; Characters</h3>
-            <div id="preview-cast-carousel" class="cast-carousel"></div>
+          <!-- Folio 2 -->
+          <div class="folio-card">
+            <div class="folio-info">
+              <div style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 9999px; background: rgba(177, 205, 187, 0.2); color: var(--tertiary); font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">
+                <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--tertiary);"></span>
+                Archival Vault
+              </div>
+              <h3 class="section-headline" style="font-size: 18px; margin-bottom: 4px;">35mm Restorations</h3>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Festival premier releases and photochemical scans.</p>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">8 TITLES LOGGED</span>
+            </div>
+            <div class="stacked-poster-cluster">
+              <div class="stacked-thumb stacked-thumb-1"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQhWCw0fT05GmF0gu41BQjNv22YAyvSJfP8GEeF_iManWzfpdHT2Moa2SLc92QcR4tVhLJjwJmC0OA1mQ5Eq7Kh86ang_Y7wjujpeRIkh56rtIW9YKmI3iY0WRNs3h3QtFbmfkamipvCVRvYSgXiw8TrwjwFetjHfWEPdtgTPJ3c5467KZBEtlUUaQh_g4cUov7-0EAUFxbg3wSfsL25nnkOxETCYDHvg6fXWZuedUHgKwrkHztw04w" alt="Restoration 1"></div>
+              <div class="stacked-thumb stacked-thumb-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG18a1xwW17FaTDE98RMX2o2j5CqnrgGkxXauRA2hpaK1G5WtoYwJmiAwkQb1irWlzUpm1TmTe6V1AkI5BjwvEHqb3iAwbi5e-oU3w_E3Zt1e5MH_bfTmk4W1RMVYABT9qo6FcYlSoXji-eLI0nUoagJekguhdfS8NvcVHw5vfecHv9JjJvwVKjPlMyJ_MfP6DjZz45ggjYA8NYJolfnbcTsV9RLqUCUoU43FHBK8NjIx7Ssvjy-lG0g" alt="Restoration 2"></div>
+              <div class="stacked-thumb stacked-thumb-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUfUKLIX7Sn4kYo97Xv9QFr5uimWnwZB4gfDMBwKZXgQR-o5IXHG0urmPdGZdI6hBeI2jIpkCOLa-G4ZNbcc5yFS5Sj8he1NICjjfToVjH7M770kh0oUVCwfpsW7xUiEUoQZG7fTqkMcKtnUrlWUdslqxEh-9PpCLAlNyglWbDZ5x-L2NiyMIn8P6tWgsUUqagxmSzpNL0ZJh1Cwnd7ehy92JbyWhvM88_qViH9sxkh9_hNvrI-SMz6Q" alt="Restoration 3"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Google Ads / Monetization Unit 2: Mid-Page Content Banner -->
-    <div class="ad-banner-container" id="ad-mid-banner" style="margin: 30px auto 10px auto;">
-      <div class="ad-badge">SPONSORED PROMOTION</div>
-      <div class="ad-slot-wrapper">
-        <div class="ad-placeholder-content">
-          <span class="ad-brand-icon">🍿</span>
-          <div class="ad-text-group">
-            <div class="ad-title">Stream In 4K UHD Without Buffering &bull; Free Global Access</div>
-            <div class="ad-desc">Experience thousands of movies and series in cinema surround sound on any device.</div>
-          </div>
-          <a href="#catalog-container" class="ad-cta-btn">Browse Movies &rarr;</a>
-        </div>
+    <!-- Empty State Sub-view -->
+    <div class="empty-library-state" id="lib-subview-empty" style="display: none;">
+      <div class="empty-reel-icon-box">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="20"></circle>
+          <circle cx="24" cy="24" r="7"></circle>
+          <circle cx="24" cy="11" fill="currentColor" r="3"></circle>
+          <circle cx="24" cy="37" fill="currentColor" r="3"></circle>
+          <circle cx="11" cy="24" fill="currentColor" r="3"></circle>
+          <circle cx="37" cy="24" fill="currentColor" r="3"></circle>
+          <path d="M14 14l5 5"></path>
+          <path d="M34 34l-5-5"></path>
+          <path d="M14 34l5-5"></path>
+          <path d="M34 14l-5 5"></path>
+        </svg>
       </div>
-    </div>
-
-    <!-- You May Also Like / Similars (Cinexa style) -->
-    <div class="preview-similar-section">
-      <h2>You May Also Like</h2>
-      <div id="preview-similar-grid" class="movie-grid"></div>
+      <span class="section-kicker" style="margin-bottom: 6px;">Archival Reel Blank</span>
+      <h2 class="empty-title">Your watchlist is waiting.</h2>
+      <p class="empty-desc">
+        No projection planned yet. Collect rare 35mm restorations, festival favorites, and midnight screenings to assemble your personal cinema.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px;">
+        <button class="btn-hero-primary" data-navigate="discover" style="width: 100%;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">explore</span>
+          <span>Discover Films</span>
+        </button>
+        <button class="action-pill-btn" onclick="switchLibrarySubView('main')" style="width: 100%; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
+          <span>Restore Sample Titles</span>
+        </button>
+      </div>
+      <div class="empty-quote-box">
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 14.5px; color: var(--text-secondary); margin-bottom: 6px;">
+          “Cinema is a matter of what's in the frame and what's out.”
+        </p>
+        <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--primary); font-weight: 700;">— Martin Scorsese</span>
+      </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       Master Footer (Art-House Editorial Architecture)
+       SCREEN 4: FILM DETAILS VIEW (#view-details / #preview-page-view)
        ========================================================================= -->
-  <footer class="master-editorial-footer">
-    <div class="footer-inner-container">
-      <!-- Main Brand & Columns Row -->
-      <div class="footer-main-grid">
-        <!-- Brand & Manifesto Column -->
-        <div class="footer-brand-col">
-          <div class="footer-brand-header">
-            <span class="footer-logo-circle">
-              <span class="material-symbols-outlined" style="font-size: 20px;">movie</span>
-            </span>
-            <span class="footer-brand-title">Cinexa</span>
-            <span class="footer-edition-badge">Archival v2.4</span>
+  <section class="app-view" id="preview-page-view">
+    <!-- Cinematic Hero Visual Well -->
+    <div class="details-hero-visual">
+      <img class="details-backdrop-img" id="preview-backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVb0KYX5d4CFr--DTJjgsBQNx5cyqB99o5HOupL3VX5H3lPUVNjRSY8JRhtx5zsMCZp7m2E1tlNUHCJJhow-jzRq8hT3Kd1vt4htcfL_7hNY83EZSLkpLReebgYx-z3eIQ3FGWfHihM-lJjwufxJE9yeVxzRSmIcQtUzMgs0raPr66ypks9kW6lPAEot92yipm9wIBjAgvvLfC9VPOggNkvvGyde9EEl5xa2Km0ULkxq0fSFx6FR0_Gg" alt="Backdrop">
+      <div class="details-scrim"></div>
+
+      <!-- Floating Action Pills -->
+      <div class="details-top-actions">
+        <button class="icon-btn" id="btn-back-details" style="background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-hairline);" aria-label="Back">
+          <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="action-pill-btn" id="btn-theatre-mode" style="height: 38px; padding: 0 14px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px);">
+            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">screen_rotation</span>
+            <span style="color: var(--primary);">Theatre</span>
+          </button>
+          <button class="icon-btn" id="btn-share-film" style="background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-hairline);" aria-label="Share">
+            <span class="material-symbols-outlined" style="font-size: 18px;">ios_share</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Film Identity: Overlapping Poster & Metadata Block -->
+    <div class="details-identity-block">
+      <div class="details-poster-box">
+        <img id="preview-poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSTC5wSXrmEcdSE9fVYj4_TU4OiMIF3m-L5zQ-nT0cxgtaApyVrVdN0spo2DJcPcMO-YHdo3TUMXD9NvINA5x56F0pe_62Kx0eEk8WgbYq6BFAfc3wcC-h1fur5XKM77SCeMtYWiUG2gRiSXRC-QeXFmUmf0VGMYyOISTqpWapKgCeMuD3Qi1_A4UGXwpg_klkORXxfqwoZe6SYTn1mcEbvLsMeVeLZlPIizgsHYAVuy2Up2AcT_0gNw" alt="Poster">
+        <div class="poster-tag-top-left" style="top: auto; bottom: 8px; left: 8px; color: var(--primary);">35MM</div>
+      </div>
+      <div class="details-specs-column">
+        <div style="display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; margin-bottom: 2px;">
+          <span style="color: var(--secondary);" id="preview-restoration-tag">Restored Print</span>
+          <span style="color: var(--outline);">•</span>
+          <span style="color: var(--text-secondary);" id="preview-archive-source">KOFA 2024</span>
+        </div>
+        <h2 class="details-title" id="preview-main-title">A Moment to Remember</h2>
+        <div class="card-sub-line" id="preview-korean-eyebrow" style="font-style: italic; font-size: 13px; margin-bottom: 4px;">
+          내 머리 속의 지우개 (2004)
+        </div>
+        <p class="details-tagline" id="preview-tagline">“If my memory disappears, what will become of our love?”</p>
+        
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-family: var(--font-mono); font-size: 11px;">
+          <span class="meta-score" id="preview-star-score">★ 8.1</span>
+          <span style="color: var(--tertiary); font-weight: 700;" id="preview-match">98% MATCH</span>
+          <span style="color: var(--text-secondary);" id="preview-meta-duration">2h 24m</span>
+          <span class="meta-pill" style="background: rgba(255, 181, 161, 0.2); color: var(--secondary);" id="preview-meta-age">18+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Action Tray -->
+    <div class="details-action-tray">
+      <button class="action-pill-btn action-pill-primary" id="btn-preview-play">
+        <span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">play_arrow</span>
+        <span>Watch Full Film</span>
+      </button>
+      <button class="action-pill-btn" id="btn-preview-trailer">
+        <span class="material-symbols-outlined" style="font-size: 18px;">movie</span>
+        <span>Trailer</span>
+      </button>
+      <button class="action-pill-btn" id="btn-preview-watchlist">
+        <span class="material-symbols-outlined" id="details-bookmark-icon" style="font-size: 18px;">add</span>
+        <span id="details-bookmark-text">Watchlist</span>
+      </button>
+      <button class="action-pill-btn" id="btn-preview-seen">
+        <span class="material-symbols-outlined" style="font-size: 18px;">done</span>
+        <span>Mark Seen</span>
+      </button>
+      <button class="action-pill-btn" id="btn-preview-rate">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">star</span>
+        <span>Rate</span>
+      </button>
+      <button class="action-pill-btn" id="btn-preview-journal">
+        <span class="material-symbols-outlined" style="font-size: 18px;">edit_note</span>
+        <span>Film Journal</span>
+      </button>
+    </div>
+
+    <!-- Where to Watch Multi-Server Accordion -->
+    <div class="providers-accordion">
+      <div class="accordion-header" id="providersAccordionHeader">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="material-symbols-outlined" style="font-size: 20px; color: var(--primary);">stream</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14.5px; color: var(--text-primary);">Where to Watch &amp; Streaming Servers</div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">4 verified multi-source failover options</div>
           </div>
-          <p class="footer-mission-desc">
-            An independent, non-commercial directory dedicated to international cinema preservation, film history scholarship, and verified legal streaming availability.
-          </p>
-          <div class="preservation-pledge-card">
-            <div class="pledge-title">Film Preservation Pledge</div>
-            <p class="pledge-desc">
-              100% of community patronage directly funds photochemical nitrate transfer at the Korean Film Archive and Bologna Cineteca.
-            </p>
+        </div>
+        <span class="material-symbols-outlined" style="color: var(--outline);" id="providersAccordionIcon">expand_more</span>
+      </div>
+
+      <div class="providers-list" id="providersList">
+        <div class="provider-row">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="provider-icon-badge">CXA</div>
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 1 (Cinexa 4K Master)</div>
+              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">Direct Master Stream • Subtitles &amp; Audio</div>
+            </div>
+          </div>
+          <button class="btn-read-piece" onclick="playCurrentActiveFilm('local')">Play 4K</button>
+        </div>
+
+        <div class="provider-row">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="provider-icon-badge" style="background: var(--bg-surface-highest); color: var(--text-primary);">CDN</div>
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 2 (FastCDN Edge)</div>
+              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">Global 0ms Edge • Multi-Audio</div>
+            </div>
+          </div>
+          <button class="btn-read-piece" onclick="playCurrentActiveFilm('fastcdn')">Stream</button>
+        </div>
+
+        <div class="provider-row">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="provider-icon-badge" style="background: var(--tertiary-container); color: var(--on-tertiary);">VLK</div>
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 3 (VidLink Mirror)</div>
+              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">1080p / 4K UHD Failover Mirror</div>
+            </div>
+          </div>
+          <button class="btn-read-piece" onclick="playCurrentActiveFilm('vidlink')">Stream</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archival Content Advisory -->
+    <div style="margin: 0 24px 20px 24px; padding: 14px 18px; border-radius: var(--radius-md); background: rgba(255, 181, 161, 0.12); border: 1px solid rgba(255, 181, 161, 0.3); display: flex; gap: 12px; align-items: flex-start;">
+      <span class="material-symbols-outlined" style="font-size: 20px; color: var(--secondary);">info</span>
+      <div>
+        <h4 style="font-family: var(--font-sans); font-size: 13.5px; font-weight: 700; color: var(--secondary); margin-bottom: 6px;">Archival Content Advisory</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;" id="preview-advisory-tags">
+          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Cognitive Decline</span>
+          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Emotional Distress</span>
+          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Melodrama</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Synopsis -->
+    <div style="padding: 0 24px 24px 24px;">
+      <div class="section-header-block" style="margin-bottom: 8px;">
+        <h3 class="section-headline" style="font-size: 20px;">Curator's Overview</h3>
+        <span class="article-category-badge" id="preview-category-label">Korean Cinema Classic</span>
+      </div>
+      <p style="font-family: var(--font-sans); font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;" id="preview-storyline-text">
+        Su-jin, a delicate fashion designer reeling from heartbreak, crosses paths with Chul-soo, an austere construction foreman harboring literary aspirations. What blossoms from an accidental encounter outside a convenience store evolves into one of Korean cinema's most heartbreaking portraits of vulnerability. As early-onset Alzheimer's begins erasing their cherished domestic memories, the two construct an enduring sanctuary of love against inevitable erasure.
+      </p>
+    </div>
+
+    <!-- Principals (Cast & Director) -->
+    <div style="margin-bottom: 24px;">
+      <div class="section-header-block" style="padding: 0 24px; margin-bottom: 12px;">
+        <h3 class="section-headline" style="font-size: 20px;">Principals</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Cast &amp; Director</span>
+      </div>
+      <div class="principals-reel" id="preview-cast-carousel">
+        <div class="principal-item">
+          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP9TfYareSJ_Eh95f_0amQMThBRkZFAJJVOyHkFoWrnQ8EZH4ILiqJIi2OPHjUfk8tqsdnIeFNr2jw5-ozGYmhVRVsozqeDxTydeQLil-OiFqrxKD7RlIWgRrmEFR_LOKAF2RHIdcdyqlb5DQ6mHGjNbKIa-hI3yY9XV0baBsma_MeFhFgJJjOVN5Qp1e02oqNpOJ5gNJUsYH_7Ja9B-Ukhm7P-VuDrWgfb3kxjx6Dhk_ddatVgfaLFw" alt="Son Ye-jin"></div>
+          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">Son Ye-jin</span>
+          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--outline);">Su-jin</span>
+        </div>
+        <div class="principal-item">
+          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcTthIOSm0Jqy93ycPFb1Z-uCIIiQpzrcVw35hxt5ylmhqYm9JM_7JQhCzhP9oIO12tkbMw_LKKqxfX0nvtB6a_UOPmZTfvKVd-nvLQNr1qhuPjoZ9Vl--KT5D7_wOIguuL-7JDY40fJJ96Lmpy9tLZC4K_PXXKEJ3gJxOjbo20uvf_1OsgGnY6PS-3qlbnm4KdyTzJBRVD6JXKJtJYwQN6hAwxXdIIZ95sB-gRiymf8NnSAZJh9SnwA" alt="Jung Woo-sung"></div>
+          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">Jung Woo-sung</span>
+          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--outline);">Chul-soo</span>
+        </div>
+        <div class="principal-item">
+          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtaN39G4ywvMpJJSXhe962M4eelKTbk7gn0nigArUyky0q1hTEKd6oOkDY9u3G9aikuR931COeQauOSMkeLkIR8mc7FesacBBDlTHrvf2rRtzI8TQjFGwH9o4FuqNWNuLL4vOmS_KeBdC3Tu3Yg5SsONXh4w-DI1hKII87sJ_IqG3gn6fdumH2VDh0VljZSg4xHG16gZwSuml-xSNeSIlib5OpLuVOdGeD-XJkGY8NuCcU4Ub41t4bQQ" alt="John H. Lee"></div>
+          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">John H. Lee</span>
+          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--primary);">Director</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archival Specs & Metadata Sheet -->
+    <div class="specs-table-card">
+      <h3 class="section-headline" style="font-size: 18px; margin-bottom: 2px;">Archival Specs &amp; Metadata</h3>
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Photochemical &amp; Digital Transfer Log</span>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Capture Medium</span>
+          <span class="spec-value">35mm Kodak Vision2 (Arri 535B)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Aspect Ratio</span>
+          <span class="spec-value">2.39:1 Anamorphic Scope</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Audio Master</span>
+          <span class="spec-value">Dolby Digital 5.1 / Mono Archival</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Laboratory</span>
+          <span class="spec-value">CJ Entertainment Photochemical Lab</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCREEN 5: GLOBAL COMMAND SEARCH PALETTE (⌘K MODAL)
+       ========================================================================= -->
+  <div class="command-palette-modal" id="search-modal">
+    <div class="command-palette-card">
+      <div class="search-input-header">
+        <span class="material-symbols-outlined" style="font-size: 22px; color: var(--primary);">search</span>
+        <input class="search-input-field" id="global-search-input" type="text" placeholder="Search films, directors, movements, archives..." autocomplete="off">
+        <button class="icon-btn" id="btn-clear-global-search" style="width: 32px; height: 32px;" title="Clear search">
+          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+        </button>
+        <button class="btn-read-piece" id="btn-close-palette" style="background: transparent; color: var(--text-secondary);">
+          ESC
+        </button>
+      </div>
+
+      <!-- Recent Searches Chips -->
+      <div class="recent-search-strip">
+        <span style="font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; color: var(--text-secondary); margin-right: 4px;">Recent:</span>
+        <button class="state-btn" onclick="executePaletteSearch('Edward Yang')">Edward Yang</button>
+        <button class="state-btn" onclick="executePaletteSearch('Wong Kar-wai')">Wong Kar-wai</button>
+        <button class="state-btn" onclick="executePaletteSearch('Korean Melodrama')">35mm Korean</button>
+        <button class="state-btn" onclick="executePaletteSearch('Criterion')">Criterion 2024</button>
+      </div>
+
+      <!-- Palette Results Grid -->
+      <div class="palette-results-grid" id="palette-results-grid">
+        <!-- Dynamically injected results -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FILTER DRAWER BOTTOM SHEET MODAL (#filter-drawer-modal)
+       ========================================================================= -->
+  <div class="filter-drawer-overlay" id="filterDrawerOverlay">
+    <div class="filter-drawer-card" id="filterDrawerContent">
+      <div class="drawer-grab-bar"></div>
+      <div class="drawer-header">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <h2 class="section-headline" style="font-size: 20px;">Curatorial Filters</h2>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">3 Active</span>
+        </div>
+        <button style="background: transparent; border: none; font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); text-transform: uppercase; cursor: pointer;" id="resetFiltersInDrawer">
+          Reset All
+        </button>
+      </div>
+
+      <div class="drawer-content-scroll">
+        <div>
+          <span class="section-kicker" style="margin-bottom: 8px;">Genre &amp; Mood</span>
+          <div class="pill-group">
+            <button class="select-pill active">Korean Melodrama</button>
+            <button class="select-pill">Sci-Fi Epic</button>
+            <button class="select-pill">Film Noir</button>
+            <button class="select-pill">French New Wave</button>
+            <button class="select-pill">Italian Neorealism</button>
+            <button class="select-pill">Cyberpunk</button>
+            <button class="select-pill">Gothic Horror</button>
+            <button class="select-pill">Slow Cinema</button>
           </div>
         </div>
 
-        <!-- 4 Nav Columns -->
-        <div class="footer-nav-columns">
-          <div class="footer-col">
-            <h4>Explore</h4>
-            <ul>
-              <li><a href="#catalog-container">Discover Works</a></li>
-              <li><a href="#catalog-container">Archival Collections</a></li>
-              <li><a href="#catalog-container">Festival Laureates</a></li>
-              <li><a href="#catalog-container">35mm Restorations</a></li>
-              <li><a href="#catalog-container">Curated Lists</a></li>
-              <li><a href="#catalog-container">Regional Movements</a></li>
-            </ul>
+        <div>
+          <span class="section-kicker" style="margin-bottom: 8px;">Decades</span>
+          <div class="pill-group">
+            <button class="select-pill active">2020s Contemporary</button>
+            <button class="select-pill">2010s Modern</button>
+            <button class="select-pill active">2000s New Wave</button>
+            <button class="select-pill">1990s Golden Era</button>
+            <button class="select-pill">1970s–80s Classic</button>
+            <button class="select-pill">Pre-1970s Vintage</button>
           </div>
+        </div>
 
-          <div class="footer-col">
-            <h4>Vault</h4>
-            <ul>
-              <li><a href="#catalog-container">My Library</a></li>
-              <li><a href="#catalog-container">Personal Logbook</a></li>
-              <li><a href="#catalog-container">Watchlist Queue</a></li>
-              <li><a href="#catalog-container">Ratings &amp; Notes</a></li>
-              <li><a href="#catalog-container">JSON Vault Export</a></li>
-              <li><a href="#catalog-container">Offline Cache (148M)</a></li>
-            </ul>
+        <div>
+          <span class="section-kicker" style="margin-bottom: 8px;">Movement &amp; Discipline</span>
+          <div class="pill-group">
+            <button class="select-pill">Auteur Directors</button>
+            <button class="select-pill">Cannes Palme d'Or</button>
+            <button class="select-pill">Venice Golden Lion</button>
+            <button class="select-pill">Criterion Collection</button>
+            <button class="select-pill">MUBI Exclusives</button>
+            <button class="select-pill">Studio Ghibli</button>
           </div>
+        </div>
 
-          <div class="footer-col">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#catalog-container">The Manifesto</a></li>
-              <li><a href="#catalog-container">Archival Method</a></li>
-              <li><a href="#catalog-container">Curatorial Ethics</a></li>
-              <li><a href="#catalog-container">Accessibility Charter</a></li>
-              <li><a href="#catalog-container">Preservation Fund</a></li>
-              <li><a href="#catalog-container">Specs &amp; Open Source</a></li>
-            </ul>
-          </div>
+        <button class="btn-hero-primary" id="btn-apply-drawer-filters" style="width: 100%; margin-top: 10px;">
+          Apply Curatorial Filters
+        </button>
+      </div>
+    </div>
+  </div>
 
-          <div class="footer-col">
-            <h4>Legal &amp; Source</h4>
-            <ul>
-              <li><a href="#catalog-container">Terms of Logbook</a></li>
-              <li><a href="#catalog-container">Fair Use &amp; Citations</a></li>
-              <li><a href="#catalog-container">TMDB Attribution</a></li>
-              <li><a href="#catalog-container">KOFA Partnership</a></li>
-              <li><a href="#catalog-container">Cookie Ledger</a></li>
-              <li><a href="#catalog-container">Security Disclosures</a></li>
-            </ul>
+  <!-- =========================================================================
+       CINEMATHEQUE EDITORIAL ARTICLE MODAL
+       ========================================================================= -->
+  <div class="command-palette-modal" id="editorial-modal">
+    <div class="command-palette-card" style="max-width: 720px;">
+      <div class="search-input-header" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="color: var(--primary);">auto_stories</span>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--primary); text-transform: uppercase;">Cinematheque Editorial</span>
+        </div>
+        <button class="icon-btn" id="btn-close-editorial-modal" style="width: 32px; height: 32px;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+        </button>
+      </div>
+      <div style="padding: 24px; overflow-y: auto; max-height: 70vh;">
+        <h2 class="section-headline" style="font-size: 26px; line-height: 1.25; margin-bottom: 12px;">
+          The Geometry of Desert Light: How Greig Fraser Framed Arrakis
+        </h2>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+          <div class="author-initials">ES</div>
+          <div>
+            <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Elena S. • Head Archivist</div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Published in Cinexa Journal • Edition 04</div>
           </div>
+        </div>
+        <p style="font-family: var(--font-sans); font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+          When Denis Villeneuve and cinematographer Greig Fraser set out to capture the harsh dunes of Arrakis for <em>Dune: Part Two</em>, their primary objective was to avoid the sterile sheen of modern CGI sandscapes. Instead, they developed a pioneering hybrid photochemical pipeline.
+        </p>
+        <p style="font-family: var(--font-sans); font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+          Fraser utilized custom large-format digital sensors adapted with 1980s Soviet spherical optics and un-coated German glass. The digital negative was then laser-recorded onto real 35mm motion picture film stock before being scanned back to 4K digital for final theatrical distribution. This analog round-trip imprinted natural grain, organic highlight halation, and authentic daylight harshness.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4K MASTER OFFLINE DOWNLOAD HUB MODAL
+       ========================================================================= -->
+  <div class="command-palette-modal" id="download-hub-modal">
+    <div class="command-palette-card" style="max-width: 580px;">
+      <div class="search-input-header" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="color: var(--primary);">download</span>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--primary); text-transform: uppercase;">4K Master Download Hub</span>
+        </div>
+        <button class="icon-btn" id="btn-close-download-modal" style="width: 32px; height: 32px;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+        </button>
+      </div>
+      <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 class="section-headline" style="font-size: 20px;" id="download-film-title">Dune: Part Two (2024)</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary);">
+          Select archival quality preset and subtitle packages for uncompressed offline viewing.
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: var(--radius-md); background: var(--bg-surface-highest); cursor: pointer;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <input type="radio" name="downloadQuality" value="4k" checked>
+              <div>
+                <div style="font-weight: 600; font-size: 14px;">4K UHD IMAX Master (HEVC / 10-bit HDR)</div>
+                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">18.4 GB • Dolby Atmos 7.1 TrueHD</div>
+              </div>
+            </div>
+            <span class="meta-pill-sage">Master</span>
+          </label>
+
+          <label style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: var(--radius-md); background: var(--bg-surface-highest); cursor: pointer;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <input type="radio" name="downloadQuality" value="1080p">
+              <div>
+                <div style="font-weight: 600; font-size: 14px;">1080p Blu-Ray Remux (x264)</div>
+                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">4.2 GB • 5.1 Surround Sound</div>
+              </div>
+            </div>
+            <span class="meta-pill">HD</span>
+          </label>
+        </div>
+
+        <button class="btn-hero-primary" id="btn-start-download-simulation" style="width: 100%;">
+          Start Direct Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CINEMA 4K PLAYER MODAL (Full Multi-Server & Prank Stream Player)
+       ========================================================================= -->
+  <div class="player-modal" id="player-modal">
+    <div class="player-container">
+      <div class="player-header">
+        <div class="player-title-info">
+          <div class="playing-badge">● 4K CINEMA STREAM</div>
+          <h2 class="player-movie-title" id="player-movie-title">A Moment to Remember (2004)</h2>
+        </div>
+        <div class="player-header-actions">
+          <button class="close-player-btn" id="close-player-btn">&times;</button>
         </div>
       </div>
 
-      <!-- Bottom Utility Bar -->
-      <div class="footer-bottom-bar">
-        <div class="footer-region-picker">
-          <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">public</span>
-          <span>English (International) &bull; Global 4K Edge</span>
-        </div>
+      <!-- Multi-Source Streaming Server Switcher -->
+      <div class="stream-servers-bar">
+        <span class="servers-label">SERVER:</span>
+        <button class="server-btn active" data-server="local">Cinexa 4K Master</button>
+        <button class="server-btn" data-server="fastcdn">FastCDN Edge</button>
+        <button class="server-btn" data-server="vidlink">VidLink HD</button>
+        <button class="server-btn" data-server="vidsrc">VidSrc Cloud</button>
+        <button class="server-btn" data-server="trailer">Trailer Stream</button>
+      </div>
 
-        <div class="footer-legal-copy">
-          <p class="meta-note">Film metadata, artwork, and streaming availability verified via TMDB legal registries.</p>
-          <p class="copyright-note">&copy; 2026 Cinexa Archival Foundation. Preserving physical &amp; independent film culture.</p>
+      <div class="video-wrapper" id="video-wrapper">
+        <iframe class="video-iframe" id="video-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; fullscreen"></iframe>
+        <video class="custom-video-player" id="custom-video-player" controls preload="metadata" playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING WATCHLIST TOAST NOTIFICATION
+       ========================================================================= -->
+  <div class="floating-toast-container" id="watchlist-toast">
+    <div class="toast-pill-card">
+      <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+        <span class="material-symbols-outlined" style="color: var(--primary); font-size: 20px; font-variation-settings: 'FILL' 1;">check_circle</span>
+        <p style="font-size: 13.5px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="toast-message">
+          Added to Watchlist • <span style="color: var(--primary); font-weight: 600;" id="toast-movie-name">Dune: Part Two</span>
+        </p>
+      </div>
+      <button class="btn-read-piece" id="toast-undo" style="height: 28px; padding: 0 10px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">
+        Undo
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MOBILE BOTTOM NAVIGATION BAR (5 Destinations with Active Dot Indicators)
+       ========================================================================= -->
+  <nav class="mobile-bottom-nav">
+    <a class="nav-tab-item active" data-navigate="home">
+      <span class="material-symbols-outlined" style="font-size: 22px;">movie</span>
+      <span class="tab-label">Home</span>
+      <span class="tab-active-dot"></span>
+    </a>
+    <a class="nav-tab-item" data-navigate="discover">
+      <span class="material-symbols-outlined" style="font-size: 22px;">explore</span>
+      <span class="tab-label">Discover</span>
+      <span class="tab-active-dot"></span>
+    </a>
+    <div class="nav-tab-item" style="flex: 0 0 56px;">
+      <a class="nav-center-search-btn" id="mobile-search-trigger" title="Search">
+        <span class="material-symbols-outlined" style="font-size: 22px; color: var(--on-primary);">search</span>
+      </a>
+    </div>
+    <a class="nav-tab-item" data-navigate="library">
+      <span class="material-symbols-outlined" style="font-size: 22px;">bookmarks</span>
+      <span class="tab-label">Library</span>
+      <span class="tab-active-dot"></span>
+    </a>
+    <a class="nav-tab-item" id="mobile-profile-trigger">
+      <span class="material-symbols-outlined" style="font-size: 22px;">account_circle</span>
+      <span class="tab-label">Profile</span>
+      <span class="tab-active-dot"></span>
+    </a>
+  </nav>
+
+  <!-- =========================================================================
+       MASTER EDITORIAL FOOTER
+       ========================================================================= -->
+  <footer class="master-editorial-footer">
+    <div class="footer-content-wrap">
+      <!-- Preservation Pledge Card -->
+      <div class="footer-pledge-card">
+        <div>
+          <span class="section-kicker">Preservation Pledge</span>
+          <h3 class="section-headline" style="font-size: 20px;">Archiving Global Cinema for Future Generations</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); max-width: 600px; margin-top: 4px;">
+            Cinexa is dedicated to the uncompromised preservation, 4K photochemical restoration, and open accessibility of worldwide cinematic heritage.
+          </p>
         </div>
+        <button class="btn-read-piece" data-navigate="discover" style="height: 38px; padding: 0 18px;">Explore Vault</button>
+      </div>
+
+      <!-- 4 Columns Grid -->
+      <div class="footer-columns-grid">
+        <div>
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a data-navigate="discover">35mm Restorations</a></li>
+            <li class="footer-link-item"><a data-navigate="discover">Cannes Palme d'Or</a></li>
+            <li class="footer-link-item"><a data-navigate="discover">Venice Golden Lion</a></li>
+            <li class="footer-link-item"><a data-navigate="discover">World Cinema Canon</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Archival Vault</div>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a data-navigate="library">My Watchlist</a></li>
+            <li class="footer-link-item"><a data-navigate="library">Curated Folios</a></li>
+            <li class="footer-link-item"><a data-navigate="library">Offline Master Hub</a></li>
+            <li class="footer-link-item"><a data-navigate="library">Viewing Journal</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">About Cinexa</div>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a id="footer-editorial-link">Cinematheque Journal</a></li>
+            <li class="footer-link-item"><a href="#">Technical Pipeline</a></li>
+            <li class="footer-link-item"><a href="#">Archivist Team</a></li>
+            <li class="footer-link-item"><a href="#">Preservation Fund</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Legal &amp; Source</div>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#">Terms of Preservation</a></li>
+            <li class="footer-link-item"><a href="#">Copyright Wire</a></li>
+            <li class="footer-link-item"><a href="#">TMDB API Attribution</a></li>
+            <li class="footer-link-item"><a href="#">Privacy Protocol</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>© 2026 Cinexa Cinematheque Network. All rights reserved worldwide.</span>
+        <span>Version 4.8 • Tokyo / Frankfurt / New York FastCDN Cluster</span>
       </div>
     </div>
   </footer>
 
-  <!-- =========================================================================
-       Custom Cinematic Fullscreen Video Player View (Commercial Streaming UI)
-       ========================================================================= -->
-  <div id="player-view" class="player-view">
-    <!-- Video Element (Local Streaming) -->
-    <video id="main-video" class="video-element" playsinline crossorigin="anonymous"></video>
-
-    <!-- Embed Stream Iframe (Multi-Source Global Streaming) -->
-    <iframe id="embed-stream-frame" class="embed-stream-frame" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" style="display: none; width: 100%; height: 100%; border: none; position: absolute; inset: 0; z-index: 2;"></iframe>
-
-    <!-- Center Feedback Icon (Play / Pause) -->
-    <div id="center-feedback" class="center-feedback-icon">
-      <div id="center-feedback-icon"></div>
-    </div>
-
-    <!-- 18+ Content Advisory Overlay Toast (Appears on playback) -->
-    <div id="player-advisory-toast" class="player-advisory-toast">
-      <div class="player-advisory-badge">18+</div>
-      <div class="player-advisory-text-group">
-        <div class="player-advisory-heading">Content Advisory • Viewer Discretion Advised</div>
-        <div id="player-advisory-message" class="player-advisory-message">
-          Rated 18+ for Mature Themes, Emotional Trauma & Adult Situations
-        </div>
-      </div>
-      <button id="player-advisory-close" class="player-advisory-close" title="Dismiss">&times;</button>
-    </div>
-
-    <!-- Skip Ripple Zones -->
-    <div id="skip-ripple-left" class="skip-ripple-zone skip-ripple-left">
-      <div class="skip-ripple-badge">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-          <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
-        </svg>
-        <span>-10s</span>
-      </div>
-    </div>
-    <div id="skip-ripple-right" class="skip-ripple-zone skip-ripple-right">
-      <div class="skip-ripple-badge">
-        <span>+10s</span>
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-          <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Player Controls Overlay -->
-    <div id="player-overlay" class="player-overlay">
-      <!-- Top Bar -->
-      <div class="player-top-bar">
-        <button id="player-back-btn" class="player-back-btn">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-          </svg>
-          <span>Back to Browse</span>
-        </button>
-
-        <div class="player-title-display">
-          <div id="player-movie-name" class="player-movie-name">A Moment to Remember</div>
-          <div id="player-movie-korean" class="player-movie-korean" style="display: none;"></div>
-        </div>
-
-        <div class="player-server-switcher" id="player-server-switcher" style="display: flex; align-items: center; gap: 6px; margin-left: auto; margin-right: 14px;">
-          <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px;">SERVER:</span>
-          <select id="player-server-select" style="background: rgba(19, 21, 28, 0.95); border: 1px solid rgba(6, 182, 212, 0.5); color: #06b6d4; font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 6px; outline: none; cursor: pointer;">
-            <option value="vidlink">Server 1 (VidLink Pro 4K)</option>
-            <option value="vidsrc_pm">Server 2 (VidSrc PM 4K)</option>
-            <option value="vidsrc_to">Server 3 (VidSrc To HD)</option>
-            <option value="twoembed">Server 4 (2Embed Backup)</option>
-            <option value="trailer">Official 4K Trailer</option>
-          </select>
-        </div>
-
-        <div class="player-top-badges">
-          <button id="player-top-dl-btn" class="player-top-dl-btn" title="Download Master File in 4K UHD">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-            </svg>
-            <span>4K Download</span>
-          </button>
-          <span id="player-age-badge" class="player-badge badge-18" style="background:#e50914; color:#fff; border-color:#e50914;">18+</span>
-          <span id="player-quality-badge" class="player-badge" style="border-color:#f59e0b; color:#f59e0b; cursor:pointer;" title="Click to toggle resolution">4K UHD (2160P)</span>
-          <span class="player-badge">DOLBY 5.1</span>
-        </div>
-      </div>
-
-      <!-- Bottom Controls -->
-      <div class="player-bottom-controls">
-        <!-- Interactive Scrubber Timeline -->
-        <div id="timeline-container" class="timeline-container">
-          <div id="timeline-track" class="timeline-track">
-            <div id="timeline-buffered" class="timeline-buffered"></div>
-            <div id="timeline-progress" class="timeline-progress">
-              <div class="timeline-thumb"></div>
-            </div>
-          </div>
-          <div id="timeline-tooltip" class="timeline-tooltip">00:00</div>
-        </div>
-
-        <!-- Controls Bar -->
-        <div class="controls-bar">
-          <!-- Left Controls -->
-          <div class="controls-left">
-            <!-- Play / Pause -->
-            <button id="btn-play-pause" class="control-btn" title="Play / Pause (Space)">
-              <svg id="icon-play" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <svg id="icon-pause" viewBox="0 0 24 24" style="display: none;">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-              </svg>
-            </button>
-
-            <!-- Skip Backward 10s -->
-            <button id="btn-skip-back" class="control-btn btn-skip-10" title="Skip Backward 10 Seconds (Left Arrow)">
-              <svg viewBox="0 0 24 24">
-                <path d="M12.5 8c-2.65 0-5.05 1-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
-              </svg>
-              <span class="skip-text-badge">10</span>
-            </button>
-
-            <!-- Skip Forward 10s -->
-            <button id="btn-skip-forward" class="control-btn btn-skip-10" title="Skip Forward 10 Seconds (Right Arrow)">
-              <svg viewBox="0 0 24 24">
-                <path d="M11.5 8c2.65 0 5.05 1 6.9 2.6L22 7v9h-9l3.62-3.62c-1.39-1.16-3.16-1.88-5.12-1.88-3.54 0-6.55 2.31-7.6 5.5l-2.37-.78C2.92 11.03 6.85 8 11.5 8z"/>
-              </svg>
-              <span class="skip-text-badge">10</span>
-            </button>
-
-            <!-- Volume Control -->
-            <div class="volume-group">
-              <button id="btn-mute" class="control-btn" title="Mute / Unmute (M)">
-                <svg id="icon-volume-high" viewBox="0 0 24 24">
-                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                </svg>
-                <svg id="icon-volume-muted" viewBox="0 0 24 24" style="display: none;">
-                  <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                </svg>
-              </button>
-              <div class="volume-slider-wrapper">
-                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="1">
-              </div>
-            </div>
-
-            <!-- Runtime Timecode -->
-            <div id="player-time-display" class="player-time-display">00:00 / 00:00</div>
-          </div>
-
-          <!-- Right Controls -->
-          <div class="controls-right">
-            <!-- Subtitles Toggle -->
-            <button id="btn-subtitles" class="control-btn active" title="Toggle Subtitles (C)">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"/>
-              </svg>
-            </button>
-
-            <!-- Settings Menu Trigger -->
-            <div class="settings-menu-container">
-              <button id="btn-settings" class="control-btn" title="Playback Settings">
-                <svg viewBox="0 0 24 24">
-                  <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                </svg>
-              </button>
-
-              <!-- Settings Popover -->
-              <div id="player-settings-modal" class="player-settings-modal">
-                <div class="settings-header">Playback Settings</div>
-
-                <!-- Subtitles -->
-                <div class="settings-row">
-                  <span class="settings-label">Subtitles</span>
-                  <div class="settings-pill-group">
-                    <button class="settings-pill sub-pill active" data-sub="en">English [CC]</button>
-                    <button class="settings-pill sub-pill" data-sub="ko">한국어 (Original)</button>
-                    <button class="settings-pill sub-pill" data-sub="off">Off</button>
-                  </div>
-                </div>
-
-                <!-- Playback Speed -->
-                <div class="settings-row">
-                  <span class="settings-label">Playback Speed</span>
-                  <div class="settings-pill-group">
-                    <button class="settings-pill speed-pill" data-speed="0.5">0.5x</button>
-                    <button class="settings-pill speed-pill" data-speed="0.75">0.75x</button>
-                    <button class="settings-pill speed-pill active" data-speed="1.0">1x Normal</button>
-                    <button class="settings-pill speed-pill" data-speed="1.25">1.25x</button>
-                    <button class="settings-pill speed-pill" data-speed="1.5">1.5x</button>
-                    <button class="settings-pill speed-pill" data-speed="2.0">2x</button>
-                  </div>
-                </div>
-
-                <!-- Quality Selection -->
-                <div class="settings-row">
-                  <span class="settings-label">Streaming Quality</span>
-                  <div class="settings-pill-group">
-                    <button class="settings-pill quality-pill active" data-quality="Auto (1080p)">Auto (1080p)</button>
-                    <button class="settings-pill quality-pill" data-quality="1080p">1080p FHD</button>
-                    <button class="settings-pill quality-pill" data-quality="720p">720p HD</button>
-                    <button class="settings-pill quality-pill" data-quality="480p">480p SD</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Picture-in-Picture -->
-            <button id="btn-pip" class="control-btn" title="Picture in Picture (P)">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 7h-8v6h8V7zm2-4H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16.01H3V4.99h18v14.02z"/>
-              </svg>
-            </button>
-
-            <!-- Fullscreen -->
-            <button id="btn-fullscreen" class="control-btn" title="Fullscreen (F)">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- NovaFlix 4K Master Offline Download Hub Modal -->
-  <div id="download-modal" class="download-modal-overlay">
-    <div class="download-modal-container">
-      <button id="download-modal-close" class="download-modal-close" title="Close">&times;</button>
-      
-      <div class="download-modal-header">
-        <div class="download-header-badge">⚡ FASTCDN 4K MASTER DOWNLOAD HUB</div>
-        <h2 id="dl-movie-title" class="download-movie-title">Dune: Part Two (2024)</h2>
-        <div class="download-server-status">
-          <span class="status-indicator"></span>
-          <span>FastCDN Edge Cluster &bull; 54.8 MB/s High-Speed Mirror &bull; 100% Uncompressed</span>
-        </div>
-      </div>
-
-      <div class="download-options-grid">
-        <!-- Option 1: 4K UHD Remastered -->
-        <div class="dl-option-card active" data-quality="4k" data-size="7.8 GB">
-          <div class="dl-option-header">
-            <span class="dl-quality-badge badge-4k">4K UHD</span>
-            <span class="dl-size-badge">7.8 GB</span>
-          </div>
-          <div class="dl-option-body">
-            <div class="dl-option-title">2160p Ultra HD Master (Dolby Vision)</div>
-            <div class="dl-option-meta">HEVC / H.265 &bull; Dolby Atmos 7.1 &bull; 60 FPS Crystal Clear</div>
-          </div>
-          <div class="dl-option-radio"><div class="radio-dot"></div></div>
-        </div>
-
-        <!-- Option 2: 1080p Full HD -->
-        <div class="dl-option-card" data-quality="1080p" data-size="2.6 GB">
-          <div class="dl-option-header">
-            <span class="dl-quality-badge badge-1080p">1080p FHD</span>
-            <span class="dl-size-badge">2.6 GB</span>
-          </div>
-          <div class="dl-option-body">
-            <div class="dl-option-title">1080p Crisp Cinema HD</div>
-            <div class="dl-option-meta">H.264 AVC &bull; 5.1 Surround Sound &bull; Optimal for TV / PC</div>
-          </div>
-          <div class="dl-option-radio"><div class="radio-dot"></div></div>
-        </div>
-
-        <!-- Option 3: 720p Mobile HD -->
-        <div class="dl-option-card" data-quality="720p" data-size="1.1 GB">
-          <div class="dl-option-header">
-            <span class="dl-quality-badge badge-720p">720p HD</span>
-            <span class="dl-size-badge">1.1 GB</span>
-          </div>
-          <div class="dl-option-body">
-            <div class="dl-option-title">720p Mobile Fast Saver</div>
-            <div class="dl-option-meta">High Efficiency &bull; Stereo Audio &bull; Instant Fast Download</div>
-          </div>
-          <div class="dl-option-radio"><div class="radio-dot"></div></div>
-        </div>
-      </div>
-
-      <!-- Subtitle Selector -->
-      <div class="dl-subtitles-section">
-        <label class="dl-section-label">INCLUDE SUBTITLES (.SRT / .VTT):</label>
-        <div class="dl-sub-pills">
-          <button class="dl-sub-pill active" data-sub="en">English (CC)</button>
-          <button class="dl-sub-pill active" data-sub="ko">한국어 (Korean)</button>
-          <button class="dl-sub-pill" data-sub="es">Español</button>
-          <button class="dl-sub-pill" data-sub="fr">Français</button>
-          <button class="dl-sub-pill" data-sub="ar">العربية</button>
-        </div>
-      </div>
-
-      <!-- Progress & Download Trigger -->
-      <div class="download-action-area">
-        <div id="dl-progress-bar-container" class="dl-progress-bar-container" style="display: none;">
-          <div class="dl-progress-labels">
-            <span id="dl-progress-status">Connecting to Edge Mirror...</span>
-            <span id="dl-progress-pct">0%</span>
-          </div>
-          <div class="dl-progress-track">
-            <div id="dl-progress-fill" class="dl-progress-fill" style="width: 0%;"></div>
-          </div>
-        </div>
-
-        <div class="download-buttons-row">
-          <button id="btn-start-download" class="btn-start-download">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-            </svg>
-            <span id="btn-download-text">Start Direct 4K Download</span>
-          </button>
-          <button id="btn-copy-stream-link" class="btn-copy-link" title="Copy Direct Stream URL">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
-            </svg>
-            <span>Direct Link</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Google Ads / Monetization Unit 4: Sticky Bottom Floating Ad -->
-  <div class="ad-sticky-footer" id="ad-sticky-footer">
-    <button class="ad-close-btn" id="ad-sticky-close" title="Dismiss Ad">&times;</button>
-    <div class="ad-sticky-content">
-      <span class="ad-badge-mini">PROMO</span>
-      <span class="ad-sticky-text">🍿 Enjoying Cinexa? Support free worldwide 4K streaming by sharing with friends!</span>
-      <a href="#catalog-container" class="ad-sticky-btn">Browse 4K Titles</a>
-    </div>
-  </div>
-
-  <!-- Mobile Bottom Navigation Bar (Sleek App-Like Experience on Phones) -->
-  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
-    <a href="#" class="mobile-nav-item active" id="mobile-nav-home">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-      </svg>
-      <span>Home</span>
-    </a>
-    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-blockbusters" data-tab="blockbusters">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-        <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
-      </svg>
-      <span>Movies</span>
-    </a>
-    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-indian" data-tab="indian">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-      </svg>
-      <span>Indian</span>
-    </a>
-    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-upcoming" data-tab="upcoming">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-        <path d="M7 2v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2V2h-2v2H9V2H7zm12 18H5V9h14v11z"/>
-      </svg>
-      <span>2024–2026</span>
-    </a>
-    <a href="#" class="mobile-nav-item" id="mobile-nav-search">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="11" cy="11" r="7"></circle>
-        <line x1="21" y1="21" x2="16" y2="16"></line>
-      </svg>
-      <span>Search</span>
-    </a>
-  </nav>
-
-  <!-- Scripts -->
-  <script src="/js/tmdb-service.js"></script>
-  <script src="/js/movies-data.js"></script>
-  <script src="/js/ad-manager.js"></script>
-  <script src="/js/player.js"></script>
-  <script src="/js/app.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(reg) { console.log('[Cinexa] Service Worker registered:', reg.scope); })
-          .catch(function(err) { console.warn('[Cinexa] Service Worker registration failed:', err); });
-      });
-    }
-  </script>
+  <!-- Core Scripts -->
+  <script src="js/movies-data.js"></script>
+  <script src="js/tmdb-service.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
