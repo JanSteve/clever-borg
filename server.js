@@ -393,7 +393,7 @@ server.on('error', (err) => {
 
 server.listen(currentPort, () => {
   console.log(`====================================================`);
-  console.log(`🎬 NovaFlix Worldwide Movie Platform is Running!`);
+  console.log(`🎬 Cinexa 4K Worldwide Cinema Platform is Running!`);
   console.log(`📡 URL: http://localhost:${currentPort}`);
   console.log(`📂 Movie Storage Directory: ${MOVIES_DIR}`);
   console.log(`====================================================`);

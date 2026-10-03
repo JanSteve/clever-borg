@@ -1,8 +1,8 @@
 /**
- * NovaFlix Monetization, Ad Rotation & Viral Traffic Growth Engine
- * Inspired by Cineby (https://cineby.my/) and Modern Streaming Monetization
+ * Cinexa Monetization, Ad Rotation & Viral Traffic Growth Engine
+ * Inspired by Modern Streaming Monetization
  * Features:
- * - Smart Ad Network Rotator (Monetag, Adsterra, Google Ads, Affiliate)
+ * - Smart Ad Network Rotator (Monetag, Adsterra, Affiliate)
  * - Anti-Intrusion Cooldown (First-click friendly, 15s interval)
  * - Push Notification Opt-in Prompt (Drives recurring traffic)
  * - Viral Social Share Generator (WhatsApp, Telegram, Twitter/X, Reddit)
@@ -101,12 +101,12 @@
 
       pushModal.innerHTML = `
         <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="font-size: 24px; background: rgba(6, 182, 212, 0.15); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.3);">🔔</div>
+          <div style="font-size: 24px; background: rgba(0, 242, 254, 0.15); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(0, 242, 254, 0.3);">🔔</div>
           <div style="flex: 1;">
             <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 4px;">Get New 4K Movie Releases</div>
-            <div style="font-size: 12px; color: #94a3b8; line-height: 1.4;">Receive instant alerts when new Hollywood blockbusters, Anime, and 4K movies drop on NovaFlix.</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.4;">Receive alerts when new Hollywood blockbusters, Indian cinema, and 4K movies drop on Cinexa.</div>
             <div style="display: flex; gap: 8px; margin-top: 12px;">
-              <button id="btn-push-allow" style="background: linear-gradient(135deg, #06b6d4, #8b5cf6); color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;">Enable Alerts</button>
+              <button id="btn-push-allow" style="background: linear-gradient(135deg, #00f2fe, #8b5cf6); color: #08090d; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;">Enable Alerts</button>
               <button id="btn-push-later" style="background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">Later</button>
             </div>
           </div>
@@ -118,16 +118,16 @@
       document.getElementById('btn-push-allow').addEventListener('click', () => {
         if ('Notification' in window) {
           Notification.requestPermission().then(permission => {
-            console.log('[NovaFlix] Notification permission:', permission);
+            console.log('[Cinexa] Notification permission:', permission);
           });
         }
         pushModal.remove();
-        localStorage.setItem('novaflix_push_dismissed', 'true');
+        localStorage.setItem('cinexa_push_dismissed', 'true');
       });
 
       document.getElementById('btn-push-later').addEventListener('click', () => {
         pushModal.remove();
-        localStorage.setItem('novaflix_push_dismissed', 'true');
+        localStorage.setItem('cinexa_push_dismissed', 'true');
       });
     }, 4000);
   }
@@ -137,17 +137,17 @@
     if (!movie) return;
     const title = encodeURIComponent(movie.title || 'Movie');
     const pageUrl = encodeURIComponent(window.location.origin + '/#movie/' + (movie.slug || movie.id));
-    const shareText = encodeURIComponent(`🍿 Watch "${movie.title}" in 4K Ultra HD for free on NovaFlix! No sign-up required:`);
+    const shareText = encodeURIComponent(`🍿 Watch "${movie.title}" in 4K Ultra HD for free on Cinexa! No sign-up required:`);
 
-    let modal = document.getElementById('novaflix-share-modal');
+    let modal = document.getElementById('cinexa-share-modal');
     if (!modal) {
       modal = document.createElement('div');
-      modal.id = 'novaflix-share-modal';
+      modal.id = 'cinexa-share-modal';
       modal.style.cssText = `
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.8);
-        backdrop-filter: blur(8px);
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -157,7 +157,7 @@
     }
 
     modal.innerHTML = `
-      <div style="background: #11141f; border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 16px; padding: 24px; max-width: 440px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
+      <div style="background: #0f121a; border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 16px; padding: 24px; max-width: 440px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
           <h3 style="color: #fff; font-size: 18px; font-weight: 800;">Share &bull; ${movie.title}</h3>
           <button id="btn-close-share" style="background: none; border: none; color: #94a3b8; font-size: 24px; cursor: pointer;">&times;</button>
@@ -174,10 +174,10 @@
         </div>
 
         <!-- Viral TikTok / Reels Hook Tool -->
-        <div style="background: rgba(6, 182, 212, 0.08); border: 1px dashed rgba(6, 182, 212, 0.4); border-radius: 10px; padding: 12px; text-align: left;">
-          <div style="font-size: 11px; font-weight: 800; color: #06b6d4; margin-bottom: 4px;">🎬 TIKTOK / REELS VIRAL MARKETING CAPTION:</div>
+        <div style="background: rgba(0, 242, 254, 0.08); border: 1px dashed rgba(0, 242, 254, 0.4); border-radius: 10px; padding: 12px; text-align: left;">
+          <div style="font-size: 11px; font-weight: 800; color: #00f2fe; margin-bottom: 4px;">🎬 TIKTOK / REELS VIRAL MARKETING CAPTION:</div>
           <div style="font-size: 12px; color: #e2e8f0; font-family: monospace; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 6px; user-select: all;" id="viral-caption-box">
-"If you loved ${movie.title}, you need to watch this scene 😱 Full movie streaming free in 4K on NovaFlix (Link in bio)! 🍿 #movies #${movie.title.toLowerCase().replace(/[^a-z0-9]/g, '')} #freetowatch #movierecommendation"
+"If you loved ${movie.title}, you need to watch this scene 😱 Full movie streaming free in 4K on Cinexa (Link in bio)! 🍿 #movies #${movie.title.toLowerCase().replace(/[^a-z0-9]/g, '')} #freetowatch #movierecommendation"
           </div>
         </div>
       </div>
@@ -203,10 +203,11 @@
   }
 
   // Expose globally
-  window.NovaFlixAds = {
+  window.CinexaAds = {
     initPushOptIn,
     openShareModal
   };
+  window.NovaFlixAds = window.CinexaAds;
 
   // Auto initialize push after DOM load
   if (document.readyState === 'loading') {

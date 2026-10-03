@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaFlix - Watch Any Movie, Anime &amp; TV Series in the World Free in 4K</title>
-  <meta name="description" content="Watch every movie in the world in 4K Ultra HD on NovaFlix. Search millions of movies, anime, and series with official ratings, cast, and multi-source streaming.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Cinexa - Watch Any Movie, Anime &amp; TV Series Free in 4K UHD</title>
+  <meta name="description" content="Stream every movie, anime, and TV series in 4K Ultra HD on Cinexa. Zero subscription, instant fast streaming, multi-source servers, and direct 4K downloads.">
+  <meta name="theme-color" content="#08090d">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/player.css">
   <!-- Structured Schema Data for SEO -->
@@ -15,11 +16,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "NovaFlix",
-    "url": "https://novaflix.app",
+    "name": "Cinexa",
+    "alternateName": "Cinexa 4K Cinema",
+    "url": "https://cinexa.stream",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://novaflix.app/?q={search_term_string}",
+      "target": "https://cinexa.stream/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -27,21 +29,24 @@
 </head>
 <body>
   <!-- =========================================================================
-       Site Header / Navigation Bar (NovaFlix Global Platform)
+       Site Header / Navigation Bar (Cinexa Global 4K Platform)
        ========================================================================= -->
   <header class="site-header">
     <div class="nav-left">
-      <a class="brand-logo" id="nav-logo" href="#">
-        <div class="logo-icon nova">N</div>
-        <div class="logo-text">NOVA<span class="nova-gradient">FLIX</span></div>
+      <a class="brand-logo" id="nav-logo" href="#" title="Cinexa 4K Cinema">
+        <div class="logo-icon cinexa">
+          <span class="logo-letter">C</span>
+        </div>
+        <div class="logo-text">CINE<span class="cinexa-gradient">XA</span></div>
+        <span class="brand-sub-badge">4K ULTRA</span>
       </a>
       <ul class="nav-links">
         <li><a class="nav-link active" id="nav-home-link" href="#">Home</a></li>
-        <li><a class="nav-link" href="#catalog-container">Blockbusters</a></li>
-        <li><a class="nav-link" href="#catalog-container">Indian Cinema</a></li>
-        <li><a class="nav-link" href="#catalog-container">Anime</a></li>
-        <li><a class="nav-link" href="#catalog-container">World Cinema</a></li>
-        <li><a class="nav-link" href="#catalog-container">2024–2026</a></li>
+        <li><a class="nav-link" href="#catalog-container" data-tab="blockbusters">Blockbusters</a></li>
+        <li><a class="nav-link" href="#catalog-container" data-tab="indian">Indian Cinema</a></li>
+        <li><a class="nav-link" href="#catalog-container" data-tab="anime">Anime</a></li>
+        <li><a class="nav-link" href="#catalog-container" data-tab="world">World Cinema</a></li>
+        <li><a class="nav-link" href="#catalog-container" data-tab="upcoming">2024–2026</a></li>
       </ul>
     </div>
 
@@ -53,30 +58,31 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search movies, series, anime, actors..." autocomplete="off">
+          <input type="text" id="search-input" class="search-input" placeholder="Search movies, series, actors..." autocomplete="off">
           <button id="search-clear-btn" class="search-clear-btn" style="display: none;">&times;</button>
+          <span class="search-kbd-hint">⌘K</span>
         </div>
         <!-- Live Instant Search Results Popup -->
         <div id="search-results-popup" class="search-results-popup"></div>
       </div>
 
-      <!-- VIP Account Profile Dropdown (NovaFlix Look) -->
+      <!-- VIP Account Profile Dropdown (Cinexa Look) -->
       <div class="user-profile-menu">
-        <div class="profile-trigger" id="profile-trigger" title="NovaFlix VIP Account">
+        <div class="profile-trigger" id="profile-trigger" title="Cinexa VIP Account">
           <div class="profile-avatar">VIP</div>
-          <span class="profile-plan-badge">4K ULTRA</span>
+          <span class="profile-plan-badge">4K HDR</span>
         </div>
         <div class="profile-dropdown" id="profile-dropdown">
           <div class="dropdown-header">
-            <div style="font-weight: 700; color: #fff;">NovaFlix Premium Member</div>
-            <div style="font-size: 11px; color: #06b6d4;">● Active • Ultra Fast CDN</div>
+            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Cinexa VIP Member</div>
+            <div style="font-size: 11px; color: #00f2fe; margin-top: 2px;">● Connected • FastCDN 4K Edge</div>
           </div>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#catalog-container">My Library &amp; Watchlist</a>
-          <a class="dropdown-item" href="#catalog-container">Subtitle Settings</a>
-          <a class="dropdown-item" href="#catalog-container">CDN Speed Test</a>
+          <a class="dropdown-item" href="#catalog-container">Subtitle Preferences</a>
+          <a class="dropdown-item" href="#catalog-container">CDN Network Status (0ms)</a>
           <div class="dropdown-divider"></div>
-          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Server: NovaEdge Global Network (0ms)</div>
+          <div class="dropdown-item" style="color: var(--text-muted); font-size: 11px;">Cluster: Cinexa Global Edge (Tokyo / US / EU)</div>
         </div>
       </div>
     </div>
@@ -86,14 +92,6 @@
   <div class="ad-banner-container" id="ad-header-banner">
     <div class="ad-badge">SPONSORED ADVERTISEMENT</div>
     <div class="ad-slot-wrapper">
-      <!-- Google AdSense Tag Placeholder:
-           <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                data-ad-slot="1234567890"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-      -->
       <div class="ad-placeholder-content">
         <span class="ad-brand-icon">⚡</span>
         <div class="ad-text-group">
@@ -324,8 +322,8 @@
             <div class="advisory-badge-18">18+</div>
             <div class="advisory-box-content">
               <div class="advisory-box-header">
-                <span class="advisory-box-title">CONTENT & VIEWER DISCRETION ADVISORY</span>
-                <span class="advisory-box-sub">OFFICIAL NOVAFLIX CENSORSHIP CLASSIFICATION</span>
+                <span class="advisory-box-title">CONTENT &amp; VIEWER DISCRETION ADVISORY</span>
+                <span class="advisory-box-sub">OFFICIAL CINEXA CENSORSHIP CLASSIFICATION</span>
               </div>
               <p id="preview-advisory-text" class="advisory-box-desc">
                 ⚠️ Rated 18+ for mature themes, intense emotional heartbreak, adult situations, and romantic intimacy. Viewer discretion is strongly advised.
@@ -348,9 +346,9 @@
             </p>
           </div>
 
-          <!-- Cast & Characters Carousel (NovaFlix style) -->
+          <!-- Cast & Characters Carousel (Cinexa style) -->
           <div class="preview-cast-section">
-            <h3>Top Cast & Characters</h3>
+            <h3>Top Cast &amp; Characters</h3>
             <div id="preview-cast-carousel" class="cast-carousel"></div>
           </div>
         </div>
@@ -372,7 +370,7 @@
       </div>
     </div>
 
-    <!-- You May Also Like / Similars (NovaFlix style) -->
+    <!-- You May Also Like / Similars (Cinexa style) -->
     <div class="preview-similar-section">
       <h2>You May Also Like</h2>
       <div id="preview-similar-grid" class="movie-grid"></div>
@@ -380,11 +378,11 @@
   </section>
 
   <!-- =========================================================================
-       Footer (Commercial NovaFlix Look)
+       Footer (Commercial Cinexa Look)
        ========================================================================= -->
   <footer class="site-footer">
     <div class="footer-top">
-      <div class="footer-brand">NOVA<span>FLIX</span> Worldwide 4K HD</div>
+      <div class="footer-brand">CINE<span>XA</span> Worldwide 4K UHD Network</div>
       <div style="font-size: 12px; color: var(--text-muted);">
         Player Shortcuts: <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">Space</kbd> Play/Pause &bull; 
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">&larr;/&rarr;</kbd> &plusmn;10s Skip &bull; 
@@ -393,7 +391,7 @@
         <kbd style="background:#1e222d; padding:2px 6px; border-radius:3px; color:#fff;">C</kbd> Subtitles
       </div>
     </div>
-    <p>Watch any movie, anime, or TV series from around the world in 4K Ultra HD on NovaFlix. Powered by TMDB Global Discovery and high-speed streaming CDN.</p>
+    <p>Watch any movie, anime, or TV series from around the world in 4K Ultra HD on Cinexa. Powered by TMDB Global Discovery and high-speed streaming CDN.</p>
   </footer>
 
   <!-- =========================================================================
@@ -721,10 +719,45 @@
     <button class="ad-close-btn" id="ad-sticky-close" title="Dismiss Ad">&times;</button>
     <div class="ad-sticky-content">
       <span class="ad-badge-mini">PROMO</span>
-      <span class="ad-sticky-text">🍿 Enjoying NovaFlix? Support free worldwide 4K streaming by sharing this website with your friends!</span>
+      <span class="ad-sticky-text">🍿 Enjoying Cinexa? Support free worldwide 4K streaming by sharing with friends!</span>
       <a href="#catalog-container" class="ad-sticky-btn">Browse 4K Titles</a>
     </div>
   </div>
+
+  <!-- Mobile Bottom Navigation Bar (Sleek App-Like Experience on Phones) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <a href="#" class="mobile-nav-item active" id="mobile-nav-home">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-blockbusters" data-tab="blockbusters">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+      </svg>
+      <span>Movies</span>
+    </a>
+    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-indian" data-tab="indian">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+      <span>Indian</span>
+    </a>
+    <a href="#catalog-container" class="mobile-nav-item" id="mobile-nav-upcoming" data-tab="upcoming">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M7 2v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2V2h-2v2H9V2H7zm12 18H5V9h14v11z"/>
+      </svg>
+      <span>2024–2026</span>
+    </a>
+    <a href="#" class="mobile-nav-item" id="mobile-nav-search">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16" y2="16"></line>
+      </svg>
+      <span>Search</span>
+    </a>
+  </nav>
 
   <!-- Scripts -->
   <script src="/js/tmdb-service.js"></script>

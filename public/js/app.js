@@ -1,11 +1,11 @@
 /**
- * NovaFlix Application Logic
- * Worldwide Free Movie & Series Streaming Platform
- * - TMDB Global Live Movie Search & Discovery (1,000,000+ Movies)
+ * Cinexa Application Logic
+ * Worldwide Free 4K Movie & Series Streaming Platform
+ * - TMDB Global Live Movie Search & Discovery (2024–2026 World Cinema)
  * - Multi-Source Streaming Server Switcher (VidSrc, VidLink, SuperEmbed, Trailer)
  * - Custom Player with Guaranteed Local 4K Streaming for "A Moment to Remember" (0918 (1).mp4)
- * - Google Ads & Responsive Monetization Slots
- * - Zero-Black-Screen Vector Art & Instant Preview Engine
+ * - Responsive Google Ads & High-Yield Monetization Slots
+ * - Mobile-First App Navigation & Instant Fast Preview Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Header scroll effect
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 40) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userPastedMovie = serverMovies.find(m => !m.isDemo);
       }
     } catch (err) {
-      console.log('[NovaFlix] Local movie sync in progress:', err);
+      console.log('[Cinexa] Local movie sync in progress:', err);
     }
   }
 
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     adCard.innerHTML = `
       <span class="in-feed-ad-badge">SPONSORED</span>
       <div style="font-size: 32px; margin: 15px 0 10px 0;">⚡</div>
-      <h3 style="font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px;">NovaFlix 4K Ultra Pass</h3>
+      <h3 style="font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px;">Cinexa 4K Ultra Pass</h3>
       <p style="font-size: 12px; color: #94a3b8; line-height: 1.4; margin-bottom: 16px;">
         Zero buffering, instant downloads, and uncompressed Dolby Atmos on all your screens.
       </p>
@@ -920,20 +920,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 10. Category Tab Switcher
-  categoryTabs.forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      categoryTabs.forEach(t => t.classList.remove('active'));
-      const btn = e.target.closest('.tab-btn');
-      if (btn) {
-        btn.classList.add('active');
-        currentCategory = btn.dataset.category;
-        if (previewView.classList.contains('active')) {
-          backToBrowse();
-        }
-        renderCatalog();
+  // 10. Category Tab Switcher & Navigation Links
+  function setCategory(cat) {
+    currentCategory = cat;
+    categoryTabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.category === cat);
+    });
+    // Sync mobile bottom nav items
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+      if (item.dataset.tab) {
+        item.classList.toggle('active', item.dataset.tab === cat);
+      } else if (item.id === 'mobile-nav-home') {
+        item.classList.toggle('active', cat === 'all');
       }
     });
+    if (previewView.classList.contains('active')) {
+      backToBrowse();
+    }
+    renderCatalog();
+    const catalogEl = document.getElementById('catalog-container');
+    if (catalogEl && cat !== 'all') {
+      catalogEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  categoryTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-btn');
+      if (btn) {
+        setCategory(btn.dataset.category || 'all');
+      }
+    });
+  });
+
+  // Header Nav Links with data-tab
+  document.querySelectorAll('.nav-link[data-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      setCategory(link.dataset.tab);
+    });
+  });
+
+  // Mobile Bottom Nav Items
+  document.querySelectorAll('.mobile-nav-item[data-tab]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      setCategory(item.dataset.tab);
+    });
+  });
+
+  const mobileNavHome = document.getElementById('mobile-nav-home');
+  if (mobileNavHome) {
+    mobileNavHome.addEventListener('click', (e) => {
+      e.preventDefault();
+      setCategory('all');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  const mobileNavSearch = document.getElementById('mobile-nav-search');
+  if (mobileNavSearch) {
+    mobileNavSearch.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchInput.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Global Keyboard Shortcuts (⌘K / Ctrl+K for search)
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    } else if (e.key === 'Escape') {
+      if (searchResultsPopup.classList.contains('active')) {
+        searchResultsPopup.classList.remove('active');
+      }
+    }
   });
 
   // 11. Handle URL Hash Route
@@ -955,6 +1019,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('hashchange', handleHashRoute);
+
+  window.CinexaApp = {
+    openDownloadModal,
+    setCategory,
+    openMovie: openCinebyPreviewPage
+  };
 
   // Initial Boot
   fetchServerMovies();
