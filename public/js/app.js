@@ -1,22 +1,26 @@
 /**
- * CINEXA: 1:1 Google Stitch Screen Controller & Architecture
- * Implements exact interaction logic for:
- * - Home Tab with 5-Film Hero Rotator & Ranked Carousels
- * - Discover Tab with Filter Drawer & Dynamic Catalog
- * - My Library Tab with 2x2 Bento, Sub-views & Stacked Folios
- * - Film Details Screen with 35mm Dossier & Principals
- * - Full Cinema 4K Player with Guaranteed Local Prank Video Playback
+ * CINEXA: Unified Google Stitch Screen Controller & Architecture
+ * Complete implementation of all 6 Google Stitch Screens:
+ * 1. Home / Trending with 5-Slide Hero Rotator & Ranked Carousels
+ * 2. Discover & Movements (Film Matrix + Browse by Movement & Discipline)
+ * 3. My Library (2x2 Bento, High-Density Rows & 3D Curated Folios)
+ * 4. Film Dossier Details (35mm Dossier, Where to Watch, Theatrical Preview, Cast)
+ * 5. Global Command Search Palette (⌘K) matching 159+ films
+ * 6. 5★ Archival Logbook Rating Dialog
+ * + Guaranteed Local Playback for "A Moment to Remember" Prank Movie
  */
 
-// Global State
+// Global Application State
 let currentScreen = 'home';
 let currentActiveMovie = null;
 let currentHeroIndex = 0;
 let heroInterval = null;
 let watchlistSet = new Set(['15859', 'dune-part-two', 'past-lives', 'perfect-days']);
+let seenSet = new Set(['oppenheimer', 'drive-my-car']);
 let toastTimer = null;
+let currentSelectedRating = 5;
 
-// Hero Dataset matching Google Stitch exactly
+// Hero Spotlight Dataset matching Stitch exactly
 const HERO_SLIDES = [
   {
     id: 'dune-part-two',
@@ -51,7 +55,7 @@ const HERO_SLIDES = [
     director: 'John H. Lee',
     tagline: '“If my memory disappears, what will become of our love?”',
     koreanTitle: '내 머리 속의 지우개',
-    synopsis: 'Su-jin and Chul-soo build a tender, passionate life together despite family resistance. But when early-onset Alzheimer\'s strikes Su-jin in the prime of her youth, their unbreakable devotion faces the ultimate test of human memory and love.'
+    synopsis: 'Su-jin, a delicate fashion designer reeling from heartbreak, crosses paths with Chul-soo, an austere construction foreman harboring literary aspirations. What blossoms from an accidental encounter outside a convenience store evolves into one of Korean cinema\'s most heartbreaking portraits of vulnerability. As early-onset Alzheimer\'s begins erasing their cherished domestic memories, the two construct an enduring sanctuary of love against inevitable erasure.'
   },
   {
     id: 'oppenheimer',
@@ -107,7 +111,7 @@ const HERO_SLIDES = [
 ];
 
 // =========================================================================
-// 1. MAIN SCREEN SWITCHER
+// 1. MAIN SCREEN CONTROLLER (Single-Page View Router)
 // =========================================================================
 
 function switchMainScreen(screenName) {
@@ -125,6 +129,28 @@ function switchMainScreen(screenName) {
     }
   });
 
+  // Update Top Stitch screen selector pills
+  document.querySelectorAll('#stitch-screens-bar .screen-pill').forEach(pill => {
+    const targetScreen = pill.getAttribute('data-screen');
+    if (targetScreen === screenName) {
+      pill.className = 'font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-primary text-[#1A1408] font-bold shadow-sm transition-all cursor-pointer screen-pill active';
+    } else if (targetScreen) {
+      pill.className = 'font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-bright border border-outline-variant/40 transition-all cursor-pointer screen-pill';
+    }
+  });
+
+  // Update Desktop Nav Links
+  document.querySelectorAll('#desktop-nav-links .nav-link').forEach(link => {
+    const nav = link.getAttribute('data-nav');
+    if (nav === screenName) {
+      link.classList.add('active', 'text-on-surface');
+      link.classList.remove('text-on-surface-variant');
+    } else if (nav) {
+      link.classList.remove('active', 'text-on-surface');
+      link.classList.add('text-on-surface-variant');
+    }
+  });
+
   // Update Bottom Navigation Tab State
   document.querySelectorAll('#main-bottom-nav .tab-item').forEach(tab => {
     const path = tab.getAttribute('data-path');
@@ -132,38 +158,366 @@ function switchMainScreen(screenName) {
     if (path === screenName) {
       tab.classList.remove('text-on-surface-variant');
       tab.classList.add('text-primary');
-      if (indicator) indicator.classList.remove('opacity-0');
-      if (indicator) indicator.classList.add('opacity-100');
+      if (indicator) {
+        indicator.classList.remove('opacity-0');
+        indicator.classList.add('opacity-100');
+      }
     } else {
       tab.classList.remove('text-primary');
       tab.classList.add('text-on-surface-variant');
-      if (indicator) indicator.classList.remove('opacity-100');
-      if (indicator) indicator.classList.add('opacity-0');
+      if (indicator) {
+        indicator.classList.remove('opacity-100');
+        indicator.classList.add('opacity-0');
+      }
     }
   });
 
-  // Render content if needed
+  // Render dynamic catalog grids when entering screen
   if (screenName === 'discover') {
     renderDiscoverCatalog();
   } else if (screenName === 'home') {
     renderHomeCatalog();
   }
 
-  // Scroll to Top
+  // Smooth scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // =========================================================================
-// 2. HERO SLIDER LOGIC
+// 2. DISCOVER SCREEN SUB-VIEW SWITCHER
+// =========================================================================
+
+function switchDiscoverSubView(subView) {
+  const matrixView = document.getElementById('discover-subview-matrix');
+  const movementsView = document.getElementById('discover-subview-movements');
+  const matrixBtn = document.getElementById('discover-tab-matrix-btn');
+  const movementsBtn = document.getElementById('discover-tab-movements-btn');
+
+  if (subView === 'matrix') {
+    if (matrixView) matrixView.classList.remove('hidden');
+    if (movementsView) movementsView.classList.add('hidden');
+    if (matrixBtn) matrixBtn.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary text-[#1A1408] font-bold shadow-sm transition-all cursor-pointer';
+    if (movementsBtn) movementsBtn.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    renderDiscoverCatalog();
+  } else {
+    if (matrixView) matrixView.classList.add('hidden');
+    if (movementsView) movementsView.classList.remove('hidden');
+    if (matrixBtn) matrixBtn.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    if (movementsBtn) movementsBtn.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary text-[#1A1408] font-bold shadow-sm transition-all cursor-pointer';
+  }
+}
+
+function openMovementsTab() {
+  switchMainScreen('discover');
+  switchDiscoverSubView('movements');
+}
+
+function filterCatalogByMovement(movementKey) {
+  switchDiscoverSubView('matrix');
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  let filtered = catalog;
+
+  if (movementKey === 'sci-fi') {
+    filtered = catalog.filter(m => (m.genres && m.genres.some(g => g.toLowerCase().includes('sci-fi') || g.toLowerCase().includes('action'))) || m.title.toLowerCase().includes('dune') || m.title.toLowerCase().includes('interstellar') || m.title.toLowerCase().includes('matrix'));
+  } else if (movementKey === 'korean') {
+    filtered = catalog.filter(m => m.country === 'South Korea' || (m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('melodrama'))));
+  } else if (movementKey === 'french') {
+    filtered = catalog.filter(m => m.country === 'France' || m.title.toLowerCase().includes('anatomy') || m.title.toLowerCase().includes('breathless'));
+  } else if (movementKey === 'thriller') {
+    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('thriller') || g.toLowerCase().includes('horror') || g.toLowerCase().includes('mystery')));
+  } else if (movementKey === 'japanese') {
+    filtered = catalog.filter(m => m.country === 'Japan' || m.title.toLowerCase().includes('drive my car') || m.title.toLowerCase().includes('monster') || m.title.toLowerCase().includes('perfect days'));
+  }
+
+  renderDiscoverCatalog(filtered);
+  showToast(`Filtered: ${filtered.length} films in ${movementKey.toUpperCase()} movement`);
+}
+
+function resetDiscoverFilters() {
+  renderDiscoverCatalog();
+  showToast('Reset all curatorial filters.');
+}
+
+// =========================================================================
+// 3. MY LIBRARY SUB-VIEW SWITCHER
+// =========================================================================
+
+function switchLibrarySubView(view) {
+  const libraryContent = document.getElementById('view-library-content');
+  const searchContent = document.getElementById('view-search');
+  const emptyContent = document.getElementById('view-empty');
+
+  const btnLib = document.getElementById('view-library-btn');
+  const btnSearch = document.getElementById('view-search-btn');
+  const btnEmpty = document.getElementById('view-empty-btn');
+
+  // Reset classes
+  [btnLib, btnSearch, btnEmpty].forEach(btn => {
+    if (btn) {
+      btn.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer';
+    }
+  });
+
+  if (view === 'library') {
+    if (libraryContent) libraryContent.classList.remove('hidden');
+    if (searchContent) searchContent.classList.add('hidden');
+    if (emptyContent) emptyContent.classList.add('hidden');
+    if (btnLib) btnLib.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-[#1A1408] font-bold shadow-sm cursor-pointer';
+  } else if (view === 'search') {
+    if (libraryContent) libraryContent.classList.add('hidden');
+    if (searchContent) searchContent.classList.remove('hidden');
+    if (emptyContent) emptyContent.classList.add('hidden');
+    if (btnSearch) btnSearch.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-[#1A1408] font-bold shadow-sm cursor-pointer';
+    
+    // Auto-focus and populate search results
+    const input = document.getElementById('overlay-search-input');
+    if (input) {
+      input.focus();
+      handleOverlaySearch(input.value || '');
+    }
+  } else if (view === 'empty') {
+    if (libraryContent) libraryContent.classList.add('hidden');
+    if (searchContent) searchContent.classList.add('hidden');
+    if (emptyContent) emptyContent.classList.remove('hidden');
+    if (btnEmpty) btnEmpty.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-[#1A1408] font-bold shadow-sm cursor-pointer';
+  }
+}
+
+function toggleLayout(mode) {
+  const container = document.getElementById('library-film-rows');
+  const btnList = document.getElementById('toggle-list-btn');
+  const btnGrid = document.getElementById('toggle-grid-btn');
+
+  if (mode === 'grid') {
+    if (container) {
+      container.classList.remove('flex', 'flex-col');
+      container.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3');
+    }
+    if (btnGrid) {
+      btnGrid.classList.add('bg-surface-container-high', 'text-primary');
+      btnGrid.classList.remove('text-on-surface-variant');
+    }
+    if (btnList) {
+      btnList.classList.remove('bg-surface-container-high', 'text-primary');
+      btnList.classList.add('text-on-surface-variant');
+    }
+  } else {
+    if (container) {
+      container.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3');
+      container.classList.add('flex', 'flex-col');
+    }
+    if (btnList) {
+      btnList.classList.add('bg-surface-container-high', 'text-primary');
+      btnList.classList.remove('text-on-surface-variant');
+    }
+    if (btnGrid) {
+      btnGrid.classList.remove('bg-surface-container-high', 'text-primary');
+      btnGrid.classList.add('text-on-surface-variant');
+    }
+  }
+}
+
+// =========================================================================
+// 4. GLOBAL COMMAND SEARCH MODAL (⌘K)
+// =========================================================================
+
+function openGlobalSearchModal() {
+  const overlay = document.getElementById('command-modal-overlay');
+  const input = document.getElementById('modal-search-input');
+  if (overlay) {
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+  }
+  if (input) {
+    input.value = '';
+    input.focus();
+    handleGlobalModalSearch('');
+  }
+}
+
+function closeGlobalSearchModal() {
+  const overlay = document.getElementById('command-modal-overlay');
+  if (overlay) {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+}
+
+function handleGlobalModalSearch(query) {
+  const container = document.getElementById('modal-content-area');
+  if (!container) return;
+
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  const q = (query || '').toLowerCase().trim();
+
+  let matches = catalog;
+  if (q.length > 0) {
+    matches = catalog.filter(m => 
+      (m.title && m.title.toLowerCase().includes(q)) ||
+      (m.director && m.director.toLowerCase().includes(q)) ||
+      (m.country && m.country.toLowerCase().includes(q)) ||
+      (m.genres && m.genres.some(g => g.toLowerCase().includes(q))) ||
+      (m.cast && m.cast.some(c => c.toLowerCase().includes(q)))
+    );
+  }
+
+  if (matches.length === 0) {
+    container.innerHTML = `
+      <div class="py-12 px-6 text-center">
+        <span class="material-symbols-outlined text-outline text-3xl mb-2">search_off</span>
+        <h4 class="font-serif text-lg text-on-surface font-medium mb-1">No matches found for "${query}"</h4>
+        <p class="font-sans text-xs text-outline max-w-xs mx-auto">
+          Verify spelling or browse our 159+ titles by movement and genre.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = matches.slice(0, 12).map(m => `
+    <div class="p-3.5 hover:bg-surface-bright flex items-center justify-between gap-4 cursor-pointer group transition-colors" onclick="closeGlobalSearchModal(); openFilmDetails('${m.slug || m.id}')">
+      <div class="flex items-center gap-3.5 min-w-0">
+        <div class="w-10 h-15 rounded-md overflow-hidden bg-surface-container flex-shrink-0 border border-surface-container-highest">
+          <img src="${m.poster || m.backdrop || 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSTC5wSXrmEcdSE9fVYj4_TU4OiMIF3m-L5zQ-nT0cxgtaApyVrVdN0spo2DJcPcMO-YHdo3TUMXD9NvINA5x56F0pe_62Kx0eEk8WgbYq6BFAfc3wcC-h1fur5XKM77SCeMtYWiUG2gRiSXRC-QeXFmUmf0VGMYyOISTqpWapKgCeMuD3Qi1_A4UGXwpg_klkORXxfqwoZe6SYTn1mcEbvLsMeVeLZlPIizgsHYAVuy2Up2AcT_0gNw'}" alt="${m.title}" class="w-full h-full object-cover">
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 mb-0.5">
+            <h4 class="font-serif font-medium text-[15px] text-on-surface group-hover:text-primary transition-colors truncate">${m.title}</h4>
+            <span class="font-mono text-[11px] text-outline shrink-0">${m.year || '2024'}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[10px] uppercase tracking-wider text-tertiary bg-tertiary-container/20 px-1.5 py-0.5 rounded">${m.studio || 'CINEXA 4K'}</span>
+            <span class="font-sans text-xs text-on-surface-variant truncate">${m.director || 'Curated Master'}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <span class="font-mono text-xs text-primary font-semibold">★ ${m.imdbRating || '8.0'}</span>
+        <button class="w-8 h-8 rounded-full bg-primary/15 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-[#1A1408] transition-colors">
+          <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setSearchPill(category) {
+  const input = document.getElementById('modal-search-input');
+  if (input) {
+    input.value = category;
+    handleGlobalModalSearch(category);
+  }
+}
+
+function handleOverlaySearch(query) {
+  const container = document.getElementById('overlay-results-grid');
+  if (!container) return;
+
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  const q = (query || '').toLowerCase().trim();
+
+  let matches = catalog;
+  if (q.length > 0) {
+    matches = catalog.filter(m => 
+      (m.title && m.title.toLowerCase().includes(q)) ||
+      (m.director && m.director.toLowerCase().includes(q)) ||
+      (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
+    );
+  }
+
+  container.innerHTML = matches.slice(0, 12).map(m => `
+    <div class="flex flex-col gap-1.5 group cursor-pointer" onclick="openFilmDetails('${m.slug || m.id}')">
+      <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-md group-hover:shadow-xl transition-all">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${m.poster || m.backdrop}" alt="${m.title}"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+        <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-on-surface font-label-sm text-label-sm">${m.rating || 'R'}</span>
+        <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+          <span class="text-tertiary">35mm</span>
+          <span class="text-primary font-semibold">${m.imdbRating || '8.0'}</span>
+        </div>
+      </div>
+      <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</span>
+    </div>
+  `).join('');
+}
+
+// =========================================================================
+// 5. 5-STAR RATING & LOGBOOK DIALOG
+// =========================================================================
+
+function openRatingDialogModal(movieSlugOrId) {
+  const overlay = document.getElementById('rating-modal-overlay');
+  const titleEl = document.getElementById('rating-modal-film-title');
+  
+  let film = currentActiveMovie || HERO_SLIDES[1];
+  if (movieSlugOrId) {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => m.slug === movieSlugOrId || m.id === movieSlugOrId);
+    if (found) film = found;
+  }
+
+  if (titleEl) {
+    titleEl.innerText = `${film.title} (${film.year || '2004'})`;
+  }
+
+  if (overlay) {
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+  }
+
+  initStarRatingCluster();
+}
+
+function closeRatingDialogModal() {
+  const overlay = document.getElementById('rating-modal-overlay');
+  if (overlay) {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+}
+
+function initStarRatingCluster() {
+  const stars = document.querySelectorAll('#star-rating-cluster .star-rate');
+  const scoreText = document.getElementById('star-score-text');
+
+  stars.forEach(star => {
+    star.onclick = () => {
+      const val = parseInt(star.getAttribute('data-value'), 10);
+      currentSelectedRating = val;
+      stars.forEach(s => {
+        const sVal = parseInt(s.getAttribute('data-value'), 10);
+        if (sVal <= val) {
+          s.style.fontVariationSettings = "'FILL' 1";
+          s.classList.add('text-primary');
+          s.classList.remove('text-outline');
+        } else {
+          s.style.fontVariationSettings = "'FILL' 0";
+          s.classList.remove('text-primary');
+          s.classList.add('text-outline');
+        }
+      });
+      if (scoreText) {
+        scoreText.innerText = `${val}.0 / 5.0 ★ ${val === 5 ? 'Masterpiece' : val >= 4 ? 'Exceptional' : 'Recommended'}`;
+      }
+    };
+  });
+}
+
+function saveRatingToJournal() {
+  closeRatingDialogModal();
+  showToast(`Saved ★ ${currentSelectedRating}.0 rating to your Archival Film Journal!`);
+}
+
+// =========================================================================
+// 6. HERO SPOTLIGHT ROTATOR
 // =========================================================================
 
 function setHeroSlide(index) {
+  if (index < 0 || index >= HERO_SLIDES.length) return;
   currentHeroIndex = index;
   const slide = HERO_SLIDES[index];
-  if (!slide) return;
 
-  const bg = document.getElementById('hero-backdrop');
-  const badge = document.getElementById('hero-badge');
+  const backdrop = document.getElementById('hero-backdrop');
   const eyebrow = document.getElementById('hero-eyebrow');
   const title = document.getElementById('hero-title');
   const score = document.getElementById('hero-score');
@@ -171,432 +525,381 @@ function setHeroSlide(index) {
   const runtime = document.getElementById('hero-runtime');
   const age = document.getElementById('hero-age');
   const format = document.getElementById('hero-format');
+  const badge = document.getElementById('hero-badge');
 
-  if (bg) bg.style.backgroundImage = `url('${slide.backdrop}')`;
-  if (badge) badge.textContent = slide.badge;
-  if (eyebrow) eyebrow.textContent = slide.eyebrow;
-  if (title) title.textContent = slide.title;
-  if (score) score.textContent = slide.score;
-  if (year) year.textContent = slide.year;
-  if (runtime) runtime.textContent = slide.runtime;
-  if (age) age.textContent = slide.age;
-  if (format) format.textContent = slide.format;
+  if (backdrop) backdrop.style.backgroundImage = `url('${slide.backdrop}')`;
+  if (eyebrow) eyebrow.innerText = slide.eyebrow;
+  if (title) title.innerText = slide.title;
+  if (score) score.innerText = slide.score;
+  if (year) year.innerText = slide.year;
+  if (runtime) runtime.innerText = slide.runtime;
+  if (age) age.innerText = slide.age;
+  if (format) format.innerText = slide.format;
+  if (badge) badge.innerText = slide.badge;
 
   // Update dots
   const dotsContainer = document.getElementById('hero-dots');
   if (dotsContainer) {
     const dots = dotsContainer.querySelectorAll('span');
-    dots.forEach((d, i) => {
+    dots.forEach((dot, i) => {
       if (i === index) {
-        d.className = 'w-6 h-1.5 rounded-full bg-primary transition-all duration-300 cursor-pointer';
+        dot.className = 'w-6 h-1.5 rounded-full bg-primary transition-all duration-300 cursor-pointer';
       } else {
-        d.className = 'w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer';
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer';
       }
     });
   }
 
-  currentActiveMovie = slide;
-}
+  // Update hero button actions
+  const watchBtn = document.getElementById('btn-hero-watch');
+  const bookBtn = document.getElementById('btn-hero-bookmark');
+  const infoBtn = document.getElementById('btn-hero-info');
 
-function initHeroSlider() {
-  setHeroSlide(0);
-  clearInterval(heroInterval);
-  heroInterval = setInterval(() => {
-    const nextIdx = (currentHeroIndex + 1) % HERO_SLIDES.length;
-    setHeroSlide(nextIdx);
-  }, 7000);
-
-  const btnWatch = document.getElementById('btn-hero-watch');
-  if (btnWatch) {
-    btnWatch.addEventListener('click', () => {
+  if (watchBtn) {
+    watchBtn.onclick = () => {
+      currentActiveMovie = slide;
       playCurrentFilmInPlayer();
-    });
+    };
   }
-
-  const btnBookmark = document.getElementById('btn-hero-bookmark');
-  if (btnBookmark) {
-    btnBookmark.addEventListener('click', () => {
-      const slide = HERO_SLIDES[currentHeroIndex];
-      toggleWatchlist(slide);
-    });
+  if (bookBtn) {
+    bookBtn.onclick = () => {
+      showToast(`Added "${slide.title}" to your Watchlist.`);
+    };
   }
-
-  const btnInfo = document.getElementById('btn-hero-info');
-  if (btnInfo) {
-    btnInfo.addEventListener('click', () => {
-      const slide = HERO_SLIDES[currentHeroIndex];
+  if (infoBtn) {
+    infoBtn.onclick = () => {
       openFilmDetails(slide);
-    });
+    };
   }
 }
 
-// =========================================================================
-// 3. CATALOG RENDERING (Home & Discover)
-// =========================================================================
-
-function createFilmCard(movie) {
-  const card = document.createElement('div');
-  card.className = 'film-card group relative flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md cursor-pointer';
-
-  const badgeText = movie.resolution?.includes('4K') ? '4K' : (movie.year >= 2024 ? 'NEW' : '35MM');
-
-  card.innerHTML = `
-    <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-high">
-      <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${movie.poster || 'https://via.placeholder.com/300x450'}" alt="${movie.title}" loading="lazy"/>
-      <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-80"></div>
-      <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm">
-        <span class="font-label-sm text-label-sm text-secondary">${badgeText}</span>
-      </div>
-      <button class="bookmark-btn absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform">
-        <span class="material-symbols-outlined text-[16px]">bookmark_border</span>
-      </button>
-      <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface">
-        <span class="font-label-sm text-label-sm text-tertiary bg-on-tertiary-container/40 px-1.5 py-0.5 rounded">Stream</span>
-        <div class="flex items-center gap-1 bg-surface-container-lowest/70 px-1.5 py-0.5 rounded">
-          <span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="font-label-sm text-label-sm text-primary">${movie.imdbRating || '8.0'}</span>
-        </div>
-      </div>
-    </div>
-    <div class="p-3 flex flex-col gap-1">
-      <h2 class="font-headline-sm text-[16px] leading-5 text-on-surface font-semibold line-clamp-1">${movie.title}</h2>
-      <div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
-        <span>${movie.year || '2024'}</span>
-        <span class="truncate max-w-[100px]">${movie.director || 'Director'}</span>
-      </div>
-    </div>
-  `;
-
-  card.addEventListener('click', (e) => {
-    if (e.target.closest('.bookmark-btn')) {
-      e.stopPropagation();
-      toggleWatchlist(movie);
-      return;
-    }
-    openFilmDetails(movie);
-  });
-
-  return card;
-}
-
-function renderDiscoverCatalog() {
-  const grid = document.getElementById('catalogGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  const catalog = typeof KOREAN_MOVIES_CATALOG !== 'undefined' ? KOREAN_MOVIES_CATALOG : [];
-  catalog.slice(0, 36).forEach(m => {
-    grid.appendChild(createFilmCard(m));
-  });
-}
-
-function renderHomeCatalog() {
-  const grid = document.getElementById('home-catalog-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  const catalog = typeof KOREAN_MOVIES_CATALOG !== 'undefined' ? KOREAN_MOVIES_CATALOG : [];
-  catalog.filter(m => !m.hidden && m.id !== '15859').slice(0, 16).forEach(m => {
-    grid.appendChild(createFilmCard(m));
-  });
+function startHeroAutoRotate() {
+  if (heroInterval) clearInterval(heroInterval);
+  heroInterval = setInterval(() => {
+    const nextIndex = (currentHeroIndex + 1) % HERO_SLIDES.length;
+    setHeroSlide(nextIndex);
+  }, 7500);
 }
 
 // =========================================================================
-// 4. FILM DETAILS OPENER & POPULATION
+// 7. FILM DETAILS & DOSSIER POPULATION
 // =========================================================================
 
-function openFilmBySlug(slug) {
-  const catalog = typeof KOREAN_MOVIES_CATALOG !== 'undefined' ? KOREAN_MOVIES_CATALOG : [];
-  const match = catalog.find(m => m.slug === slug || m.id === slug) || HERO_SLIDES.find(h => h.id === slug || h.slug === slug);
-  if (match) {
-    openFilmDetails(match);
+function openFilmDetails(movieOrSlug) {
+  let movie = movieOrSlug;
+  if (typeof movieOrSlug === 'string') {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    movie = catalog.find(m => m.slug === movieOrSlug || m.id === movieOrSlug) || HERO_SLIDES[1];
   }
-}
 
-function openFilmDetails(movie) {
   currentActiveMovie = movie;
 
-  const bg = document.getElementById('details-hero-img');
-  const poster = document.getElementById('details-poster-img');
+  const heroImg = document.getElementById('details-hero-img');
+  const posterImg = document.getElementById('details-poster-img');
   const title = document.getElementById('details-title');
-  const korean = document.getElementById('details-korean-title');
+  const koreanTitle = document.getElementById('details-korean-title');
   const tagline = document.getElementById('details-tagline');
   const score = document.getElementById('details-score');
-  const matchEl = document.getElementById('details-match');
   const duration = document.getElementById('details-duration');
   const age = document.getElementById('details-age');
   const synopsis = document.getElementById('details-synopsis');
+  const trailerPoster = document.getElementById('details-trailer-poster');
 
-  if (bg) bg.style.backgroundImage = `url('${movie.backdrop || movie.poster}')`;
-  if (poster) poster.src = movie.poster || 'https://via.placeholder.com/300x450';
-  if (title) title.textContent = movie.title;
-  if (korean) korean.innerHTML = `${movie.koreanTitle || movie.title} <span class="font-label-sm text-label-sm text-outline not-italic ml-1">(${movie.year || '2024'})</span>`;
-  if (tagline) tagline.textContent = movie.tagline || '“If my memory disappears, what will become of our love?”';
-  if (score) score.textContent = movie.imdbRating || movie.score || '8.2';
-  if (matchEl) matchEl.textContent = movie.matchScore || '98% MATCH';
-  if (duration) duration.textContent = movie.duration || movie.runtime || '2h 15m';
-  if (age) age.textContent = movie.rating || movie.age || '18+';
-  if (synopsis) synopsis.textContent = movie.synopsis || 'Curated overview currently archiving.';
+  if (heroImg) heroImg.style.backgroundImage = `url('${movie.backdrop || movie.poster}')`;
+  if (posterImg) posterImg.src = movie.poster || movie.backdrop;
+  if (title) title.innerText = movie.title;
+  if (koreanTitle) {
+    if (movie.koreanTitle) {
+      koreanTitle.innerHTML = `${movie.koreanTitle} <span class="font-label-sm text-label-sm text-outline not-italic ml-1">(${movie.year || '2004'})</span>`;
+      koreanTitle.classList.remove('hidden');
+    } else {
+      koreanTitle.classList.add('hidden');
+    }
+  }
+  if (tagline) tagline.innerText = movie.tagline ? `“${movie.tagline.replace(/^["“”]|["“”]$/g, '')}”` : '';
+  if (score) score.innerText = movie.imdbRating || movie.score || '8.1';
+  if (duration) duration.innerText = movie.duration || movie.runtime || '2h 24m';
+  if (age) age.innerText = movie.rating || movie.age || '18+';
+  if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Restored in 4K from the original 35mm negative under curatorial supervision.';
+  if (trailerPoster) trailerPoster.style.backgroundImage = `url('${movie.backdrop || movie.poster}')`;
 
   switchMainScreen('details');
 }
 
-// =========================================================================
-// 5. CINEMA 4K PLAYER & PRANK VIDEO STREAM LOGIC
-// =========================================================================
+function openFilmBySlug(slug) {
+  openFilmDetails(slug);
+}
 
-function playCurrentFilmInPlayer(serverType = 'local') {
-  const playerModal = document.getElementById('player-modal');
-  if (!playerModal) return;
-
-  const movie = currentActiveMovie || HERO_SLIDES[1];
-  const title = document.getElementById('player-movie-title');
-  if (title) title.textContent = `${movie.title} (${movie.year || '2024'})`;
-
-  const customVideo = document.getElementById('custom-video-player');
-  const iframe = document.getElementById('video-iframe');
-
-  // PRANK CHECK: If "A Moment to Remember", stream local prank video file!
-  const isPrank = movie.id === '15859' || movie.slug === 'a-moment-to-remember' || movie.title?.toLowerCase().includes('moment to remember');
-
-  if (isPrank && serverType === 'local') {
-    if (iframe) iframe.style.display = 'none';
-    if (customVideo) {
-      customVideo.style.display = 'block';
-      customVideo.src = '/subtitles/0918 (1).mp4';
-      customVideo.play().catch(e => console.log('Playback:', e));
-    }
-  } else {
-    if (customVideo) customVideo.style.display = 'none';
-    if (iframe) {
-      iframe.style.display = 'block';
-      iframe.src = `https://vidsrc.to/embed/movie/${movie.id || '15859'}`;
+function toggleProvidersAccordion() {
+  const content = document.getElementById('providers-content');
+  const arrow = document.getElementById('providers-accordion-arrow');
+  if (content && arrow) {
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      arrow.style.transform = 'rotate(0deg)';
+    } else {
+      content.classList.add('hidden');
+      arrow.style.transform = 'rotate(-90deg)';
     }
   }
-
-  playerModal.classList.add('active');
 }
 
-// Player close
-const closePlayerBtn = document.getElementById('close-player-btn');
-if (closePlayerBtn) {
-  closePlayerBtn.addEventListener('click', () => {
-    const playerModal = document.getElementById('player-modal');
-    if (playerModal) playerModal.classList.remove('active');
-    const customVideo = document.getElementById('custom-video-player');
-    if (customVideo) {
-      customVideo.pause();
-      customVideo.src = '';
+function toggleDetailsWatchlist() {
+  const btn = document.getElementById('details-watchlist-btn');
+  const text = document.getElementById('details-watchlist-text');
+  const title = currentActiveMovie ? currentActiveMovie.title : 'Film';
+
+  if (btn && text) {
+    if (text.innerText.includes('Add')) {
+      text.innerText = 'In Watchlist';
+      btn.classList.add('bg-primary/20', 'text-primary');
+      showToast(`Added "${title}" to your Watchlist.`);
+    } else {
+      text.innerText = 'Add to Watchlist';
+      btn.classList.remove('bg-primary/20', 'text-primary');
+      showToast(`Removed "${title}" from Watchlist.`);
     }
-    const iframe = document.getElementById('video-iframe');
-    if (iframe) iframe.src = '';
-  });
-}
-
-// Player Server Buttons
-document.querySelectorAll('.server-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.server-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const sType = btn.getAttribute('data-server');
-    playCurrentFilmInPlayer(sType);
-  });
-});
-
-// =========================================================================
-// 6. LIBRARY SUB-VIEWS & CONTROLS
-// =========================================================================
-
-function switchLibrarySubView(view) {
-  switchMainScreen('library');
-
-  const libView = document.getElementById('view-library-content');
-  const searchView = document.getElementById('view-search');
-  const emptyView = document.getElementById('view-empty');
-
-  const libBtn = document.getElementById('view-library-btn');
-  const searchBtn = document.getElementById('view-search-btn');
-  const emptyBtn = document.getElementById('view-empty-btn');
-
-  // Reset
-  if (libView) libView.classList.add('hidden');
-  if (searchView) searchView.classList.add('hidden');
-  if (emptyView) emptyView.classList.add('hidden');
-
-  [libBtn, searchBtn, emptyBtn].forEach(b => {
-    if (b) b.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer';
-  });
-
-  const activeClasses = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
-
-  if (view === 'library') {
-    if (libView) libView.classList.remove('hidden');
-    if (libBtn) libBtn.className = activeClasses;
-  } else if (view === 'search') {
-    if (searchView) searchView.classList.remove('hidden');
-    if (searchBtn) searchBtn.className = activeClasses;
-    renderSearchOverlayResults();
-  } else if (view === 'empty') {
-    if (emptyView) emptyView.classList.remove('hidden');
-    if (emptyBtn) emptyBtn.className = activeClasses;
   }
 }
 
-function renderSearchOverlayResults() {
-  const grid = document.getElementById('overlay-results-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  const catalog = typeof KOREAN_MOVIES_CATALOG !== 'undefined' ? KOREAN_MOVIES_CATALOG : [];
-  catalog.slice(0, 18).forEach(m => {
-    const item = document.createElement('div');
-    item.className = 'flex flex-col group cursor-pointer';
-    item.innerHTML = `
-      <div class="w-full aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-lowest shadow relative mb-1.5">
-        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${m.poster || 'https://via.placeholder.com/200x300'}" alt="${m.title}"/>
-        <div class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur text-primary font-label-sm text-[10px] font-bold">
-          ★ ${m.imdbRating || '8.0'}
-        </div>
-      </div>
-      <span class="font-headline-sm text-[13px] text-on-surface font-semibold truncate leading-tight">${m.title}</span>
-      <span class="font-label-sm text-label-sm text-on-surface-variant truncate">${m.year || '2024'} • ${m.country || 'World'}</span>
-    `;
-    item.addEventListener('click', () => {
-      openFilmDetails(m);
-    });
-    grid.appendChild(item);
-  });
+function toggleDetailsSeen() {
+  const btn = document.getElementById('details-seen-text');
+  const title = currentActiveMovie ? currentActiveMovie.title : 'Film';
+  showToast(`Marked "${title}" as Seen in your 2024 Archival Journal.`);
 }
 
-function toggleLayout(type) {
-  const listBtn = document.getElementById('toggle-list-btn');
-  const gridBtn = document.getElementById('toggle-grid-btn');
-  const rows = document.getElementById('library-film-rows');
+// =========================================================================
+// 8. CINEMA 4K PLAYER INTEGRATION (Guaranteed Prank Stream Playback)
+// =========================================================================
 
-  if (type === 'list') {
-    if (listBtn) listBtn.className = 'w-9 h-9 flex items-center justify-center rounded bg-surface-container-high text-primary shadow-sm transition-all';
-    if (gridBtn) gridBtn.className = 'w-9 h-9 flex items-center justify-center rounded text-on-surface-variant hover:text-on-surface transition-all';
-    if (rows) rows.className = 'px-5 flex flex-col gap-2.5 mb-7';
+function playCurrentFilmInPlayer(server) {
+  const film = currentActiveMovie || HERO_SLIDES[1];
+  
+  if (typeof CinexaPlayer !== 'undefined') {
+    CinexaPlayer.openPlayer(film, server || 'local');
+    return;
+  }
+
+  // Fallback direct modal opening
+  const modal = document.getElementById('player-modal');
+  const titleEl = document.getElementById('player-movie-title');
+  const videoEl = document.getElementById('custom-video-player');
+  const iframeEl = document.getElementById('video-iframe');
+
+  if (titleEl) titleEl.innerText = `${film.title} (${film.year || '2004'})`;
+
+  if (film.slug === 'a-moment-to-remember' || film.id === '15859' || film.title.includes('Moment to Remember')) {
+    if (iframeEl) iframeEl.style.display = 'none';
+    if (videoEl) {
+      videoEl.style.display = 'block';
+      videoEl.src = '/subtitles/0918 (1).mp4';
+      videoEl.play().catch(e => console.log('Autoplay handled:', e));
+    }
   } else {
-    if (gridBtn) gridBtn.className = 'w-9 h-9 flex items-center justify-center rounded bg-surface-container-high text-primary shadow-sm transition-all';
-    if (listBtn) listBtn.className = 'w-9 h-9 flex items-center justify-center rounded text-on-surface-variant hover:text-on-surface transition-all';
-    if (rows) rows.className = 'px-5 grid grid-cols-2 gap-3 mb-7';
+    if (videoEl) videoEl.style.display = 'none';
+    if (iframeEl) {
+      iframeEl.style.display = 'block';
+      iframeEl.src = `https://vidsrc.to/embed/movie/${film.id || '15859'}`;
+    }
   }
+
+  if (modal) modal.classList.add('active');
 }
 
-// =========================================================================
-// 7. TOAST NOTIFICATIONS & WATCHLIST
-// =========================================================================
-
-function showToast(msg) {
-  const toast = document.getElementById('watchlist-toast');
-  const textEl = document.getElementById('toast-text');
-  if (!toast) return;
-
-  if (textEl) textEl.innerHTML = msg;
-
-  toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
-  toast.classList.add('translate-y-0', 'opacity-100');
-
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
-    toast.classList.remove('translate-y-0', 'opacity-100');
-  }, 4000);
-}
-
-function toggleWatchlist(movie) {
-  const id = movie.id || movie.slug;
-  if (watchlistSet.has(id)) {
-    watchlistSet.delete(id);
-    showToast(`Removed from Watchlist: <span class="text-primary font-medium">${movie.title}</span>`);
-  } else {
-    watchlistSet.add(id);
-    showToast(`Added to Watchlist • <span class="text-primary font-medium">${movie.title}</span>`);
+function closePlayerModal() {
+  if (typeof CinexaPlayer !== 'undefined') {
+    CinexaPlayer.closePlayer();
+    return;
   }
+  const modal = document.getElementById('player-modal');
+  const videoEl = document.getElementById('custom-video-player');
+  if (videoEl) videoEl.pause();
+  if (modal) modal.classList.remove('active');
 }
 
 // =========================================================================
-// 8. MODALS & ACCORDIONS
+// 9. EDITORIAL & TOAST MODALS
 // =========================================================================
 
 function openEditorialModal() {
   const modal = document.getElementById('editorialModalOverlay');
   if (modal) {
     modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.classList.add('opacity-100');
+    modal.classList.add('opacity-100', 'pointer-events-auto');
   }
 }
 
 function closeEditorialModal() {
   const modal = document.getElementById('editorialModalOverlay');
   if (modal) {
-    modal.classList.remove('opacity-100');
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
     modal.classList.add('opacity-0', 'pointer-events-none');
   }
 }
 
-function openDownloadHubModal() {
-  showToast('4K IMAX Master file queued for download.');
+function showToast(message) {
+  const toast = document.getElementById('watchlist-toast');
+  const text = document.getElementById('toast-text');
+  if (!toast) return;
+
+  if (text) text.innerHTML = message;
+  toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
+  toast.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
+  }, 4000);
 }
 
 // =========================================================================
-// 9. INITIALIZATION
+// 10. CATALOG GRID RENDERING (Home & Discover)
 // =========================================================================
 
+function renderHomeCatalog() {
+  const grid = document.getElementById('home-catalog-grid');
+  if (!grid) return;
+
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  grid.innerHTML = catalog.slice(0, 20).map(m => createFilmCardHtml(m)).join('');
+}
+
+function renderDiscoverCatalog(customList) {
+  const grid = document.getElementById('catalogGrid');
+  const counter = document.getElementById('discover-counter');
+  if (!grid) return;
+
+  const catalog = customList || ((typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : []);
+  if (counter) counter.innerText = `${catalog.length} Films`;
+
+  grid.innerHTML = catalog.map(m => createFilmCardHtml(m)).join('');
+}
+
+function createFilmCardHtml(m) {
+  const poster = m.poster || m.backdrop || 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSTC5wSXrmEcdSE9fVYj4_TU4OiMIF3m-L5zQ-nT0cxgtaApyVrVdN0spo2DJcPcMO-YHdo3TUMXD9NvINA5x56F0pe_62Kx0eEk8WgbYq6BFAfc3wcC-h1fur5XKM77SCeMtYWiUG2gRiSXRC-QeXFmUmf0VGMYyOISTqpWapKgCeMuD3Qi1_A4UGXwpg_klkORXxfqwoZe6SYTn1mcEbvLsMeVeLZlPIizgsHYAVuy2Up2AcT_0gNw';
+  const rating = m.rating || 'R';
+  const score = m.imdbRating || '8.1';
+  const format = m.resolution ? m.resolution.toUpperCase() : '35MM';
+
+  return `
+    <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1 hover:bg-surface-container-high cursor-pointer" onclick="openFilmDetails('${m.slug || m.id}')">
+      <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
+        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-60"></div>
+        <div class="absolute top-2.5 left-2.5">
+          <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface">${rating}</span>
+        </div>
+        <button class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); showToast('Saved ${m.title} to watchlist.');">
+          <span class="material-symbols-outlined text-base">bookmark_border</span>
+        </button>
+        <div class="absolute bottom-2.5 left-2.5">
+          <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-container/20 text-primary font-medium">${format}</span>
+        </div>
+      </div>
+      <div class="p-3.5 flex flex-col flex-1 justify-between gap-2">
+        <div>
+          <div class="flex items-center justify-between gap-1 mb-1">
+            <span class="font-label-sm text-label-sm text-outline">${m.year || '2024'} • ${m.duration || '2h'}</span>
+            <span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+            </span>
+          </div>
+          <h3 class="font-headline-sm text-[16px] text-on-surface group-hover:text-primary transition-colors truncate font-semibold">
+            ${m.title}
+          </h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">${m.director || 'Curated Master'}</p>
+        </div>
+        <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-tertiary font-semibold">${m.studio || 'CINEXA 4K'}</span>
+          <span class="material-symbols-outlined text-outline text-sm group-hover:text-primary">play_circle</span>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+// =========================================================================
+// 11. KEYBOARD SHORTCUTS & EVENT LISTENERS
+// =========================================================================
+
+document.addEventListener('keydown', (e) => {
+  // ⌘K or Ctrl+K for Global Command Search
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    openGlobalSearchModal();
+  }
+  // Escape key closes modals
+  if (e.key === 'Escape') {
+    closeGlobalSearchModal();
+    closeRatingDialogModal();
+    closeEditorialModal();
+    closePlayerModal();
+  }
+});
+
+// Category chip filtering on Home
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroSlider();
+  setHeroSlide(0);
+  startHeroAutoRotate();
   renderHomeCatalog();
-  renderDiscoverCatalog();
 
-  // Accordion Where to Watch
-  const accBtn = document.getElementById('providers-accordion-trigger');
-  const accContent = document.getElementById('providers-content');
-  const accArrow = document.getElementById('providers-accordion-arrow');
-  if (accBtn && accContent) {
-    accBtn.addEventListener('click', () => {
-      const isHidden = accContent.classList.contains('hidden');
-      if (isHidden) {
-        accContent.classList.remove('hidden');
-        if (accArrow) accArrow.classList.add('rotate-180');
+  // Attach Home category filter chips
+  document.querySelectorAll('#home-category-strip .cat-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#home-category-strip .cat-chip').forEach(c => {
+        c.className = 'shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip';
+      });
+      chip.className = 'shrink-0 h-9 px-4 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-semibold shadow-sm transition-transform active:scale-95 cat-chip';
+      
+      const cat = chip.getAttribute('data-cat');
+      const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+      if (cat === 'all') {
+        renderHomeCatalog();
       } else {
-        accContent.classList.add('hidden');
-        if (accArrow) accArrow.classList.remove('rotate-180');
+        const filtered = catalog.filter(m => m.category === cat || (m.genres && m.genres.some(g => g.toLowerCase().includes(cat))));
+        const grid = document.getElementById('home-catalog-grid');
+        if (grid) grid.innerHTML = (filtered.length > 0 ? filtered : catalog.slice(0, 10)).map(m => createFilmCardHtml(m)).join('');
       }
+    });
+  });
+
+  // Attach mobile filter drawer trigger
+  const openFilterBtn = document.getElementById('openFilterBtn');
+  const closeFilterSheetBtn = document.getElementById('closeFilterSheetBtn');
+  const filterDrawerOverlay = document.getElementById('filterDrawerOverlay');
+  const filterDrawerContent = document.getElementById('filterDrawerContent');
+
+  if (openFilterBtn && filterDrawerOverlay && filterDrawerContent) {
+    openFilterBtn.addEventListener('click', () => {
+      filterDrawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      filterDrawerOverlay.classList.add('opacity-100', 'pointer-events-auto');
+      filterDrawerContent.classList.remove('translate-y-full');
+      filterDrawerContent.classList.add('translate-y-0');
+    });
+
+    const closeDrawer = () => {
+      filterDrawerOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+      filterDrawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+      filterDrawerContent.classList.remove('translate-y-0');
+      filterDrawerContent.classList.add('translate-y-full');
+    };
+
+    if (closeFilterSheetBtn) closeFilterSheetBtn.addEventListener('click', closeDrawer);
+    filterDrawerOverlay.addEventListener('click', (e) => {
+      if (e.target === filterDrawerOverlay) closeDrawer();
     });
   }
 
-  // Filter Drawer
-  const openFilter = document.getElementById('openFilterBtn');
-  const drawerOverlay = document.getElementById('filterDrawerOverlay');
-  const drawerContent = document.getElementById('filterDrawerContent');
-  const closeFilter = document.getElementById('closeFilterSheetBtn');
-
-  if (openFilter && drawerOverlay && drawerContent) {
-    openFilter.addEventListener('click', () => {
-      drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
-      drawerOverlay.classList.add('opacity-100');
-      drawerContent.classList.remove('translate-y-full');
-      drawerContent.classList.add('translate-y-0');
-    });
-
-    closeFilter?.addEventListener('click', () => {
-      drawerOverlay.classList.remove('opacity-100');
-      drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
-      drawerContent.classList.remove('translate-y-0');
-      drawerContent.classList.add('translate-y-full');
-      showToast('3 Curatorial Filters Applied');
-    });
-
-    drawerOverlay.addEventListener('click', (e) => {
-      if (e.target === drawerOverlay) {
-        drawerOverlay.classList.remove('opacity-100');
-        drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
-        drawerContent.classList.remove('translate-y-0');
-        drawerContent.classList.add('translate-y-full');
+  // Toast undo action
+  const toastUndo = document.getElementById('toast-undo');
+  if (toastUndo) {
+    toastUndo.addEventListener('click', () => {
+      const toast = document.getElementById('watchlist-toast');
+      if (toast) {
+        toast.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
       }
     });
   }
-
-  console.log('[Cinexa] 1:1 Google Stitch screens initialized.');
 });
