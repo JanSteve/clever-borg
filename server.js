@@ -5,8 +5,8 @@ const url = require('url');
 const { getMovie, generatePosterSvg, generateBackdropSvg } = require('./poster-generator.js');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = path.join(__dirname, 'public');
-const MOVIES_DIR = path.join(__dirname, 'movies');
+const PUBLIC_DIR = path.resolve(__dirname, 'public');
+const MOVIES_DIR = path.resolve(__dirname, 'movies');
 
 // Ensure movies directory exists
 if (!fs.existsSync(MOVIES_DIR)) {
@@ -351,7 +351,8 @@ const server = http.createServer((req, res) => {
   }
 
   // Static File Serving
-  let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+  const safePath = pathname === '/' ? '/index.html' : pathname;
+  let filePath = path.resolve(PUBLIC_DIR, '.' + safePath);
 
   // Security: prevent directory traversal
   if (!filePath.startsWith(PUBLIC_DIR)) {

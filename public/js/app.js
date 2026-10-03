@@ -468,6 +468,7 @@ function switchMainScreen(screenName) {
 // =========================================================================
 
 function switchState(state) {
+  // Discover page views
   const gridView = document.getElementById('view-filtered-grid');
   const genreView = document.getElementById('view-genre-tiles');
   const btnGrid = document.getElementById('btn-state-grid');
@@ -475,7 +476,12 @@ function switchState(state) {
   const pillGrid = document.getElementById('toggle-grid-pill');
   const pillGenre = document.getElementById('toggle-genre-pill');
 
-  if (state === 'grid' || state === 'standard') {
+  // Home / Trending view state buttons
+  const btnStd = document.getElementById('btn-view-standard');
+  const btnHov = document.getElementById('btn-view-hover');
+  const btnSkel = document.getElementById('btn-view-skeleton');
+
+  if (state === 'grid') {
     if (gridView) gridView.classList.remove('hidden');
     if (genreView) genreView.classList.add('hidden');
 
@@ -493,6 +499,25 @@ function switchState(state) {
 
     if (pillGrid) pillGrid.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
     if (pillGenre) pillGenre.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-medium transition-all cursor-pointer';
+  } else if (state === 'standard') {
+    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
+    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    filterTrendingRows('all');
+    showToast('Display State: Standard Archival View');
+  } else if (state === 'hover-showcase') {
+    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
+    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    showToast('Inspect State: Interactive Card Hover Dynamics Active');
+  } else if (state === 'skeletons-only') {
+    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
+    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
+    showToast('Loading State: Simulating Curatorial Shimmer...');
+    setTimeout(() => {
+      switchState('standard');
+    }, 1200);
   }
 }
 
@@ -507,17 +532,17 @@ function filterCatalogByMovement(movementKey) {
   let filtered = catalog;
 
   if (movementKey === 'sci-fi') {
-    filtered = catalog.filter(m => (m.genres && m.genres.some(g => g.toLowerCase().includes('sci-fi') || g.toLowerCase().includes('action'))) || m.title.toLowerCase().includes('dune') || m.title.toLowerCase().includes('interstellar'));
+    filtered = catalog.filter(m => (m.genres && m.genres.some(g => g.toLowerCase().includes('sci-fi') || g.toLowerCase().includes('action'))) || (m.title && (m.title.toLowerCase().includes('dune') || m.title.toLowerCase().includes('interstellar'))));
   } else if (movementKey === 'korean') {
     filtered = catalog.filter(m => m.country === 'South Korea' || (m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('melodrama'))));
   } else if (movementKey === 'french') {
-    filtered = catalog.filter(m => m.country === 'France' || m.title.toLowerCase().includes('anatomy') || m.title.toLowerCase().includes('breathless'));
+    filtered = catalog.filter(m => m.country === 'France' || (m.title && (m.title.toLowerCase().includes('anatomy') || m.title.toLowerCase().includes('breathless'))));
   } else if (movementKey === 'thriller') {
     filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('thriller') || g.toLowerCase().includes('horror') || g.toLowerCase().includes('mystery')));
   } else if (movementKey === 'japanese') {
-    filtered = catalog.filter(m => m.country === 'Japan' || m.title.toLowerCase().includes('drive my car') || m.title.toLowerCase().includes('monster') || m.title.toLowerCase().includes('perfect days'));
+    filtered = catalog.filter(m => m.country === 'Japan' || (m.title && (m.title.toLowerCase().includes('drive my car') || m.title.toLowerCase().includes('monster') || m.title.toLowerCase().includes('perfect days'))));
   } else if (movementKey === 'poetic') {
-    filtered = catalog.filter(m => m.country === 'France' || m.year < 1980 || m.title.toLowerCase().includes('mirror') || m.title.toLowerCase().includes('cleo'));
+    filtered = catalog.filter(m => m.country === 'France' || m.year < 1980 || (m.title && (m.title.toLowerCase().includes('mirror') || m.title.toLowerCase().includes('cleo'))));
   }
 
   renderDiscoverCatalog(filtered);
@@ -541,23 +566,27 @@ function toggleMobileSheet(show) {
   }
 }
 
+let discoverSearchTimer = null;
 function handleDiscoverSearch(query) {
-  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-  const q = (query || '').toLowerCase().trim();
-  let matches = catalog;
-  if (q.length > 0) {
-    matches = catalog.filter(m => 
-      (m.title && m.title.toLowerCase().includes(q)) ||
-      (m.director && m.director.toLowerCase().includes(q)) ||
-      (m.country && m.country.toLowerCase().includes(q)) ||
-      (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
-    );
-  }
-  renderDiscoverCatalog(matches);
+  if (discoverSearchTimer) clearTimeout(discoverSearchTimer);
+  discoverSearchTimer = setTimeout(() => {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const q = (query || '').toLowerCase().trim();
+    let matches = catalog;
+    if (q.length > 0) {
+      matches = catalog.filter(m => 
+        (m.title && m.title.toLowerCase().includes(q)) ||
+        (m.director && m.director.toLowerCase().includes(q)) ||
+        (m.country && m.country.toLowerCase().includes(q)) ||
+        (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
+      );
+    }
+    renderDiscoverCatalog(matches);
+  }, 120);
 }
 
 // =========================================================================
-// 4. TRENDING ROW CAROUSEL CONTROLS
+// 4. TRENDING ROW CAROUSEL CONTROLS & FILTERING
 // =========================================================================
 
 function scrollRow(rowId, direction) {
@@ -580,10 +609,214 @@ function selectChip(btn, category) {
   btn.classList.remove('text-on-surface-variant', 'border', 'border-outline-variant/40');
   btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 
+  filterTrendingRows(category);
+
   if (category === 'all') {
     showToast('Showing all curated releases');
   } else {
     showToast(`Filtering category: ${category.toUpperCase()}`);
+  }
+}
+
+function filterTrendingRows(category) {
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  let filtered = catalog;
+
+  if (category === 'blockbuster') {
+    filtered = catalog.filter(m => (m.imdbRating && parseFloat(m.imdbRating) >= 8.4) || m.country === 'United States' || m.slug === 'dune-part-two' || m.slug === 'oppenheimer' || m.slug === 'interstellar');
+  } else if (category === 'indian') {
+    filtered = catalog.filter(m => m.country === 'India' || (m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('drama'))));
+  } else if (category === 'anime') {
+    filtered = catalog.filter(m => m.country === 'Japan' || (m.genres && m.genres.some(g => g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime'))));
+  } else if (category === 'world') {
+    filtered = catalog.filter(m => m.country !== 'United States');
+  } else if (category === 'romance') {
+    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('melodrama')));
+  } else if (category === 'action') {
+    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('thriller') || g.toLowerCase().includes('sci-fi')));
+  }
+
+  // Render trending row
+  const trendingContainer = document.getElementById('carousel-trending');
+  if (trendingContainer) {
+    trendingContainer.innerHTML = filtered.slice(0, 12).map(m => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+      const rating = m.rating || 'PG-13';
+      const score = m.imdbRating || '8.2';
+      return `
+        <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
+          <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
+            <img class="w-full h-full object-cover grayscale contrast-[1.15] brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out" src="${poster}" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="${m.title}"/>
+            <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
+            <div class="absolute top-2.5 left-2.5 z-10">
+              <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
+            </div>
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <button class="h-7 px-3 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+                <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                <span>Play</span>
+              </button>
+              <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[14px]">info</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-3 space-y-1">
+            <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+            <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+              <span>${m.year || '2024'}</span>
+              <span class="text-outline-variant">•</span>
+              <span class="text-primary font-medium flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Render Top 10 Numbered Row
+  const numberedContainer = document.getElementById('carousel-numbered');
+  if (numberedContainer) {
+    numberedContainer.innerHTML = filtered.slice(0, 10).map((m, idx) => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+      const num = idx + 1;
+      const score = m.imdbRating || '8.5';
+      const tag = m.country || '4K';
+      return `
+        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
+          <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
+            ${num}
+          </span>
+          <div class="relative w-[190px] z-10">
+            <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="${m.title}"/>
+              <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px]"></div>
+              <div class="absolute top-2.5 left-2.5">
+                <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${tag}</span>
+              </div>
+            </div>
+            <div class="mt-3 space-y-1">
+              <h4 class="font-body-md text-body-md font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
+              <div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+                <span>${m.year || '2024'}</span>
+                <span class="text-outline-variant">•</span>
+                <span class="text-primary font-medium flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+// =========================================================================
+// 5. LIBRARY SUB-VIEWS & FAST SEARCH
+// =========================================================================
+
+function switchLibrarySubView(view) {
+  const mainView = document.getElementById('library-subview-main');
+  const searchView = document.getElementById('library-subview-search');
+  const emptyView = document.getElementById('library-subview-empty');
+
+  const btnLib = document.getElementById('view-library-btn');
+  const btnSearch = document.getElementById('view-search-btn');
+  const btnEmpty = document.getElementById('view-empty-btn');
+
+  const allBtns = [btnLib, btnSearch, btnEmpty];
+  allBtns.forEach(b => {
+    if (b) {
+      b.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer';
+    }
+  });
+
+  if (mainView) mainView.classList.add('hidden');
+  if (searchView) searchView.classList.add('hidden');
+  if (emptyView) emptyView.classList.add('hidden');
+
+  if (view === 'library') {
+    if (mainView) mainView.classList.remove('hidden');
+    if (btnLib) btnLib.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
+  } else if (view === 'search') {
+    if (searchView) searchView.classList.remove('hidden');
+    if (btnSearch) btnSearch.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
+    const input = document.getElementById('library-search-input');
+    if (input) {
+      input.focus();
+      handleLibrarySearch(input.value || '');
+    }
+  } else if (view === 'empty') {
+    if (emptyView) emptyView.classList.remove('hidden');
+    if (btnEmpty) btnEmpty.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
+  }
+}
+
+let librarySearchTimer = null;
+function handleLibrarySearch(query) {
+  if (librarySearchTimer) clearTimeout(librarySearchTimer);
+  librarySearchTimer = setTimeout(() => {
+    const resultsContainer = document.getElementById('library-search-results');
+    if (!resultsContainer) return;
+
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const q = (query || '').toLowerCase().trim();
+
+    let matches = catalog.slice(0, 16);
+    if (q.length > 0) {
+      matches = catalog.filter(m =>
+        (m.title && m.title.toLowerCase().includes(q)) ||
+        (m.director && m.director.toLowerCase().includes(q)) ||
+        (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
+      );
+    }
+
+    if (matches.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="col-span-full py-12 text-center text-on-surface-variant font-body-sm">
+          No matching films found in your personal library for "${query}".
+        </div>
+      `;
+      return;
+    }
+
+    resultsContainer.innerHTML = matches.map(m => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
+      return `
+        <div class="group relative rounded-xl overflow-hidden bg-surface-container border border-border-hairline hover:border-primary/50 transition-all cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
+          <div class="aspect-[2/3] w-full overflow-hidden bg-surface-container-lowest">
+            <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'">
+          </div>
+          <div class="p-2.5">
+            <h4 class="font-serif text-sm font-medium text-on-surface group-hover:text-primary truncate">${m.title}</h4>
+            <div class="flex items-center justify-between text-[11px] font-mono text-outline mt-1">
+              <span>${m.year || '2024'}</span>
+              <span class="text-primary">★ ${m.imdbRating || '8.0'}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }, 100);
+}
+
+function filterLibraryCollection(type) {
+  const input = document.getElementById('library-search-input');
+  if (type === 'all') {
+    if (input) input.value = '';
+    handleLibrarySearch('');
+  } else if (type === 'restorations') {
+    if (input) input.value = '35mm';
+    handleLibrarySearch('35mm');
+  } else if (type === 'imax') {
+    if (input) input.value = '4K';
+    handleLibrarySearch('4K');
+  } else if (type === 'masterpiece') {
+    if (input) input.value = 'Masterpiece';
+    handleLibrarySearch('drama');
   }
 }
 
@@ -673,7 +906,15 @@ function closeModal() {
   }
 }
 
+let modalSearchDebounceTimer = null;
 function handleModalSearch(val) {
+  if (modalSearchDebounceTimer) clearTimeout(modalSearchDebounceTimer);
+  modalSearchDebounceTimer = setTimeout(() => {
+    _renderModalSearchResults(val);
+  }, 60);
+}
+
+function _renderModalSearchResults(val) {
   const container = document.getElementById('modal-content-area');
   if (!container) return;
 
@@ -1039,11 +1280,27 @@ function toggleScrollState(scrolled) {
   }
 }
 
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    applyFrostedNav(true);
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      if (window.scrollY > 40) {
+        applyFrostedNav(true);
+      } else {
+        applyFrostedNav(false);
+      }
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
+
+// Pause slideshow when tab is hidden to preserve battery & CPU
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    slideshowState.isPaused = true;
   } else {
-    applyFrostedNav(false);
+    slideshowState.isPaused = false;
   }
 });
 

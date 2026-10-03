@@ -1257,99 +1257,181 @@
         </div>
       </div>
 
-      <!-- 2x2 Bento Stats Grid -->
-      <section class="mb-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-            <div class="flex items-center justify-between mb-2">
-              <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Films Seen</span>
-              <span class="material-symbols-outlined text-primary text-[18px]">theaters</span>
-            </div>
-            <div>
-              <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">148</div>
-              <span class="font-label-sm text-label-sm text-tertiary">↑ 12 this month</span>
-            </div>
-          </div>
-          <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-            <div class="flex items-center justify-between mb-2">
-              <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Hours Logged</span>
-              <span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
-            </div>
-            <div>
-              <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">312<span class="font-label-md text-sm text-on-surface-variant">h</span></div>
-              <span class="font-label-sm text-label-sm text-on-surface-variant">14 curatorial archives</span>
-            </div>
-          </div>
-          <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-            <div class="flex items-center justify-between mb-2">
-              <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Top Genre</span>
-              <span class="material-symbols-outlined text-secondary text-[18px]">local_fire_department</span>
-            </div>
-            <div>
-              <div class="font-headline-sm text-xl text-on-surface font-semibold truncate leading-tight mb-1 font-serif">Melodrama</div>
-              <span class="font-label-sm text-label-sm text-on-surface-variant">28% of collection</span>
-            </div>
-          </div>
-          <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-            <div class="flex items-center justify-between mb-2">
-              <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Avg Rating</span>
-              <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            </div>
-            <div>
-              <div class="flex items-baseline gap-1 mb-1">
-                <span class="font-headline-md text-3xl text-primary font-semibold leading-none font-serif">4.2</span>
-                <span class="font-label-sm text-label-sm text-on-surface-variant">/5.0</span>
+      <!-- SUB-VIEW 1: MAIN LIBRARY & STATS -->
+      <div class="space-y-8" id="library-subview-main">
+        <!-- 2x2 Bento Stats Grid -->
+        <section class="mb-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Films Seen</span>
+                <span class="material-symbols-outlined text-primary text-[18px]">theaters</span>
               </div>
-              <span class="font-label-sm text-label-sm text-on-surface-variant">86 titles reviewed</span>
+              <div>
+                <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">148</div>
+                <span class="font-label-sm text-label-sm text-tertiary">↑ 12 this month</span>
+              </div>
             </div>
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Hours Logged</span>
+                <span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+              </div>
+              <div>
+                <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">312<span class="font-label-md text-sm text-on-surface-variant">h</span></div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">14 curatorial archives</span>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Top Genre</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]">local_fire_department</span>
+              </div>
+              <div>
+                <div class="font-headline-sm text-xl text-on-surface font-semibold truncate leading-tight mb-1 font-serif">Melodrama</div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">28% of collection</span>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Avg Rating</span>
+                <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <div>
+                <div class="flex items-baseline gap-1 mb-1">
+                  <span class="font-headline-md text-3xl text-primary font-semibold leading-none font-serif">4.2</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">/5.0</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">86 titles reviewed</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- High Density Film List -->
+        <section class="flex flex-col gap-3 mb-8" id="library-film-rows">
+          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('a-moment-to-remember')">
+            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">A Moment to Remember</h3>
+                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.8</span>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
+                <span>2004</span>
+                <span>•</span>
+                <span class="text-secondary">35MM RESTORED</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-label-sm text-[10px] uppercase font-bold tracking-wider">MUBI MASTER</span>
+            </div>
+            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('a-moment-to-remember');">
+              <span class="material-symbols-outlined text-[20px]">star_rate</span>
+            </button>
+          </article>
+
+          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('dune-part-two')">
+            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Dune: Part Two</h3>
+                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.6</span>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
+                <span>2024</span>
+                <span>•</span>
+                <span class="text-tertiary">IMAX 70MM</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-[10px] uppercase font-bold tracking-wider">4K MASTER</span>
+            </div>
+            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('dune-part-two');">
+              <span class="material-symbols-outlined text-[20px]">star_rate</span>
+            </button>
+          </article>
+
+          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('past-lives')">
+            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Past Lives"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Past Lives</h3>
+                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.7</span>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
+                <span>2023</span>
+                <span>•</span>
+                <span class="text-secondary">35MM PANAVISION</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-sm text-[10px] uppercase font-bold tracking-wider">A24 ARCHIVE</span>
+            </div>
+            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('past-lives');">
+              <span class="material-symbols-outlined text-[20px]">star_rate</span>
+            </button>
+          </article>
+
+          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('parasite')">
+            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Parasite"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Parasite</h3>
+                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.9</span>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
+                <span>2019</span>
+                <span>•</span>
+                <span class="text-tertiary">4K UHD HDR</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-secondary-container/40 text-secondary font-label-sm text-[10px] uppercase font-bold tracking-wider">CRITERION #1052</span>
+            </div>
+            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('parasite');">
+              <span class="material-symbols-outlined text-[20px]">star_rate</span>
+            </button>
+          </article>
+        </section>
+      </div>
+
+      <!-- SUB-VIEW 2: INLINE SEARCH & FILTER OVERLAY -->
+      <div class="hidden space-y-6" id="library-subview-search">
+        <div class="p-5 rounded-2xl bg-surface-container border border-border-hairline/80 space-y-4">
+          <div class="relative flex items-center">
+            <span class="material-symbols-outlined absolute left-4 text-primary text-[22px]">search</span>
+            <input class="w-full pl-12 pr-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-base placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="library-search-input" oninput="handleLibrarySearch(this.value)" placeholder="Search your saved titles, directors, movements..." type="text"/>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="font-mono text-xs uppercase tracking-wider text-text-muted mr-1">Quick Filters:</span>
+            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-primary text-on-primary font-bold cursor-pointer" onclick="filterLibraryCollection('all')">All Saved (42)</button>
+            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('restorations')">35mm Restorations (14)</button>
+            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('imax')">IMAX &amp; 4K (18)</button>
+            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('masterpiece')">5★ Masterpieces (10)</button>
           </div>
         </div>
-      </section>
+        <!-- Dynamic Results Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="library-search-results">
+          <!-- Populated by handleLibrarySearch -->
+        </div>
+      </div>
 
-      <!-- High Density Film List -->
-      <section class="flex flex-col gap-3 mb-8" id="library-film-rows">
-        <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('a-moment-to-remember')">
-          <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-            <img class="w-full h-full object-cover" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-1 mb-0.5">
-              <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">A Moment to Remember</h3>
-              <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.8</span>
-            </div>
-            <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-              <span>2004</span>
-              <span>•</span>
-              <span class="text-secondary">35MM RESTORED</span>
-            </div>
-            <span class="px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-label-sm text-[10px] uppercase font-bold tracking-wider">MUBI MASTER</span>
-          </div>
-          <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('a-moment-to-remember');">
-            <span class="material-symbols-outlined text-[20px]">star_rate</span>
+      <!-- SUB-VIEW 3: EMPTY ARCHIVAL VAULT STATE -->
+      <div class="hidden py-16 px-6 text-center rounded-2xl bg-surface-container border border-border-hairline/60 space-y-4" id="library-subview-empty">
+        <div class="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 text-primary flex items-center justify-center mx-auto mb-2">
+          <span class="material-symbols-outlined text-[32px]">bookmark_remove</span>
+        </div>
+        <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">Your Archival Vault is Currently Empty</h3>
+        <p class="font-body-md text-on-surface-variant max-w-md mx-auto text-sm leading-relaxed">
+          You haven't bookmarked any 35mm restorations or world cinema master prints yet. Explore our curatorial catalog to start assembling your private screening log.
+        </p>
+        <div class="pt-3">
+          <button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-body-sm text-sm font-bold shadow-md hover:bg-brass-hover transition-all cursor-pointer" onclick="switchMainScreen('discover')">
+            Explore 159 Master Films
           </button>
-        </article>
-
-        <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('dune-part-two')">
-          <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-            <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-1 mb-0.5">
-              <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Dune: Part Two</h3>
-              <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.6</span>
-            </div>
-            <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-              <span>2024</span>
-              <span>•</span>
-              <span class="text-tertiary">IMAX 70MM</span>
-            </div>
-            <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-[10px] uppercase font-bold tracking-wider">4K MASTER</span>
-          </div>
-          <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('dune-part-two');">
-            <span class="material-symbols-outlined text-[20px]">star_rate</span>
-          </button>
-        </article>
-      </section>
+        </div>
+      </div>
     </div>
 
     <!-- =======================================================================

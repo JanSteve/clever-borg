@@ -112,8 +112,8 @@ const CinexaPlayer = {
       return;
     }
 
-    // Other films: Multi-Server Failover
-    const tmdbId = this.currentMovie.id || '15859';
+    // Other films: Multi-Server Failover with correct TMDB numeric ID
+    const tmdbId = this.currentMovie.tmdbId || this.currentMovie.id || '15859';
     let streamUrl = '';
 
     switch (this.currentServer) {
@@ -125,7 +125,7 @@ const CinexaPlayer = {
         streamUrl = `https://vidlink.pro/movie/${tmdbId}`;
         break;
       case 'vidsrc':
-        streamUrl = `https://vidsrc.me/embed/movie?id=${tmdbId}`;
+        streamUrl = `https://vidsrc.xyz/embed/movie/${tmdbId}`;
         break;
       default:
         streamUrl = `https://vidsrc.to/embed/movie/${tmdbId}`;
