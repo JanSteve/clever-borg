@@ -1,1159 +1,1164 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" name="viewport"/>
+  <meta content="mobile_tab" name="shell-type"/>
   <title>Cinexa — Archival Cinema &amp; 4K World Streaming</title>
   <meta name="description" content="Stream rare 35mm restorations, international festival masterpieces, and contemporary world cinema in 4K UHD. Curated archives, zero subscription.">
   <meta name="theme-color" content="#09151a">
-  
-  <!-- Google Fonts: Newsreader, Fraunces, Manrope, Courier Prime, DM Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Manrope:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  
-  <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Google Fonts: Newsreader, Fraunces, Manrope, Courier Prime -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Base Styles -->
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #09151a;
+      }
+      body {
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 24px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .film-grain {
+      background-image: radial-gradient(rgba(201, 160, 91, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+
+  <!-- Tailwind CSS Engine & Custom Stitch Palette Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container": "#152126",
+            "inverse-primary": "#7a591a",
+            "on-error": "#690005",
+            "surface": "#09151a",
+            "secondary-fixed-dim": "#ffb5a1",
+            "primary": "#ecc077",
+            "surface-dim": "#09151a",
+            "inverse-surface": "#d8e4eb",
+            "on-secondary-container": "#fca189",
+            "background": "#09151a",
+            "on-tertiary-fixed-variant": "#334c3e",
+            "primary-fixed-dim": "#ecc077",
+            "primary-fixed": "#ffdeab",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed": "#cde9d7",
+            "on-tertiary": "#1d3529",
+            "on-tertiary-fixed": "#072015",
+            "surface-bright": "#2f3b40",
+            "surface-container-low": "#111d22",
+            "on-primary-container": "#513700",
+            "on-surface-variant": "#d2c5b4",
+            "tertiary-fixed-dim": "#b1cdbb",
+            "secondary": "#ffb5a1",
+            "surface-container-highest": "#2b373c",
+            "outline-variant": "#4e4539",
+            "secondary-fixed": "#ffdbd1",
+            "tertiary": "#b1cdbb",
+            "outline": "#9b8f80",
+            "on-primary": "#422c00",
+            "on-background": "#d8e4eb",
+            "error": "#ffb4ab",
+            "on-primary-fixed-variant": "#5f4102",
+            "on-surface": "#d8e4eb",
+            "on-tertiary-container": "#294134",
+            "error-container": "#93000a",
+            "on-secondary": "#571e0e",
+            "on-primary-fixed": "#281900",
+            "on-secondary-fixed-variant": "#743422",
+            "on-secondary-fixed": "#3b0900",
+            "surface-tint": "#ecc077",
+            "primary-container": "#c9a05b",
+            "tertiary-container": "#92ad9c",
+            "inverse-on-surface": "#263238",
+            "surface-container-high": "#202c31",
+            "secondary-container": "#773624",
+            "surface-container-lowest": "#041015",
+            "surface-variant": "#2b373c"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-mobile": "1.25rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          fontFamily: {
+            "label-sm": ["Courier Prime", "monospace"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "display-xl": ["Newsreader", "serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "label-md": ["Courier Prime", "monospace"],
+            "display-xl-mobile": ["Newsreader", "serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "body-sm": ["Manrope", "sans-serif"]
+          },
+          fontSize: {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-xl": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-sm": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "400" }],
+            "display-xl-mobile": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "500" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Player Modal & Custom Overlay Styles -->
   <link rel="stylesheet" href="css/player.css">
-  
+
   <!-- Monetag MultiTag Official Monetization Script (Zone 290025) -->
   <script src="https://quge5.com/88/tag.min.js" data-zone="290025" async data-cfasync="false"></script>
 </head>
-<body class="film-grain">
-  <!-- Film Perforation Decorative Edge -->
-  <div class="film-strip-border"></div>
+
+<body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen relative antialiased selection:bg-primary-container selection:text-on-primary film-grain">
 
   <!-- =========================================================================
-       TOP STICKY NAVBAR (Art-House Editorial Architecture)
+       FIXED TOP HEADER (Google Stitch Header Spec)
        ========================================================================= -->
-  <header class="site-header" id="global-navbar">
-    <div class="nav-left">
-      <a class="brand-logo" id="nav-logo" data-navigate="home" title="Cinexa 4K Cinema">
-        <div class="brand-aperture-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ecc077" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="m14.31 8 5.74 9.94"></path>
-            <path d="M9.69 8h11.48"></path>
-            <path d="m7.38 12 5.74-9.94"></path>
-            <path d="M9.69 16 3.95 6.06"></path>
-            <path d="M14.31 16H2.83"></path>
-            <path d="m16.62 12-5.74 9.94"></path>
-          </svg>
-        </div>
-        <span class="brand-wordmark">
-          CINEXA<span class="brand-dot"></span>
-        </span>
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(0,0,0,0.25)] border-b border-surface-container-high/60">
+    <div class="h-14 px-gutter-mobile flex items-center justify-between">
+      <!-- Logo -->
+      <a class="flex items-center gap-2 group cursor-pointer" onclick="switchMainScreen('home')">
+        <span class="font-headline-md text-headline-sm tracking-tight text-primary font-semibold select-none">CINEXA</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
       </a>
 
-      <!-- Desktop Editorial Nav Links -->
-      <ul class="nav-links">
-        <li><a class="nav-link active" data-navigate="home">Trending</a></li>
-        <li><a class="nav-link" data-navigate="discover">Discover</a></li>
-        <li><a class="nav-link" id="nav-genres-trigger">Genres</a></li>
-        <li><a class="nav-link" data-filter="world">World Cinema</a></li>
-        <li><a class="nav-link" data-filter="upcoming">New Releases</a></li>
-        <li><a class="nav-link" data-navigate="library">My Library</a></li>
-      </ul>
-    </div>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 font-body-sm text-on-surface-variant font-medium">
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('home')">Trending</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('discover')">Discover</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('library')">Library</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openEditorialModal()">Editorial</a>
+      </nav>
 
-    <div class="nav-right">
-      <!-- Search Bar Trigger (Opens ⌘K Palette) -->
-      <button class="header-search-trigger" id="header-search-btn" title="Open Global Command Search">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">search</span>
-          <span style="color: var(--text-secondary);">Search films, directors...</span>
-        </div>
-        <span class="kbd-badge">⌘K</span>
-      </button>
-
-      <!-- Notification Bell with Unread Dot -->
-      <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
-        <span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
-        <span class="notification-dot"></span>
-      </button>
-
-      <!-- VIP Profile Avatar with Brass Ring -->
-      <div class="user-avatar-btn" id="profile-avatar-trigger" title="Cinexa VIP Account">
-        <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-space-sm">
+        <a class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" onclick="switchLibrarySubView('search')">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </a>
+        <a class="w-11 h-11 flex items-center justify-center cursor-pointer" onclick="switchMainScreen('library')">
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
+        </a>
       </div>
     </div>
   </header>
 
   <!-- =========================================================================
-       SCREEN 1: HOME / TRENDING VIEW (#view-home)
+       MAIN MULTI-SCREEN CONTAINER
        ========================================================================= -->
-  <section class="app-view active-view" id="view-home">
-    <!-- Pull To Refresh Mock Indicator -->
-    <div class="ptr-indicator" id="ptr-indicator">
-      <span class="material-symbols-outlined ptr-spinner">motion_photos_on</span>
-      <span>Refreshing curated feed...</span>
-    </div>
+  <main class="flex-1 flex flex-col relative w-full pt-14 pb-20 bg-surface">
 
-    <!-- Cinematic Hero Spotlight (5-Movie Live Rotator) -->
-    <section class="hero-spotlight" id="hero-spotlight-section">
-      <img class="hero-backdrop-img" id="hero-bg-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-MC-h5lk7YkD5MNIiSZ-1aG4s_CyLuC6rBB6Jt-5lk6-gnpF51DoOlYkcvQfQcMYnxTd7Zvks3VbvFCalX-rVrZ8WeMmNb7jTyEI3iJl1Yt1uhpVf8HS36J7_pye-7LOqeRW7AfPb6eoB8E2svbB_77hO4iX9Zqwq_ucz9x6HqUXFjXl413chiVyIIAzdeRI11RY--zmV8OnL5roAXHlQESvssuTDwSo3DdWpgiu6QS-HMML58BEflA" alt="Featured Cinema">
-      <div class="hero-scrim-top"></div>
-      <div class="hero-scrim-bottom"></div>
-
-      <!-- Floating Film Festival Monogram Badge -->
-      <div class="hero-festival-badge" id="hero-festival-badge">
-        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--secondary);"></span>
-        <span id="hero-badge-text">Cannes 2024 Selection</span>
+    <!-- =======================================================================
+         SCREEN 1: HOME / TRENDING (From Stitch media_1791015997402.html)
+         ======================================================================= -->
+    <div class="flex flex-col w-full text-on-surface select-none relative overflow-x-hidden screen-view" id="screen-home">
+      <!-- Pull To Refresh Mock Indicator -->
+      <div class="flex items-center justify-center gap-space-sm py-2 px-4 transition-all duration-300 opacity-90" id="ptr-indicator">
+        <span class="material-symbols-outlined text-[16px] text-primary animate-spin">motion_photos_on</span>
+        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Refreshing curated feed...</span>
       </div>
 
-      <!-- Hero Content Cluster -->
-      <div class="hero-content-cluster">
-        <div class="hero-eyebrow" id="hero-eyebrow-text">
-          Featured Tonight • 35mm Restoration
-        </div>
-        <h1 class="hero-display-title" id="hero-display-title">
-          Dune: Part Two
-        </h1>
-        <div class="hero-meta-strip" id="hero-meta-strip">
-          <span class="meta-score"><span class="material-symbols-outlined" style="font-size: 15px; font-variation-settings: 'FILL' 1;">star</span> <span id="hero-score-val">8.6</span></span>
-          <span style="color: var(--outline-variant);">•</span>
-          <span id="hero-year-val">2024</span>
-          <span style="color: var(--outline-variant);">•</span>
-          <span id="hero-runtime-val">2h 46m</span>
-          <span style="color: var(--outline-variant);">•</span>
-          <span class="meta-pill" id="hero-age-val">PG-13</span>
-          <span style="color: var(--outline-variant);">•</span>
-          <span class="meta-pill-sage" id="hero-format-val">4K IMAX</span>
+      <!-- Hero Cinematic Spotlight (70vh / ~580px visual experience) -->
+      <section class="relative w-full h-[580px] flex flex-col justify-end overflow-hidden">
+        <!-- Image Backdrop with Cinematic Scrims -->
+        <div class="absolute inset-0 bg-cover bg-center transition-all duration-700" id="hero-backdrop" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-MC-h5lk7YkD5MNIiSZ-1aG4s_CyLuC6rBB6Jt-5lk6-gnpF51DoOlYkcvQfQcMYnxTd7Zvks3VbvFCalX-rVrZ8WeMmNb7jTyEI3iJl1Yt1uhpVf8HS36J7_pye-7LOqeRW7AfPb6eoB8E2svbB_77hO4iX9Zqwq_ucz9x6HqUXFjXl413chiVyIIAzdeRI11RY--zmV8OnL5roAXHlQESvssuTDwSo3DdWpgiu6QS-HMML58BEflA')"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-surface/60 via-transparent to-surface"></div>
+        <div class="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-surface via-surface/90 to-transparent"></div>
+
+        <!-- Floating Film Festival Monogram Badge -->
+        <div class="absolute top-4 left-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container/80 backdrop-blur-md shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase" id="hero-badge">Cannes 2024 Selection</span>
         </div>
 
-        <!-- Action Cluster -->
-        <div class="hero-actions">
-          <button class="btn-hero-primary" id="btn-hero-play-action">
-            <span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">play_arrow</span>
-            <span>Watch Trailer</span>
+        <!-- Hero Content Overlay -->
+        <div class="relative z-10 px-5 pb-6 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-medium" id="hero-eyebrow">Featured Tonight • 35mm Restoration</span>
+          </div>
+          <h1 class="font-display-xl-mobile text-display-xl-mobile font-semibold text-on-surface tracking-tight leading-none drop-shadow-md" id="hero-title">
+            Dune: Part Two
+          </h1>
+          <div class="flex items-center flex-wrap gap-2 text-on-surface-variant font-label-md text-label-md">
+            <span class="flex items-center gap-1 text-primary font-semibold">
+              <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span id="hero-score">8.6</span>
+            </span>
+            <span class="text-outline-variant">•</span>
+            <span id="hero-year">2024</span>
+            <span class="text-outline-variant">•</span>
+            <span id="hero-runtime">2h 46m</span>
+            <span class="text-outline-variant">•</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm" id="hero-age">PG-13</span>
+            <span class="text-outline-variant">•</span>
+            <span class="text-tertiary font-label-sm text-label-sm bg-tertiary-container/30 px-2 py-0.5 rounded-full" id="hero-format">4K IMAX</span>
+          </div>
+
+          <!-- Action Cluster -->
+          <div class="flex items-center gap-3 pt-2">
+            <button class="flex-1 h-12 rounded-full bg-primary-container hover:bg-primary text-on-primary-container font-body-md text-body-md font-semibold flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all" id="btn-hero-watch">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch Trailer</span>
+            </button>
+            <button aria-label="Add to watchlist" class="w-12 h-12 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface flex items-center justify-center active:scale-95 transition-all shadow-md" id="btn-hero-bookmark">
+              <span class="material-symbols-outlined text-[22px]" id="hero-bookmark-icon">bookmark_add</span>
+            </button>
+            <button aria-label="Film details" class="w-12 h-12 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center active:scale-95 transition-all" id="btn-hero-info">
+              <span class="material-symbols-outlined text-[20px]">info</span>
+            </button>
+          </div>
+
+          <!-- Carousel Pagination Dots -->
+          <div class="flex items-center justify-center gap-2 pt-3" id="hero-dots">
+            <span class="w-6 h-1.5 rounded-full bg-primary transition-all duration-300 cursor-pointer" onclick="setHeroSlide(0)"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer" onclick="setHeroSlide(1)"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer" onclick="setHeroSlide(2)"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer" onclick="setHeroSlide(3)"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300 cursor-pointer" onclick="setHeroSlide(4)"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sticky Genre / Curated Category Filter Strip -->
+      <section class="sticky top-14 z-30 bg-surface/90 backdrop-blur-xl py-3 shadow-md border-b border-surface-container-high/50">
+        <div class="flex items-center gap-2 overflow-x-auto px-5 scrollbar-none no-scrollbar" id="home-category-strip">
+          <button class="shrink-0 h-9 px-4 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-semibold shadow-sm transition-transform active:scale-95 cat-chip" data-cat="all">
+            Curated All
           </button>
-          <button class="btn-hero-circle" id="btn-hero-watchlist-action" aria-label="Add to Watchlist" title="Save to Watchlist">
-            <span class="material-symbols-outlined" id="hero-bookmark-icon" style="font-size: 20px;">bookmark_add</span>
+          <button class="shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip" data-cat="blockbusters">
+            Blockbusters
           </button>
-          <button class="btn-hero-circle" id="btn-hero-info-action" aria-label="Film Details" title="View Full Dossier">
-            <span class="material-symbols-outlined" style="font-size: 20px;">info</span>
+          <button class="shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip" data-cat="world">
+            World Cinema
           </button>
-        </div>
-
-        <!-- Progress Dots -->
-        <div class="hero-pagination-dots" id="hero-dots-container">
-          <span class="hero-dot active" data-index="0"></span>
-          <span class="hero-dot" data-index="1"></span>
-          <span class="hero-dot" data-index="2"></span>
-          <span class="hero-dot" data-index="3"></span>
-          <span class="hero-dot" data-index="4"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sticky Genre / Curated Category Filter Strip -->
-    <nav class="category-filter-strip" id="category-filter-strip">
-      <button class="tab-chip active" data-tab="all">Curated All</button>
-      <button class="tab-chip" data-tab="blockbusters">Blockbusters</button>
-      <button class="tab-chip" data-tab="world">World Cinema</button>
-      <button class="tab-chip" data-tab="auteur">Auteur &amp; Indie</button>
-      <button class="tab-chip" data-tab="scifi">Science Fiction</button>
-      <button class="tab-chip" data-tab="restorations">Restorations</button>
-      <button class="tab-chip" data-tab="4k">4K Master</button>
-    </nav>
-
-    <!-- Content Section 1: Trending This Week -->
-    <section class="editorial-section">
-      <div class="section-header-block">
-        <div>
-          <span class="section-kicker">Curator's Ledger</span>
-          <h2 class="section-headline">Trending This Week</h2>
-        </div>
-        <a class="section-view-all" data-navigate="discover">
-          <span>View all</span>
-          <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
-        </a>
-      </div>
-
-      <!-- Horizontal Film Reel -->
-      <div class="film-reel-scroller">
-        <!-- Card 1 -->
-        <div class="reel-card" data-slug="oppenheimer">
-          <div class="poster-frame">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkMv40JZ4AesNv90iHIKZok5fd242hTID6RcvhHG71fOu_9Hz4n8iCOfK4DXKmVNLchc51kwjB8Xd6mynQ74tMa-3XxwpoWzePizsmfuJwQs4QTv1FMefwIIwbdTjTFldwRKRWBorldnAhbpanskCfxppRmoIbbshdUIyJ713CgkA9Y82jpqSoTClU-h35YHwCfGMMUogPG7fxjRXE_o9V8brO3svkHPbCnXS5a076XWytkIcRQKP9g" alt="Oppenheimer">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left">R</span>
-            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
-            <div class="poster-bottom-bar">
-              <span class="poster-accolade">35mm</span>
-              <span class="poster-rating">★ 8.9</span>
-            </div>
-          </div>
-          <div class="card-title-line">Oppenheimer</div>
-          <div class="card-sub-line">2023 • Christopher Nolan</div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="reel-card" data-slug="poor-things">
-          <div class="poster-frame">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsV6AknYsRaJ0IxxbnYrmeEqsLhuo-rAiBJPq8h43ZQOsh6XNBiCKkdgT0tHI1Yr1GBHKR3m3qBlE9yBTEhieeRlLYbt1B-cBwxAd1qg-0iUnkVGedR4x1tcQ4Rtl_jyYWFQKLzGJgcTJdpqQYFYNg0VXoOkq8vdUO28-YQV-8asdWDW7HCFVtlR9XG4u4gktUdyhscQ4DsZBsxcJ8jUx07OYUSUHhw_XT2VqOfn9WlpwIJLkMSyY6KQ" alt="Poor Things">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left">R</span>
-            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
-            <div class="poster-bottom-bar">
-              <span class="poster-accolade" style="color: var(--secondary);">Golden Lion</span>
-              <span class="poster-rating">★ 8.2</span>
-            </div>
-          </div>
-          <div class="card-title-line">Poor Things</div>
-          <div class="card-sub-line">2023 • Yorgos Lanthimos</div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="reel-card" data-slug="anatomy-of-a-fall">
-          <div class="poster-frame">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqp1TloYON5sn7HHwhf5n1qnUMHEv3Wo02qm31YrLK6zcV2KdKtm3XjV9fDJuqZWM02MqTnbnzGI5I0xd2HFLfhqPZ26ZcLkmkn0u3l5f_Qlt4E-e7bZ7DExoIzWZ_ls5P0wRN2DaO4f99fxuyMwZuODzzIomC8qWZTdj2--FDLZYvaqLvqyZFxk0KfO8Gux3C47ZGRsk7vcF1RIMHX8DvCQl7mYdttIUajWdIru1fgR5osBv4R4Pd-w" alt="Anatomy of a Fall">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left">15</span>
-            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
-            <div class="poster-bottom-bar">
-              <span class="poster-accolade">Palme d'Or</span>
-              <span class="poster-rating">★ 7.9</span>
-            </div>
-          </div>
-          <div class="card-title-line">Anatomy of a Fall</div>
-          <div class="card-sub-line">2023 • Justine Triet</div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="reel-card" data-slug="perfect-days">
-          <div class="poster-frame">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCxcRvIMPOf6oqh6BiNQwzLX8p0WBUJypwyBEonVtw0xWcj32FfQ52g73xdtajpXkPxin2GAxI6NICD64dObUnS7dPLu1TVX11dNxImxgTQ6HxZewMlvKqShjZCBPca4PY_Pib3ZrbnHsebd92jLFqy7ePhLpbx2GX8PsTm7xYb3XAYYK-w5_yVuDw_Bmx0J1QtVuSnICPDox7gQNJeZyUJHuEuv4eQilTW07YlEN9uj6qhCNbqc5gYw" alt="Perfect Days">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left">PG</span>
-            <button class="poster-btn-bookmark" aria-label="Bookmark"><span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span></button>
-            <div class="poster-bottom-bar">
-              <span class="poster-accolade">Auteur</span>
-              <span class="poster-rating">★ 8.0</span>
-            </div>
-          </div>
-          <div class="card-title-line">Perfect Days</div>
-          <div class="card-sub-line">2023 • Wim Wenders</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Editorial Spotlight Banner / Curator Insight -->
-    <div class="editorial-article-banner" id="editorial-banner">
-      <div class="article-banner-header">
-        <div class="article-category-badge">
-          <span class="material-symbols-outlined" style="font-size: 16px;">auto_stories</span>
-          <span>Cinematheque Editorial</span>
-        </div>
-        <span class="article-read-time">5 min read</span>
-      </div>
-      <h3 class="article-headline">
-        The Geometry of Desert Light: How Greig Fraser Framed Arrakis
-      </h3>
-      <p class="article-excerpt">
-        An exclusive technical breakdown of custom infrared optics and large-format digital sensors adapted to capture daylight harshness across Jordan and Abu Dhabi.
-      </p>
-      <div class="article-footer">
-        <div class="author-chip">
-          <div class="author-initials">ES</div>
-          <span>Elena S. • Head Archivist</span>
-        </div>
-        <button class="btn-read-piece" id="btn-read-editorial">Read Piece</button>
-      </div>
-    </div>
-
-    <!-- Content Section 2: Top 10 in World Cinema (Ranked Carousel) -->
-    <section class="editorial-section">
-      <div class="section-header-block">
-        <div>
-          <span class="section-kicker">Global Canon</span>
-          <h2 class="section-headline">Top 10 in World Cinema</h2>
-        </div>
-        <a class="section-view-all" data-navigate="discover">
-          <span>Explore all</span>
-          <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
-        </a>
-      </div>
-
-      <!-- Ranked Cards Slider -->
-      <div class="film-reel-scroller">
-        <!-- Rank #1 -->
-        <div class="ranked-card" data-slug="drive-my-car">
-          <span class="rank-numeral">1</span>
-          <div class="ranked-poster-box">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADgXvxTRcPpfv72kYQg3oJfnlBl6FbycpgRmLdVUo-xaETF0Q6OB5cnuSyDTlI7KPlK-SEDoAJsXb3D7ynKp6YImvgz9jAHbhGwCz4CYJk29vl7ZOfCwO3J_7wp2qjOYw-rGE8U-S0xOGLVNr4T3uSOjpSysw3uJeYR6Q3XBIUZss_qP4pihnQzkiol2V_cGXhYELVtmvEGHSLfLJ4HqSDcXOQmrHxXJVtWeAPHmGrpNMUeGXqZ4xIyw" alt="Drive My Car">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left" style="color: var(--secondary);">Japan</span>
-            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
-              <span class="card-title-line" style="font-size: 12.5px;">Drive My Car</span>
-              <span class="card-sub-line">Ryusuke Hamaguchi</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rank #2 -->
-        <div class="ranked-card" data-slug="the-zone-of-interest">
-          <span class="rank-numeral">2</span>
-          <div class="ranked-poster-box">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPMn3o3ket5y3G-43nTELc7Xo5EPTJo1uwer48BZE-DHdlCtTKjyRGnZgUw4I9EB6P7a0fWK9fBazFzBIBw1yg9sDDC9AHk00n0WC50C96T7nZCzEKooF-I7ImsuZ7SLlATLEN7iy9kXtBu7KPhd0-ksWYl2VtKqq36863C5nsdhTQImDx9CvX3GU5egPLR6X1jHHev9yWsdQSQsUV_DiQJvZhpn4t0olnNouRbk_PELLpnTku9ttUrg" alt="The Zone of Interest">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left" style="color: var(--tertiary);">UK</span>
-            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
-              <span class="card-title-line" style="font-size: 12.5px;">The Zone of Interest</span>
-              <span class="card-sub-line">Jonathan Glazer</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rank #3 -->
-        <div class="ranked-card" data-slug="past-lives">
-          <span class="rank-numeral">3</span>
-          <div class="ranked-poster-box">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8KbkCHDehCMOk6Imf6VokPlpl0MSeb4orkJCDybSAyC-0BDFxM6MsFfU3cZqfwW8-bcTxianyWQUvGMO6yUbZJ3SjRKKq2iJPlyoEWKGYriu8sP1zOsJ4QgmnZm7p4yhExGalCHDmgTdxakuBL0znrEfRvtuGtF3-5zB6XI5MKjv1ewib5_5STVWIUh3P5wVijloY1kg7tpajrlD9x50q41DdfWeZr7rrz8dXsxKn0Q7moj1wpGEz8A" alt="Past Lives">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left" style="color: var(--secondary);">USA / Korea</span>
-            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
-              <span class="card-title-line" style="font-size: 12.5px;">Past Lives</span>
-              <span class="card-sub-line">Celine Song</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rank #4 -->
-        <div class="ranked-card" data-slug="decision-to-leave">
-          <span class="rank-numeral">4</span>
-          <div class="ranked-poster-box">
-            <img class="poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPpBOydCvgzTSlZuzLpIgfwQ67D1vnUqKvj6JU3h6rZW2uWHjfFoJKz_Q6DATPW6wTkZb2c4SLaSGPE2UR1gNBJxfXGxzSCT1dqfk3UbeWOT6Ze1gg8dmsrbHkIVpkzJ0WcACrCTn07klKAxDGt50osBqBHVyEYjXjXwhryIO9yWwy1HLAsDWHMiLEhf6GidIfqtIbFQv-F3U5QJz2rtHon3iEcDJgc93dMHAtoQzpYXMKcmXojdVrrA" alt="Decision to Leave">
-            <div class="poster-overlay-gradient"></div>
-            <span class="poster-tag-top-left" style="color: var(--primary);">Korea</span>
-            <div class="poster-bottom-bar" style="flex-direction: column; align-items: flex-start;">
-              <span class="card-title-line" style="font-size: 12.5px;">Decision to Leave</span>
-              <span class="card-sub-line">Park Chan-wook</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comprehensive Main Catalog Grid (All 159+ Films) -->
-    <section class="editorial-section" id="home-catalog-section">
-      <div class="section-header-block" style="margin-bottom: 8px;">
-        <div>
-          <span class="section-kicker">Vault Archive</span>
-          <h2 class="section-headline" id="home-catalog-title">Global Cinematic Catalog</h2>
-        </div>
-      </div>
-      <div id="catalog-container"></div>
-    </section>
-  </section>
-
-  <!-- =========================================================================
-       SCREEN 2: DISCOVER / FILTER DIRECTORY VIEW (#view-discover)
-       ========================================================================= -->
-  <section class="app-view" id="view-discover">
-    <div class="discover-header-block">
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h1 class="section-headline" style="font-size: clamp(26px, 4vw, 36px);">Discover</h1>
-        <span class="edition-badge">Edition 04</span>
-      </div>
-      <p style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.08em;">
-        Curated Archival Catalogue
-      </p>
-    </div>
-
-    <!-- Discover Control Bar -->
-    <div class="discover-controls-bar">
-      <button class="btn-filter-drawer-trigger" id="openFilterBtn">
-        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">tune</span>
-        <span>Filters</span>
-        <span class="badge-count" id="activeFilterCountBadge">3</span>
-      </button>
-
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button class="btn-filter-drawer-trigger" id="sortDropdownBtn">
-          <span style="color: var(--text-secondary);">Sort:</span>
-          <span style="color: var(--primary);" id="sortLabel">Curator's</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
-        </button>
-
-        <!-- Grid vs List Layout Toggles -->
-        <div style="display: flex; align-items: center; background: var(--bg-surface-highest); border-radius: 9999px; padding: 2px;">
-          <button class="icon-btn" id="viewGridBtn" style="width: 34px; height: 34px; color: var(--primary);" title="Grid View">
-            <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+          <button class="shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip" data-cat="romance">
+            Auteur &amp; Indie
           </button>
-          <button class="icon-btn" id="viewListBtn" style="width: 34px; height: 34px; color: var(--text-secondary);" title="List View">
-            <span class="material-symbols-outlined" style="font-size: 18px;">view_agenda</span>
+          <button class="shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip" data-cat="thriller">
+            Science Fiction
+          </button>
+          <button class="shrink-0 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-all active:scale-95 cat-chip" data-cat="4k">
+            Restorations
           </button>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Active Filter Chips Row -->
-    <div class="active-filter-chips-row" id="active-chips-container">
-      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--outline); text-transform: uppercase; margin-right: 4px;" id="discover-film-count-label">48 Films</span>
-      <div class="filter-chip-pill">
-        <span style="color: var(--primary);">Korean Melodrama</span>
-        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
-      </div>
-      <div class="filter-chip-pill">
-        <span style="color: var(--primary);">1990s–2000s</span>
-        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
-      </div>
-      <div class="filter-chip-pill">
-        <span style="color: var(--tertiary);">Stream Only</span>
-        <button class="btn-chip-remove"><span class="material-symbols-outlined" style="font-size: 14px;">close</span></button>
-      </div>
-      <button style="background: transparent; border: none; font-family: var(--font-mono); font-size: 11px; color: var(--outline); cursor: pointer; text-transform: uppercase;" id="clearAllFiltersBtn">
-        Clear all
-      </button>
-    </div>
-
-    <!-- Interactive State Switcher Deck -->
-    <div class="state-switcher-deck">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
-        <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-primary);">Curatorial Directory Mode</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button class="state-btn active" id="btn-state-grid">1. Filtered Grid</button>
-        <button class="state-btn" id="btn-state-genres">2. Genre Tiles</button>
-        <button class="state-btn" id="btn-state-drawer">3. Filters Sheet</button>
-      </div>
-    </div>
-
-    <!-- Filtered Catalog Grid -->
-    <div class="discover-catalog-grid" id="discover-catalog-grid">
-      <!-- Dynamic posters rendered via app.js -->
-    </div>
-
-    <!-- Genre Tiles Landing State (Switchable) -->
-    <div class="genre-tiles-grid" id="discover-genre-tiles" style="display: none;">
-      <div class="genre-tile-card" data-genre-select="French New Wave">
-        <div class="tile-glow" style="background: rgba(236, 192, 119, 0.15);"></div>
-        <div>
-          <span class="article-category-badge">Movement • 1958–1968</span>
-          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">French New Wave</h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Godard, Truffaut, Rohmer, Varda radical jump-cuts and location shooting.</p>
-        </div>
-        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">28 FILMS RESTORED →</span>
-      </div>
-
-      <div class="genre-tile-card" data-genre-select="Neo-Noir">
-        <div class="tile-glow" style="background: rgba(255, 181, 161, 0.15);"></div>
-        <div>
-          <span class="article-category-badge" style="color: var(--secondary);">Discipline • Midnight</span>
-          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Neo-Noir &amp; Crime</h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Rain-drenched asphalt, moral ambiguity, and high-contrast anamorphic shadows.</p>
-        </div>
-        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--secondary);">44 FILMS IN VAULT →</span>
-      </div>
-
-      <div class="genre-tile-card" data-genre-select="Italian Neorealism">
-        <div class="tile-glow" style="background: rgba(177, 205, 187, 0.15);"></div>
-        <div>
-          <span class="article-category-badge" style="color: var(--tertiary);">Movement • 1943–1954</span>
-          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Italian Neorealism</h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">De Sica, Rossellini, Visconti unvarnished humanist post-war chronicles.</p>
-        </div>
-        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--tertiary);">19 ARCHIVAL PRINTS →</span>
-      </div>
-
-      <div class="genre-tile-card" data-genre-select="Korean Melodrama">
-        <div class="tile-glow" style="background: rgba(236, 192, 119, 0.15);"></div>
-        <div>
-          <span class="article-category-badge">Retrospective • 1998–2006</span>
-          <h3 class="section-headline" style="font-size: 20px; margin-top: 6px;">Korean Golden Melodrama</h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Heartbreaking romance, intimate umbrella scenes, and bittersweet memory loss.</p>
-        </div>
-        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">16 MASTER PRINTS →</span>
-      </div>
-    </div>
-
-    <!-- Floating Back to Top Button -->
-    <button class="icon-btn" id="backToTopBtn" style="position: fixed; bottom: 80px; right: 20px; width: 44px; height: 44px; background: var(--bg-surface-highest); border: 1px solid var(--border-hairline); box-shadow: var(--shadow-diffuse); z-index: 40;" title="Back to Top">
-      <span class="material-symbols-outlined" style="font-size: 20px; color: var(--primary);">arrow_upward</span>
-    </button>
-  </section>
-
-  <!-- =========================================================================
-       SCREEN 3: MY LIBRARY / ARCHIVAL VAULT VIEW (#view-library)
-       ========================================================================= -->
-  <section class="app-view" id="view-library">
-    <!-- View State Switcher (Library View vs Search Overlay vs Empty State) -->
-    <div style="padding: 12px 24px 8px 24px; display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none;">
-      <button class="state-btn active" id="lib-switch-main" onclick="switchLibrarySubView('main')">Library View</button>
-      <button class="state-btn" id="lib-switch-search" onclick="openSearchPalette()">Search Overlay</button>
-      <button class="state-btn" id="lib-switch-empty" onclick="switchLibrarySubView('empty')">Empty State</button>
-    </div>
-
-    <!-- Library Main Sub-view -->
-    <div class="library-view-container" id="lib-subview-main">
-      <div class="library-header">
-        <div>
-          <span class="section-kicker">Cinexa Archive</span>
-          <h1 class="section-headline" style="font-size: clamp(24px, 3.5vw, 32px);">My Library</h1>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
-            42 FILMS TRACKED • <span style="color: var(--tertiary);">35MM • ARCHIVAL</span>
+      <!-- Content Section 1: Trending This Week -->
+      <section class="flex flex-col gap-3.5 pt-5 pb-3">
+        <div class="flex items-end justify-between px-5">
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Curator's Ledger</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium leading-tight">Trending This Week</h2>
           </div>
-        </div>
-        <div style="display: flex; align-items: center; background: var(--bg-surface-highest); border-radius: 9999px; padding: 2px;">
-          <button class="icon-btn" id="lib-view-list" style="width: 34px; height: 34px; color: var(--primary);" title="List Layout">
-            <span class="material-symbols-outlined" style="font-size: 18px;">view_list</span>
-          </button>
-          <button class="icon-btn" id="lib-view-grid" style="width: 34px; height: 34px; color: var(--text-secondary);" title="Grid Layout">
-            <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 2x2 Bento Stats Grid -->
-      <div class="stats-bento-grid">
-        <div class="bento-stat-card">
-          <div class="stat-header">
-            <span>Films Seen</span>
-            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">theaters</span>
-          </div>
-          <div class="stat-value">148</div>
-          <div class="stat-sub">↑ 12 this month</div>
+          <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors pb-0.5 cursor-pointer" onclick="switchMainScreen('discover')">
+            <span>View all</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
         </div>
 
-        <div class="bento-stat-card">
-          <div class="stat-header">
-            <span>Hours Logged</span>
-            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">schedule</span>
-          </div>
-          <div class="stat-value">312<span style="font-size: 16px; color: var(--text-secondary);">h</span></div>
-          <div class="stat-sub" style="color: var(--text-secondary);">14 curatorial archives</div>
-        </div>
-
-        <div class="bento-stat-card">
-          <div class="stat-header">
-            <span>Top Genre</span>
-            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--secondary);">local_fire_department</span>
-          </div>
-          <div class="stat-value" style="font-size: 22px;">Melodrama</div>
-          <div class="stat-sub" style="color: var(--secondary);">28% of collection</div>
-        </div>
-
-        <div class="bento-stat-card">
-          <div class="stat-header">
-            <span>Avg Rating</span>
-            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary); font-variation-settings: 'FILL' 1;">star</span>
-          </div>
-          <div class="stat-value" style="color: var(--primary);">4.2<span style="font-size: 14px; color: var(--text-secondary);">/5.0</span></div>
-          <div class="stat-sub" style="color: var(--text-secondary);">86 titles reviewed</div>
-        </div>
-      </div>
-
-      <!-- Category Filter Tabs -->
-      <div style="display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-hairline); margin-bottom: 20px; padding-bottom: 10px; overflow-x: auto; scrollbar-width: none;">
-        <button class="nav-link active" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="watchlist">
-          <span>Watchlist</span>
-          <span style="padding: 1px 6px; border-radius: 9999px; background: rgba(236, 192, 119, 0.2); color: var(--primary); font-family: var(--font-mono); font-size: 10px;">42</span>
-        </button>
-        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="seen">
-          <span>Seen</span>
-          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">148</span>
-        </button>
-        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="favorites">
-          <span>Favorites</span>
-          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">24</span>
-        </button>
-        <button class="nav-link" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none;" data-lib-tab="lists">
-          <span>Lists</span>
-          <span style="padding: 1px 6px; border-radius: 9999px; background: var(--bg-surface-highest); color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px;">6</span>
-        </button>
-      </div>
-
-      <!-- High-Density Archival List -->
-      <div class="archival-list-container" id="library-list-container">
-        <!-- Item 1: A Moment to Remember -->
-        <article class="archival-list-row" data-slug="a-moment-to-remember">
-          <div class="list-poster-thumb">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoLI_NKvH2amzJDaJpiaTG6XAcxNfUojUElx7hzfNUeurf_107bygHa1btQxL4ktY1QkPbly0rLdZKRV0TpfnUb1d05MFHSEN_WgckXsQ4INOC6fPysnOyM9GO0t1VpfPg3iHcCuqVAnZcKUkoJhOZk19Z8UTW-C0-YTJlJItdU595Y2jTq2K9Ks82Hl2zwv-Gfbb1KCnbrOtTlHJybM-tx_SwdRjmqAHO2fDBYsOsOH4plL6YGwqskg" alt="A Moment to Remember">
-          </div>
-          <div class="list-row-info">
-            <div class="list-row-title-bar">
-              <h3 class="list-title">A Moment to Remember</h3>
-              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.8</span>
-            </div>
-            <div class="list-meta-line">
-              <span>2004</span>
-              <span>•</span>
-              <span>117 MIN</span>
-              <span>•</span>
-              <span style="color: var(--secondary);">35MM RESTORED</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="list-badge-tag">MUBI</span>
-              <span style="font-size: 12px; color: var(--text-secondary);">Dir. John H. Lee</span>
-            </div>
-          </div>
-          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
-            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
-          </button>
-        </article>
-
-        <!-- Item 2: Dune Part Two -->
-        <article class="archival-list-row" data-slug="dune-part-two">
-          <div class="list-poster-thumb">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIou4ReuqHuAjFukvHh-T86sry8HV_nXf6E19l0FTpUVU7APRbo9ICIilRuTvDJ-haIq7q1DLcyBqldJNjIGEkrMUpdJGcc_bQ7o5-WMfJLHkFdahJlz0_gsBNFzQyCgNEtFnoqXEYaTM29LtXHgYSZhh81xYuEWEmFHnP1OCg14bk8_o0WoOOdJTxI0ntIgJBTtRHc1Mj2FTa1-LSxpKT0-mrFmuBq1EfIU3K9Ozhqbc_GeNDyhn9rA" alt="Dune: Part Two">
-          </div>
-          <div class="list-row-info">
-            <div class="list-row-title-bar">
-              <h3 class="list-title">Dune: Part Two</h3>
-              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.5</span>
-            </div>
-            <div class="list-meta-line">
-              <span>2024</span>
-              <span>•</span>
-              <span>166 MIN</span>
-              <span>•</span>
-              <span style="color: var(--tertiary);">IMAX 70MM</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="list-badge-tag" style="background: rgba(255, 255, 255, 0.1); color: var(--text-primary);">MAX</span>
-              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Denis Villeneuve</span>
-            </div>
-          </div>
-          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
-            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
-          </button>
-        </article>
-
-        <!-- Item 3: Past Lives -->
-        <article class="archival-list-row" data-slug="past-lives">
-          <div class="list-poster-thumb">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0hOrXNS3hE1AAGc5W2NsG-k_BFSKm9Z4XIJgM1GnZgpS6SCfDGqTYGJUQ8DxHWbqoTNsjhd_YC27k0dcVJ5WQiYrXdqq4BKffs0qJ0kdrKsXewYsZY2QrWFPPIASrn16A43uI_aylwOWKqFLl0BwsV88AzC56ULuESI2qqqQg2wjn5Rl9d6xWhgCEou1lHd47b4O7riW-3PctKzBPDEz9u8WUc08dFC9LBCIGdU0MP-0US4htGGYZUw" alt="Past Lives">
-          </div>
-          <div class="list-row-info">
-            <div class="list-row-title-bar">
-              <h3 class="list-title">Past Lives</h3>
-              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.6</span>
-            </div>
-            <div class="list-meta-line">
-              <span>2023</span>
-              <span>•</span>
-              <span>106 MIN</span>
-              <span>•</span>
-              <span style="color: var(--tertiary);">A24 ARCHIVE</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="list-badge-tag">CRITERION</span>
-              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Celine Song</span>
-            </div>
-          </div>
-          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
-            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
-          </button>
-        </article>
-
-        <!-- Item 4: Perfect Days -->
-        <article class="archival-list-row" data-slug="perfect-days">
-          <div class="list-poster-thumb">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQuVrb6zP1SlK_Y1FNx0WhRZf8ucs-Jh2EQnr79R1LWDmtmQy5RZSdsp28AxCTY-mRx0V5M6ionswVskv84210u3OM0fdqbtvG420BEO3J0TF7H2nc5Q0rqGtj8Tc7bbpuxtAZBDLukW_wbLmYmnta1C5mZb8psUsHrlzK0TpdOhFdlnU1zEIOjLo2G33vdRMs1QmOk1YD99VMVQkU9Ivo2DiQWAD43BxafiOHcAf0FH1wboktmOkaUw" alt="Perfect Days">
-          </div>
-          <div class="list-row-info">
-            <div class="list-row-title-bar">
-              <h3 class="list-title">Perfect Days</h3>
-              <span style="color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 700;">★ 4.4</span>
-            </div>
-            <div class="list-meta-line">
-              <span>2023</span>
-              <span>•</span>
-              <span>124 MIN</span>
-              <span>•</span>
-              <span style="color: var(--secondary);">CANNES WINNER</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="list-badge-tag">MUBI</span>
-              <span style="font-size: 12px; color: var(--text-secondary);">Dir. Wim Wenders</span>
-            </div>
-          </div>
-          <button class="icon-btn" style="flex-shrink: 0;" title="Options">
-            <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
-          </button>
-        </article>
-      </div>
-
-      <!-- Curated Folios (Stacked 3D Collages) -->
-      <div style="margin-top: 24px;">
-        <div class="section-header-block" style="margin-bottom: 14px;">
-          <div>
-            <h2 class="section-headline">Curated Folios</h2>
-            <p style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-secondary);">Handcrafted Watchlists</p>
-          </div>
-          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">VIEW ALL (6)</span>
-        </div>
-
-        <div class="curated-folios-grid">
-          <!-- Folio 1 -->
-          <div class="folio-card">
-            <div class="folio-info">
-              <div style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 9999px; background: rgba(255, 181, 161, 0.2); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">
-                <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--secondary);"></span>
-                Curator's Reel
+        <!-- Horizontal Film Reel -->
+        <div class="flex gap-3.5 overflow-x-auto px-5 pt-1 pb-4 scrollbar-none no-scrollbar">
+          <!-- Card 1 -->
+          <div class="shrink-0 w-36 flex flex-col gap-2 group cursor-pointer" onclick="openFilmBySlug('oppenheimer')">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-md group-hover:shadow-xl transition-all">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkMv40JZ4AesNv90iHIKZok5fd242hTID6RcvhHG71fOu_9Hz4n8iCOfK4DXKmVNLchc51kwjB8Xd6mynQ74tMa-3XxwpoWzePizsmfuJwQs4QTv1FMefwIIwbdTjTFldwRKRWBorldnAhbpanskCfxppRmoIbbshdUIyJ713CgkA9Y82jpqSoTClU-h35YHwCfGMMUogPG7fxjRXE_o9V8brO3svkHPbCnXS5a076XWytkIcRQKP9g" alt="Oppenheimer"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface font-label-sm text-label-sm">R</span>
+              <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm text-primary flex items-center justify-center active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </button>
+              <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                <span class="text-tertiary">35mm</span>
+                <span class="text-primary font-semibold">8.9</span>
               </div>
-              <h3 class="section-headline" style="font-size: 18px; margin-bottom: 4px;">Melancholy &amp; Rain</h3>
-              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Korean New Wave 1998-2006 retrospectives.</p>
-              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">12 TITLES LOGGED</span>
             </div>
-            <div class="stacked-poster-cluster">
-              <div class="stacked-thumb stacked-thumb-1"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC65U53YCLoilBV7YiHY-SaYXDKtyXb8_v-3lj-IA5CDy7xa1KfCmpvEXe11JLrwoJhXDLn8xDpffqZpUcs9VgijLqu9WMlbwO_rm2AwfU6l33OJUKaZX7AEcAC5wq2R8wHH1a1anwWLuxB5S9KVXTNb2kat1-OI6NeuTJZaIo1mzE3LPkPyxPXIYlYxtDYAn1oMKRdyjKRnADsmFhN7wLRvS-CgUfb8PRSBpPXz7Cf9CJYlj0Ocz2BIw" alt="Film 1"></div>
-              <div class="stacked-thumb stacked-thumb-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSjeki5E2UaqCCleBnaYRuiXskJs47MiNAjJG9SO37nWWzmaDd6gwFlrL91xzBfMfgaVEbmEEHCbqS8PeYAC3Rw410mk7QW7OUyx3mtHjhQwP1lomE11q-VWiO8QfDxRPz_akd5RQ3ReWp6j3TIuLDG8lW3KpEUnyxdZczHQDSWH0nYrikAXe2kHB4Ygrabmw8BVy85L2QuZyVzQzV3A4Y-EfjY2iyUfHXat_2TxDHIgkAtM48C2MGMg" alt="Film 2"></div>
-              <div class="stacked-thumb stacked-thumb-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAfK7e8viES81KaQH-PNdbqw9IZFpSSrS0XivwWTZNXI4yRNbW54fqWu59-909vAx0rKzXJHhNBSWf-d8NiMzLxp3OYhqgHcyU30Slruvv94oSEqauxmtTE-ZIMmYsAeWXu9UWHAaeT4uDFOcOigWOalyLU1ecJEgIxvCd8HJzehCb1WnBcU38b2MQdzgdVpCKweSv8sTwuvV0Ay_sXn_yc4SNWv-g2_2lKsJpaQ5SmLKc89QLFoujbA" alt="Film 3"></div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Oppenheimer</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">2023 • Christopher Nolan</span>
             </div>
           </div>
 
-          <!-- Folio 2 -->
-          <div class="folio-card">
-            <div class="folio-info">
-              <div style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 9999px; background: rgba(177, 205, 187, 0.2); color: var(--tertiary); font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">
-                <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--tertiary);"></span>
-                Archival Vault
+          <!-- Card 2 -->
+          <div class="shrink-0 w-36 flex flex-col gap-2 group cursor-pointer" onclick="openFilmBySlug('poor-things')">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-md group-hover:shadow-xl transition-all">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsV6AknYsRaJ0IxxbnYrmeEqsLhuo-rAiBJPq8h43ZQOsh6XNBiCKkdgT0tHI1Yr1GBHKR3m3qBlE9yBTEhieeRlLYbt1B-cBwxAd1qg-0iUnkVGedR4x1tcQ4Rtl_jyYWFQKLzGJgcTJdpqQYFYNg0VXoOkq8vdUO28-YQV-8asdWDW7HCFVtlR9XG4u4gktUdyhscQ4DsZBsxcJ8jUx07OYUSUHhw_XT2VqOfn9WlpwIJLkMSyY6KQ" alt="Poor Things"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface font-label-sm text-label-sm">R</span>
+              <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm text-on-surface-variant hover:text-primary flex items-center justify-center active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+              </button>
+              <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                <span class="text-secondary">Golden Lion</span>
+                <span class="text-primary font-semibold">8.2</span>
               </div>
-              <h3 class="section-headline" style="font-size: 18px; margin-bottom: 4px;">35mm Restorations</h3>
-              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Festival premier releases and photochemical scans.</p>
-              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary); font-weight: 700;">8 TITLES LOGGED</span>
             </div>
-            <div class="stacked-poster-cluster">
-              <div class="stacked-thumb stacked-thumb-1"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQhWCw0fT05GmF0gu41BQjNv22YAyvSJfP8GEeF_iManWzfpdHT2Moa2SLc92QcR4tVhLJjwJmC0OA1mQ5Eq7Kh86ang_Y7wjujpeRIkh56rtIW9YKmI3iY0WRNs3h3QtFbmfkamipvCVRvYSgXiw8TrwjwFetjHfWEPdtgTPJ3c5467KZBEtlUUaQh_g4cUov7-0EAUFxbg3wSfsL25nnkOxETCYDHvg6fXWZuedUHgKwrkHztw04w" alt="Restoration 1"></div>
-              <div class="stacked-thumb stacked-thumb-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG18a1xwW17FaTDE98RMX2o2j5CqnrgGkxXauRA2hpaK1G5WtoYwJmiAwkQb1irWlzUpm1TmTe6V1AkI5BjwvEHqb3iAwbi5e-oU3w_E3Zt1e5MH_bfTmk4W1RMVYABT9qo6FcYlSoXji-eLI0nUoagJekguhdfS8NvcVHw5vfecHv9JjJvwVKjPlMyJ_MfP6DjZz45ggjYA8NYJolfnbcTsV9RLqUCUoU43FHBK8NjIx7Ssvjy-lG0g" alt="Restoration 2"></div>
-              <div class="stacked-thumb stacked-thumb-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUfUKLIX7Sn4kYo97Xv9QFr5uimWnwZB4gfDMBwKZXgQR-o5IXHG0urmPdGZdI6hBeI2jIpkCOLa-G4ZNbcc5yFS5Sj8he1NICjjfToVjH7M770kh0oUVCwfpsW7xUiEUoQZG7fTqkMcKtnUrlWUdslqxEh-9PpCLAlNyglWbDZ5x-L2NiyMIn8P6tWgsUUqagxmSzpNL0ZJh1Cwnd7ehy92JbyWhvM88_qViH9sxkh9_hNvrI-SMz6Q" alt="Restoration 3"></div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Poor Things</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">2023 • Yorgos Lanthimos</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="shrink-0 w-36 flex flex-col gap-2 group cursor-pointer" onclick="openFilmBySlug('anatomy-of-a-fall')">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-md group-hover:shadow-xl transition-all">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqp1TloYON5sn7HHwhf5n1qnUMHEv3Wo02qm31YrLK6zcV2KdKtm3XjV9fDJuqZWM02MqTnbnzGI5I0xd2HFLfhqPZ26ZcLkmkn0u3l5f_Qlt4E-e7bZ7DExoIzWZ_ls5P0wRN2DaO4f99fxuyMwZuODzzIomC8qWZTdj2--FDLZYvaqLvqyZFxk0KfO8Gux3C47ZGRsk7vcF1RIMHX8DvCQl7mYdttIUajWdIru1fgR5osBv4R4Pd-w" alt="Anatomy of a Fall"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface font-label-sm text-label-sm">15</span>
+              <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm text-on-surface-variant hover:text-primary flex items-center justify-center active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+              </button>
+              <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                <span class="text-tertiary">Palme d'Or</span>
+                <span class="text-primary font-semibold">7.9</span>
+              </div>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Anatomy of a Fall</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">2023 • Justine Triet</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="shrink-0 w-36 flex flex-col gap-2 group cursor-pointer" onclick="openFilmBySlug('perfect-days')">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-md group-hover:shadow-xl transition-all">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCxcRvIMPOf6oqh6BiNQwzLX8p0WBUJypwyBEonVtw0xWcj32FfQ52g73xdtajpXkPxin2GAxI6NICD64dObUnS7dPLu1TVX11dNxImxgTQ6HxZewMlvKqShjZCBPca4PY_Pib3ZrbnHsebd92jLFqy7ePhLpbx2GX8PsTm7xYb3XAYYK-w5_yVuDw_Bmx0J1QtVuSnICPDox7gQNJeZyUJHuEuv4eQilTW07YlEN9uj6qhCNbqc5gYw" alt="Perfect Days"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface font-label-sm text-label-sm">PG</span>
+              <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm text-on-surface-variant hover:text-primary flex items-center justify-center active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+              </button>
+              <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                <span class="text-tertiary">Auteur</span>
+                <span class="text-primary font-semibold">8.0</span>
+              </div>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Perfect Days</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">2023 • Wim Wenders</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Empty State Sub-view -->
-    <div class="empty-library-state" id="lib-subview-empty" style="display: none;">
-      <div class="empty-reel-icon-box">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="24" cy="24" r="20"></circle>
-          <circle cx="24" cy="24" r="7"></circle>
-          <circle cx="24" cy="11" fill="currentColor" r="3"></circle>
-          <circle cx="24" cy="37" fill="currentColor" r="3"></circle>
-          <circle cx="11" cy="24" fill="currentColor" r="3"></circle>
-          <circle cx="37" cy="24" fill="currentColor" r="3"></circle>
-          <path d="M14 14l5 5"></path>
-          <path d="M34 34l-5-5"></path>
-          <path d="M14 34l5-5"></path>
-          <path d="M34 14l-5 5"></path>
-        </svg>
-      </div>
-      <span class="section-kicker" style="margin-bottom: 6px;">Archival Reel Blank</span>
-      <h2 class="empty-title">Your watchlist is waiting.</h2>
-      <p class="empty-desc">
-        No projection planned yet. Collect rare 35mm restorations, festival favorites, and midnight screenings to assemble your personal cinema.
-      </p>
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px;">
-        <button class="btn-hero-primary" data-navigate="discover" style="width: 100%;">
-          <span class="material-symbols-outlined" style="font-size: 18px;">explore</span>
-          <span>Discover Films</span>
-        </button>
-        <button class="action-pill-btn" onclick="switchLibrarySubView('main')" style="width: 100%; justify-content: center;">
-          <span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
-          <span>Restore Sample Titles</span>
-        </button>
-      </div>
-      <div class="empty-quote-box">
-        <p style="font-family: var(--font-serif); font-style: italic; font-size: 14.5px; color: var(--text-secondary); margin-bottom: 6px;">
-          “Cinema is a matter of what's in the frame and what's out.”
-        </p>
-        <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--primary); font-weight: 700;">— Martin Scorsese</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       SCREEN 4: FILM DETAILS VIEW (#view-details / #preview-page-view)
-       ========================================================================= -->
-  <section class="app-view" id="preview-page-view">
-    <!-- Cinematic Hero Visual Well -->
-    <div class="details-hero-visual">
-      <img class="details-backdrop-img" id="preview-backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVb0KYX5d4CFr--DTJjgsBQNx5cyqB99o5HOupL3VX5H3lPUVNjRSY8JRhtx5zsMCZp7m2E1tlNUHCJJhow-jzRq8hT3Kd1vt4htcfL_7hNY83EZSLkpLReebgYx-z3eIQ3FGWfHihM-lJjwufxJE9yeVxzRSmIcQtUzMgs0raPr66ypks9kW6lPAEot92yipm9wIBjAgvvLfC9VPOggNkvvGyde9EEl5xa2Km0ULkxq0fSFx6FR0_Gg" alt="Backdrop">
-      <div class="details-scrim"></div>
-
-      <!-- Floating Action Pills -->
-      <div class="details-top-actions">
-        <button class="icon-btn" id="btn-back-details" style="background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-hairline);" aria-label="Back">
-          <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
-        </button>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <button class="action-pill-btn" id="btn-theatre-mode" style="height: 38px; padding: 0 14px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px);">
-            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">screen_rotation</span>
-            <span style="color: var(--primary);">Theatre</span>
-          </button>
-          <button class="icon-btn" id="btn-share-film" style="background: rgba(21, 33, 38, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-hairline);" aria-label="Share">
-            <span class="material-symbols-outlined" style="font-size: 18px;">ios_share</span>
-          </button>
+      <!-- Editorial Spotlight Banner / Curator Insight -->
+      <section class="px-5 py-3">
+        <div class="relative rounded-2xl bg-surface-container-low p-4 overflow-hidden flex flex-col gap-3 shadow-lg border border-surface-container-high/60">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[16px]">auto_stories</span>
+              </span>
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Cinematheque Editorial</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">5 min read</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface font-medium leading-snug">
+              The Geometry of Desert Light: How Greig Fraser Framed Arrakis
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              An exclusive technical breakdown of custom infrared optics and large-format digital sensors adapted to capture daylight harshness.
+            </p>
+          </div>
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-sm text-label-sm font-bold">
+                ES
+              </div>
+              <span class="font-label-md text-label-md text-on-surface">Elena S. • Head Archivist</span>
+            </div>
+            <button class="h-8 px-3 rounded-full bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold transition-all cursor-pointer" onclick="openEditorialModal()">
+              Read Piece
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Film Identity: Overlapping Poster & Metadata Block -->
-    <div class="details-identity-block">
-      <div class="details-poster-box">
-        <img id="preview-poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSTC5wSXrmEcdSE9fVYj4_TU4OiMIF3m-L5zQ-nT0cxgtaApyVrVdN0spo2DJcPcMO-YHdo3TUMXD9NvINA5x56F0pe_62Kx0eEk8WgbYq6BFAfc3wcC-h1fur5XKM77SCeMtYWiUG2gRiSXRC-QeXFmUmf0VGMYyOISTqpWapKgCeMuD3Qi1_A4UGXwpg_klkORXxfqwoZe6SYTn1mcEbvLsMeVeLZlPIizgsHYAVuy2Up2AcT_0gNw" alt="Poster">
-        <div class="poster-tag-top-left" style="top: auto; bottom: 8px; left: 8px; color: var(--primary);">35MM</div>
-      </div>
-      <div class="details-specs-column">
-        <div style="display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; margin-bottom: 2px;">
-          <span style="color: var(--secondary);" id="preview-restoration-tag">Restored Print</span>
-          <span style="color: var(--outline);">•</span>
-          <span style="color: var(--text-secondary);" id="preview-archive-source">KOFA 2024</span>
+      <!-- Content Section 2: Top 10 in World Cinema (Ranked Carousel with Oversized Numerals) -->
+      <section class="flex flex-col gap-3.5 pt-4 pb-6">
+        <div class="flex items-end justify-between px-5">
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Global Canon</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium leading-tight">Top 10 in World Cinema</h2>
+          </div>
+          <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors pb-0.5 cursor-pointer" onclick="switchMainScreen('discover')">
+            <span>Explore all</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
         </div>
-        <h2 class="details-title" id="preview-main-title">A Moment to Remember</h2>
-        <div class="card-sub-line" id="preview-korean-eyebrow" style="font-style: italic; font-size: 13px; margin-bottom: 4px;">
-          내 머리 속의 지우개 (2004)
-        </div>
-        <p class="details-tagline" id="preview-tagline">“If my memory disappears, what will become of our love?”</p>
-        
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-family: var(--font-mono); font-size: 11px;">
-          <span class="meta-score" id="preview-star-score">★ 8.1</span>
-          <span style="color: var(--tertiary); font-weight: 700;" id="preview-match">98% MATCH</span>
-          <span style="color: var(--text-secondary);" id="preview-meta-duration">2h 24m</span>
-          <span class="meta-pill" style="background: rgba(255, 181, 161, 0.2); color: var(--secondary);" id="preview-meta-age">18+</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- Horizontal Action Tray -->
-    <div class="details-action-tray">
-      <button class="action-pill-btn action-pill-primary" id="btn-preview-play">
-        <span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">play_arrow</span>
-        <span>Watch Full Film</span>
-      </button>
-      <button class="action-pill-btn" id="btn-preview-trailer">
-        <span class="material-symbols-outlined" style="font-size: 18px;">movie</span>
-        <span>Trailer</span>
-      </button>
-      <button class="action-pill-btn" id="btn-preview-watchlist">
-        <span class="material-symbols-outlined" id="details-bookmark-icon" style="font-size: 18px;">add</span>
-        <span id="details-bookmark-text">Watchlist</span>
-      </button>
-      <button class="action-pill-btn" id="btn-preview-seen">
-        <span class="material-symbols-outlined" style="font-size: 18px;">done</span>
-        <span>Mark Seen</span>
-      </button>
-      <button class="action-pill-btn" id="btn-preview-rate">
-        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">star</span>
-        <span>Rate</span>
-      </button>
-      <button class="action-pill-btn" id="btn-preview-journal">
-        <span class="material-symbols-outlined" style="font-size: 18px;">edit_note</span>
-        <span>Film Journal</span>
-      </button>
-    </div>
+        <!-- Ranked Cards Slider -->
+        <div class="flex gap-4 overflow-x-auto px-5 pt-2 pb-4 scrollbar-none no-scrollbar">
+          <!-- Rank #1 -->
+          <div class="shrink-0 flex items-center gap-2 group cursor-pointer" onclick="openFilmBySlug('drive-my-car')">
+            <span class="font-display-xl-mobile text-[76px] font-bold text-surface-container-highest/60 select-none -mr-4 z-0">1</span>
+            <div class="relative w-36 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-lg z-10">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADgXvxTRcPpfv72kYQg3oJfnlBl6FbycpgRmLdVUo-xaETF0Q6OB5cnuSyDTlI7KPlK-SEDoAJsXb3D7ynKp6YImvgz9jAHbhGwCz4CYJk29vl7ZOfCwO3J_7wp2qjOYw-rGE8U-S0xOGLVNr4T3uSOjpSysw3uJeYR6Q3XBIUZss_qP4pihnQzkiol2V_cGXhYELVtmvEGHSLfLJ4HqSDcXOQmrHxXJVtWeAPHmGrpNMUeGXqZ4xIyw" alt="Drive My Car"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-secondary font-label-sm text-label-sm">Japan</span>
+              <div class="absolute bottom-2 left-2 right-2 flex flex-col">
+                <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Drive My Car</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Ryusuke Hamaguchi</span>
+              </div>
+            </div>
+          </div>
 
-    <!-- Where to Watch Multi-Server Accordion -->
-    <div class="providers-accordion">
-      <div class="accordion-header" id="providersAccordionHeader">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="material-symbols-outlined" style="font-size: 20px; color: var(--primary);">stream</span>
+          <!-- Rank #2 -->
+          <div class="shrink-0 flex items-center gap-2 group cursor-pointer" onclick="openFilmBySlug('the-zone-of-interest')">
+            <span class="font-display-xl-mobile text-[76px] font-bold text-surface-container-highest/60 select-none -mr-4 z-0">2</span>
+            <div class="relative w-36 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-lg z-10">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPMn3o3ket5y3G-43nTELc7Xo5EPTJo1uwer48BZE-DHdlCtTKjyRGnZgUw4I9EB6P7a0fWK9fBazFzBIBw1yg9sDDC9AHk00n0WC50C96T7nZCzEKooF-I7ImsuZ7SLlATLEN7iy9kXtBu7KPhd0-ksWYl2VtKqq36863C5nsdhTQImDx9CvX3GU5egPLR6X1jHHev9yWsdQSQsUV_DiQJvZhpn4t0olnNouRbk_PELLpnTku9ttUrg" alt="The Zone of Interest"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-tertiary font-label-sm text-label-sm">UK</span>
+              <div class="absolute bottom-2 left-2 right-2 flex flex-col">
+                <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">The Zone of Interest</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Jonathan Glazer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rank #3 -->
+          <div class="shrink-0 flex items-center gap-2 group cursor-pointer" onclick="openFilmBySlug('past-lives')">
+            <span class="font-display-xl-mobile text-[76px] font-bold text-surface-container-highest/60 select-none -mr-4 z-0">3</span>
+            <div class="relative w-36 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-lg z-10">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8KbkCHDehCMOk6Imf6VokPlpl0MSeb4orkJCDybSAyC-0BDFxM6MsFfU3cZqfwW8-bcTxianyWQUvGMO6yUbZJ3SjRKKq2iJPlyoEWKGYriu8sP1zOsJ4QgmnZm7p4yhExGalCHDmgTdxakuBL0znrEfRvtuGtF3-5zB6XI5MKjv1ewib5_5STVWIUh3P5wVijloY1kg7tpajrlD9x50q41DdfWeZr7rrz8dXsxKn0Q7moj1wpGEz8A" alt="Past Lives"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-secondary font-label-sm text-label-sm">USA / Korea</span>
+              <div class="absolute bottom-2 left-2 right-2 flex flex-col">
+                <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Past Lives</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Celine Song</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rank #4 -->
+          <div class="shrink-0 flex items-center gap-2 group cursor-pointer" onclick="openFilmBySlug('decision-to-leave')">
+            <span class="font-display-xl-mobile text-[76px] font-bold text-surface-container-highest/60 select-none -mr-4 z-0">4</span>
+            <div class="relative w-36 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container shadow-lg z-10">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPpBOydCvgzTSlZuzLpIgfwQ67D1vnUqKvj6JU3h6rZW2uWHjfFoJKz_Q6DATPW6wTkZb2c4SLaSGPE2UR1gNBJxfXGxzSCT1dqfk3UbeWOT6Ze1gg8dmsrbHkIVpkzJ0WcACrCTn07klKAxDGt50osBqBHVyEYjXjXwhryIO9yWwy1HLAsDWHMiLEhf6GidIfqtIbFQv-F3U5QJz2rtHon3iEcDJgc93dMHAtoQzpYXMKcmXojdVrrA" alt="Decision to Leave"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+              <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-primary font-label-sm text-label-sm">Korea</span>
+              <div class="absolute bottom-2 left-2 right-2 flex flex-col">
+                <span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Decision to Leave</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Park Chan-wook</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Full Vault Catalog Grid -->
+      <section class="px-5 pt-2 pb-8">
+        <div class="flex items-center justify-between mb-4">
           <div>
-            <div style="font-weight: 600; font-size: 14.5px; color: var(--text-primary);">Where to Watch &amp; Streaming Servers</div>
-            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">4 verified multi-source failover options</div>
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Archival Vault</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Complete Collection</h2>
           </div>
         </div>
-        <span class="material-symbols-outlined" style="color: var(--outline);" id="providersAccordionIcon">expand_more</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5" id="home-catalog-grid"></div>
+      </section>
+    </div>
+
+    <!-- =======================================================================
+         SCREEN 2: DISCOVER (From Stitch media_1791016061255.html)
+         ======================================================================= -->
+    <div class="flex flex-col w-full text-on-surface screen-view hidden" id="screen-discover">
+      <div class="px-5 pt-3 pb-3 flex flex-col gap-1">
+        <div class="flex items-center justify-between">
+          <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Discover</h1>
+          <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest bg-surface-container-high px-2.5 py-1 rounded-full">Edition 04</span>
+        </div>
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Curated Archival Catalogue</p>
       </div>
 
-      <div class="providers-list" id="providersList">
-        <div class="provider-row">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="provider-icon-badge">CXA</div>
+      <div class="px-5 py-2 flex items-center justify-between gap-2">
+        <button class="h-11 px-3.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-2 hover:bg-surface-bright active:scale-95 transition-all cursor-pointer" id="openFilterBtn">
+          <span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+          <span class="font-body-sm text-body-sm font-semibold">Filters</span>
+          <span class="w-5 h-5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+        </button>
+        <div class="flex items-center gap-2">
+          <button class="h-11 px-3.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1.5 hover:bg-surface-bright text-body-sm font-medium cursor-pointer" id="sortDropdownBtn">
+            <span class="text-on-surface-variant text-body-sm">Sort:</span>
+            <span class="text-primary font-medium" id="sortLabel">Curator's</span>
+            <span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+          </button>
+          <div class="h-11 p-1 bg-surface-container-high rounded-full flex items-center">
+            <button class="w-9 h-9 rounded-full bg-surface-bright text-primary flex items-center justify-center transition-colors cursor-pointer" id="viewGridBtn">
+              <span class="material-symbols-outlined text-[18px]">grid_view</span>
+            </button>
+            <button class="w-9 h-9 rounded-full text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors cursor-pointer" id="viewListBtn">
+              <span class="material-symbols-outlined text-[18px]">view_agenda</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-5 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+        <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider shrink-0 mr-1" id="discover-counter">48 Films</span>
+        <div class="filter-chip shrink-0 h-7 pl-3 pr-2 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1.5 shadow-sm">
+          <span class="font-label-sm text-label-sm text-primary">Korean Melodrama</span>
+          <button class="remove-chip flex items-center justify-center hover:text-primary"><span class="material-symbols-outlined text-[14px]">close</span></button>
+        </div>
+        <div class="filter-chip shrink-0 h-7 pl-3 pr-2 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1.5 shadow-sm">
+          <span class="font-label-sm text-label-sm text-primary">1990s–2000s</span>
+          <button class="remove-chip flex items-center justify-center hover:text-primary"><span class="material-symbols-outlined text-[14px]">close</span></button>
+        </div>
+        <div class="filter-chip shrink-0 h-7 pl-3 pr-2 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1.5 shadow-sm">
+          <span class="font-label-sm text-label-sm text-tertiary">Stream Only</span>
+          <button class="remove-chip flex items-center justify-center hover:text-tertiary"><span class="material-symbols-outlined text-[14px]">close</span></button>
+        </div>
+        <button class="shrink-0 h-7 px-2.5 rounded-full text-outline hover:text-on-surface font-label-sm text-label-sm uppercase tracking-wider cursor-pointer" id="clearAllFiltersBtn">
+          Clear all
+        </button>
+      </div>
+
+      <div class="px-5 pt-3 pb-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 transition-all" id="catalogGrid"></div>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 py-6">
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-primary/30"></span>
+          </div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest text-center">
+            Retrieving Archival Reels (42 Remaining)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         SCREEN 3: MY LIBRARY (From Stitch media_1791016017507.html)
+         ======================================================================= -->
+    <div class="flex flex-col w-full text-on-surface select-none pb-8 screen-view hidden" id="screen-library">
+      <!-- Interactive View State Controller -->
+      <div class="px-5 pt-3 pb-2 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        <div class="inline-flex p-1 rounded-full bg-surface-container-low shadow-inner">
+          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer" id="view-library-btn" onclick="switchLibrarySubView('library')">
+            Library View
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer" id="view-search-btn" onclick="switchLibrarySubView('search')">
+            Search Overlay
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer" id="view-empty-btn" onclick="switchLibrarySubView('empty')">
+            Empty State
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTION 1: LIBRARY MAIN VIEW -->
+      <div class="flex flex-col w-full transition-opacity duration-200" id="view-library-content">
+        <header class="px-5 pt-3 pb-4">
+          <div class="flex items-end justify-between">
             <div>
-              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 1 (Cinexa 4K Master)</div>
-              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">Direct Master Stream • Subtitles &amp; Audio</div>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-medium block mb-1">Cinexa Archive</span>
+              <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight font-medium">My Library</h1>
+            </div>
+            <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-lg">
+              <button aria-label="List View" class="w-9 h-9 flex items-center justify-center rounded bg-surface-container-high text-primary shadow-sm transition-all" id="toggle-list-btn" onclick="toggleLayout('list')">
+                <span class="material-symbols-outlined text-[20px]">view_list</span>
+              </button>
+              <button aria-label="Grid View" class="w-9 h-9 flex items-center justify-center rounded text-on-surface-variant hover:text-on-surface transition-all" id="toggle-grid-btn" onclick="toggleLayout('grid')">
+                <span class="material-symbols-outlined text-[20px]">grid_view</span>
+              </button>
             </div>
           </div>
-          <button class="btn-read-piece" onclick="playCurrentActiveFilm('local')">Play 4K</button>
-        </div>
-
-        <div class="provider-row">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="provider-icon-badge" style="background: var(--bg-surface-highest); color: var(--text-primary);">CDN</div>
-            <div>
-              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 2 (FastCDN Edge)</div>
-              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">Global 0ms Edge • Multi-Audio</div>
-            </div>
+          <div class="mt-1 flex items-center gap-2">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">42 FILMS TRACKED</span>
+            <span class="w-1 h-1 rounded-full bg-primary/40"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-tertiary">35MM • ARCHIVAL</span>
           </div>
-          <button class="btn-read-piece" onclick="playCurrentActiveFilm('fastcdn')">Stream</button>
-        </div>
+        </header>
 
-        <div class="provider-row">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="provider-icon-badge" style="background: var(--tertiary-container); color: var(--on-tertiary);">VLK</div>
-            <div>
-              <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Server 3 (VidLink Mirror)</div>
-              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-secondary);">1080p / 4K UHD Failover Mirror</div>
-            </div>
-          </div>
-          <button class="btn-read-piece" onclick="playCurrentActiveFilm('vidlink')">Stream</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Archival Content Advisory -->
-    <div style="margin: 0 24px 20px 24px; padding: 14px 18px; border-radius: var(--radius-md); background: rgba(255, 181, 161, 0.12); border: 1px solid rgba(255, 181, 161, 0.3); display: flex; gap: 12px; align-items: flex-start;">
-      <span class="material-symbols-outlined" style="font-size: 20px; color: var(--secondary);">info</span>
-      <div>
-        <h4 style="font-family: var(--font-sans); font-size: 13.5px; font-weight: 700; color: var(--secondary); margin-bottom: 6px;">Archival Content Advisory</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;" id="preview-advisory-tags">
-          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Cognitive Decline</span>
-          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Emotional Distress</span>
-          <span style="padding: 2px 8px; border-radius: 4px; background: var(--bg-surface-lowest); color: var(--secondary); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">Melodrama</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Editorial Synopsis -->
-    <div style="padding: 0 24px 24px 24px;">
-      <div class="section-header-block" style="margin-bottom: 8px;">
-        <h3 class="section-headline" style="font-size: 20px;">Curator's Overview</h3>
-        <span class="article-category-badge" id="preview-category-label">Korean Cinema Classic</span>
-      </div>
-      <p style="font-family: var(--font-sans); font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;" id="preview-storyline-text">
-        Su-jin, a delicate fashion designer reeling from heartbreak, crosses paths with Chul-soo, an austere construction foreman harboring literary aspirations. What blossoms from an accidental encounter outside a convenience store evolves into one of Korean cinema's most heartbreaking portraits of vulnerability. As early-onset Alzheimer's begins erasing their cherished domestic memories, the two construct an enduring sanctuary of love against inevitable erasure.
-      </p>
-    </div>
-
-    <!-- Principals (Cast & Director) -->
-    <div style="margin-bottom: 24px;">
-      <div class="section-header-block" style="padding: 0 24px; margin-bottom: 12px;">
-        <h3 class="section-headline" style="font-size: 20px;">Principals</h3>
-        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Cast &amp; Director</span>
-      </div>
-      <div class="principals-reel" id="preview-cast-carousel">
-        <div class="principal-item">
-          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP9TfYareSJ_Eh95f_0amQMThBRkZFAJJVOyHkFoWrnQ8EZH4ILiqJIi2OPHjUfk8tqsdnIeFNr2jw5-ozGYmhVRVsozqeDxTydeQLil-OiFqrxKD7RlIWgRrmEFR_LOKAF2RHIdcdyqlb5DQ6mHGjNbKIa-hI3yY9XV0baBsma_MeFhFgJJjOVN5Qp1e02oqNpOJ5gNJUsYH_7Ja9B-Ukhm7P-VuDrWgfb3kxjx6Dhk_ddatVgfaLFw" alt="Son Ye-jin"></div>
-          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">Son Ye-jin</span>
-          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--outline);">Su-jin</span>
-        </div>
-        <div class="principal-item">
-          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcTthIOSm0Jqy93ycPFb1Z-uCIIiQpzrcVw35hxt5ylmhqYm9JM_7JQhCzhP9oIO12tkbMw_LKKqxfX0nvtB6a_UOPmZTfvKVd-nvLQNr1qhuPjoZ9Vl--KT5D7_wOIguuL-7JDY40fJJ96Lmpy9tLZC4K_PXXKEJ3gJxOjbo20uvf_1OsgGnY6PS-3qlbnm4KdyTzJBRVD6JXKJtJYwQN6hAwxXdIIZ95sB-gRiymf8NnSAZJh9SnwA" alt="Jung Woo-sung"></div>
-          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">Jung Woo-sung</span>
-          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--outline);">Chul-soo</span>
-        </div>
-        <div class="principal-item">
-          <div class="principal-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtaN39G4ywvMpJJSXhe962M4eelKTbk7gn0nigArUyky0q1hTEKd6oOkDY9u3G9aikuR931COeQauOSMkeLkIR8mc7FesacBBDlTHrvf2rRtzI8TQjFGwH9o4FuqNWNuLL4vOmS_KeBdC3Tu3Yg5SsONXh4w-DI1hKII87sJ_IqG3gn6fdumH2VDh0VljZSg4xHG16gZwSuml-xSNeSIlib5OpLuVOdGeD-XJkGY8NuCcU4Ub41t4bQQ" alt="John H. Lee"></div>
-          <span style="font-size: 12px; font-weight: 600; color: var(--text-primary);">John H. Lee</span>
-          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--primary);">Director</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Archival Specs & Metadata Sheet -->
-    <div class="specs-table-card">
-      <h3 class="section-headline" style="font-size: 18px; margin-bottom: 2px;">Archival Specs &amp; Metadata</h3>
-      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Photochemical &amp; Digital Transfer Log</span>
-      <div class="specs-grid">
-        <div class="spec-item">
-          <span class="spec-label">Capture Medium</span>
-          <span class="spec-value">35mm Kodak Vision2 (Arri 535B)</span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label">Aspect Ratio</span>
-          <span class="spec-value">2.39:1 Anamorphic Scope</span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label">Audio Master</span>
-          <span class="spec-value">Dolby Digital 5.1 / Mono Archival</span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label">Laboratory</span>
-          <span class="spec-value">CJ Entertainment Photochemical Lab</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       SCREEN 5: GLOBAL COMMAND SEARCH PALETTE (⌘K MODAL)
-       ========================================================================= -->
-  <div class="command-palette-modal" id="search-modal">
-    <div class="command-palette-card">
-      <div class="search-input-header">
-        <span class="material-symbols-outlined" style="font-size: 22px; color: var(--primary);">search</span>
-        <input class="search-input-field" id="global-search-input" type="text" placeholder="Search films, directors, movements, archives..." autocomplete="off">
-        <button class="icon-btn" id="btn-clear-global-search" style="width: 32px; height: 32px;" title="Clear search">
-          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
-        </button>
-        <button class="btn-read-piece" id="btn-close-palette" style="background: transparent; color: var(--text-secondary);">
-          ESC
-        </button>
-      </div>
-
-      <!-- Recent Searches Chips -->
-      <div class="recent-search-strip">
-        <span style="font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; color: var(--text-secondary); margin-right: 4px;">Recent:</span>
-        <button class="state-btn" onclick="executePaletteSearch('Edward Yang')">Edward Yang</button>
-        <button class="state-btn" onclick="executePaletteSearch('Wong Kar-wai')">Wong Kar-wai</button>
-        <button class="state-btn" onclick="executePaletteSearch('Korean Melodrama')">35mm Korean</button>
-        <button class="state-btn" onclick="executePaletteSearch('Criterion')">Criterion 2024</button>
-      </div>
-
-      <!-- Palette Results Grid -->
-      <div class="palette-results-grid" id="palette-results-grid">
-        <!-- Dynamically injected results -->
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       FILTER DRAWER BOTTOM SHEET MODAL (#filter-drawer-modal)
-       ========================================================================= -->
-  <div class="filter-drawer-overlay" id="filterDrawerOverlay">
-    <div class="filter-drawer-card" id="filterDrawerContent">
-      <div class="drawer-grab-bar"></div>
-      <div class="drawer-header">
-        <div style="display: flex; align-items: baseline; gap: 8px;">
-          <h2 class="section-headline" style="font-size: 20px;">Curatorial Filters</h2>
-          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">3 Active</span>
-        </div>
-        <button style="background: transparent; border: none; font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); text-transform: uppercase; cursor: pointer;" id="resetFiltersInDrawer">
-          Reset All
-        </button>
-      </div>
-
-      <div class="drawer-content-scroll">
-        <div>
-          <span class="section-kicker" style="margin-bottom: 8px;">Genre &amp; Mood</span>
-          <div class="pill-group">
-            <button class="select-pill active">Korean Melodrama</button>
-            <button class="select-pill">Sci-Fi Epic</button>
-            <button class="select-pill">Film Noir</button>
-            <button class="select-pill">French New Wave</button>
-            <button class="select-pill">Italian Neorealism</button>
-            <button class="select-pill">Cyberpunk</button>
-            <button class="select-pill">Gothic Horror</button>
-            <button class="select-pill">Slow Cinema</button>
-          </div>
-        </div>
-
-        <div>
-          <span class="section-kicker" style="margin-bottom: 8px;">Decades</span>
-          <div class="pill-group">
-            <button class="select-pill active">2020s Contemporary</button>
-            <button class="select-pill">2010s Modern</button>
-            <button class="select-pill active">2000s New Wave</button>
-            <button class="select-pill">1990s Golden Era</button>
-            <button class="select-pill">1970s–80s Classic</button>
-            <button class="select-pill">Pre-1970s Vintage</button>
-          </div>
-        </div>
-
-        <div>
-          <span class="section-kicker" style="margin-bottom: 8px;">Movement &amp; Discipline</span>
-          <div class="pill-group">
-            <button class="select-pill">Auteur Directors</button>
-            <button class="select-pill">Cannes Palme d'Or</button>
-            <button class="select-pill">Venice Golden Lion</button>
-            <button class="select-pill">Criterion Collection</button>
-            <button class="select-pill">MUBI Exclusives</button>
-            <button class="select-pill">Studio Ghibli</button>
-          </div>
-        </div>
-
-        <button class="btn-hero-primary" id="btn-apply-drawer-filters" style="width: 100%; margin-top: 10px;">
-          Apply Curatorial Filters
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       CINEMATHEQUE EDITORIAL ARTICLE MODAL
-       ========================================================================= -->
-  <div class="command-palette-modal" id="editorial-modal">
-    <div class="command-palette-card" style="max-width: 720px;">
-      <div class="search-input-header" style="justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="material-symbols-outlined" style="color: var(--primary);">auto_stories</span>
-          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--primary); text-transform: uppercase;">Cinematheque Editorial</span>
-        </div>
-        <button class="icon-btn" id="btn-close-editorial-modal" style="width: 32px; height: 32px;">
-          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
-        </button>
-      </div>
-      <div style="padding: 24px; overflow-y: auto; max-height: 70vh;">
-        <h2 class="section-headline" style="font-size: 26px; line-height: 1.25; margin-bottom: 12px;">
-          The Geometry of Desert Light: How Greig Fraser Framed Arrakis
-        </h2>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-          <div class="author-initials">ES</div>
-          <div>
-            <div style="font-size: 13.5px; font-weight: 600; color: var(--text-primary);">Elena S. • Head Archivist</div>
-            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">Published in Cinexa Journal • Edition 04</div>
-          </div>
-        </div>
-        <p style="font-family: var(--font-sans); font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
-          When Denis Villeneuve and cinematographer Greig Fraser set out to capture the harsh dunes of Arrakis for <em>Dune: Part Two</em>, their primary objective was to avoid the sterile sheen of modern CGI sandscapes. Instead, they developed a pioneering hybrid photochemical pipeline.
-        </p>
-        <p style="font-family: var(--font-sans); font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
-          Fraser utilized custom large-format digital sensors adapted with 1980s Soviet spherical optics and un-coated German glass. The digital negative was then laser-recorded onto real 35mm motion picture film stock before being scanned back to 4K digital for final theatrical distribution. This analog round-trip imprinted natural grain, organic highlight halation, and authentic daylight harshness.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       4K MASTER OFFLINE DOWNLOAD HUB MODAL
-       ========================================================================= -->
-  <div class="command-palette-modal" id="download-hub-modal">
-    <div class="command-palette-card" style="max-width: 580px;">
-      <div class="search-input-header" style="justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="material-symbols-outlined" style="color: var(--primary);">download</span>
-          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--primary); text-transform: uppercase;">4K Master Download Hub</span>
-        </div>
-        <button class="icon-btn" id="btn-close-download-modal" style="width: 32px; height: 32px;">
-          <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
-        </button>
-      </div>
-      <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 class="section-headline" style="font-size: 20px;" id="download-film-title">Dune: Part Two (2024)</h3>
-        <p style="font-size: 13.5px; color: var(--text-secondary);">
-          Select archival quality preset and subtitle packages for uncompressed offline viewing.
-        </p>
-        
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: var(--radius-md); background: var(--bg-surface-highest); cursor: pointer;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <input type="radio" name="downloadQuality" value="4k" checked>
+        <!-- 2x2 Stats Bento Grid -->
+        <section class="px-5 mb-5">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+            <!-- Stat 1 -->
+            <div class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Films Seen</span>
+                <span class="material-symbols-outlined text-primary text-[18px]">theaters</span>
+              </div>
               <div>
-                <div style="font-weight: 600; font-size: 14px;">4K UHD IMAX Master (HEVC / 10-bit HDR)</div>
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--primary);">18.4 GB • Dolby Atmos 7.1 TrueHD</div>
+                <div class="font-headline-md text-headline-md text-on-surface font-semibold leading-none mb-1.5">148</div>
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-tertiary text-[14px]">trending_up</span>
+                  <span class="font-label-sm text-label-sm text-tertiary tracking-normal">↑ 12 this month</span>
+                </div>
               </div>
             </div>
-            <span class="meta-pill-sage">Master</span>
-          </label>
-
-          <label style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: var(--radius-md); background: var(--bg-surface-highest); cursor: pointer;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <input type="radio" name="downloadQuality" value="1080p">
+            <!-- Stat 2 -->
+            <div class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Hours Logged</span>
+                <span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+              </div>
               <div>
-                <div style="font-weight: 600; font-size: 14px;">1080p Blu-Ray Remux (x264)</div>
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">4.2 GB • 5.1 Surround Sound</div>
+                <div class="font-headline-md text-headline-md text-on-surface font-semibold leading-none mb-1.5">312<span class="font-label-md text-label-md text-on-surface-variant">h</span></div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant tracking-normal">14 curatorial archives</span>
               </div>
             </div>
-            <span class="meta-pill">HD</span>
-          </label>
+            <!-- Stat 3 -->
+            <div class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Top Genre</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]">local_fire_department</span>
+              </div>
+              <div>
+                <div class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate leading-tight mb-1">Melodrama</div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant tracking-normal">28% of collection</span>
+              </div>
+            </div>
+            <!-- Stat 4 -->
+            <div class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Avg Rating</span>
+                <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <div>
+                <div class="flex items-baseline gap-1 mb-1">
+                  <span class="font-headline-md text-headline-md text-primary font-semibold leading-none">4.2</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">/5.0</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant tracking-normal">86 titles reviewed</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Horizontal Category Filter Slider -->
+        <section class="px-5 mb-4">
+          <div class="flex items-center gap-6 overflow-x-auto no-scrollbar relative">
+            <button class="pb-2.5 text-primary flex items-center gap-1.5 whitespace-nowrap relative cursor-pointer">
+              <span class="font-body-md text-body-md font-semibold">Watchlist</span>
+              <span class="px-1.5 py-0.5 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm">42</span>
+              <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"></span>
+            </button>
+            <button class="pb-2.5 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 whitespace-nowrap transition-colors cursor-pointer">
+              <span class="font-body-md text-body-md font-medium">Seen</span>
+              <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">148</span>
+            </button>
+            <button class="pb-2.5 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 whitespace-nowrap transition-colors cursor-pointer">
+              <span class="font-body-md text-body-md font-medium">Favorites</span>
+              <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">24</span>
+            </button>
+            <button class="pb-2.5 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 whitespace-nowrap transition-colors cursor-pointer">
+              <span class="font-body-md text-body-md font-medium">Lists</span>
+              <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">6</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- High Density List Container -->
+        <section class="px-5 flex flex-col gap-2.5 mb-7" id="library-film-rows">
+          <!-- Film Row 1 -->
+          <article class="p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-3 cursor-pointer" onclick="openFilmBySlug('a-moment-to-remember')">
+            <div class="w-14 h-21 shrink-0 rounded-lg overflow-hidden relative shadow bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoLI_NKvH2amzJDaJpiaTG6XAcxNfUojUElx7hzfNUeurf_107bygHa1btQxL4ktY1QkPbly0rLdZKRV0TpfnUb1d05MFHSEN_WgckXsQ4INOC6fPysnOyM9GO0t1VpfPg3iHcCuqVAnZcKUkoJhOZk19Z8UTW-C0-YTJlJItdU595Y2jTq2K9Ks82Hl2zwv-Gfbb1KCnbrOtTlHJybM-tx_SwdRjmqAHO2fDBYsOsOH4plL6YGwqskg" alt="A Moment to Remember"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h2 class="font-headline-sm text-[16px] text-on-surface font-semibold truncate leading-snug">A Moment to Remember</h2>
+                <div class="flex items-center gap-0.5 shrink-0 text-primary">
+                  <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="font-label-sm text-label-sm font-semibold">4.8</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant mb-1.5">
+                <span class="font-label-sm text-label-sm">2004</span>
+                <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                <span class="font-label-sm text-label-sm">117 MIN</span>
+                <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                <span class="font-label-sm text-label-sm text-secondary">35MM RESTORED</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-label-sm text-[10px] uppercase font-bold tracking-wider">MUBI</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Dir. John H. Lee</span>
+              </div>
+            </div>
+            <button aria-label="Film Options" class="w-11 h-11 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[20px]">more_vert</span>
+            </button>
+          </article>
+
+          <!-- Film Row 2 -->
+          <article class="p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-3 cursor-pointer" onclick="openFilmBySlug('dune-part-two')">
+            <div class="w-14 h-21 shrink-0 rounded-lg overflow-hidden relative shadow bg-surface-container-lowest">
+              <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIou4ReuqHuAjFukvHh-T86sry8HV_nXf6E19l0FTpUVU7APRbo9ICIilRuTvDJ-haIq7q1DLcyBqldJNjIGEkrMUpdJGcc_bQ7o5-WMfJLHkFdahJlz0_gsBNFzQyCgNEtFnoqXEYaTM29LtXHgYSZhh81xYuEWEmFHnP1OCg14bk8_o0WoOOdJTxI0ntIgJBTtRHc1Mj2FTa1-LSxpKT0-mrFmuBq1EfIU3K9Ozhqbc_GeNDyhn9rA" alt="Dune: Part Two"/>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h2 class="font-headline-sm text-[16px] text-on-surface font-semibold truncate leading-snug">Dune: Part Two</h2>
+                <div class="flex items-center gap-0.5 shrink-0 text-primary">
+                  <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="font-label-sm text-label-sm font-semibold">4.5</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant mb-1.5">
+                <span class="font-label-sm text-label-sm">2024</span>
+                <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                <span class="font-label-sm text-label-sm">166 MIN</span>
+                <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                <span class="font-label-sm text-label-sm">IMAX 70MM</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-[10px] uppercase font-bold tracking-wider">MAX</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Dir. Denis Villeneuve</span>
+              </div>
+            </div>
+            <button aria-label="Film Options" class="w-11 h-11 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[20px]">more_vert</span>
+            </button>
+          </article>
+        </section>
+
+        <!-- Custom Curated Lists (Collage Cards) -->
+        <section class="px-5">
+          <div class="flex items-center justify-between mb-3.5">
+            <div>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Curated Folios</h2>
+              <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Handcrafted Watchlists</p>
+            </div>
+            <button class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider hover:underline cursor-pointer">
+              View All (6)
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Collage Card 1 -->
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all shadow-md flex items-center justify-between gap-4 cursor-pointer group">
+              <div class="flex-1 min-w-0">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-[10px] font-bold uppercase tracking-wider mb-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Curator's Reel
+                </div>
+                <h3 class="font-headline-sm text-[18px] text-on-surface font-semibold group-hover:text-primary transition-colors leading-snug mb-1">Melancholy &amp; Rain</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1 mb-2">Korean New Wave 1998-2006 retrospectives.</p>
+                <span class="font-label-sm text-label-sm text-primary font-medium tracking-wide">12 TITLES LOGGED</span>
+              </div>
+              <!-- Stacked Overlapping Collage -->
+              <div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
+                <div class="absolute w-12 h-18 rounded shadow-lg overflow-hidden -rotate-6 -translate-x-4 translate-y-1 opacity-80 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC65U53YCLoilBV7YiHY-SaYXDKtyXb8_v-3lj-IA5CDy7xa1KfCmpvEXe11JLrwoJhXDLn8xDpffqZpUcs9VgijLqu9WMlbwO_rm2AwfU6l33OJUKaZX7AEcAC5wq2R8wHH1a1anwWLuxB5S9KVXTNb2kat1-OI6NeuTJZaIo1mzE3LPkPyxPXIYlYxtDYAn1oMKRdyjKRnADsmFhN7wLRvS-CgUfb8PRSBpPXz7Cf9CJYlj0Ocz2BIw" alt="Thumb"/>
+                </div>
+                <div class="absolute w-12 h-18 rounded shadow-lg overflow-hidden rotate-6 translate-x-4 translate-y-0.5 opacity-90 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSjeki5E2UaqCCleBnaYRuiXskJs47MiNAjJG9SO37nWWzmaDd6gwFlrL91xzBfMfgaVEbmEEHCbqS8PeYAC3Rw410mk7QW7OUyx3mtHjhQwP1lomE11q-VWiO8QfDxRPz_akd5RQ3ReWp6j3TIuLDG8lW3KpEUnyxdZczHQDSWH0nYrikAXe2kHB4Ygrabmw8BVy85L2QuZyVzQzV3A4Y-EfjY2iyUfHXat_2TxDHIgkAtM48C2MGMg" alt="Thumb"/>
+                </div>
+                <div class="relative z-10 w-13 h-19 rounded shadow-xl overflow-hidden rotate-0 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAfK7e8viES81KaQH-PNdbqw9IZFpSSrS0XivwWTZNXI4yRNbW54fqWu59-909vAx0rKzXJHhNBSWf-d8NiMzLxp3OYhqgHcyU30Slruvv94oSEqauxmtTE-ZIMmYsAeWXu9UWHAaeT4uDFOcOigWOalyLU1ecJEgIxvCd8HJzehCb1WnBcU38b2MQdzgdVpCKweSv8sTwuvV0Ay_sXn_yc4SNWv-g2_2lKsJpaQ5SmLKc89QLFoujbA" alt="Thumb"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collage Card 2 -->
+            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all shadow-md flex items-center justify-between gap-4 cursor-pointer group">
+              <div class="flex-1 min-w-0">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-[10px] font-bold uppercase tracking-wider mb-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  Archival Vault
+                </div>
+                <h3 class="font-headline-sm text-[18px] text-on-surface font-semibold group-hover:text-primary transition-colors leading-snug mb-1">35mm Restorations</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1 mb-2">Festival premier releases and photochemical scans.</p>
+                <span class="font-label-sm text-label-sm text-primary font-medium tracking-wide">8 TITLES LOGGED</span>
+              </div>
+              <div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
+                <div class="absolute w-12 h-18 rounded shadow-lg overflow-hidden -rotate-8 -translate-x-3.5 translate-y-1 opacity-80 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQhWCw0fT05GmF0gu41BQjNv22YAyvSJfP8GEeF_iManWzfpdHT2Moa2SLc92QcR4tVhLJjwJmC0OA1mQ5Eq7Kh86ang_Y7wjujpeRIkh56rtIW9YKmI3iY0WRNs3h3QtFbmfkamipvCVRvYSgXiw8TrwjwFetjHfWEPdtgTPJ3c5467KZBEtlUUaQh_g4cUov7-0EAUFxbg3wSfsL25nnkOxETCYDHvg6fXWZuedUHgKwrkHztw04w" alt="Thumb"/>
+                </div>
+                <div class="absolute w-12 h-18 rounded shadow-lg overflow-hidden rotate-4 translate-x-3.5 translate-y-0.5 opacity-90 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG18a1xwW17FaTDE98RMX2o2j5CqnrgGkxXauRA2hpaK1G5WtoYwJmiAwkQb1irWlzUpm1TmTe6V1AkI5BjwvEHqb3iAwbi5e-oU3w_E3Zt1e5MH_bfTmk4W1RMVYABT9qo6FcYlSoXji-eLI0nUoagJekguhdfS8NvcVHw5vfecHv9JjJvwVKjPlMyJ_MfP6DjZz45ggjYA8NYJolfnbcTsV9RLqUCUoU43FHBK8NjIx7Ssvjy-lG0g" alt="Thumb"/>
+                </div>
+                <div class="relative z-10 w-13 h-19 rounded shadow-xl overflow-hidden rotate-0 bg-surface-container-lowest">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUfUKLIX7Sn4kYo97Xv9QFr5uimWnwZB4gfDMBwKZXgQR-o5IXHG0urmPdGZdI6hBeI2jIpkCOLa-G4ZNbcc5yFS5Sj8he1NICjjfToVjH7M770kh0oUVCwfpsW7xUiEUoQZG7fTqkMcKtnUrlWUdslqxEh-9PpCLAlNyglWbDZ5x-L2NiyMIn8P6tWgsUUqagxmSzpNL0ZJh1Cwnd7ehy92JbyWhvM88_qViH9sxkh9_hNvrI-SMz6Q" alt="Thumb"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION 2: FULL SCREEN SEARCH OVERLAY STATE -->
+      <div class="hidden flex-col w-full px-5 pt-1 transition-opacity duration-200" id="view-search">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="flex-1 flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-surface-container-high shadow-md">
+            <span class="material-symbols-outlined text-primary text-[22px]">search</span>
+            <input class="w-full bg-transparent text-on-surface font-body-md text-body-md focus:outline-none placeholder:text-outline tracking-tight" id="overlay-search-input" placeholder="Search films, directors, archives..." type="text" value="Korean Melodrama"/>
+            <button aria-label="Clear Query" class="w-6 h-6 flex items-center justify-center text-outline hover:text-on-surface" onclick="document.getElementById('overlay-search-input').value='';">
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+          <button class="h-11 px-2 flex items-center font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="switchLibrarySubView('library')">
+            Cancel
+          </button>
         </div>
 
-        <button class="btn-hero-primary" id="btn-start-download-simulation" style="width: 100%;">
-          Start Direct Download
-        </button>
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Recent Searches</span>
+            <button class="font-label-sm text-label-sm uppercase tracking-wider text-primary hover:underline cursor-pointer">Clear</button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-body-sm font-body-sm shadow-sm cursor-pointer">
+              <span>Edward Yang</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-body-sm font-body-sm shadow-sm cursor-pointer">
+              <span>Wong Kar-wai</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/15 text-primary text-body-sm font-body-sm shadow-sm cursor-pointer">
+              <span>35mm Korean Melodrama</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-body-sm font-body-sm shadow-sm cursor-pointer">
+              <span>Criterion 2024</span>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-3.5">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Curator's Matching Selections</h2>
+            <span class="font-label-sm text-label-sm uppercase text-tertiary">38 RESULTS</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2.5" id="overlay-results-grid"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: EMPTY WATCHLIST STATE (MOMENT OF DELIGHT) -->
+      <div class="hidden flex-col items-center justify-center text-center px-6 py-10 transition-opacity duration-200" id="view-empty">
+        <div class="w-24 h-24 mb-5 rounded-full bg-surface-container-low flex items-center justify-center shadow-inner relative">
+          <svg class="w-14 h-14 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="20"></circle>
+            <circle cx="24" cy="24" r="7"></circle>
+            <circle cx="24" cy="11" fill="currentColor" r="3"></circle>
+            <circle cx="24" cy="37" fill="currentColor" r="3"></circle>
+            <circle cx="11" cy="24" fill="currentColor" r="3"></circle>
+            <circle cx="37" cy="24" fill="currentColor" r="3"></circle>
+            <path d="M14 14l5 5"></path>
+            <path d="M34 34l-5-5"></path>
+            <path d="M14 34l5-5"></path>
+            <path d="M34 14l-5 5"></path>
+          </svg>
+          <div class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow">
+            <span class="material-symbols-outlined text-[15px] text-on-secondary">schedule</span>
+          </div>
+        </div>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-1">Archival Reel Blank</span>
+        <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium mb-2.5">Your watchlist is waiting.</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mb-6">
+          No projection planned yet. Collect rare 35mm restorations, festival favorites, and midnight screenings to assemble your personal cinema.
+        </p>
+        <div class="flex flex-col w-full max-w-xs gap-3">
+          <button class="w-full h-12 rounded-full bg-primary text-on-primary font-body-md text-body-md font-semibold flex items-center justify-center gap-2 shadow-lg hover:bg-primary-fixed transition-colors cursor-pointer" onclick="switchLibrarySubView('search')">
+            <span class="material-symbols-outlined text-[20px]">explore</span>
+            <span>Discover Films</span>
+          </button>
+          <button class="w-full h-12 rounded-full bg-surface-container-high text-on-surface font-body-md text-body-md font-medium flex items-center justify-center gap-2 hover:bg-surface-bright transition-colors cursor-pointer" onclick="switchLibrarySubView('library')">
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+            <span>Restore Sample Titles</span>
+          </button>
+        </div>
+        <div class="mt-10 p-4 rounded-xl bg-surface-container-lowest max-w-xs">
+          <p class="font-headline-sm text-[15px] italic text-on-surface-variant leading-relaxed mb-2">
+            “Cinema is a matter of what's in the frame and what's out.”
+          </p>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-medium">— Martin Scorsese</span>
+        </div>
       </div>
     </div>
-  </div>
+
+    <!-- =======================================================================
+         SCREEN 4: FILM DETAILS (From Stitch media_1791016069173.html)
+         ======================================================================= -->
+    <div class="flex flex-col w-full text-on-surface screen-view hidden" id="screen-details">
+      <!-- Cinematic Hero Visual Well -->
+      <div class="relative w-full h-[280px] overflow-hidden bg-surface-container-lowest">
+        <div class="w-full h-full bg-cover bg-center transform scale-105 transition-transform duration-700" id="details-hero-img" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVb0KYX5d4CFr--DTJjgsBQNx5cyqB99o5HOupL3VX5H3lPUVNjRSY8JRhtx5zsMCZp7m2E1tlNUHCJJhow-jzRq8hT3Kd1vt4htcfL_7hNY83EZSLkpLReebgYx-z3eIQ3FGWfHihM-lJjwufxJE9yeVxzRSmIcQtUzMgs0raPr66ypks9kW6lPAEot92yipm9wIBjAgvvLfC9VPOggNkvvGyde9EEl5xa2Km0ULkxq0fSFx6FR0_Gg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-surface/20"></div>
+
+        <!-- Floating Action Pills -->
+        <div class="absolute top-4 left-0 right-0 px-margin-mobile flex items-center justify-between pointer-events-auto">
+          <button aria-label="Back to Catalog" class="w-11 h-11 rounded-full bg-surface-container/90 backdrop-blur-md text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-transform active:scale-95 cursor-pointer" onclick="switchMainScreen('home')">
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          </button>
+          <div class="flex items-center gap-space-sm">
+            <button aria-label="Enter Theatre Preview" class="h-11 px-space-md rounded-full bg-surface-container/90 backdrop-blur-md text-primary hover:bg-surface-container-high flex items-center gap-1.5 shadow-lg transition-all text-label-sm font-label-sm uppercase tracking-wider cursor-pointer" onclick="playCurrentFilmInPlayer()">
+              <span class="material-symbols-outlined text-[18px]">screen_rotation</span>
+              <span>Theatre</span>
+            </button>
+            <button aria-label="Share Dossier" class="w-11 h-11 rounded-full bg-surface-container/90 backdrop-blur-md text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-transform active:scale-95 cursor-pointer" onclick="showToast('Film dossier link copied to clipboard!')">
+              <span class="material-symbols-outlined text-[20px]">ios_share</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Film Identity: Overlapping Poster & Metadata Block -->
+      <div class="relative px-margin-mobile -mt-[70px] z-10">
+        <div class="flex gap-4 items-start">
+          <div class="relative w-[120px] shrink-0 rounded-xl overflow-hidden shadow-2xl bg-surface-container-high aspect-[2/3] group">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" id="details-poster-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSTC5wSXrmEcdSE9fVYj4_TU4OiMIF3m-L5zQ-nT0cxgtaApyVrVdN0spo2DJcPcMO-YHdo3TUMXD9NvINA5x56F0pe_62Kx0eEk8WgbYq6BFAfc3wcC-h1fur5XKM77SCeMtYWiUG2gRiSXRC-QeXFmUmf0VGMYyOISTqpWapKgCeMuD3Qi1_A4UGXwpg_klkORXxfqwoZe6SYTn1mcEbvLsMeVeLZlPIizgsHYAVuy2Up2AcT_0gNw" alt="Poster"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded">
+              <span class="material-symbols-outlined text-primary text-[12px]">filter_vintage</span>
+              <span class="font-label-sm text-label-sm text-primary uppercase text-[9px] tracking-widest">35MM</span>
+            </div>
+          </div>
+
+          <div class="flex-1 min-w-0 pt-2">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase text-[10px]" id="details-restoration-tag">Restored Print</span>
+              <span class="text-outline text-[10px]">•</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]" id="details-archive-tag">KOFA 2024</span>
+            </div>
+            <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-inverse-surface tracking-tight leading-tight" id="details-title">
+              A Moment to Remember
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant italic mt-0.5" id="details-korean-title">
+              내 머리 속의 지우개 <span class="font-label-sm text-label-sm text-outline not-italic ml-1">(2004)</span>
+            </p>
+            <p class="font-body-sm text-body-sm text-primary/90 italic line-clamp-2 mt-2 leading-relaxed" id="details-tagline">
+              “If my memory disappears, what will become of our love?”
+            </p>
+            <div class="flex flex-wrap items-center gap-2 mt-3">
+              <div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-primary text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="font-label-sm text-label-sm text-on-surface font-semibold" id="details-score">8.1</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-tertiary font-semibold tracking-wider" id="details-match">98% MATCH</span>
+              <span class="font-label-sm text-label-sm text-outline" id="details-duration">2h 24m</span>
+              <span class="font-label-sm text-label-sm text-secondary bg-secondary-container/40 px-1.5 py-0.2 rounded text-[10px]" id="details-age">18+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal Scroll Action Tray -->
+      <div class="mt-6 w-full overflow-x-auto no-scrollbar py-1">
+        <div class="flex items-center gap-2.5 px-margin-mobile w-max">
+          <button class="h-11 px-5 rounded-full bg-primary text-on-primary font-body-md font-semibold text-[14px] flex items-center gap-2 shadow-md transition-all active:scale-95 hover:bg-primary-fixed cursor-pointer" onclick="playCurrentFilmInPlayer()">
+            <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span>Watch Full Film</span>
+          </button>
+          <button class="h-11 px-4 rounded-full bg-surface-container text-on-surface font-body-sm text-body-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer" id="details-watchlist-btn">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>Watchlist</span>
+          </button>
+          <button class="h-11 px-4 rounded-full bg-surface-container text-on-surface font-body-sm text-body-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer" onclick="showToast('Marked as Seen in Library!')">
+            <span class="material-symbols-outlined text-[18px]">done</span>
+            <span>Mark Seen</span>
+          </button>
+          <button class="h-11 px-4 rounded-full bg-surface-container text-on-surface font-body-sm text-body-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer" onclick="showToast('Rated ★ 5.0 in Curator Ledger')">
+            <span class="material-symbols-outlined text-[18px] text-primary">star</span>
+            <span>Rate</span>
+          </button>
+          <button class="h-11 px-4 rounded-full bg-surface-container text-on-surface font-body-sm text-body-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer" onclick="openDownloadHubModal()">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+            <span>4K Download</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Stream Body -->
+      <div class="px-margin-mobile flex flex-col gap-8 mt-7 mb-10">
+        <!-- Expandable "Where to Watch" Module -->
+        <div class="bg-surface-container-low rounded-xl overflow-hidden shadow-sm border border-surface-container-high/60">
+          <button class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container/60 transition-colors cursor-pointer" id="providers-accordion-trigger">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[18px]">movie</span>
+              </div>
+              <div>
+                <div class="font-body-md text-body-md font-medium text-inverse-surface">Where to Watch &amp; Streaming Mirrors</div>
+                <div class="font-label-sm text-label-sm text-outline">3 verified high-speed failover streams</div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-outline transition-transform duration-300" id="providers-accordion-arrow">expand_more</span>
+          </button>
+
+          <div class="px-4 pb-4 flex flex-col gap-2.5" id="providers-content">
+            <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer" onclick="playCurrentFilmInPlayer('local')">
+              <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-md font-bold text-[10px]">CXA</div>
+                <div>
+                  <div class="font-body-sm text-body-sm font-semibold text-inverse-surface">Server 1 (Cinexa 4K Master)</div>
+                  <div class="font-label-sm text-label-sm text-outline">Direct 4K Photochemical Scan • Subtitles &amp; Audio</div>
+                </div>
+              </div>
+              <span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-tertiary-container/30 text-tertiary font-semibold">Included</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer" onclick="playCurrentFilmInPlayer('fastcdn')">
+              <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded bg-surface-bright flex items-center justify-center text-primary font-label-md font-bold text-[10px]">CDN</div>
+                <div>
+                  <div class="font-body-sm text-body-sm font-semibold text-inverse-surface">Server 2 (FastCDN Global Edge)</div>
+                  <div class="font-label-sm text-label-sm text-outline">1080p / 4K UHD Ultra Low Latency</div>
+                </div>
+              </div>
+              <span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-surface-container-highest text-on-surface-variant font-medium">Stream</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Advisory Banner -->
+        <div class="p-3.5 rounded-xl bg-secondary-container/20 flex items-start gap-3 border border-secondary/30">
+          <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">info</span>
+          <div class="flex-1">
+            <h4 class="font-body-sm text-body-sm font-semibold text-secondary-fixed">Archival Content Advisory</h4>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-secondary-fixed text-[10px] uppercase tracking-wide">Cognitive Decline</span>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-secondary-fixed text-[10px] uppercase tracking-wide">Emotional Distress</span>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-secondary-fixed text-[10px] uppercase tracking-wide">Melodrama</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editorial Synopsis -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <h3 class="font-headline-sm text-headline-sm text-inverse-surface">Curator's Overview</h3>
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest text-[10px]">Korean Cinema Classic</span>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify" id="details-synopsis">
+            Su-jin, a delicate fashion designer reeling from heartbreak, crosses paths with Chul-soo, an austere construction foreman harboring literary aspirations. What blossoms from an accidental encounter outside a convenience store evolves into one of Korean cinema's most heartbreaking portraits of vulnerability. As early-onset Alzheimer's begins erasing their cherished domestic memories, the two construct an enduring sanctuary of love against inevitable erasure.
+          </p>
+        </div>
+
+        <!-- Theatrical 16:9 Preview Window -->
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <h3 class="font-headline-sm text-headline-sm text-inverse-surface">Theatrical Preview</h3>
+            <span class="font-label-sm text-label-sm text-outline">Teaser • 02:14</span>
+          </div>
+          <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest shadow-xl group cursor-pointer" onclick="playCurrentFilmInPlayer()">
+            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" id="details-trailer-poster" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPY6UVnizjk1JnLaWcQnJu-6j_8NnNSdv_AALWBZpKn5-zAGoPSksi-pcEDsd7YodCgfUOp5auFT8gTW-WksKNaHHzU39SrjWGcpX7jBkpAaia6XJS2w0e6ymzNvOnNMkPG9rEN9vgZMbCIppSp3kY5EfXONzs1pJ_1ZhrISRRn32I6n8QFTPVAyCxF-LGoD3HYbpsypnT3Nk2nTYpFPyTn1vS9bSg9LDarSjwc0_Gx97vHVMBm6tLRw')"></div>
+            <div class="absolute inset-0 bg-surface-container-lowest/40 backdrop-blur-[1px] flex items-center justify-center">
+              <button aria-label="Play Trailer Stream" class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95">
+                <span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              </button>
+            </div>
+            <div class="absolute bottom-2 right-2 px-2 py-1 rounded bg-surface-container-lowest/80 backdrop-blur-md flex items-center gap-1.5 text-on-surface">
+              <span class="material-symbols-outlined text-primary text-[14px]">hd</span>
+              <span class="font-label-sm text-label-sm text-[10px]">Restored Mono Track</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Principals -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-headline-sm text-headline-sm text-inverse-surface">Principals</h3>
+            <span class="font-label-sm text-label-sm text-outline">Cast &amp; Director</span>
+          </div>
+          <div class="flex gap-4 overflow-x-auto no-scrollbar -mx-margin-mobile px-margin-mobile py-1">
+            <div class="flex flex-col items-center text-center w-20 shrink-0">
+              <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container-high shadow-md mb-2">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP9TfYareSJ_Eh95f_0amQMThBRkZFAJJVOyHkFoWrnQ8EZH4ILiqJIi2OPHjUfk8tqsdnIeFNr2jw5-ozGYmhVRVsozqeDxTydeQLil-OiFqrxKD7RlIWgRrmEFR_LOKAF2RHIdcdyqlb5DQ6mHGjNbKIa-hI3yY9XV0baBsma_MeFhFgJJjOVN5Qp1e02oqNpOJ5gNJUsYH_7Ja9B-Ukhm7P-VuDrWgfb3kxjx6Dhk_ddatVgfaLFw" alt="Son Ye-jin"/>
+              </div>
+              <span class="font-body-sm text-body-sm font-medium text-inverse-surface line-clamp-1">Son Ye-jin</span>
+              <span class="font-label-sm text-label-sm text-outline line-clamp-1 text-[10px]">Su-jin</span>
+            </div>
+            <div class="flex flex-col items-center text-center w-20 shrink-0">
+              <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container-high shadow-md mb-2">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcTthIOSm0Jqy93ycPFb1Z-uCIIiQpzrcVw35hxt5ylmhqYm9JM_7JQhCzhP9oIO12tkbMw_LKKqxfX0nvtB6a_UOPmZTfvKVd-nvLQNr1qhuPjoZ9Vl--KT5D7_wOIguuL-7JDY40fJJ96Lmpy9tLZC4K_PXXKEJ3gJxOjbo20uvf_1OsgGnY6PS-3qlbnm4KdyTzJBRVD6JXKJtJYwQN6hAwxXdIIZ95sB-gRiymf8NnSAZJh9SnwA" alt="Jung Woo-sung"/>
+              </div>
+              <span class="font-body-sm text-body-sm font-medium text-inverse-surface line-clamp-1">Jung Woo-sung</span>
+              <span class="font-label-sm text-label-sm text-outline line-clamp-1 text-[10px]">Chul-soo</span>
+            </div>
+            <div class="flex flex-col items-center text-center w-20 shrink-0">
+              <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container-high shadow-md mb-2">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtaN39G4ywvMpJJSXhe962M4eelKTbk7gn0nigArUyky0q1hTEKd6oOkDY9u3G9aikuR931COeQauOSMkeLkIR8mc7FesacBBDlTHrvf2rRtzI8TQjFGwH9o4FuqNWNuLL4vOmS_KeBdC3Tu3Yg5SsONXh4w-DI1hKII87sJ_IqG3gn6fdumH2VDh0VljZSg4xHG16gZwSuml-xSNeSIlib5OpLuVOdGeD-XJkGY8NuCcU4Ub41t4bQQ" alt="John H. Lee"/>
+              </div>
+              <span class="font-body-sm text-body-sm font-medium text-inverse-surface line-clamp-1">John H. Lee</span>
+              <span class="font-label-sm text-label-sm text-primary line-clamp-1 text-[10px]">Director</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Archival Specs & Metadata Table -->
+        <div class="p-4 rounded-xl bg-surface-container border border-surface-container-high">
+          <h3 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-3">Archival Specs &amp; Metadata</h3>
+          <div class="grid grid-cols-2 gap-3 text-on-surface-variant font-label-sm text-label-sm">
+            <div>
+              <span class="text-outline uppercase text-[10px] block">Film Stock</span>
+              <span class="text-on-surface font-medium">35mm Kodak Vision2 (Arri 535B)</span>
+            </div>
+            <div>
+              <span class="text-outline uppercase text-[10px] block">Aspect Ratio</span>
+              <span class="text-on-surface font-medium">2.39:1 Anamorphic Scope</span>
+            </div>
+            <div>
+              <span class="text-outline uppercase text-[10px] block">Audio Track</span>
+              <span class="text-on-surface font-medium">Dolby Digital 5.1 / Mono Archival</span>
+            </div>
+            <div>
+              <span class="text-outline uppercase text-[10px] block">Laboratory</span>
+              <span class="text-on-surface font-medium">CJ Entertainment Photochemical Lab</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <!-- =========================================================================
-       CINEMA 4K PLAYER MODAL (Full Multi-Server & Prank Stream Player)
+       POPUP MODALS: CINEMA 4K PLAYER & DOWNLOAD & EDITORIAL
        ========================================================================= -->
+
+  <!-- Cinema 4K Player Modal -->
   <div class="player-modal" id="player-modal">
     <div class="player-container">
       <div class="player-header">
@@ -1173,7 +1178,6 @@
         <button class="server-btn" data-server="fastcdn">FastCDN Edge</button>
         <button class="server-btn" data-server="vidlink">VidLink HD</button>
         <button class="server-btn" data-server="vidsrc">VidSrc Cloud</button>
-        <button class="server-btn" data-server="trailer">Trailer Stream</button>
       </div>
 
       <div class="video-wrapper" id="video-wrapper">
@@ -1183,118 +1187,115 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       FLOATING WATCHLIST TOAST NOTIFICATION
-       ========================================================================= -->
-  <div class="floating-toast-container" id="watchlist-toast">
-    <div class="toast-pill-card">
-      <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-        <span class="material-symbols-outlined" style="color: var(--primary); font-size: 20px; font-variation-settings: 'FILL' 1;">check_circle</span>
-        <p style="font-size: 13.5px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="toast-message">
-          Added to Watchlist • <span style="color: var(--primary); font-weight: 600;" id="toast-movie-name">Dune: Part Two</span>
+  <!-- Filter Drawer Overlay Modal -->
+  <div class="fixed inset-0 bg-surface-container-lowest/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-end" id="filterDrawerOverlay">
+    <div class="w-full bg-surface-container-high rounded-t-2xl max-h-[750px] flex flex-col overflow-hidden transform translate-y-full transition-transform duration-300" id="filterDrawerContent">
+      <div class="pt-3 pb-2 flex justify-center cursor-grab active:cursor-grabbing">
+        <div class="w-9 h-1 rounded-full bg-primary/50"></div>
+      </div>
+      <div class="px-5 py-3 flex items-center justify-between">
+        <div class="flex items-baseline gap-2">
+          <h2 class="font-headline-sm text-headline-sm text-on-surface">Curatorial Filters</h2>
+          <span class="font-label-sm text-label-sm text-primary">3 Active</span>
+        </div>
+        <button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-wider cursor-pointer" id="resetFiltersInDrawer">
+          Reset All
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-5 py-2 flex flex-col gap-6">
+        <div class="flex flex-col gap-2.5">
+          <label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Genre &amp; Mood</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="genre-pill px-3 py-1.5 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-semibold cursor-pointer">Korean Melodrama</button>
+            <button class="genre-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-bright font-body-sm text-body-sm cursor-pointer">Sci-Fi Epic</button>
+            <button class="genre-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-bright font-body-sm text-body-sm cursor-pointer">Film Noir</button>
+            <button class="genre-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-bright font-body-sm text-body-sm cursor-pointer">World Cinema</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 bg-surface-container-high flex items-center gap-3">
+        <button class="flex-1 h-12 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform cursor-pointer" id="closeFilterSheetBtn">
+          <span>Apply Filters</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Modal -->
+  <div class="fixed inset-0 bg-surface-container-lowest/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4" id="editorialModalOverlay">
+    <div class="w-full max-w-lg bg-surface-container-high rounded-2xl p-6 shadow-2xl border border-surface-container-highest max-h-[80vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Cinematheque Editorial</span>
+        <button class="text-on-surface-variant hover:text-on-surface cursor-pointer" onclick="closeEditorialModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <h2 class="font-headline-sm text-on-surface font-semibold mb-3">
+        The Geometry of Desert Light: How Greig Fraser Framed Arrakis
+      </h2>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-sm text-label-sm font-bold">ES</div>
+        <span class="font-label-md text-label-md text-on-surface">Elena S. • Head Archivist</span>
+      </div>
+      <p class="font-body-sm text-on-surface-variant leading-relaxed mb-4">
+        When Denis Villeneuve and cinematographer Greig Fraser set out to capture the harsh dunes of Arrakis for <em>Dune: Part Two</em>, their primary objective was to avoid the sterile sheen of modern CGI sandscapes. Instead, they developed a pioneering hybrid photochemical pipeline.
+      </p>
+      <p class="font-body-sm text-on-surface-variant leading-relaxed">
+        Fraser utilized custom large-format digital sensors adapted with 1980s Soviet spherical optics and un-coated German glass. The digital negative was then laser-recorded onto real 35mm motion picture film stock before being scanned back to 4K digital for final theatrical distribution.
+      </p>
+    </div>
+  </div>
+
+  <!-- Interactive Floating Watchlist Toast Notification -->
+  <div class="fixed bottom-20 left-4 right-4 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300" id="watchlist-toast">
+    <div class="h-13 px-4 py-2.5 rounded-full bg-surface-container-high/95 backdrop-blur-xl shadow-2xl flex items-center justify-between gap-3 border border-primary/30">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-6 h-6 rounded-full bg-tertiary/20 flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-[16px] text-tertiary" style="font-variation-settings: 'FILL' 1;">check</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface truncate" id="toast-text">
+          Added to Watchlist • <span class="text-primary font-medium" id="toast-film-title">Dune: Part Two</span>
         </p>
       </div>
-      <button class="btn-read-piece" id="toast-undo" style="height: 28px; padding: 0 10px; background: transparent; color: var(--primary); border: 1px solid var(--primary);">
+      <button class="shrink-0 font-label-sm text-label-sm uppercase tracking-wider text-primary hover:text-primary-fixed font-semibold px-2 py-1 active:scale-95 transition-transform cursor-pointer" id="toast-undo">
         Undo
       </button>
     </div>
   </div>
 
   <!-- =========================================================================
-       MOBILE BOTTOM NAVIGATION BAR (5 Destinations with Active Dot Indicators)
+       FIXED BOTTOM NAVIGATION BAR (5 Tabs From Google Stitch)
        ========================================================================= -->
-  <nav class="mobile-bottom-nav">
-    <a class="nav-tab-item active" data-navigate="home">
-      <span class="material-symbols-outlined" style="font-size: 22px;">movie</span>
-      <span class="tab-label">Home</span>
-      <span class="tab-active-dot"></span>
-    </a>
-    <a class="nav-tab-item" data-navigate="discover">
-      <span class="material-symbols-outlined" style="font-size: 22px;">explore</span>
-      <span class="tab-label">Discover</span>
-      <span class="tab-active-dot"></span>
-    </a>
-    <div class="nav-tab-item" style="flex: 0 0 56px;">
-      <a class="nav-center-search-btn" id="mobile-search-trigger" title="Search">
-        <span class="material-symbols-outlined" style="font-size: 22px; color: var(--on-primary);">search</span>
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(5,12,15,0.45)] border-t border-surface-container-high/60" id="main-bottom-nav">
+    <div class="h-16 px-space-xs flex items-center justify-around relative">
+      <a class="flex-1 flex flex-col items-center justify-center h-14 min-w-[44px] transition-colors relative text-primary tab-item" data-path="home" onclick="switchMainScreen('home')">
+        <span class="material-symbols-outlined text-[22px]">movie</span>
+        <span class="font-label-sm text-label-sm uppercase mt-0.5 tracking-wider">Home</span>
+        <span class="tab-indicator absolute bottom-1 w-1 h-1 rounded-full bg-primary opacity-100 transition-opacity"></span>
+      </a>
+      <a class="flex-1 flex flex-col items-center justify-center h-14 min-w-[44px] text-on-surface-variant hover:text-on-surface transition-colors relative tab-item" data-path="discover" onclick="switchMainScreen('discover')">
+        <span class="material-symbols-outlined text-[22px]">explore</span>
+        <span class="font-label-sm text-label-sm uppercase mt-0.5 tracking-wider">Discover</span>
+        <span class="tab-indicator absolute bottom-1 w-1 h-1 rounded-full bg-primary opacity-0 transition-opacity"></span>
+      </a>
+      <div class="flex-1 flex items-center justify-center h-14">
+        <a class="w-12 h-12 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_8px_20px_rgba(201,160,91,0.25)] hover:scale-105 active:scale-95 transition-all -translate-y-2 cursor-pointer" onclick="switchLibrarySubView('search')">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </a>
+      </div>
+      <a class="flex-1 flex flex-col items-center justify-center h-14 min-w-[44px] text-on-surface-variant hover:text-on-surface transition-colors relative tab-item" data-path="library" onclick="switchMainScreen('library')">
+        <span class="material-symbols-outlined text-[22px]">bookmarks</span>
+        <span class="font-label-sm text-label-sm uppercase mt-0.5 tracking-wider">Library</span>
+        <span class="tab-indicator absolute bottom-1 w-1 h-1 rounded-full bg-primary opacity-0 transition-opacity"></span>
+      </a>
+      <a class="flex-1 flex flex-col items-center justify-center h-14 min-w-[44px] text-on-surface-variant hover:text-on-surface transition-colors relative tab-item" data-path="profile" onclick="switchMainScreen('library')">
+        <span class="material-symbols-outlined text-[22px]">account_circle</span>
+        <span class="font-label-sm text-label-sm uppercase mt-0.5 tracking-wider">Profile</span>
+        <span class="tab-indicator absolute bottom-1 w-1 h-1 rounded-full bg-primary opacity-0 transition-opacity"></span>
       </a>
     </div>
-    <a class="nav-tab-item" data-navigate="library">
-      <span class="material-symbols-outlined" style="font-size: 22px;">bookmarks</span>
-      <span class="tab-label">Library</span>
-      <span class="tab-active-dot"></span>
-    </a>
-    <a class="nav-tab-item" id="mobile-profile-trigger">
-      <span class="material-symbols-outlined" style="font-size: 22px;">account_circle</span>
-      <span class="tab-label">Profile</span>
-      <span class="tab-active-dot"></span>
-    </a>
   </nav>
-
-  <!-- =========================================================================
-       MASTER EDITORIAL FOOTER
-       ========================================================================= -->
-  <footer class="master-editorial-footer">
-    <div class="footer-content-wrap">
-      <!-- Preservation Pledge Card -->
-      <div class="footer-pledge-card">
-        <div>
-          <span class="section-kicker">Preservation Pledge</span>
-          <h3 class="section-headline" style="font-size: 20px;">Archiving Global Cinema for Future Generations</h3>
-          <p style="font-size: 13.5px; color: var(--text-secondary); max-width: 600px; margin-top: 4px;">
-            Cinexa is dedicated to the uncompromised preservation, 4K photochemical restoration, and open accessibility of worldwide cinematic heritage.
-          </p>
-        </div>
-        <button class="btn-read-piece" data-navigate="discover" style="height: 38px; padding: 0 18px;">Explore Vault</button>
-      </div>
-
-      <!-- 4 Columns Grid -->
-      <div class="footer-columns-grid">
-        <div>
-          <div class="footer-col-title">Explore</div>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a data-navigate="discover">35mm Restorations</a></li>
-            <li class="footer-link-item"><a data-navigate="discover">Cannes Palme d'Or</a></li>
-            <li class="footer-link-item"><a data-navigate="discover">Venice Golden Lion</a></li>
-            <li class="footer-link-item"><a data-navigate="discover">World Cinema Canon</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Archival Vault</div>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a data-navigate="library">My Watchlist</a></li>
-            <li class="footer-link-item"><a data-navigate="library">Curated Folios</a></li>
-            <li class="footer-link-item"><a data-navigate="library">Offline Master Hub</a></li>
-            <li class="footer-link-item"><a data-navigate="library">Viewing Journal</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">About Cinexa</div>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a id="footer-editorial-link">Cinematheque Journal</a></li>
-            <li class="footer-link-item"><a href="#">Technical Pipeline</a></li>
-            <li class="footer-link-item"><a href="#">Archivist Team</a></li>
-            <li class="footer-link-item"><a href="#">Preservation Fund</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Legal &amp; Source</div>
-          <ul class="footer-links-list">
-            <li class="footer-link-item"><a href="#">Terms of Preservation</a></li>
-            <li class="footer-link-item"><a href="#">Copyright Wire</a></li>
-            <li class="footer-link-item"><a href="#">TMDB API Attribution</a></li>
-            <li class="footer-link-item"><a href="#">Privacy Protocol</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="footer-bottom-bar">
-        <span>© 2026 Cinexa Cinematheque Network. All rights reserved worldwide.</span>
-        <span>Version 4.8 • Tokyo / Frankfurt / New York FastCDN Cluster</span>
-      </div>
-    </div>
-  </footer>
 
   <!-- Core Scripts -->
   <script src="js/movies-data.js"></script>
