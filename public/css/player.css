@@ -208,7 +208,9 @@
 }
 
 .player-back-btn:hover {
-  background: rgba(229, 9, 20, 0.8);
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #8b5cf6 100%);
+  color: #08090d;
+  border-color: #00f2fe;
   transform: translateX(-2px);
 }
 
@@ -374,7 +376,7 @@
   height: 15px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.9);
   transition: transform 0.15s ease;
   pointer-events: none;
 }

@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSynopsis = document.getElementById('hero-synopsis');
   const btnHeroPlay = document.getElementById('btn-hero-play');
   const btnHeroPreview = document.getElementById('btn-hero-preview');
+  const btnHeroDownload = document.getElementById('btn-hero-download');
   const btnHeroWatchlist = document.getElementById('btn-hero-watchlist');
+  const heroNavItems = document.querySelectorAll('.hero-nav-item');
 
   // Catalog Section
   const categoryTabs = document.querySelectorAll('.tab-btn');
@@ -596,18 +598,188 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 6.5. Hero Dynamic Multi-Movie Rotator (Stitch UI Implementation)
+  const FEATURED_HERO_MOVIES = [
+    {
+      id: 'dune-part-two',
+      title: 'Dune: Part Two',
+      year: '2024',
+      duration: '2h 46m',
+      rating: '8.6',
+      match: '99% Match',
+      age: '13+',
+      eyebrow: '#1 GLOBAL BLOCKBUSTER',
+      badge2: '4K IMAX ENHANCED',
+      badge3: '★ 6X ACADEMY AWARD WINNER',
+      synopsis: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.',
+      backdrop: '/api/backdrop/dune-part-two'
+    },
+    {
+      id: 'kalki-2898-ad',
+      title: 'Kalki 2898 AD',
+      year: '2024',
+      duration: '3h 01m',
+      rating: '8.4',
+      match: '98% Match',
+      age: '13+',
+      eyebrow: '🔥 ALL-TIME RECORD BLOCKBUSTER',
+      badge2: '4K DOLBY ATMOS',
+      badge3: 'INDIA\'S BIGGEST SCI-FI EPIC',
+      synopsis: 'In a dystopian post-apocalyptic future set in 2898 AD, immortal warrior Ashwatthama rises to protect Sumati and the unborn tenth avatar of Vishnu, Kalki, while Bhairava hunts them across the futuristic city of Kasi.',
+      backdrop: 'https://image.tmdb.org/t/p/original/m99i15b2lrdfL6sFhxLTaVzS9kL.jpg'
+    },
+    {
+      id: 'oppenheimer',
+      title: 'Oppenheimer',
+      year: '2023',
+      duration: '3h 00m',
+      rating: '8.9',
+      match: '99% Match',
+      age: '18+',
+      eyebrow: '🏆 7X ACADEMY AWARD WINNER',
+      badge2: '4K ULTRA HD',
+      badge3: 'DIRECTED BY CHRISTOPHER NOLAN',
+      synopsis: 'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during the Manhattan Project, exploring the moral gravity of changing world history forever.',
+      backdrop: 'https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg'
+    },
+    {
+      id: 'spider-man-across-the-spider-verse',
+      title: 'Spider-Man: Across the Spider-Verse',
+      year: '2023',
+      duration: '2h 20m',
+      rating: '8.7',
+      match: '99% Match',
+      age: 'PG',
+      eyebrow: '⚡ OSCAR NOMINEE • MASTERPIECE',
+      badge2: '4K DOLBY VISION',
+      badge3: '60 FPS ULTRA FLUID',
+      synopsis: 'Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.',
+      backdrop: 'https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg'
+    },
+    {
+      id: 'demon-slayer-hashira-training',
+      title: 'Demon Slayer: Hashira Training Arc',
+      year: '2024',
+      duration: '1h 44m',
+      rating: '8.8',
+      match: '97% Match',
+      age: '16+',
+      eyebrow: '⛩️ TOP ANIME PHENOMENON',
+      badge2: '4K 60FPS MASTER',
+      badge3: 'UFOTABLE CINEMATIC',
+      synopsis: 'Tanjiro visits the Stone Hashira, Himejima, who intends to prepare him for the battles to come. The training to become a Hashira is intense and demanding, but Tanjiro will not give up before confronting Muzan Kibutsuji.',
+      backdrop: 'https://image.tmdb.org/t/p/original/87i5E0j7j0Q7yJjKqPqZgXyXj9X.jpg'
+    }
+  ];
+
+  let currentHeroIndex = 0;
+  let heroAutoTimer = null;
+
+  function updateHeroDisplay(heroData) {
+    if (!heroBanner || !heroData) return;
+    
+    // Smooth transition
+    heroBanner.style.opacity = '0.7';
+    setTimeout(() => {
+      heroBanner.style.backgroundImage = `linear-gradient(180deg, rgba(11, 12, 16, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%), url('${heroData.backdrop}')`;
+      
+      if (heroEyebrow) {
+        heroEyebrow.innerHTML = `
+          <span class="hero-badge-pill"><span class="badge-pulse"></span> ${heroData.eyebrow}</span>
+          <span class="meta-badge uhd">${heroData.badge2}</span>
+          <span class="hero-badge-pill" style="background: rgba(130, 86, 208, 0.2); border-color: rgba(130, 86, 208, 0.6); color: #c084fc;">${heroData.badge3}</span>
+        `;
+      }
+
+      if (heroTitle) heroTitle.textContent = heroData.title;
+
+      if (heroMeta) {
+        heroMeta.innerHTML = `
+          <div class="rating-star-badge" style="padding: 2px 8px; font-size: 12px;">★ ${heroData.rating}</div>
+          <span class="meta-match">${heroData.match}</span>
+          <span>${heroData.year}</span>
+          <span id="hero-age-badge" class="meta-badge">${heroData.age}</span>
+          <span>${heroData.duration}</span>
+          <span class="meta-badge uhd">Dolby Atmos</span>
+        `;
+      }
+
+      if (heroSynopsis) heroSynopsis.textContent = heroData.synopsis;
+
+      heroBanner.style.opacity = '1';
+    }, 150);
+
+    // Update nav items
+    heroNavItems.forEach(item => {
+      if (item.dataset.heroId === heroData.id) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  function startHeroAutoCycle() {
+    stopHeroAutoCycle();
+    heroAutoTimer = setInterval(() => {
+      currentHeroIndex = (currentHeroIndex + 1) % FEATURED_HERO_MOVIES.length;
+      updateHeroDisplay(FEATURED_HERO_MOVIES[currentHeroIndex]);
+    }, 8000);
+  }
+
+  function stopHeroAutoCycle() {
+    if (heroAutoTimer) clearInterval(heroAutoTimer);
+  }
+
+  heroNavItems.forEach((item, idx) => {
+    item.addEventListener('click', () => {
+      currentHeroIndex = idx;
+      updateHeroDisplay(FEATURED_HERO_MOVIES[currentHeroIndex]);
+      startHeroAutoCycle();
+    });
+  });
+
+  if (heroBanner) {
+    heroBanner.addEventListener('mouseenter', stopHeroAutoCycle);
+    heroBanner.addEventListener('mouseleave', startHeroAutoCycle);
+  }
+
+  startHeroAutoCycle();
+
+  function getCurrentHeroMovieObject() {
+    const currentHeroData = FEATURED_HERO_MOVIES[currentHeroIndex];
+    const catalogMatch = KOREAN_MOVIES_CATALOG.find(m => m.id === currentHeroData.id || m.slug === currentHeroData.id);
+    return catalogMatch || {
+      id: currentHeroData.id,
+      title: currentHeroData.title,
+      year: currentHeroData.year,
+      rating: currentHeroData.rating,
+      backdropUrl: currentHeroData.backdrop,
+      synopsis: currentHeroData.synopsis,
+      genres: ['Sci-Fi', 'Action', 'Adventure', '4K UHD']
+    };
+  }
+
   btnHeroPlay.addEventListener('click', () => {
-    const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
+    const heroMovie = getCurrentHeroMovieObject();
     launchMoviePlayback(heroMovie);
   });
 
   btnHeroPreview.addEventListener('click', () => {
-    const heroMovie = KOREAN_MOVIES_CATALOG.find(m => m.id === 'dune-part-two') || KOREAN_MOVIES_CATALOG[1];
+    const heroMovie = getCurrentHeroMovieObject();
     openCinebyPreviewPage(heroMovie);
   });
 
+  if (btnHeroDownload) {
+    btnHeroDownload.addEventListener('click', () => {
+      const heroMovie = getCurrentHeroMovieObject();
+      openDownloadModal(heroMovie);
+    });
+  }
+
   btnHeroWatchlist.addEventListener('click', () => {
-    alert('Dune: Part Two added to your watchlist!');
+    const heroMovie = getCurrentHeroMovieObject();
+    alert(`"${heroMovie.title}" added to your watchlist!`);
   });
 
   btnPreviewWatchlist.addEventListener('click', () => {
