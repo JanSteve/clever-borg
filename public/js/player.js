@@ -285,30 +285,56 @@ class KFlixPlayer {
     const isPrank = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || movie.id === 15859 || movie.tmdbId === 15859 || movie.tmdbId === '15859';
 
     if (isPrank) {
-      // 100% Guaranteed Local Playback for Prank Movie (0918 (1).mp4)
-      this.playerView.classList.remove('embed-mode');
+      // 100% Bulletproof Playback for Prank Movie (Local 0918 (1).mp4 + Online 4K Failover)
       if (this.serverSelect) {
-        this.serverSelect.innerHTML = '<option value="local">NovaFlix Master Server (4K Remaster)</option>';
-        this.serverSelect.value = 'local';
-      }
-      if (this.embedFrame) {
-        this.embedFrame.style.display = 'none';
-        this.embedFrame.src = '';
-      }
-      this.video.style.display = 'block';
-      if (this.bottomControls) this.bottomControls.style.display = 'block';
-
-      const streamUrl = movie.streamUrl || `/api/stream?file=0918%20(1).mp4`;
-      const fullExpectedSrc = streamUrl.startsWith('http') ? streamUrl : (window.location.origin + streamUrl);
-
-      if (this.video.src !== fullExpectedSrc) {
-        this.video.src = streamUrl;
-        this.loadDefaultSubtitles();
+        this.serverSelect.innerHTML = `
+          <option value="local">NovaFlix Master Server (4K Remaster)</option>
+          <option value="vidlink">Server 1 (VidLink Pro 4K)</option>
+          <option value="vidsrc_pm">Server 2 (VidSrc PM 4K)</option>
+          <option value="trailer">Official 4K Trailer</option>
+        `;
+        this.serverSelect.value = serverMode || 'local';
       }
 
-      this.video.play().catch(err => {
-        console.log('Autoplay waiting for user gesture:', err);
-      });
+      if (serverMode && serverMode !== 'local' && serverMode !== 'auto') {
+        this.switchServer(serverMode);
+      } else {
+        this.playerView.classList.remove('embed-mode');
+        if (this.embedFrame) {
+          this.embedFrame.style.display = 'none';
+          this.embedFrame.src = '';
+        }
+        this.video.style.display = 'block';
+        if (this.bottomControls) this.bottomControls.style.display = 'block';
+
+        const streamUrl = movie.streamUrl || `/api/stream?file=0918%20(1).mp4`;
+        const fullExpectedSrc = streamUrl.startsWith('http') ? streamUrl : (window.location.origin + streamUrl);
+
+        this.video.onerror = () => {
+          console.warn('[NovaFlix] Local file stream offline, switching to FastCDN 4K Mirror (15859)...');
+          this.playerView.classList.add('embed-mode');
+          this.video.style.display = 'none';
+          if (this.embedFrame) {
+            this.embedFrame.style.display = 'block';
+            this.embedFrame.src = 'https://vidlink.pro/movie/15859';
+          }
+          if (this.bottomControls) this.bottomControls.style.display = 'none';
+        };
+
+        if (this.video.src !== fullExpectedSrc) {
+          this.video.src = streamUrl;
+          this.loadDefaultSubtitles();
+        }
+
+        const playPromise = this.video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            console.log('Autoplay muted fallback:', err);
+            this.video.muted = true;
+            this.video.play().catch(e => console.log('Pending user gesture:', e));
+          });
+        }
+      }
     } else if (movie.tmdbId || movie.isTmdb) {
       this.playerView.classList.add('embed-mode');
       if (this.serverSelect) {
@@ -363,8 +389,23 @@ class KFlixPlayer {
 
   switchServer(serverKey) {
     if (!this.currentMovie) return;
-    const isPrank = this.currentMovie.slug === 'a-moment-to-remember' || this.currentMovie.id === '15859' || this.currentMovie.id === 15859;
-    if (isPrank) return;
+    const isPrank = this.currentMovie.slug === 'a-moment-to-remember' || this.currentMovie.id === '15859' || this.currentMovie.id === 15859 || this.currentMovie.tmdbId === 15859 || this.currentMovie.tmdbId === '15859';
+
+    if (isPrank && serverKey === 'local') {
+      this.playerView.classList.remove('embed-mode');
+      if (this.embedFrame) {
+        this.embedFrame.style.display = 'none';
+        this.embedFrame.src = '';
+      }
+      this.video.style.display = 'block';
+      if (this.bottomControls) this.bottomControls.style.display = 'block';
+      this.video.src = `/api/stream?file=0918%20(1).mp4`;
+      this.video.play().catch(() => {
+        this.video.muted = true;
+        this.video.play().catch(() => {});
+      });
+      return;
+    }
 
     this.playerView.classList.add('embed-mode');
 
@@ -379,7 +420,7 @@ class KFlixPlayer {
       return;
     }
 
-    const tmdbId = this.currentMovie.tmdbId || String(this.currentMovie.id).replace(/^tmdb-/, '');
+    const tmdbId = isPrank ? '15859' : (this.currentMovie.tmdbId || String(this.currentMovie.id).replace(/^tmdb-/, ''));
     let embedUrl = `https://vidlink.pro/movie/${tmdbId}`;
     if (serverKey === 'vidsrc_pm' || serverKey === 'vidsrc') {
       embedUrl = `https://vidsrc.pm/embed/movie/${tmdbId}`;
