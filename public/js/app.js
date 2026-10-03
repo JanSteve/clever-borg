@@ -1,15 +1,19 @@
 /**
- * CINEXA: Google Stitch Master Controller & Architecture
- * Complete implementation of Stitch Navigation, Featured Hero Slideshow,
- * Discover Filter Matrix, Trending Snap Carousels, 5★ Rating Dialog, and 4K Player.
+ * CINEXA: Master Controller & Streaming Platform
+ * Features:
+ * - Featured Hero Slideshow Engine (Auto-play, Crossfade, Thumbnails)
+ * - Dedicated Categorized Carousels (Anime, Bollywood, Tollywood, Kollywood, Hollywood, Korean)
+ * - Full 200+ Master Catalog Grid with Live Search & Multi-Criteria Filtering
+ * - Global ⌘K Instant Search Modal
+ * - Saved Watchlist & Library Storage
+ * - 4K Player & 1-Click Download Engine Integration
  */
 
-// Global State
+// Global App State
 let currentScreen = 'discover';
 let currentActiveMovie = null;
-let watchlistSet = new Set(['15859', 'dune-part-two', 'past-lives', 'perfect-days']);
+let watchlistSet = new Set(['15859', 'dune-part-two', 'past-lives', 'spirited-away', 'jawan', 'kalki-2898-ad', 'leo']);
 let toastTimer = null;
-let currentSelectedRating = 5;
 
 // =========================================================================
 // 1. FEATURED HERO SLIDESHOW DATA & ENGINE
@@ -20,92 +24,79 @@ const FEATURED_SLIDES = [
     id: 'dune-part-two',
     slug: 'dune-part-two',
     title: 'Dune: Part Two',
-    category: 'top-recommendation',
     categoryLabel: '✨ Top Recommendation',
     year: '2024',
     duration: '2h 46m',
     rating: 'PG-13',
     score: '8.6',
     matchScore: '99% Match',
-    resolution: '4K IMAX Enhanced',
+    resolution: '4K UHD IMAX',
     audio: 'Dolby Atmos 5.1',
     director: 'Denis Villeneuve',
     cast: 'Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler',
-    synopsis: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family, wrestling with ominous visions of a holy war consuming the universe.',
-    quote: '“A visual and sonic triumph of contemporary sci-fi filmmaking.” — Sight & Sound',
+    synopsis: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.',
     backdrop: 'https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg',
-    accentColor: '#ecc077'
+    poster: 'https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg'
   },
   {
     id: 'oppenheimer',
     slug: 'oppenheimer',
     title: 'Oppenheimer',
-    category: 'current-trending',
     categoryLabel: '⚡ Current Trending',
     year: '2023',
     duration: '3h 00m',
     rating: 'R',
     score: '8.9',
     matchScore: '99% Match',
-    resolution: '70MM Ultra Panavision',
+    resolution: '70MM Ultra HD',
     audio: 'Dolby Atmos',
     director: 'Christopher Nolan',
     cast: 'Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.',
-    synopsis: 'The pulse-pounding chronicle of J. Robert Oppenheimer and his role leading the secret Los Alamos laboratory in the creation of the atomic bomb.',
-    quote: '“Nolan’s magnum opus: terrifying, monumental, and visually breathtaking.” — Cahiers du Cinéma',
+    synopsis: 'The pulse-pounding story of J. Robert Oppenheimer and his role leading the Manhattan Project in the creation of the atomic bomb.',
     backdrop: 'https://image.tmdb.org/t/p/original/7CENyUim29IEsaJhUxIGymCRvPu.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-    accentColor: '#ffb5a1'
-  },
-  {
-    id: 'past-lives',
-    slug: 'past-lives',
-    title: 'Past Lives',
-    category: 'peoples-favorite',
-    categoryLabel: '🔥 People’s Favorite',
-    year: '2023',
-    duration: '1h 45m',
-    rating: 'PG-13',
-    score: '8.4',
-    matchScore: '98% Match',
-    resolution: '35MM Restored',
-    audio: 'Korean/English Stereo',
-    director: 'Celine Song',
-    cast: 'Greta Lee, Teo Yoo, John Magaro',
-    synopsis: 'Nora and Hae Sung, two deeply connected childhood friends, are separated when her family emigrates from South Korea. Two decades later, they are reunited for one fateful week in New York.',
-    quote: '“A heartbreakingly delicate exploration of In-Yun (destiny) and enduring love.” — The New Yorker',
-    backdrop: 'https://image.tmdb.org/t/p/original/7HR38hMBl23lf38MAN63y4pKsHz.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',
-    accentColor: '#b1cdbb'
+    poster: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
   },
   {
     id: 'spirited-away',
     slug: 'spirited-away',
     title: 'Spirited Away',
-    category: 'top-recommendation',
-    categoryLabel: '✨ Top Recommendation',
+    categoryLabel: '🎌 Studio Ghibli Masterpiece',
     year: '2001',
     duration: '2h 05m',
     rating: 'PG',
     score: '8.6',
     matchScore: '99% Match',
-    resolution: '4K Studio Ghibli Master',
-    audio: 'Japanese 5.1 / Atmos',
+    resolution: '4K Ghibli Remaster',
+    audio: 'Japanese / Multi-Dub 5.1',
     director: 'Hayao Miyazaki',
     cast: 'Rumi Hiiragi, Miyu Irino, Mari Natsuki',
     synopsis: 'Ten-year-old Chihiro wanders into a wondrous world ruled by gods, witches, and spirits, where humans are changed into beasts.',
-    quote: '“One of the greatest achievements in hand-drawn animation in human history.” — Roger Ebert',
     backdrop: 'https://image.tmdb.org/t/p/original/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg',
-    accentColor: '#c9a05b'
+    poster: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg'
+  },
+  {
+    id: 'kalki-2898-ad',
+    slug: 'kalki-2898-ad',
+    title: 'Kalki 2898 AD',
+    categoryLabel: '🇮🇳 Epic Blockbuster',
+    year: '2024',
+    duration: '3h 01m',
+    rating: 'PG-13',
+    score: '8.1',
+    matchScore: '98% Match',
+    resolution: '4K UHD Master',
+    audio: 'Telugu / Hindi / Tamil Dubbed',
+    director: 'Nag Ashwin',
+    cast: 'Prabhas, Amitabh Bachchan, Kamal Haasan, Deepika Padukone',
+    synopsis: 'A modern avatar of Vishnu descends to Earth to protect the world from evil forces in a dystopian post-apocalyptic future.',
+    backdrop: 'https://image.tmdb.org/t/p/original/o8XSR1SONnjcsv84NRu6Mwsl5io.jpg',
+    poster: 'https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg'
   },
   {
     id: 'parasite',
     slug: 'parasite',
     title: 'Parasite',
-    category: 'award-winners',
-    categoryLabel: '🏆 Criterion Laureate',
+    categoryLabel: '🏆 Palme d\'Or & Oscar Winner',
     year: '2019',
     duration: '2h 12m',
     rating: 'R',
@@ -116,17 +107,14 @@ const FEATURED_SLIDES = [
     director: 'Bong Joon-ho',
     cast: 'Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong, Choi Woo-shik',
     synopsis: 'A destitute family schemes to become employed by a wealthy household and infiltrate their domestic life with unexpected consequences.',
-    quote: '“A masterclass in razor-sharp social satire, pacing, and tension.” — Criterion Collection',
     backdrop: 'https://image.tmdb.org/t/p/original/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
-    accentColor: '#ecc077'
+    poster: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg'
   },
   {
     id: 'interstellar',
     slug: 'interstellar',
     title: 'Interstellar',
-    category: 'peoples-favorite',
-    categoryLabel: '🔥 People’s Favorite',
+    categoryLabel: '🔥 People\'s Favorite',
     year: '2014',
     duration: '2h 49m',
     rating: 'PG-13',
@@ -135,217 +123,295 @@ const FEATURED_SLIDES = [
     resolution: '4K IMAX Laser',
     audio: 'Dolby Atmos',
     director: 'Christopher Nolan',
-    cast: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine',
-    synopsis: 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot is tasked to pilot a spacecraft through a wormhole to find a new planet for humanity.',
-    quote: '“An emotional, cosmic adventure that transcends space and time.” — Empire Magazine',
+    cast: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain',
+    synopsis: 'When Earth becomes uninhabitable, a former NASA pilot is tasked with piloting a spacecraft through a wormhole to find a new home for humanity.',
     backdrop: 'https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg',
-    poster: 'https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg',
-    accentColor: '#8DA897'
-  },
-  {
-    id: '15859',
-    slug: 'a-moment-to-remember',
-    title: 'A Moment to Remember',
-    category: 'top-recommendation',
-    categoryLabel: '✨ Top Recommendation',
-    year: '2004',
-    duration: '2h 24m',
-    rating: '18+',
-    score: '8.1',
-    matchScore: '99% Match',
-    resolution: '4K Remastered',
-    audio: 'Korean Dolby 5.1',
-    director: 'John H. Lee (Lee Jae-han)',
-    cast: 'Son Ye-jin, Jung Woo-sung, Baek Jong-hak',
-    synopsis: 'A tender romance between Su-jin and Chul-soo faces the ultimate test when early-onset Alzheimer’s threatens to erase the memories of their love.',
-    quote: '“A timeless masterpiece of Korean melodrama that captures the pure essence of devotion.” — Cine21',
-    backdrop: '/images/moment-to-remember-backdrop.jpg',
-    poster: '/images/moment-to-remember-backdrop.jpg',
-    accentColor: '#C0705A'
+    poster: 'https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg'
   }
 ];
 
 let slideshowState = {
-  activeCategory: 'all',
-  filteredSlides: [...FEATURED_SLIDES],
   currentIndex: 0,
+  isPaused: false,
   timer: null,
-  timerInterval: 5000,
-  isPaused: false
+  timerInterval: 6500
 };
 
 function initFeaturedSlideshow() {
-  renderSlideThumbnails();
-  renderSlideProgressDots();
+  const container = document.getElementById('hero-slideshow-container');
+  if (!container) return;
+
+  renderThumbnailsDeck();
+  renderProgressDots();
   renderSlide(0);
   startSlideTimer();
 
-  // Pause on hover or touch
-  const container = document.getElementById('hero-slideshow-container');
-  if (container) {
-    container.onmouseenter = () => { slideshowState.isPaused = true; };
-    container.onmouseleave = () => { slideshowState.isPaused = false; };
-    
-    // Touch swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    container.ontouchstart = (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      slideshowState.isPaused = true;
-    };
-    container.ontouchend = (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      slideshowState.isPaused = false;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) nextSlide();
-        else prevSlide();
-      }
-    };
-  }
+  container.addEventListener('mouseenter', () => { slideshowState.isPaused = true; });
+  container.addEventListener('mouseleave', () => { slideshowState.isPaused = false; });
 }
 
-function filterSlideshowCategory(cat) {
-  slideshowState.activeCategory = cat;
-  
-  // Update Tab Button Styles
-  const tabBtns = document.querySelectorAll('#slideshow-category-tabs .slide-cat-btn');
-  tabBtns.forEach(btn => {
-    const btnCat = btn.getAttribute('data-cat');
-    if (btnCat === cat) {
-      btn.className = 'slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-semibold shadow-sm transition-all duration-200 cursor-pointer';
-    } else {
-      btn.className = 'slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer';
-    }
-  });
+function renderThumbnailsDeck() {
+  const deck = document.getElementById('slide-thumbnails-deck');
+  if (!deck) return;
 
-  if (cat === 'all') {
-    slideshowState.filteredSlides = [...FEATURED_SLIDES];
-  } else {
-    slideshowState.filteredSlides = FEATURED_SLIDES.filter(s => s.category === cat);
-    if (slideshowState.filteredSlides.length === 0) {
-      slideshowState.filteredSlides = [...FEATURED_SLIDES];
-    }
-  }
-
-  slideshowState.currentIndex = 0;
-  renderSlideThumbnails();
-  renderSlideProgressDots();
-  renderSlide(0);
-  restartSlideTimer();
+  deck.innerHTML = FEATURED_SLIDES.map((slide, idx) => {
+    return `
+      <button class="slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-white/10 transition-all cursor-pointer" data-slide-index="${idx}" onclick="goToSlide(${idx})" title="${slide.title}">
+        <img src="${slide.backdrop || slide.poster}" alt="${slide.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="absolute inset-0 bg-surface/30 group-hover:bg-transparent transition-colors"></div>
+      </button>
+    `;
+  }).join('');
 }
 
-function renderSlide(index) {
-  const slides = slideshowState.filteredSlides;
-  if (!slides || slides.length === 0) return;
-
-  if (index < 0) index = slides.length - 1;
-  if (index >= slides.length) index = 0;
-  slideshowState.currentIndex = index;
-
-  const slide = slides[index];
-
-    // Update Backdrop Image
-    const bgImg = document.getElementById('slide-bg-img');
-    if (bgImg) {
-      bgImg.style.opacity = '0.1';
-      setTimeout(() => {
-        bgImg.src = slide.backdrop || slide.poster || getPosterFallbackSvg(slide.title, slide.year);
-        bgImg.onerror = function() { handlePosterError(this, slide.title, slide.year); };
-        bgImg.style.opacity = '0.35';
-      }, 150);
-    }
-
-    // Update Texts
-    const titleEl = document.getElementById('slide-title');
-    const quoteEl = document.getElementById('slide-quote');
-    const catTextEl = document.getElementById('slide-category-text');
-    const resBadge = document.getElementById('slide-resolution-badge');
-    const audioBadge = document.getElementById('slide-audio-badge');
-    const yearEl = document.getElementById('slide-year');
-    const durationEl = document.getElementById('slide-duration');
-    const ratingEl = document.getElementById('slide-rating');
-    const imdbEl = document.getElementById('slide-imdb');
-    const matchEl = document.getElementById('slide-match');
-    const directorEl = document.getElementById('slide-director');
-    const synopsisEl = document.getElementById('slide-synopsis');
-    const castEl = document.getElementById('slide-cast');
-    const posterImg = document.getElementById('slide-poster-img');
-    const counterText = document.getElementById('slide-counter-text');
-    const watchlistText = document.getElementById('slide-watchlist-text');
-
-    if (titleEl) titleEl.innerText = slide.title;
-    if (quoteEl) quoteEl.innerText = slide.quote || '';
-    if (catTextEl) catTextEl.innerText = slide.categoryLabel || '✨ Curated Feature';
-    if (resBadge) resBadge.innerText = slide.resolution || '4K Ultra HD';
-    if (audioBadge) audioBadge.innerText = slide.audio || 'Dolby Atmos';
-    if (yearEl) yearEl.innerText = slide.year || '2024';
-    if (durationEl) durationEl.innerText = slide.duration || '2h';
-    if (ratingEl) ratingEl.innerText = slide.rating || 'PG-13';
-    if (imdbEl) imdbEl.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${slide.score || '8.5'} IMDb`;
-    if (matchEl) matchEl.innerText = slide.matchScore || '99% Match';
-    if (directorEl) directorEl.innerText = `Dir. ${slide.director || 'Curated Master'}`;
-    if (synopsisEl) synopsisEl.innerText = slide.synopsis || '';
-    if (castEl) castEl.innerText = slide.cast || '';
-    
-    if (posterImg) {
-      posterImg.src = slide.poster || slide.backdrop || getPosterFallbackSvg(slide.title, slide.year);
-      posterImg.onerror = function() { handlePosterError(this, slide.title, slide.year); };
-    }
-
-    if (counterText) {
-      counterText.innerText = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-    }
-
-    if (watchlistText) {
-      const isSaved = watchlistSet.has(slide.id) || watchlistSet.has(slide.slug);
-      watchlistText.innerText = isSaved ? 'In Watchlist' : 'Watchlist';
-    }
-
-    // Update Active Thumbnail & Progress Dots
-    updateActiveThumbnailUI(index);
-  }
-
-  function renderSlideThumbnails() {
-    const deck = document.getElementById('slide-thumbnails-deck');
-    if (!deck) return;
-
-    const slides = slideshowState.filteredSlides;
-    deck.innerHTML = slides.map((s, idx) => {
-      const poster = s.poster || s.backdrop || getPosterFallbackSvg(s.title, s.year);
-      const safeTitle = (s.title || 'Film').replace(/'/g, "\\'");
-      return `
-        <button class="slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 transition-all duration-300 hover:border-primary cursor-pointer ${idx === slideshowState.currentIndex ? 'ring-2 ring-primary border-primary scale-105 shadow-md' : 'opacity-60 hover:opacity-100'}" data-index="${idx}" onclick="goToSlide(${idx})">
-          <img src="${poster}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="handlePosterError(this, '${safeTitle}', '${s.year || '4K'}')"/>
-          <div class="absolute inset-0 bg-surface/30 group-hover:bg-transparent transition-colors"></div>
-        </button>
-      `;
-    }).join('');
-  }
-
-function renderSlideProgressDots() {
+function renderProgressDots() {
   const dotsContainer = document.getElementById('slide-progress-dots');
   if (!dotsContainer) return;
 
-  const slides = slideshowState.filteredSlides;
-  dotsContainer.innerHTML = slides.map((_, idx) => `
-    <button class="slide-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === slideshowState.currentIndex ? 'w-8 bg-primary shadow-[0_0_8px_rgba(201,160,91,0.5)]' : 'w-2 bg-surface-container-highest hover:bg-outline'}" onclick="goToSlide(${idx})" aria-label="Go to slide ${idx + 1}"></button>
+  dotsContainer.innerHTML = FEATURED_SLIDES.map((_, idx) => `
+    <button class="slide-dot h-1.5 w-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer" onclick="goToSlide(${idx})" aria-label="Go to slide ${idx + 1}"></button>
   `).join('');
 }
 
+function getCurrentSlideMovie() {
+  return FEATURED_SLIDES[slideshowState.currentIndex] || FEATURED_SLIDES[0];
+}
+
+function renderSlide(index) {
+  if (index < 0) index = FEATURED_SLIDES.length - 1;
+  if (index >= FEATURED_SLIDES.length) index = 0;
+  slideshowState.currentIndex = index;
+
+  const slide = FEATURED_SLIDES[index];
+  currentActiveMovie = slide;
+
+  const bgImg = document.getElementById('slide-bg-img');
+  const posterImg = document.getElementById('slide-poster-img');
+  const title = document.getElementById('slide-title');
+  const year = document.getElementById('slide-year');
+  const duration = document.getElementById('slide-duration');
+  const rating = document.getElementById('slide-rating');
+  const imdb = document.getElementById('slide-imdb');
+  const match = document.getElementById('slide-match');
+  const synopsis = document.getElementById('slide-synopsis');
+  const categoryText = document.getElementById('slide-category-text');
+  const resBadge = document.getElementById('slide-resolution-badge');
+
+  if (bgImg) bgImg.src = slide.backdrop || slide.poster;
+  if (posterImg) posterImg.src = slide.poster;
+  if (title) title.innerText = slide.title;
+  if (year) year.innerText = slide.year;
+  if (duration) duration.innerText = slide.duration;
+  if (rating) rating.innerText = slide.rating;
+  if (imdb) imdb.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${slide.score} IMDb`;
+  if (match) match.innerText = slide.matchScore;
+  if (synopsis) synopsis.innerText = slide.synopsis;
+  if (categoryText) categoryText.innerText = slide.categoryLabel || 'Featured';
+  if (resBadge) resBadge.innerText = slide.resolution || '4K UHD';
+
+  updateActiveThumbnailUI(index);
+}
+
+function updateActiveThumbnailUI(activeIndex) {
+  const thumbs = document.querySelectorAll('#slide-thumbnails-deck .slide-thumb-btn');
+  const deck = document.getElementById('slide-thumbnails-deck');
+
+  thumbs.forEach((th, idx) => {
+    if (idx === activeIndex) {
+      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-primary ring-2 ring-primary scale-105 shadow-md opacity-100 cursor-pointer';
+      if (deck) {
+        const targetScroll = th.offsetLeft - deck.offsetLeft - (deck.clientWidth / 2) + (th.clientWidth / 2);
+        deck.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+      }
+    } else {
+      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-white/10 opacity-60 hover:opacity-100 transition-all cursor-pointer';
+    }
+  });
+
+  const dots = document.querySelectorAll('#slide-progress-dots .slide-dot');
+  dots.forEach((dot, idx) => {
+    if (idx === activeIndex) {
+      dot.className = 'slide-dot h-1.5 w-7 rounded-full bg-primary transition-all duration-300 cursor-pointer';
+    } else {
+      dot.className = 'slide-dot h-1.5 w-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+    }
+  });
+}
+
+function nextSlide() {
+  renderSlide(slideshowState.currentIndex + 1);
+  restartSlideTimer();
+}
+
+function prevSlide() {
+  renderSlide(slideshowState.currentIndex - 1);
+  restartSlideTimer();
+}
+
+function goToSlide(index) {
+  renderSlide(index);
+  restartSlideTimer();
+}
+
+function startSlideTimer() {
+  if (slideshowState.timer) clearInterval(slideshowState.timer);
+  slideshowState.timer = setInterval(() => {
+    if (!slideshowState.isPaused) nextSlide();
+  }, slideshowState.timerInterval);
+}
+
+function restartSlideTimer() {
+  startSlideTimer();
+}
+
+function playSlideMovie() {
+  const slide = getCurrentSlideMovie();
+  playCurrentFilmInPlayer(slide.slug || slide.id);
+}
+
+function downloadSlideMovie() {
+  const slide = getCurrentSlideMovie();
+  downloadFilmDirect(slide.slug || slide.id, '4k');
+}
+
+function openSlideDossier() {
+  const slide = getCurrentSlideMovie();
+  openFilmDetails(slide.slug || slide.id);
+}
+
+function toggleSlideWatchlist() {
+  const slide = getCurrentSlideMovie();
+  const id = slide.slug || slide.id;
+  const btnText = document.getElementById('slide-watchlist-text');
+
+  if (watchlistSet.has(id)) {
+    watchlistSet.delete(id);
+    if (btnText) btnText.innerText = 'Watchlist';
+    showToast(`Removed "${slide.title}" from Watchlist.`);
+  } else {
+    watchlistSet.add(id);
+    if (btnText) btnText.innerText = 'In Watchlist';
+    showToast(`Added "${slide.title}" to Watchlist.`);
+  }
+}
+
+// =========================================================================
+// 2. NAVIGATION & SCREEN CONTROLLER
+// =========================================================================
+
+function switchMainScreen(screenName) {
+  currentScreen = screenName;
+
+  const screens = ['discover', 'library', 'details'];
+  screens.forEach(s => {
+    const el = document.getElementById(`screen-${s}`);
+    if (el) {
+      if (s === screenName) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    }
+  });
+
+  // Update Nav Active State
+  document.querySelectorAll('#main-nav-links .nav-link').forEach(link => {
+    const nav = link.getAttribute('data-nav');
+    if (nav === screenName) {
+      link.classList.add('active', 'text-parchment');
+      link.classList.remove('text-driftwood');
+    } else if (nav) {
+      link.classList.remove('active', 'text-parchment');
+      link.classList.add('text-driftwood');
+    }
+  });
+
+  if (screenName === 'library') {
+    renderLibraryGrid();
+  }
+
+  // Smooth scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectNavCategory(category) {
+  switchMainScreen('discover');
+  
+  const container = document.getElementById('chip-container');
+  if (container) {
+    const btn = Array.from(container.querySelectorAll('.chip-item')).find(b => {
+      const txt = b.innerText.toLowerCase();
+      if (category === 'anime') return txt.includes('anime');
+      if (category === 'bollywood') return txt.includes('bollywood');
+      if (category === 'telugu') return txt.includes('telugu');
+      if (category === 'tamil') return txt.includes('tamil');
+      if (category === 'hollywood') return txt.includes('hollywood');
+      if (category === 'korean') return txt.includes('korean');
+      return false;
+    });
+    if (btn) {
+      selectChip(btn, category);
+      return;
+    }
+  }
+
+  filterTrendingRows(category);
+}
+
+// =========================================================================
+// 3. CATEGORY FILTER & DISCOVER CATALOG
+// =========================================================================
+
+function selectChip(btn, category) {
+  const container = document.getElementById('chip-container');
+  if (container) {
+    const allChips = container.querySelectorAll('.chip-item');
+    allChips.forEach(c => {
+      c.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+      c.classList.add('text-driftwood', 'border', 'border-white/10');
+    });
+    const targetScroll = btn.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (btn.clientWidth / 2);
+    container.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+  }
+  btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+  btn.classList.remove('text-driftwood', 'border', 'border-white/10');
+
+  filterTrendingRows(category);
+
+  // If specific section exists, smooth scroll to it
+  const sectionMap = {
+    anime: 'section-row-anime',
+    bollywood: 'section-row-bollywood',
+    telugu: 'section-row-telugu',
+    tamil: 'section-row-tamil',
+    hollywood: 'section-row-hollywood',
+    korean: 'section-row-korean'
+  };
+
+  const targetId = sectionMap[category];
+  if (targetId) {
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      const topOffset = targetSection.getBoundingClientRect().top + window.pageYOffset - 130;
+      window.scrollTo({ top: topOffset, behavior: 'smooth' });
+    }
+  }
+}
+
+function scrollRow(rowId, direction) {
+  const el = document.getElementById(rowId);
+  if (el) {
+    el.scrollBy({ left: direction * 480, behavior: 'smooth' });
+  }
+}
+
 function getPosterFallbackSvg(title, year) {
-  const safeTitle = (title || 'Film').replace(/[<>&"]/g, '');
-  const safeYear = (year || '4K').replace(/[<>&"]/g, '');
-  const gradients = [
-    ['#152126', '#09151a', '#ecc077'],
-    ['#1e1424', '#0d0714', '#f472b6'],
-    ['#0e1e18', '#050f0c', '#b1cdbb'],
-    ['#261515', '#120505', '#ffb5a1'],
-    ['#181c26', '#080c14', '#93c5fd']
-  ];
-  let hash = 0;
-  for (let i = 0; i < safeTitle.length; i++) hash = (hash + safeTitle.charCodeAt(i)) % gradients.length;
-  const [c1, c2, cAccent] = gradients[hash];
+  const safeTitle = (title || 'Cinexa').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const safeYear = year || '4K';
+  const c1 = '#152126';
+  const c2 = '#041015';
+  const cAccent = '#ecc077';
+  const hash = Math.abs((title || 'c').split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0)) % 1000;
 
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" width="100%" height="100%">
@@ -369,248 +435,202 @@ function handlePosterError(imgElement, title, year) {
   imgElement.src = getPosterFallbackSvg(title, year);
 }
 
-function updateActiveThumbnailUI(activeIndex) {
-  // Update thumbnails
-  const thumbs = document.querySelectorAll('#slide-thumbnails-deck .slide-thumb-btn');
-  const deck = document.getElementById('slide-thumbnails-deck');
+function createMovieCardHtml(m, options = {}) {
+  const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
+  const rating = m.rating || 'PG-13';
+  const score = m.imdbRating || '8.2';
+  const id = m.slug || m.id;
+  const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+  const isSaved = watchlistSet.has(id);
+  const tag = options.tag || (m.language ? m.language.toUpperCase() : (m.country || '4K'));
 
-  thumbs.forEach((th, idx) => {
-    if (idx === activeIndex) {
-      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-primary ring-2 ring-primary scale-105 shadow-md opacity-100 cursor-pointer';
-      // ONLY scroll the deck container horizontally; NEVER call window/page scrollIntoView
-      if (deck) {
-        const targetScroll = th.offsetLeft - deck.offsetLeft - (deck.clientWidth / 2) + (th.clientWidth / 2);
-        deck.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
-      }
-    } else {
-      th.className = 'slide-thumb-btn group relative w-20 h-12 rounded-lg overflow-hidden shrink-0 border border-border-hairline/60 opacity-60 hover:opacity-100 transition-all cursor-pointer';
-    }
-  });
+  return `
+    <div class="group relative flex-shrink-0 w-[190px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
+      <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-2xl">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
+        <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none"></div>
+        
+        <div class="absolute top-2 left-2 z-10 flex items-center gap-1">
+          <span class="font-sans text-[10px] px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-on-surface uppercase border border-white/10 font-medium">${rating}</span>
+        </div>
 
-  // Update dots
-  const dots = document.querySelectorAll('#slide-progress-dots .slide-dot');
-  dots.forEach((dot, idx) => {
-    if (idx === activeIndex) {
-      dot.className = 'slide-dot h-1.5 w-8 rounded-full bg-primary shadow-[0_0_8px_rgba(201,160,91,0.5)] transition-all duration-300 cursor-pointer';
-    } else {
-      dot.className = 'slide-dot h-1.5 w-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
-    }
-  });
+        <button aria-label="Save to Watchlist" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+          <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
+        </button>
+
+        <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+          <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-sans text-[11px] font-bold flex items-center gap-1 shadow-sm hover:bg-brass-hover transition-colors" title="Watch 4K" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span>Watch</span>
+          </button>
+          <div class="flex items-center gap-1">
+            <button aria-label="Download 4K" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+              <span class="material-symbols-outlined text-[14px]">download</span>
+            </button>
+            <button aria-label="Details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Details" onclick="event.stopPropagation(); openFilmDetails('${id}')">
+              <span class="material-symbols-outlined text-[14px]">info</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2 space-y-0.5">
+        <h4 class="font-sans text-xs font-semibold text-parchment truncate group-hover:text-primary transition-colors">${m.title}</h4>
+        <div class="flex items-center gap-2 font-mono text-[11px] text-driftwood">
+          <span>${m.year || '2024'}</span>
+          <span class="text-white/20">•</span>
+          <span class="text-primary font-medium flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[11px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+          </span>
+          <span class="text-white/20">•</span>
+          <span class="text-tertiary text-[10px] uppercase font-bold truncate">${tag}</span>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-function nextSlide() {
-  const nextIdx = slideshowState.currentIndex + 1;
-  renderSlide(nextIdx);
-  restartSlideTimer();
-}
-
-function prevSlide() {
-  const prevIdx = slideshowState.currentIndex - 1;
-  renderSlide(prevIdx);
-  restartSlideTimer();
-}
-
-function goToSlide(index) {
-  renderSlide(index);
-  restartSlideTimer();
-}
-
-function startSlideTimer() {
-  if (slideshowState.timer) clearInterval(slideshowState.timer);
-  slideshowState.timer = setInterval(() => {
-    if (!slideshowState.isPaused) {
-      nextSlide();
-    }
-  }, slideshowState.timerInterval);
-}
-
-function stopSlideTimer() {
-  if (slideshowState.timer) clearInterval(slideshowState.timer);
-}
-
-function restartSlideTimer() {
-  stopSlideTimer();
-  startSlideTimer();
-}
-
-function getCurrentSlideMovie() {
-  const slides = slideshowState.filteredSlides;
-  return slides[slideshowState.currentIndex] || FEATURED_SLIDES[0];
-}
-
-function playSlideMovie() {
-  const slide = getCurrentSlideMovie();
-  playCurrentFilmInPlayer(slide.slug || slide.id);
-}
-
-function openSlideDossier() {
-  const slide = getCurrentSlideMovie();
-  openFilmDetails(slide.slug || slide.id);
-}
-
-function toggleSlideWatchlist() {
-  const slide = getCurrentSlideMovie();
-  const id = slide.slug || slide.id;
-  const btnText = document.getElementById('slide-watchlist-text');
-
-  if (watchlistSet.has(id)) {
-    watchlistSet.delete(id);
-    if (btnText) btnText.innerText = 'Watchlist';
-    showToast(`Removed "${slide.title}" from your Watchlist.`);
-  } else {
-    watchlistSet.add(id);
-    if (btnText) btnText.innerText = 'In Watchlist';
-    showToast(`Added "${slide.title}" to your Watchlist.`);
-  }
-}
-
-function openSlideRating() {
-  const slide = getCurrentSlideMovie();
-  openRatingDialogModal(slide.slug || slide.id);
-}
-
-// =========================================================================
-// 2. NAVIGATION & SCREEN CONTROLLER
-// =========================================================================
-
-function switchMainScreen(screenName) {
-  currentScreen = screenName;
-
-  const screens = ['discover', 'home', 'library', 'details', 'specs'];
-  screens.forEach(s => {
-    const el = document.getElementById(`screen-${s}`);
-    if (el) {
-      if (s === screenName) {
-        el.classList.remove('hidden');
-      } else {
-        el.classList.add('hidden');
-      }
-    }
-  });
-
-  // Update Nav Links
-  document.querySelectorAll('#main-nav-links .nav-link').forEach(link => {
-    const nav = link.getAttribute('data-nav');
-    if (nav === screenName || (screenName === 'home' && nav === 'trending')) {
-      link.classList.add('active', 'text-parchment');
-      link.classList.remove('text-driftwood');
-    } else if (nav) {
-      link.classList.remove('active', 'text-parchment');
-      link.classList.add('text-driftwood');
-    }
-  });
-
-  // Render dynamic catalog grids when entering screen
-  if (screenName === 'discover') {
-    renderDiscoverCatalog();
-  }
-
-  // Smooth scroll
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// =========================================================================
-// 3. DISCOVER FILTER MATRIX & MOVEMENTS CONTROLLER
-// =========================================================================
-
-function switchState(state) {
-  // Discover page views
-  const gridView = document.getElementById('view-filtered-grid');
-  const genreView = document.getElementById('view-genre-tiles');
-  const btnGrid = document.getElementById('btn-state-grid');
-  const btnGenres = document.getElementById('btn-state-genres');
-  const pillGrid = document.getElementById('toggle-grid-pill');
-  const pillGenre = document.getElementById('toggle-genre-pill');
-
-  // Home / Trending view state buttons
-  const btnStd = document.getElementById('btn-view-standard');
-  const btnHov = document.getElementById('btn-view-hover');
-  const btnSkel = document.getElementById('btn-view-skeleton');
-
-  if (state === 'grid') {
-    if (gridView) gridView.classList.remove('hidden');
-    if (genreView) genreView.classList.add('hidden');
-
-    if (btnGrid) btnGrid.className = 'font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-primary-container text-on-primary font-semibold cursor-pointer';
-    if (btnGenres) btnGenres.className = 'font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer';
-
-    if (pillGrid) pillGrid.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-medium transition-all cursor-pointer';
-    if (pillGenre) pillGenre.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
-  } else if (state === 'genres') {
-    if (gridView) gridView.classList.add('hidden');
-    if (genreView) genreView.classList.remove('hidden');
-
-    if (btnGrid) btnGrid.className = 'font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer';
-    if (btnGenres) btnGenres.className = 'font-label-sm text-label-sm uppercase px-4 py-2 rounded-full transition-all duration-200 bg-primary-container text-on-primary font-semibold cursor-pointer';
-
-    if (pillGrid) pillGrid.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
-    if (pillGenre) pillGenre.className = 'font-body-sm text-body-sm px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-medium transition-all cursor-pointer';
-  } else if (state === 'standard') {
-    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
-    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    filterTrendingRows('all');
-    showToast('Display State: Standard Archival View');
-  } else if (state === 'hover-showcase') {
-    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
-    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    showToast('Inspect State: Interactive Card Hover Dynamics Active');
-  } else if (state === 'skeletons-only') {
-    if (btnStd) btnStd.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    if (btnHov) btnHov.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-all duration-200 border border-outline-variant/40 cursor-pointer';
-    if (btnSkel) btnSkel.className = 'px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.08em] bg-primary text-on-primary font-semibold transition-all duration-200 shadow-sm cursor-pointer';
-    showToast('Loading State: Simulating Curatorial Shimmer...');
-    setTimeout(() => {
-      switchState('standard');
-    }, 1200);
-  }
-}
-
-function openMovementsTab() {
-  switchMainScreen('discover');
-  switchState('genres');
-}
-
-function filterCatalogByMovement(movementKey) {
-  switchState('grid');
+function filterTrendingRows(category = 'all') {
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-  let filtered = catalog;
 
-  if (movementKey === 'sci-fi') {
-    filtered = catalog.filter(m => (m.genres && m.genres.some(g => g.toLowerCase().includes('sci-fi') || g.toLowerCase().includes('action'))) || (m.title && (m.title.toLowerCase().includes('dune') || m.title.toLowerCase().includes('interstellar'))));
-  } else if (movementKey === 'korean') {
-    filtered = catalog.filter(m => m.country === 'South Korea' || (m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('melodrama'))));
-  } else if (movementKey === 'french') {
-    filtered = catalog.filter(m => m.country === 'France' || (m.title && (m.title.toLowerCase().includes('anatomy') || m.title.toLowerCase().includes('breathless'))));
-  } else if (movementKey === 'thriller') {
-    filtered = catalog.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes('thriller') || g.toLowerCase().includes('horror') || g.toLowerCase().includes('mystery')));
-  } else if (movementKey === 'japanese') {
-    filtered = catalog.filter(m => m.country === 'Japan' || (m.title && (m.title.toLowerCase().includes('drive my car') || m.title.toLowerCase().includes('monster') || m.title.toLowerCase().includes('perfect days'))));
-  } else if (movementKey === 'poetic') {
-    filtered = catalog.filter(m => m.country === 'France' || m.year < 1980 || (m.title && (m.title.toLowerCase().includes('mirror') || m.title.toLowerCase().includes('cleo'))));
+  const animeFilms = catalog.filter(m => 
+    m.category === 'anime' || 
+    m.country === 'Japan' || 
+    (m.genres && m.genres.some(g => typeof g === 'string' && (g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime'))))
+  );
+
+  const teluguFilms = catalog.filter(m => 
+    m.category === 'telugu' || 
+    (m.language && m.language.toLowerCase().includes('telugu')) || 
+    (m.audio && m.audio.toLowerCase().includes('telugu')) ||
+    (m.title && /RRR|Baahubali|Salaar|Kalki|Pushpa|Devara|Hanu-Man|Kantara|Sita Ramam|Lucky Baskhar/i.test(m.title))
+  );
+
+  const tamilFilms = catalog.filter(m => 
+    m.category === 'tamil' || 
+    (m.language && m.language.toLowerCase().includes('tamil')) || 
+    (m.audio && m.audio.toLowerCase().includes('tamil')) ||
+    (m.title && /Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Amaran|Vettaiyan/i.test(m.title))
+  );
+
+  const bollywoodFilms = catalog.filter(m => 
+    m.category === 'bollywood' ||
+    (m.country === 'India' && !teluguFilms.some(t => t.id === m.id) && !tamilFilms.some(t => t.id === m.id)) ||
+    (m.audio && m.audio.toLowerCase().includes('hindi')) ||
+    (m.title && /Jawan|Pathaan|Animal|Fighter|Stree|Dangal|3 Idiots|Brahmāstra|Tumbbad|PK|Lagaan|Zindagi Na Milegi/i.test(m.title))
+  );
+
+  const hollywoodFilms = catalog.filter(m => 
+    m.category === 'hollywood' || 
+    m.country === 'United States' || 
+    m.country === 'United Kingdom' || 
+    (m.title && /Dune|Oppenheimer|Interstellar|Dark Knight|Deadpool|Avatar|Inception|Gladiator|Matrix|Blade Runner/i.test(m.title))
+  );
+
+  const koreanFilms = catalog.filter(m => 
+    m.category === 'korean' || 
+    m.category === 'romance' || 
+    m.country === 'South Korea'
+  );
+
+  // Trending
+  const trendingContainer = document.getElementById('carousel-trending');
+  if (trendingContainer) {
+    let trendingFilms = catalog;
+    if (category === 'anime') trendingFilms = animeFilms;
+    else if (category === 'bollywood') trendingFilms = bollywoodFilms;
+    else if (category === 'telugu') trendingFilms = teluguFilms;
+    else if (category === 'tamil') trendingFilms = tamilFilms;
+    else if (category === 'korean') trendingFilms = koreanFilms;
+    else if (category === 'hollywood') trendingFilms = hollywoodFilms;
+
+    trendingContainer.innerHTML = trendingFilms.slice(0, 16).map(m => createMovieCardHtml(m)).join('');
   }
 
-  renderDiscoverCatalog(filtered);
-  showToast(`Filtered: ${filtered.length} films in ${movementKey.toUpperCase()} movement`);
-}
+  // Dedicated Anime
+  const animeContainer = document.getElementById('carousel-anime');
+  if (animeContainer) {
+    animeContainer.innerHTML = animeFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'ANIME 4K' })).join('');
+  }
 
-function resetFilters() {
-  renderDiscoverCatalog();
-  showToast('Reset all curatorial filters.');
-}
+  // Dedicated Bollywood
+  const bollywoodContainer = document.getElementById('carousel-bollywood');
+  if (bollywoodContainer) {
+    bollywoodContainer.innerHTML = bollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'HINDI' })).join('');
+  }
 
-function toggleMobileSheet(show) {
-  const sheet = document.getElementById('mobile-filter-modal');
-  if (!sheet) return;
-  if (show) {
-    sheet.classList.remove('hidden');
-    sheet.classList.add('flex');
-  } else {
-    sheet.classList.add('hidden');
-    sheet.classList.remove('flex');
+  // Dedicated Telugu
+  const teluguContainer = document.getElementById('carousel-telugu');
+  if (teluguContainer) {
+    teluguContainer.innerHTML = teluguFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TELUGU' })).join('');
+  }
+
+  // Dedicated Tamil
+  const tamilContainer = document.getElementById('carousel-tamil');
+  if (tamilContainer) {
+    tamilContainer.innerHTML = tamilFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TAMIL' })).join('');
+  }
+
+  // Dedicated Hollywood
+  const hollywoodContainer = document.getElementById('carousel-hollywood');
+  if (hollywoodContainer) {
+    hollywoodContainer.innerHTML = hollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: '4K UHD' })).join('');
+  }
+
+  // Dedicated Korean
+  const koreanContainer = document.getElementById('carousel-korean');
+  if (koreanContainer) {
+    koreanContainer.innerHTML = koreanFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'K-CINEMA' })).join('');
+  }
+
+  // Numbered Top 10 Critics
+  const numberedContainer = document.getElementById('carousel-numbered');
+  if (numberedContainer) {
+    const top10 = [...catalog].sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0)).slice(0, 10);
+    numberedContainer.innerHTML = top10.map((m, idx) => {
+      const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
+      const num = idx + 1;
+      const score = m.imdbRating || '8.5';
+      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+      const id = m.slug || m.id;
+
+      return `
+        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${id}')">
+          <span class="font-serif text-[110px] font-normal leading-none text-transparent select-none pointer-events-none -mr-6 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.5;">
+            ${num}
+          </span>
+          <div class="relative w-[170px] z-10">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-md group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-2xl transition-all duration-300">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
+              <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+                <button class="h-6 px-2 rounded-full bg-primary text-on-primary font-sans text-[10px] font-bold flex items-center gap-1 shadow-sm hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+                  <span class="material-symbols-outlined text-[12px]">play_arrow</span>
+                  <span>Play</span>
+                </button>
+                <button aria-label="Download 4K" class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+                  <span class="material-symbols-outlined text-[12px]">download</span>
+                </button>
+              </div>
+            </div>
+            <div class="mt-1.5 space-y-0.5">
+              <h4 class="font-sans text-xs font-semibold text-parchment truncate group-hover:text-primary transition-colors">${m.title}</h4>
+              <div class="flex items-center gap-1.5 font-mono text-[10px] text-driftwood">
+                <span>${m.year || '2024'}</span>
+                <span class="text-white/20">•</span>
+                <span class="text-primary font-medium flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[10px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 }
+
+// =========================================================================
+// 4. DISCOVER FILTER & GRID ENGINE
+// =========================================================================
 
 let discoverSearchTimer = null;
 function handleDiscoverSearch(query) {
@@ -623,54 +643,43 @@ function handleDiscoverSearch(query) {
 function applyDiscoverFilters() {
   const genreSelect = document.getElementById('filter-genre-select');
   const audioSelect = document.getElementById('filter-audio-select');
-  const regionSelect = document.getElementById('filter-region-select');
   const sortSelect = document.getElementById('filter-sort-select');
   const searchInput = document.getElementById('discover-inline-search');
 
   const genreVal = (genreSelect ? genreSelect.value : 'all').toLowerCase();
   const audioVal = (audioSelect ? audioSelect.value : 'all').toLowerCase();
-  const regionVal = (regionSelect ? regionSelect.value : 'all').toLowerCase();
   const sortVal = (sortSelect ? sortSelect.value : 'rating').toLowerCase();
   const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
 
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? [...KOREAN_MOVIES_CATALOG] : [];
   let filtered = catalog;
 
-  // Search filter
+  // Search query filter
   if (query.length > 0) {
     filtered = filtered.filter(m =>
       (m.title && m.title.toLowerCase().includes(query)) ||
       (m.director && m.director.toLowerCase().includes(query)) ||
       (m.country && m.country.toLowerCase().includes(query)) ||
-      (m.genres && m.genres.some(g => g.toLowerCase().includes(query)))
+      (m.genres && m.genres.some(g => typeof g === 'string' && g.toLowerCase().includes(query)))
     );
   }
 
   // Genre filter
   if (genreVal !== 'all') {
-    filtered = filtered.filter(m => m.genres && m.genres.some(g => g.toLowerCase().includes(genreVal)));
+    filtered = filtered.filter(m => m.genres && m.genres.some(g => typeof g === 'string' && g.toLowerCase().includes(genreVal)));
   }
 
   // Audio Dubbing filter
   if (audioVal !== 'all') {
     if (audioVal === 'hindi') {
-      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('hindi')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avatar-the-way-of-water', 'avengers-endgame', 'parasite', 'spirited-away', '15859'].includes(m.slug || m.id));
+      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('hindi')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avatar-the-way-of-water', 'parasite', 'spirited-away'].includes(m.slug || m.id));
     } else if (audioVal === 'tamil') {
-      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('tamil')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avengers-endgame'].includes(m.slug || m.id));
+      filtered = filtered.filter(m => m.category === 'tamil' || (m.audio && m.audio.toLowerCase().includes('tamil')));
     } else if (audioVal === 'telugu') {
-      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('telugu')) || ['dune-part-two', 'interstellar', 'avengers-endgame'].includes(m.slug || m.id));
+      filtered = filtered.filter(m => m.category === 'telugu' || (m.audio && m.audio.toLowerCase().includes('telugu')));
     } else if (audioVal === 'english') {
-      filtered = filtered.filter(m => m.country === 'United States' || m.country === 'United Kingdom' || (m.audio && m.audio.toLowerCase().includes('english')));
-    } else if (audioVal === 'korean') {
-      filtered = filtered.filter(m => m.country === 'South Korea' || (m.audio && m.audio.toLowerCase().includes('korean')));
-    } else if (audioVal === 'japanese') {
-      filtered = filtered.filter(m => m.country === 'Japan' || (m.audio && m.audio.toLowerCase().includes('japanese')));
+      filtered = filtered.filter(m => m.country === 'United States' || (m.audio && m.audio.toLowerCase().includes('english')));
     }
-  }
-
-  // Region filter
-  if (regionVal !== 'all') {
-    filtered = filtered.filter(m => m.country && m.country.toLowerCase().includes(regionVal));
   }
 
   // Sort filter
@@ -685,450 +694,255 @@ function applyDiscoverFilters() {
   renderDiscoverCatalog(filtered);
 }
 
-// =========================================================================
-// 4. TRENDING ROW CAROUSEL CONTROLS & FILTERING
-// =========================================================================
+function renderDiscoverCatalog(customList) {
+  const grid = document.getElementById('catalogGrid');
+  const counter = document.getElementById('discover-counter');
+  if (!grid) return;
 
-function scrollRow(rowId, direction) {
-  const el = document.getElementById(rowId);
-  if (el) {
-    el.scrollBy({ left: direction * 460, behavior: 'smooth' });
-  }
-}
+  const catalog = customList || ((typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : []);
+  if (counter) counter.innerText = `${catalog.length} VERIFIED MASTER FILMS`;
 
-function selectChip(btn, category) {
-  const container = document.getElementById('chip-container');
-  if (container) {
-    const allChips = container.querySelectorAll('.chip-item');
-    allChips.forEach(c => {
-      c.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
-      c.classList.add('text-on-surface-variant', 'border', 'border-outline-variant/40');
-    });
-    // ONLY scroll the horizontal container; NEVER call window.scrollTo or element.scrollIntoView
-    const targetScroll = btn.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (btn.clientWidth / 2);
-    container.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
-  }
-  btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
-  btn.classList.remove('text-on-surface-variant', 'border', 'border-outline-variant/40');
-
-  filterTrendingRows(category);
-
-  const categoryNames = {
-    all: 'All Curations',
-    anime: '🎌 Anime & Animation',
-    bollywood: '🇮🇳 Bollywood & Hindi Cinema',
-    telugu: '🇮🇳 Tollywood (Telugu Blockbusters)',
-    tamil: '🇮🇳 Kollywood (Tamil Masterpieces)',
-    korean: '🇰🇷 Korean Cinema & K-Melodrama',
-    hollywood: '🚀 Hollywood 4K & IMAX',
-    world: '🌍 World Cinema'
-  };
-
-  showToast(`Active Category: ${categoryNames[category] || category.toUpperCase()}`);
-}
-
-function createMovieCardHtml(m, options = {}) {
-  const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
-  const rating = m.rating || 'PG-13';
-  const score = m.imdbRating || '8.2';
-  const id = m.slug || m.id;
-  const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
-  const isSaved = watchlistSet.has(id);
-  const tag = options.tag || (m.language ? m.language.toUpperCase() : (m.country || '4K'));
-
-  return `
-    <div class="group relative flex-shrink-0 w-[200px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
-      <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)]">
-        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
-        <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-        
-        <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
-          <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
-        </div>
-
-        <button aria-label="Save to Watchlist" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
-          <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
+  if (catalog.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full py-16 text-center text-driftwood space-y-3">
+        <span class="material-symbols-outlined text-3xl text-primary">movie_filter</span>
+        <p class="text-sm font-sans">No matching films found.</p>
+        <button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-sans text-xs font-bold uppercase cursor-pointer" onclick="resetDiscoverFilters()">
+          Clear Filters
         </button>
+      </div>
+    `;
+    return;
+  }
 
-        <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-          <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1 shadow-sm hover:bg-brass-hover transition-colors" title="Watch in 4K" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
-            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-            <span>Watch</span>
+  grid.innerHTML = catalog.map(m => {
+    const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
+    const rating = m.rating || 'PG-13';
+    const score = m.imdbRating || '8.1';
+    const id = m.slug || m.id;
+    const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+    const isSaved = watchlistSet.has(id);
+
+    return `
+      <div class="group relative flex flex-col bg-surface-container rounded-xl overflow-hidden border border-white/10 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-pointer" onclick="openFilmDetails('${id}')">
+        <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" alt="${m.title}" loading="lazy" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+          
+          <div class="absolute top-2 left-2 z-10 flex items-center gap-1">
+            <span class="font-sans text-[10px] px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-on-surface uppercase border border-white/10 font-medium">${rating}</span>
+          </div>
+          
+          <button aria-label="Save" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+            <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
           </button>
-          <div class="flex items-center gap-1">
-            <button aria-label="1-Click Download" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
-              <span class="material-symbols-outlined text-[14px]">download</span>
+
+          <div class="absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+            <button class="h-9 px-3 rounded-full bg-primary text-on-primary font-sans text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-brass-hover transition-colors cursor-pointer" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch</span>
             </button>
-            <button aria-label="View details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Film Details" onclick="event.stopPropagation(); openFilmDetails('${id}')">
-              <span class="material-symbols-outlined text-[14px]">info</span>
+            <button class="w-9 h-9 rounded-full bg-surface-bright text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-colors cursor-pointer border border-white/10" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+              <span class="material-symbols-outlined text-[16px]">download</span>
             </button>
           </div>
         </div>
-      </div>
-      <div class="mt-2.5 space-y-0.5">
-        <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-        <div class="flex items-center gap-2 font-label-md text-xs text-on-surface-variant">
-          <span>${m.year || '2024'}</span>
-          <span class="text-outline-variant">•</span>
-          <span class="text-primary font-medium flex items-center gap-0.5">
-            <span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
-          </span>
-          <span class="text-outline-variant">•</span>
-          <span class="text-tertiary text-[10px] uppercase font-bold truncate">${tag}</span>
+        
+        <div class="p-2.5 space-y-1">
+          <h4 class="font-sans text-xs font-semibold text-parchment truncate group-hover:text-primary transition-colors">${m.title}</h4>
+          <div class="flex items-center justify-between font-mono text-[10px] text-driftwood">
+            <span>${m.year || '2024'}</span>
+            <span class="text-primary font-medium flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[10px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
+  }).join('');
 }
 
-function filterTrendingRows(category = 'all') {
+function resetDiscoverFilters() {
+  const genreSelect = document.getElementById('filter-genre-select');
+  const audioSelect = document.getElementById('filter-audio-select');
+  const sortSelect = document.getElementById('filter-sort-select');
+  const searchInput = document.getElementById('discover-inline-search');
+
+  if (genreSelect) genreSelect.value = 'all';
+  if (audioSelect) audioSelect.value = 'all';
+  if (sortSelect) sortSelect.value = 'rating';
+  if (searchInput) searchInput.value = '';
+
+  renderDiscoverCatalog();
+}
+
+// =========================================================================
+// 5. MY LIBRARY & WATCHLIST CONTROLLER
+// =========================================================================
+
+function renderLibraryGrid() {
+  const container = document.getElementById('library-grid');
+  if (!container) return;
+
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  const savedMovies = catalog.filter(m => watchlistSet.has(m.slug || m.id));
 
-  // Filter lists for all dedicated sections
-  const animeFilms = catalog.filter(m => 
-    m.category === 'anime' || 
-    m.country === 'Japan' || 
-    (m.genres && m.genres.some(g => g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime')))
-  );
-
-  const teluguFilms = catalog.filter(m => 
-    m.category === 'telugu' || 
-    (m.language && m.language.toLowerCase().includes('telugu')) || 
-    (m.audio && m.audio.toLowerCase().includes('telugu')) ||
-    (m.title && /RRR|Baahubali|Salaar|Kalki|Pushpa|Devara|Hanu-Man|Magadheera|Eega/i.test(m.title))
-  );
-
-  const tamilFilms = catalog.filter(m => 
-    m.category === 'tamil' || 
-    (m.language && m.language.toLowerCase().includes('tamil')) || 
-    (m.audio && m.audio.toLowerCase().includes('tamil')) ||
-    (m.title && /Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Super Deluxe|Asuran/i.test(m.title))
-  );
-
-  const bollywoodFilms = catalog.filter(m => 
-    m.category === 'bollywood' ||
-    (m.country === 'India' && !teluguFilms.some(t => t.id === m.id) && !tamilFilms.some(t => t.id === m.id)) ||
-    (m.audio && m.audio.toLowerCase().includes('hindi')) ||
-    (m.title && /Jawan|Pathaan|Animal|Fighter|Stree|Dangal|3 Idiots|Brahmāstra|K\.G\.F/i.test(m.title))
-  );
-
-  const hollywoodFilms = catalog.filter(m => 
-    m.category === 'hollywood' || 
-    m.country === 'United States' || 
-    m.country === 'United Kingdom' || 
-    (m.title && /Dune|Oppenheimer|Interstellar|Dark Knight|Deadpool|Avatar|Inception|Gladiator/i.test(m.title))
-  );
-
-  const koreanFilms = catalog.filter(m => 
-    m.category === 'korean' || 
-    m.category === 'romance' || 
-    m.country === 'South Korea'
-  );
-
-  // Trending (top rated blend)
-  const trendingContainer = document.getElementById('carousel-trending');
-  if (trendingContainer) {
-    let trendingFilms = catalog;
-    if (category === 'anime') trendingFilms = animeFilms;
-    else if (category === 'bollywood') trendingFilms = bollywoodFilms;
-    else if (category === 'telugu') trendingFilms = teluguFilms;
-    else if (category === 'tamil') trendingFilms = tamilFilms;
-    else if (category === 'korean') trendingFilms = koreanFilms;
-    else if (category === 'hollywood') trendingFilms = hollywoodFilms;
-    else if (category === 'world') trendingFilms = catalog.filter(m => m.country !== 'United States');
-
-    trendingContainer.innerHTML = trendingFilms.slice(0, 16).map(m => createMovieCardHtml(m)).join('');
+  if (savedMovies.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full py-16 text-center text-driftwood space-y-3">
+        <span class="material-symbols-outlined text-4xl text-primary">bookmark_border</span>
+        <h3 class="font-serif text-xl text-parchment font-medium">Your Watchlist is Empty</h3>
+        <p class="text-xs font-sans max-w-sm mx-auto">Click the bookmark icon on any movie card or hero banner to save it here for quick access.</p>
+        <button class="px-5 py-2 rounded-full bg-primary text-on-primary font-sans text-xs font-bold uppercase cursor-pointer" onclick="switchMainScreen('discover')">
+          Browse Movies
+        </button>
+      </div>
+    `;
+    return;
   }
 
-  // Dedicated Carousel: Anime
-  const animeContainer = document.getElementById('carousel-anime');
-  if (animeContainer) {
-    animeContainer.innerHTML = animeFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'ANIME 4K' })).join('');
-  }
+  container.innerHTML = savedMovies.map(m => {
+    const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
+    const id = m.slug || m.id;
+    const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
 
-  // Dedicated Carousel: Bollywood
-  const bollywoodContainer = document.getElementById('carousel-bollywood');
-  if (bollywoodContainer) {
-    bollywoodContainer.innerHTML = bollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'HINDI' })).join('');
-  }
+    return `
+      <div class="group relative flex flex-col bg-surface-container rounded-xl overflow-hidden border border-white/10 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-pointer" onclick="openFilmDetails('${id}')">
+        <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" alt="${m.title}" loading="lazy" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
 
-  // Dedicated Carousel: Tollywood (Telugu)
-  const teluguContainer = document.getElementById('carousel-telugu');
-  if (teluguContainer) {
-    teluguContainer.innerHTML = teluguFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TELUGU' })).join('');
-  }
+          <button aria-label="Remove from Watchlist" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-primary hover:text-white transition-colors cursor-pointer z-10" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}'); renderLibraryGrid();">
+            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+          </button>
 
-  // Dedicated Carousel: Kollywood (Tamil)
-  const tamilContainer = document.getElementById('carousel-tamil');
-  if (tamilContainer) {
-    tamilContainer.innerHTML = tamilFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TAMIL' })).join('');
-  }
-
-  // Dedicated Carousel: Hollywood 4K
-  const hollywoodContainer = document.getElementById('carousel-hollywood');
-  if (hollywoodContainer) {
-    hollywoodContainer.innerHTML = hollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'IMAX 4K' })).join('');
-  }
-
-  // Dedicated Carousel: Korean Cinema
-  const koreanContainer = document.getElementById('carousel-korean');
-  if (koreanContainer) {
-    koreanContainer.innerHTML = koreanFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'KOFA 35MM' })).join('');
-  }
-
-  // Numbered Top 10 Critics' Choice
-  const numberedContainer = document.getElementById('carousel-numbered');
-  if (numberedContainer) {
-    const top10 = [...catalog].sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0)).slice(0, 10);
-    numberedContainer.innerHTML = top10.map((m, idx) => {
-      const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
-      const num = idx + 1;
-      const score = m.imdbRating || '8.5';
-      const tag = m.language ? m.language.toUpperCase() : (m.country || '4K');
-      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
-      const id = m.slug || m.id;
-
-      return `
-        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${id}')">
-          <span class="font-serif text-[128px] font-normal leading-none text-transparent select-none pointer-events-none -mr-7 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.6;">
-            ${num}
-          </span>
-          <div class="relative w-[190px] z-10">
-            <div class="relative w-full aspect-[2/3] rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:-translate-y-1.5 group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] transition-all duration-300">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
-              <div class="absolute inset-0 ring-1 ring-inset ring-parchment/10 rounded-[14px] pointer-events-none"></div>
-              <div class="absolute top-2.5 left-2.5 z-10">
-                <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${tag}</span>
-              </div>
-              <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-                <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-body-sm text-[11px] font-semibold flex items-center gap-1 shadow-sm hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
-                  <span class="material-symbols-outlined text-[14px]">play_arrow</span>
-                  <span>Play</span>
-                </button>
-                <button aria-label="1-Click Download" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
-                  <span class="material-symbols-outlined text-[14px]">download</span>
-                </button>
-              </div>
-            </div>
-            <div class="mt-2.5 space-y-0.5">
-              <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-              <div class="flex items-center gap-2 font-label-md text-xs text-on-surface-variant">
-                <span>${m.year || '2024'}</span>
-                <span class="text-outline-variant">•</span>
-                <span class="text-primary font-medium flex items-center gap-0.5">
-                  <span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
-                </span>
-              </div>
-            </div>
+          <div class="absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+            <button class="h-9 px-3 rounded-full bg-primary text-on-primary font-sans text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-brass-hover transition-colors cursor-pointer" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch</span>
+            </button>
+            <button class="w-9 h-9 rounded-full bg-surface-bright text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-colors cursor-pointer border border-white/10" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
+              <span class="material-symbols-outlined text-[16px]">download</span>
+            </button>
           </div>
         </div>
-      `;
-    }).join('');
-  }
-
-  // Wide 16:9 Theatrical Previews Carousel
-  const wideContainer = document.getElementById('carousel-wide');
-  if (wideContainer) {
-    const wideFilms = catalog.slice(0, 10);
-    wideContainer.innerHTML = wideFilms.map(m => {
-      const backdrop = m.backdropUrl || m.backdrop || m.posterUrl || getPosterFallbackSvg(m.title, m.year);
-      const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
-      const id = m.slug || m.id;
-
-      return `
-        <div class="group relative flex-shrink-0 w-[320px] snap-start cursor-pointer" onclick="playCurrentFilmInPlayer('${id}')">
-          <div class="relative w-full aspect-video rounded-[14px] overflow-hidden bg-surface-container border border-outline-variant/30 shadow-md group-hover:border-primary/40 group-hover:shadow-[0_18px_36px_rgba(5,12,15,0.6)] transition-all duration-300">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${backdrop}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
-            <div class="absolute inset-0 bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest/10 transition-colors"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-md">
-                <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-              </div>
-            </div>
-          </div>
-          <div class="mt-3 flex items-start justify-between gap-4">
-            <div class="space-y-0.5 min-w-0">
-              <h4 class="font-body-md text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">${m.title}</h4>
-              <p class="font-label-sm text-xs text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
-            </div>
-            <div class="flex items-center gap-1.5 flex-shrink-0">
-              <button class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-xs font-bold uppercase transition-transform active:scale-95 hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
-                Play 4K
-              </button>
-              <button class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-on-surface hover:text-primary flex items-center justify-center transition-colors" title="Download 4K" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
-                <span class="material-symbols-outlined text-[15px]">download</span>
-              </button>
-            </div>
+        
+        <div class="p-2.5 space-y-1">
+          <h4 class="font-sans text-xs font-semibold text-parchment truncate group-hover:text-primary transition-colors">${m.title}</h4>
+          <div class="flex items-center justify-between font-mono text-[10px] text-driftwood">
+            <span>${m.year || '2024'}</span>
+            <span class="text-primary font-medium flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[10px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${m.imdbRating || '8.0'}
+            </span>
           </div>
         </div>
-      `;
-    }).join('');
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleSlideWatchlistById(id, title) {
+  if (watchlistSet.has(id)) {
+    watchlistSet.delete(id);
+    showToast(`Removed "${title}" from Watchlist.`);
+  } else {
+    watchlistSet.add(id);
+    showToast(`Added "${title}" to Watchlist.`);
   }
 }
 
 // =========================================================================
-// 5. LIBRARY SUB-VIEWS & FAST SEARCH
+// 6. FILM DETAILS & CINEMA 4K PLAYER INTEGRATION
 // =========================================================================
 
-function switchLibrarySubView(view) {
-  const mainView = document.getElementById('library-subview-main');
-  const searchView = document.getElementById('library-subview-search');
-  const emptyView = document.getElementById('library-subview-empty');
-
-  const btnLib = document.getElementById('view-library-btn');
-  const btnSearch = document.getElementById('view-search-btn');
-  const btnEmpty = document.getElementById('view-empty-btn');
-
-  const allBtns = [btnLib, btnSearch, btnEmpty];
-  allBtns.forEach(b => {
-    if (b) {
-      b.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer';
-    }
-  });
-
-  if (mainView) mainView.classList.add('hidden');
-  if (searchView) searchView.classList.add('hidden');
-  if (emptyView) emptyView.classList.add('hidden');
-
-  if (view === 'library') {
-    if (mainView) mainView.classList.remove('hidden');
-    if (btnLib) btnLib.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
-  } else if (view === 'search') {
-    if (searchView) searchView.classList.remove('hidden');
-    if (btnSearch) btnSearch.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
-    const input = document.getElementById('library-search-input');
-    if (input) {
-      input.focus();
-      handleLibrarySearch(input.value || '');
-    }
-  } else if (view === 'empty') {
-    if (emptyView) emptyView.classList.remove('hidden');
-    if (btnEmpty) btnEmpty.className = 'px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer';
-  }
-}
-
-let librarySearchTimer = null;
-function handleLibrarySearch(query) {
-  if (librarySearchTimer) clearTimeout(librarySearchTimer);
-  librarySearchTimer = setTimeout(() => {
-    const resultsContainer = document.getElementById('library-search-results');
-    if (!resultsContainer) return;
-
+function openFilmDetails(movieOrSlug) {
+  let movie = movieOrSlug;
+  if (typeof movieOrSlug === 'string') {
     const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const q = (query || '').toLowerCase().trim();
+    movie = catalog.find(m => m.slug === movieOrSlug || m.id === movieOrSlug) || {
+      title: 'Movie',
+      year: '2024',
+      imdbRating: '8.0'
+    };
+  }
 
-    let matches = catalog.slice(0, 16);
-    if (q.length > 0) {
-      matches = catalog.filter(m =>
-        (m.title && m.title.toLowerCase().includes(q)) ||
-        (m.director && m.director.toLowerCase().includes(q)) ||
-        (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
-      );
-    }
+  currentActiveMovie = movie;
 
-    if (matches.length === 0) {
-      resultsContainer.innerHTML = `
-        <div class="col-span-full py-12 text-center text-on-surface-variant font-body-sm">
-          No matching films found in your personal library for "${query}".
-        </div>
-      `;
-      return;
-    }
+  const heroImg = document.getElementById('details-hero-img');
+  const posterImg = document.getElementById('details-poster-img');
+  const title = document.getElementById('details-title');
+  const score = document.getElementById('details-score');
+  const duration = document.getElementById('details-duration');
+  const age = document.getElementById('details-age');
+  const year = document.getElementById('details-year');
+  const synopsis = document.getElementById('details-synopsis');
 
-    resultsContainer.innerHTML = matches.map(m => {
-      const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
-      return `
-        <div class="group relative rounded-xl overflow-hidden bg-surface-container border border-border-hairline hover:border-primary/50 transition-all cursor-pointer" onclick="openFilmBySlug('${m.slug || m.id}')">
-          <div class="aspect-[2/3] w-full overflow-hidden bg-surface-container-lowest">
-            <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'">
-          </div>
-          <div class="p-2.5">
-            <h4 class="font-serif text-sm font-medium text-on-surface group-hover:text-primary truncate">${m.title}</h4>
-            <div class="flex items-center justify-between text-[11px] font-mono text-outline mt-1">
-              <span>${m.year || '2024'}</span>
-              <span class="text-primary">★ ${m.imdbRating || '8.0'}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }, 100);
+  const posterSrc = movie.posterUrl || movie.poster || movie.backdropUrl || getPosterFallbackSvg(movie.title, movie.year);
+  const backdropSrc = movie.backdropUrl || movie.backdrop || movie.posterUrl || posterSrc;
+
+  if (heroImg) heroImg.style.backgroundImage = `url('${backdropSrc}')`;
+  if (posterImg) {
+    posterImg.src = posterSrc;
+    posterImg.onerror = function() { this.src = getPosterFallbackSvg(movie.title, movie.year); };
+  }
+  if (title) title.innerText = movie.title;
+  if (score) score.innerText = `★ ${movie.imdbRating || '8.2'}`;
+  if (duration) duration.innerText = movie.duration || '2h 10m';
+  if (age) age.innerText = movie.rating || 'PG-13';
+  if (year) year.innerText = movie.year || '2024';
+  if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Available for high-speed 4K UHD streaming and direct offline download.';
+
+  switchMainScreen('details');
 }
 
-function filterLibraryCollection(type) {
-  const input = document.getElementById('library-search-input');
-  if (type === 'all') {
-    if (input) input.value = '';
-    handleLibrarySearch('');
-  } else if (type === 'restorations') {
-    if (input) input.value = '35mm';
-    handleLibrarySearch('35mm');
-  } else if (type === 'imax') {
-    if (input) input.value = '4K';
-    handleLibrarySearch('4K');
-  } else if (type === 'masterpiece') {
-    if (input) input.value = 'Masterpiece';
-    handleLibrarySearch('drama');
+function openFilmBySlug(slug) {
+  openFilmDetails(slug);
+}
+
+function toggleDetailsWatchlist() {
+  const text = document.getElementById('details-watchlist-text');
+  const id = currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '';
+  const title = currentActiveMovie ? currentActiveMovie.title : 'Film';
+
+  if (!id) return;
+  if (watchlistSet.has(id)) {
+    watchlistSet.delete(id);
+    if (text) text.innerText = 'Watchlist';
+    showToast(`Removed "${title}" from Watchlist.`);
+  } else {
+    watchlistSet.add(id);
+    if (text) text.innerText = 'In Watchlist';
+    showToast(`Added "${title}" to Watchlist.`);
+  }
+}
+
+function playCurrentFilmInPlayer(serverOrSlug) {
+  let film = currentActiveMovie;
+  const validServers = ['vidlink', 'multiaudio', 'vidsrc_cc', 'autoembed', 'vidsrc_xyz', 'local'];
+
+  if (typeof serverOrSlug === 'string' && !validServers.includes(serverOrSlug)) {
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug);
+    if (found) film = found;
+  }
+
+  if (!film) {
+    film = { id: 'dune-part-two', tmdbId: 693134, slug: 'dune-part-two', title: 'Dune: Part Two', year: '2024' };
+  }
+
+  currentActiveMovie = film;
+  let chosenServer = 'vidlink';
+  if (typeof serverOrSlug === 'string' && validServers.includes(serverOrSlug)) {
+    chosenServer = serverOrSlug;
+  }
+
+  if (typeof CinexaPlayer !== 'undefined') {
+    CinexaPlayer.openPlayer(film, chosenServer);
   }
 }
 
 // =========================================================================
-// 5. SPECS & RESILIENT STATES CONTROLLER
-// =========================================================================
-
-function switchSpecTab(mode) {
-  const panelGuide = document.getElementById('spec-panel-guide');
-  const panel404 = document.getElementById('spec-panel-404');
-  const panelOffline = document.getElementById('spec-panel-offline');
-
-  const tabGuide = document.getElementById('spec-tab-guide');
-  const tab404 = document.getElementById('spec-tab-404');
-  const tabOffline = document.getElementById('spec-tab-offline');
-
-  if (panelGuide) panelGuide.classList.add('hidden');
-  if (panel404) panel404.classList.add('hidden');
-  if (panelOffline) panelOffline.classList.add('hidden');
-
-  [tabGuide, tab404, tabOffline].forEach(t => {
-    if (t) {
-      t.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface transition-all duration-200 cursor-pointer border border-border-hairline/60';
-    }
-  });
-
-  if (mode === 'guide' && panelGuide && tabGuide) {
-    panelGuide.classList.remove('hidden');
-    tabGuide.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
-  } else if (mode === '404' && panel404 && tab404) {
-    panel404.classList.remove('hidden');
-    tab404.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
-  } else if (mode === 'offline' && panelOffline && tabOffline) {
-    panelOffline.classList.remove('hidden');
-    tabOffline.className = 'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all duration-200 cursor-pointer';
-  }
-}
-
-function simulateReconnect() {
-  const btn = document.getElementById('offline-ping-btn');
-  const status = document.getElementById('offline-status-text');
-  if (btn) {
-    btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> Verifying Vault...';
-    btn.disabled = true;
-  }
-  setTimeout(() => {
-    if (btn) {
-      btn.innerHTML = '<span class="material-symbols-outlined text-sm">check_circle</span> Archive Synchronized!';
-      btn.className = 'h-10 px-5 rounded-full bg-tertiary text-on-tertiary font-mono text-xs uppercase tracking-wider font-bold transition-all';
-    }
-    if (status) {
-      status.innerText = 'ONLINE • Local Vault Connected • 0ms Latency';
-      status.className = 'font-mono text-xs text-tertiary font-medium';
-    }
-    showToast('Vault Synchronized! 159 Master Films Available Locally.');
-  }, 1000);
-}
-
-// =========================================================================
-// 6. GLOBAL COMMAND PALETTE (⌘K SEARCH MODAL)
+// 7. GLOBAL SEARCH MODAL (⌘K / Ctrl+K)
 // =========================================================================
 
 function openModal(state) {
@@ -1139,13 +953,8 @@ function openModal(state) {
     overlay.classList.add('flex');
   }
   if (input) {
-    if (state === 'results') {
-      input.value = '';
-      handleModalSearch('');
-    } else {
-      input.value = 'Unlisted Indie 1999';
-      handleModalSearch('Unlisted Indie 1999');
-    }
+    input.value = '';
+    handleModalSearch('');
     setTimeout(() => input.focus(), 50);
   }
 }
@@ -1179,442 +988,50 @@ function _renderModalSearchResults(val) {
       (m.title && m.title.toLowerCase().includes(q)) ||
       (m.director && m.director.toLowerCase().includes(q)) ||
       (m.country && m.country.toLowerCase().includes(q)) ||
-      (m.genres && m.genres.some(g => g.toLowerCase().includes(q)))
+      (m.genres && m.genres.some(g => typeof g === 'string' && g.toLowerCase().includes(q)))
     );
   }
 
   if (matches.length === 0) {
     container.innerHTML = `
-      <div class="py-14 px-6 text-center">
-        <div class="w-10 h-10 rounded-full border border-border-hairline flex items-center justify-center mx-auto mb-3 bg-petrol-base text-driftwood">
-          <svg class="w-4 h-4 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-        </div>
-        <h4 class="font-serif text-lg text-parchment font-medium mb-1">Nothing found for "${val}"</h4>
-        <p class="font-sans text-xs text-driftwood mb-5 max-w-xs mx-auto">
-          No matches found in Cinexa archive. Verify spelling or explore curated collections.
-        </p>
+      <div class="py-12 text-center text-driftwood">
+        <span class="material-symbols-outlined text-3xl text-text-muted mb-2">search_off</span>
+        <h4 class="font-serif text-base text-parchment font-medium mb-1">No matches found for "${val}"</h4>
+        <p class="text-xs text-driftwood">Try searching by movie title, actor, or genre.</p>
       </div>
     `;
     return;
   }
 
   container.innerHTML = matches.slice(0, 10).map(m => {
-    const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
-    return `
-      <div class="p-4 hover:bg-surface-hover flex items-center justify-between gap-4 cursor-pointer group transition-colors" onclick="closeModal(); openFilmDetails('${m.slug || m.id}')">
-        <div class="flex items-center gap-3.5 min-w-0">
-          <div class="w-10 h-[60px] rounded-md overflow-hidden bg-petrol-base flex-shrink-0 border border-border-hairline">
-            <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'">
-          </div>
-          <div class="min-w-0">
-            <div class="flex items-center gap-2 mb-1">
-              <h4 class="font-serif font-medium text-base text-parchment group-hover:text-brass truncate">${m.title}</h4>
-              <span class="font-mono text-[11px] text-text-muted shrink-0">${m.year || '2024'}</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[11px] uppercase tracking-wider text-sage bg-sage/10 px-1.5 py-0.5 rounded border border-sage/20">${m.studio || 'CINEXA 4K'}</span>
-              <span class="font-sans text-xs text-driftwood truncate">${m.director || 'Curated Master'}</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3 shrink-0">
-          <span class="font-mono text-xs text-brass font-medium">★ ${m.imdbRating || '8.0'}</span>
-          <kbd class="font-mono text-[11px] text-text-muted bg-petrol-base px-1.5 py-0.5 rounded border border-border-hairline/40">↵</kbd>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function setSearchPill(cat) {
-  const input = document.getElementById('modal-search-input');
-  if (input) {
-    input.value = cat;
-    handleModalSearch(cat);
-  }
-}
-
-// =========================================================================
-// 7. 5-STAR RATING & LOGBOOK DIALOG
-// =========================================================================
-
-function openRatingDialogModal(movieSlugOrId) {
-  const overlay = document.getElementById('rating-modal-overlay');
-  const titleEl = document.getElementById('rating-modal-film-title');
-  
-  let film = currentActiveMovie || { title: 'A Moment to Remember', year: '2004' };
-  if (movieSlugOrId) {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const found = catalog.find(m => m.slug === movieSlugOrId || m.id === movieSlugOrId);
-    if (found) film = found;
-  }
-
-  if (titleEl) {
-    titleEl.innerText = `${film.title} (${film.year || '2004'})`;
-  }
-
-  if (overlay) {
-    overlay.classList.remove('hidden');
-    overlay.classList.add('flex');
-  }
-
-  initStarRatingCluster();
-}
-
-function closeRatingDialogModal() {
-  const overlay = document.getElementById('rating-modal-overlay');
-  if (overlay) {
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex');
-  }
-}
-
-function initStarRatingCluster() {
-  const stars = document.querySelectorAll('#star-rating-cluster .star-rate');
-  const scoreText = document.getElementById('star-score-text');
-
-  stars.forEach(star => {
-    star.onclick = () => {
-      const val = parseInt(star.getAttribute('data-value'), 10);
-      currentSelectedRating = val;
-      stars.forEach(s => {
-        const sVal = parseInt(s.getAttribute('data-value'), 10);
-        if (sVal <= val) {
-          s.style.fontVariationSettings = "'FILL' 1";
-          s.classList.add('text-brass');
-          s.classList.remove('text-outline');
-        } else {
-          s.style.fontVariationSettings = "'FILL' 0";
-          s.classList.remove('text-brass');
-          s.classList.add('text-outline');
-        }
-      });
-      if (scoreText) {
-        scoreText.innerText = `${val}.0 / 5.0 ★ ${val === 5 ? 'Masterpiece' : val >= 4 ? 'Exceptional' : 'Recommended'}`;
-      }
-    };
-  });
-}
-
-function saveRatingToJournal() {
-  closeRatingDialogModal();
-  showToast(`Saved ★ ${currentSelectedRating}.0 rating to your Archival Film Journal!`);
-}
-
-// =========================================================================
-// 8. FILM DETAILS & CINEMA 4K PLAYER INTEGRATION
-// =========================================================================
-
-function openFilmDetails(movieOrSlug) {
-  let movie = movieOrSlug;
-  if (typeof movieOrSlug === 'string') {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    movie = catalog.find(m => m.slug === movieOrSlug || m.id === movieOrSlug) || {
-      title: 'A Moment to Remember',
-      year: '2004',
-      imdbRating: '8.1',
-      poster: '/images/moment-to-remember-backdrop.jpg',
-      backdrop: '/images/moment-to-remember-backdrop.jpg'
-    };
-  }
-
-  currentActiveMovie = movie;
-
-  const heroImg = document.getElementById('details-hero-img');
-  const posterImg = document.getElementById('details-poster-img');
-  const title = document.getElementById('details-title');
-  const koreanTitle = document.getElementById('details-korean-title');
-  const tagline = document.getElementById('details-tagline');
-  const score = document.getElementById('details-score');
-  const duration = document.getElementById('details-duration');
-  const age = document.getElementById('details-age');
-  const synopsis = document.getElementById('details-synopsis');
-  const trailerPoster = document.getElementById('details-trailer-poster');
-
-  const posterSrc = movie.posterUrl || movie.poster || movie.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
-  const backdropSrc = movie.backdropUrl || movie.backdrop || movie.posterUrl || '/images/moment-to-remember-backdrop.jpg';
-
-  if (heroImg) heroImg.style.backgroundImage = `url('${backdropSrc}')`;
-  if (posterImg) {
-    posterImg.src = posterSrc;
-    posterImg.onerror = function() { this.src = '/images/moment-to-remember-backdrop.jpg'; };
-  }
-  if (title) title.innerText = movie.title;
-  if (koreanTitle) {
-    if (movie.koreanTitle) {
-      koreanTitle.innerHTML = `${movie.koreanTitle} <span class="font-label-sm text-outline not-italic ml-1">(${movie.year || '2004'})</span>`;
-      koreanTitle.classList.remove('hidden');
-    } else {
-      koreanTitle.classList.add('hidden');
-    }
-  }
-  if (tagline) tagline.innerText = movie.tagline ? `“${movie.tagline.replace(/^["“”]|["“”]$/g, '')}”` : '';
-  if (score) score.innerText = `★ ${movie.imdbRating || '8.1'}`;
-  if (duration) duration.innerText = movie.duration || '2h 24m';
-  if (age) age.innerText = movie.rating || '18+';
-  if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Restored in 4K from the original 35mm negative under curatorial supervision.';
-  if (trailerPoster) trailerPoster.style.backgroundImage = `url('${backdropSrc}')`;
-
-  switchMainScreen('details');
-}
-
-function openFilmBySlug(slug) {
-  openFilmDetails(slug);
-}
-
-function toggleDetailsWatchlist() {
-  const text = document.getElementById('details-watchlist-text');
-  const title = currentActiveMovie ? currentActiveMovie.title : 'Film';
-  if (text) {
-    if (text.innerText.includes('Add')) {
-      text.innerText = 'In Watchlist';
-      showToast(`Added "${title}" to your Watchlist.`);
-    } else {
-      text.innerText = 'Add to Watchlist';
-      showToast(`Removed "${title}" from Watchlist.`);
-    }
-  }
-}
-
-function playCurrentFilmInPlayer(serverOrSlug) {
-  let film = currentActiveMovie;
-  const validServers = ['vidlink', 'multiaudio', 'vidsrc_cc', 'autoembed', 'vidsrc_xyz', 'local', 'fastcdn', 'vidsrc'];
-
-  if (typeof serverOrSlug === 'string' && !validServers.includes(serverOrSlug)) {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug);
-    if (found) film = found;
-  }
-
-  if (!film) {
-    film = {
-      id: '15859',
-      tmdbId: 15859,
-      slug: 'a-moment-to-remember',
-      title: 'A Moment to Remember',
-      year: '2004'
-    };
-  }
-
-  currentActiveMovie = film;
-
-  const isLocalFilm = film.slug === 'a-moment-to-remember' || film.id === '15859' || (film.title && film.title.toLowerCase().includes('moment to remember'));
-  let chosenServer = 'vidlink';
-
-  if (typeof serverOrSlug === 'string' && validServers.includes(serverOrSlug)) {
-    chosenServer = serverOrSlug;
-  } else if (isLocalFilm) {
-    chosenServer = 'local';
-  }
-
-  if (typeof CinexaPlayer !== 'undefined') {
-    CinexaPlayer.openPlayer(film, chosenServer);
-    return;
-  }
-
-  const modal = document.getElementById('player-modal');
-  const videoEl = document.getElementById('custom-video-player');
-  const iframeEl = document.getElementById('video-iframe');
-
-  if (isLocalFilm && chosenServer === 'local') {
-    if (iframeEl) iframeEl.style.display = 'none';
-    if (videoEl) {
-      videoEl.style.display = 'block';
-      videoEl.src = '/api/stream?file=0918%20(1).mp4';
-      videoEl.play().catch(e => console.log('Autoplay handled:', e));
-    }
-  } else {
-    if (videoEl) videoEl.style.display = 'none';
-    if (iframeEl) {
-      iframeEl.style.display = 'block';
-      iframeEl.src = `https://vidlink.pro/movie/${film.tmdbId || film.id || '15859'}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
-    }
-  }
-
-  if (modal) modal.classList.add('active');
-}
-
-function closePlayerModal() {
-  if (typeof CinexaPlayer !== 'undefined') {
-    CinexaPlayer.closePlayer();
-    return;
-  }
-  const modal = document.getElementById('player-modal');
-  const videoEl = document.getElementById('custom-video-player');
-  if (videoEl) videoEl.pause();
-  if (modal) modal.classList.remove('active');
-}
-
-// =========================================================================
-// 9. TOAST NOTIFICATIONS & CATALOG RENDERING
-// =========================================================================
-
-function showToast(message) {
-  const toast = document.getElementById('watchlist-toast');
-  const text = document.getElementById('toast-text');
-  if (!toast) return;
-
-  if (text) text.innerHTML = message;
-  toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
-  toast.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-
-  if (toastTimer) clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
-  }, 4000);
-}
-
-function toggleSlideWatchlistById(id, title) {
-  if (watchlistSet.has(id)) {
-    watchlistSet.delete(id);
-    showToast(`Removed "${title}" from your Watchlist.`);
-  } else {
-    watchlistSet.add(id);
-    showToast(`Added "${title}" to your Watchlist.`);
-  }
-}
-
-function renderDiscoverCatalog(customList) {
-  const grid = document.getElementById('catalogGrid');
-  const counter = document.getElementById('discover-counter');
-  if (!grid) return;
-
-  const catalog = customList || ((typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : []);
-  if (counter) counter.innerText = `${catalog.length} ARCHIVED WORKS`;
-
-  if (catalog.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full py-16 text-center text-on-surface-variant font-body-md space-y-3">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mx-auto text-outline">
-          <span class="material-symbols-outlined text-2xl">movie_filter</span>
-        </div>
-        <p class="text-base text-on-surface font-serif">No matching films found for current criteria.</p>
-        <button class="px-4 py-2 rounded-full bg-primary text-on-primary font-mono text-xs uppercase font-bold cursor-pointer" onclick="resetFilters()">
-          Reset All Filters
-        </button>
-      </div>
-    `;
-    return;
-  }
-
-  grid.innerHTML = catalog.map(m => {
-    const poster = m.posterUrl || m.poster || m.backdropUrl || '/images/moment-to-remember-backdrop.jpg';
-    const rating = m.rating || 'PG-13';
-    const score = m.imdbRating || '8.1';
-    const format = m.resolution ? m.resolution.toUpperCase() : '4K UHD';
-    const id = m.slug || m.id;
+    const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
     const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
-    const isSaved = watchlistSet.has(id);
-    const hasMultiAudio = m.country === 'India' || (m.audio && (m.audio.toLowerCase().includes('hindi') || m.audio.toLowerCase().includes('tamil') || m.audio.toLowerCase().includes('english') || m.audio.toLowerCase().includes('korean')));
-
     return `
-      <article class="group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-warm-diffuse transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(5,12,15,0.6),0_0_16px_rgba(201,160,91,0.12)] cursor-pointer border border-border-hairline/60" onclick="openFilmDetails('${id}')">
-        <div class="relative w-full aspect-[2/3] overflow-hidden bg-surface-container-lowest">
-          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${poster}" alt="${m.title}" loading="lazy" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
-          
-          <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
-            <span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface-variant uppercase border border-outline-variant/30">${rating}</span>
+      <div class="p-3 hover:bg-surface-container-high flex items-center justify-between gap-3 cursor-pointer group transition-colors" onclick="closeModal(); openFilmDetails('${m.slug || m.id}')">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-9 h-[54px] rounded overflow-hidden bg-black flex-shrink-0 border border-white/10">
+            <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')">
           </div>
-          
-          <button aria-label="Save to Watchlist" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
-            <span class="material-symbols-outlined text-[16px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
-          </button>
-          
-          <div class="absolute bottom-2.5 left-2.5 z-10 flex flex-wrap items-center gap-1.5">
-            <span class="font-label-sm text-[9px] px-2 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30 font-semibold">${format}</span>
-            ${hasMultiAudio ? '<span class="font-label-sm text-[9px] px-1.5 py-0.5 rounded-full bg-secondary/20 text-secondary border border-secondary/30 font-semibold">MULTI-DUB</span>' : ''}
-          </div>
-
-          <div class="absolute inset-0 bg-surface-container-lowest/50 backdrop-blur-[2px] flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-            <button class="h-10 px-3.5 rounded-full bg-primary text-on-primary font-body-sm text-xs font-bold flex items-center gap-1.5 shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
-              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-              <span>Watch 4K</span>
-            </button>
-            <button class="w-10 h-10 rounded-full bg-surface-bright text-on-surface hover:text-primary flex items-center justify-center shadow-xl transform scale-95 group-hover:scale-100 transition-transform cursor-pointer border border-border-hairline/60" title="1-Click 4K Download" onclick="event.stopPropagation(); downloadFilmDirect('${id}', '4k')">
-              <span class="material-symbols-outlined text-[18px]">download</span>
-            </button>
-          </div>
-        </div>
-        
-        <div class="p-3.5 flex flex-col flex-1 justify-between gap-2">
-          <div>
-            <div class="flex items-center justify-between gap-1 mb-1">
-              <span class="font-label-sm text-xs text-outline">${m.year || '2024'} • ${m.duration || '2h'}</span>
-              <span class="font-label-sm text-xs text-primary font-medium flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
-              </span>
+          <div class="min-w-0 space-y-0.5">
+            <h4 class="font-sans font-semibold text-xs text-parchment group-hover:text-primary truncate">${m.title}</h4>
+            <div class="flex items-center gap-2 font-mono text-[10px] text-driftwood">
+              <span>${m.year || '2024'}</span>
+              <span>•</span>
+              <span class="text-tertiary">${m.country || '4K UHD'}</span>
             </div>
-            <h3 class="font-headline-sm text-base text-on-surface group-hover:text-primary transition-colors truncate font-serif font-semibold">
-              ${m.title}
-            </h3>
-            <p class="font-body-sm text-xs text-on-surface-variant truncate">${m.director || m.studio || 'Curated Master'}</p>
-          </div>
-          <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between">
-            <span class="font-label-sm text-[11px] text-tertiary font-semibold uppercase">${m.country || 'CINEXA 4K'}</span>
-            <span class="font-label-sm text-xs text-primary font-medium flex items-center gap-1 group-hover:underline">
-              <span>Details</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </span>
           </div>
         </div>
-      </article>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="font-mono text-xs text-primary font-medium">★ ${m.imdbRating || '8.0'}</span>
+          <kbd class="font-mono text-[10px] text-text-muted bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10">↵</kbd>
+        </div>
+      </div>
     `;
   }).join('');
 }
 
 // =========================================================================
-// 10. FROSTED NAVBAR SCROLL TRIGGER & SHORTCUTS
-// =========================================================================
-
-function applyFrostedNav(isFrosted) {
-  const navbar = document.getElementById('global-navbar');
-  if (!navbar) return;
-  if (isFrosted) {
-    navbar.classList.add('bg-[#0E1A1F]/90', 'backdrop-blur-[16px]', 'border-[#2C444D]');
-    navbar.classList.remove('bg-transparent', 'border-transparent');
-  } else {
-    navbar.classList.remove('bg-[#0E1A1F]/90', 'backdrop-blur-[16px]', 'border-[#2C444D]');
-    navbar.classList.add('bg-transparent', 'border-transparent');
-  }
-}
-
-function toggleScrollState(scrolled) {
-  applyFrostedNav(scrolled);
-  if (scrolled) {
-    window.scrollTo({ top: 120, behavior: 'smooth' });
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-let scrollTicking = false;
-window.addEventListener('scroll', () => {
-  if (!scrollTicking) {
-    window.requestAnimationFrame(() => {
-      if (window.scrollY > 40) {
-        applyFrostedNav(true);
-      } else {
-        applyFrostedNav(false);
-      }
-      scrollTicking = false;
-    });
-    scrollTicking = true;
-  }
-}, { passive: true });
-
-// Pause slideshow when tab is hidden to preserve battery & CPU
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    slideshowState.isPaused = true;
-  } else {
-    slideshowState.isPaused = false;
-  }
-});
-
-// =========================================================================
-// 8. LEGAL, DMCA & ATTRIBUTION MODAL CONTROLLER
+// 8. LEGAL & ATTRIBUTION MODALS
 // =========================================================================
 
 function openLegalModal(type = 'terms') {
@@ -1625,43 +1042,33 @@ function openLegalModal(type = 'terms') {
   if (!overlay || !titleEl || !bodyEl) return;
 
   if (type === 'terms') {
-    titleEl.innerText = 'Terms of Film & Archival Preservation';
+    titleEl.innerText = 'Terms of Service';
     bodyEl.innerHTML = `
-      <div class="space-y-3">
-        <p class="font-semibold text-primary">1. Curatorial Mission & Non-Commercial Preservation</p>
-        <p>Cinexa is an open educational and archival catalog curated to celebrate world cinema, photochemical restoration history, and international film preservation. We do not host unauthorized video files on our own servers.</p>
-        <p class="font-semibold text-primary">2. Streaming Aggregation</p>
-        <p>All video content indexed on Cinexa is embedded or linked through third-party decentralized providers and public web registries. We encourage all patrons to support official theatrical releases and physical restorations.</p>
-        <p class="font-semibold text-primary">3. Community Code</p>
-        <p>Patrons agree to utilize Cinexa exclusively for personal study, scholarship, and cultural appreciation under international fair dealing norms.</p>
+      <div class="space-y-2.5">
+        <p class="font-semibold text-primary">1. Streaming Index</p>
+        <p>Cinexa is a catalog directory and media player client. We do not host or store unauthorized video files on our own servers. All streams are embedded via public third-party providers.</p>
+        <p class="font-semibold text-primary">2. Personal Use</p>
+        <p>Patrons agree to utilize Cinexa exclusively for personal study, scholarship, and cultural appreciation.</p>
       </div>
     `;
   } else if (type === 'fairuse') {
-    titleEl.innerText = 'Fair Use & DMCA Notice';
+    titleEl.innerText = 'DMCA & Fair Use Notice';
     bodyEl.innerHTML = `
-      <div class="space-y-3">
-        <p class="font-semibold text-primary">Digital Millennium Copyright Act (DMCA) Compliance</p>
-        <p>Cinexa operates in accordance with 17 U.S.C. § 512 and international intellectual property legislation. We strictly index public third-party video embeds and metadata.</p>
-        <p class="font-semibold text-primary">Takedown Request Protocol</p>
-        <p>If you are a copyright owner or authorized representative and wish to request the removal of any indexed links or archival references, please submit a formal notice containing:</p>
-        <ul class="list-disc pl-5 space-y-1 text-xs">
-          <li>Identification of the copyrighted work claimed to have been infringed.</li>
-          <li>Exact URL or title reference on Cinexa.</li>
-          <li>Your contact information and statement of good faith belief.</li>
-        </ul>
-        <p class="text-xs text-outline">Notices can be submitted directly through our repository issue tracker or community steward email.</p>
+      <div class="space-y-2.5">
+        <p class="font-semibold text-primary">DMCA Compliance (17 U.S.C. § 512)</p>
+        <p>Cinexa respects the intellectual property rights of all copyright holders. If you believe your copyrighted material is improperly linked or indexed, you may send a formal takedown request to our stewards.</p>
+        <p>Please include: identification of the work, the specific link/title on Cinexa, and your verified contact details.</p>
       </div>
     `;
   } else if (type === 'tmdb') {
     titleEl.innerText = 'The Movie Database (TMDB) Attribution';
     bodyEl.innerHTML = `
-      <div class="space-y-3">
+      <div class="space-y-2.5">
         <div class="p-3 bg-surface-container-high rounded-xl border border-primary/30 flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary text-2xl">verified</span>
-          <span class="font-mono text-xs text-primary font-bold">TMDB API INTEGRATED DIRECTORY</span>
+          <span class="material-symbols-outlined text-primary text-xl">verified</span>
+          <span class="font-mono text-xs text-primary font-bold">TMDB API INTEGRATED</span>
         </div>
-        <p>This application uses the TMDB API to fetch movie metadata, high-resolution original posters, synopsis, cast directories, and release dates, but is not officially endorsed or certified by The Movie Database (TMDB).</p>
-        <p>All trademarks, movie artwork, and posters remain the exclusive property of their respective production studios and distributors.</p>
+        <p>This product uses the TMDB API to fetch movie metadata and artwork but is not officially endorsed or certified by TMDB.</p>
       </div>
     `;
   }
@@ -1678,6 +1085,26 @@ function closeLegalModal() {
   }
 }
 
+// =========================================================================
+// 9. TOAST NOTIFICATIONS & KEYBOARD SHORTCUTS
+// =========================================================================
+
+function showToast(message) {
+  const toast = document.getElementById('watchlist-toast');
+  const msgEl = document.getElementById('toast-message');
+  if (!toast) return;
+
+  if (msgEl) msgEl.innerText = message;
+  toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
+  toast.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
+  }, 3000);
+}
+
 window.addEventListener('keydown', (e) => {
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
     e.preventDefault();
@@ -1691,14 +1118,12 @@ window.addEventListener('keydown', (e) => {
   }
   if (e.key === 'Escape') {
     closeModal();
-    closeRatingDialogModal();
     closeLegalModal();
-    closePlayerModal();
-    toggleMobileSheet(false);
+    if (typeof CinexaPlayer !== 'undefined') CinexaPlayer.closePlayer();
   }
 });
 
-// Toast Undo & DOM Init
+// Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initFeaturedSlideshow();
   renderDiscoverCatalog();
@@ -1715,4 +1140,3 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 });
-

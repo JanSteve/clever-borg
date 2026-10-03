@@ -4,14 +4,15 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" name="viewport"/>
   <meta content="web_standard" name="shell-type"/>
-  <title>Cinexa — Archival Cinema &amp; 4K World Streaming</title>
-  <meta name="description" content="Stream rare 35mm restorations, international festival masterpieces, and contemporary world cinema in 4K UHD. Curated archives, zero subscription.">
+  <title>Cinexa — Stream Movies &amp; Anime in 4K UHD</title>
+  <meta name="description" content="Watch 200+ curated movies and anime in 4K UHD with multi-language dubbing and high-speed downloads. Bollywood, Anime, Hollywood &amp; Korean Cinema.">
   <meta name="theme-color" content="#0E1A1F">
 
+  <!-- Favicon & Canonical -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230E1A1F' stroke='%23C9A05B' stroke-width='6'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23C9A05B'/%3E%3Ccircle cx='28' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='28' cy='68' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='68' r='7' fill='%23ECC077'/%3E%3C/svg%3E"/>
   <link rel="canonical" href="https://cinexa-films.vercel.app/"/>
   
-  <!-- Open Graph / Facebook / WhatsApp -->
+  <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cinexa-films.vercel.app/"/>
   <meta property="og:title" content="Cinexa — Watch Movies &amp; Anime in 4K UHD"/>
@@ -25,32 +26,63 @@
   <meta name="twitter:description" content="Free 4K movie streaming and downloads. Bollywood, Anime, Hollywood &amp; Korean Cinema."/>
   <meta name="twitter:image" content="https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg"/>
 
-  <!-- Google Fonts: Fraunces, Newsreader, Manrope, DM Mono, Courier Prime -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Base & Animation Styles -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#09151a",
+            "surface-dim": "#09151a",
+            "surface-bright": "#2f3b40",
+            "surface-container-lowest": "#041015",
+            "surface-container-low": "#111d22",
+            "surface-container": "#152126",
+            "surface-container-high": "#202c31",
+            "surface-container-highest": "#2b373c",
+            "on-surface": "#d8e4eb",
+            "on-surface-variant": "#d2c5b4",
+            "outline": "#9b8f80",
+            "outline-variant": "#4e4539",
+            "primary": "#ecc077",
+            "on-primary": "#422c00",
+            "primary-container": "#c9a05b",
+            "secondary": "#ffb5a1",
+            "tertiary": "#8DA897",
+            "petrol-base": "#0E1A1F",
+            "petrol-raised": "#132329",
+            "parchment": "#EDE6D6",
+            "driftwood": "#A9A596",
+            "text-muted": "#6F7A78",
+            "brass": "#C9A05B",
+            "brass-hover": "#D8B272"
+          },
+          fontFamily: {
+            "serif": ["Newsreader", "Georgia", "serif"],
+            "sans": ["Manrope", "sans-serif"],
+            "mono": ["Courier Prime", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Player Modal & Custom Overlay Styles -->
+  <link rel="stylesheet" href="css/player.css">
+
   <style>
-    @layer base {
-      html, body {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #0E1A1F;
-        color: #EDE6D6;
-      }
-      body {
-        overscroll-behavior-y: none;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom, 24px);
-      }
-      .pt-safe {
-        padding-top: env(safe-area-inset-top, 0px);
-      }
+    body {
+      background-color: #0E1A1F;
+      color: #EDE6D6;
+      -webkit-tap-highlight-color: transparent;
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -73,10 +105,6 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    .film-grain {
-      background-image: radial-gradient(rgba(201, 160, 91, 0.04) 1px, transparent 0);
-      background-size: 24px 24px;
-    }
     .nav-link {
       position: relative;
       transition: color 0.2s ease;
@@ -89,1545 +117,492 @@
       width: 0;
       height: 2px;
       background-color: #C9A05B;
-      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: width 0.25s ease;
     }
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 100%;
     }
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 2px solid #C9A05B;
-      outline-offset: 3px;
-    }
-    @keyframes shimmer {
-      100% {
-        transform: translateX(100%);
-      }
-    }
   </style>
 
-  <!-- Tailwind CSS CDN & Stitch Custom Palette (1:1 Art-House Editorial YAML Spec) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "surface": "#09151a",
-            "surface-dim": "#09151a",
-            "surface-bright": "#2f3b40",
-            "surface-container-lowest": "#041015",
-            "surface-container-low": "#111d22",
-            "surface-container": "#152126",
-            "surface-container-high": "#202c31",
-            "surface-container-highest": "#2b373c",
-            "on-surface": "#d8e4eb",
-            "on-surface-variant": "#d2c5b4",
-            "inverse-surface": "#d8e4eb",
-            "inverse-on-surface": "#263238",
-            "outline": "#9b8f80",
-            "outline-variant": "#4e4539",
-            "surface-tint": "#ecc077",
-            "primary": "#ecc077",
-            "on-primary": "#422c00",
-            "primary-container": "#c9a05b",
-            "on-primary-container": "#513700",
-            "inverse-primary": "#7a591a",
-            "secondary": "#ffb5a1",
-            "on-secondary": "#571e0e",
-            "secondary-container": "#773624",
-            "on-secondary-container": "#fca189",
-            "tertiary": "#b1cdbb",
-            "on-tertiary": "#1d3529",
-            "tertiary-container": "#92ad9c",
-            "on-tertiary-container": "#294134",
-            "error": "#ffb4ab",
-            "on-error": "#690005",
-            "error-container": "#93000a",
-            "on-error-container": "#ffdad6",
-            "primary-fixed": "#ffdeab",
-            "primary-fixed-dim": "#ecc077",
-            "on-primary-fixed": "#281900",
-            "on-primary-fixed-variant": "#5f4102",
-            "secondary-fixed": "#ffdbd1",
-            "secondary-fixed-dim": "#ffb5a1",
-            "on-secondary-fixed": "#3b0900",
-            "on-secondary-fixed-variant": "#743422",
-            "tertiary-fixed": "#cde9d7",
-            "tertiary-fixed-dim": "#b1cdbb",
-            "on-tertiary-fixed": "#072015",
-            "on-tertiary-fixed-variant": "#334c3e",
-            "background": "#09151a",
-            "on-background": "#d8e4eb",
-            "surface-variant": "#2b373c",
-            "petrol-base": "#0E1A1F",
-            "petrol-raised": "#132329",
-            "parchment": "#EDE6D6",
-            "driftwood": "#A9A596",
-            "text-muted": "#6F7A78",
-            "brass": "#C9A05B",
-            "brass-hover": "#D8B272",
-            "terracotta": "#C0705A",
-            "sage": "#8DA897",
-            "brass-btn-text": "#1A1408"
-          },
-          fontFamily: {
-            "serif": ["Newsreader", "Fraunces", "Georgia", "serif"],
-            "sans": ["Manrope", "sans-serif"],
-            "mono": ["Courier Prime", "\"DM Mono\"", "monospace"],
-            "display-xl": ["Newsreader", "serif"],
-            "display-xl-mobile": ["Newsreader", "serif"],
-            "headline-lg": ["Newsreader", "serif"],
-            "headline-lg-mobile": ["Newsreader", "serif"],
-            "headline-md": ["Newsreader", "serif"],
-            "headline-sm": ["Newsreader", "serif"],
-            "body-lg": ["Manrope", "sans-serif"],
-            "body-md": ["Manrope", "sans-serif"],
-            "body-sm": ["Manrope", "sans-serif"],
-            "label-md": ["Courier Prime", "monospace"],
-            "label-sm": ["Courier Prime", "monospace"]
-          },
-          fontSize: {
-            "display-xl": ["56px", { lineHeight: "64px", letterSpacing: "-0.02em", fontWeight: "600" }],
-            "display-xl-mobile": ["38px", { lineHeight: "46px", letterSpacing: "-0.02em", fontWeight: "600" }],
-            "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "600" }],
-            "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "600" }],
-            "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "500" }],
-            "headline-sm": ["22px", { lineHeight: "30px", letterSpacing: "-0.01em", fontWeight: "500" }],
-            "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }],
-            "body-md": ["15px", { lineHeight: "24px", letterSpacing: "0", fontWeight: "400" }],
-            "body-sm": ["13px", { lineHeight: "20px", letterSpacing: "0", fontWeight: "500" }],
-            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "400" }],
-            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "400" }]
-          },
-          borderRadius: {
-            "sm": "0.25rem",
-            "DEFAULT": "0.5rem",
-            "md": "0.75rem",
-            "lg": "1rem",
-            "xl": "1.5rem",
-            "full": "9999px"
-          },
-          spacing: {
-            "gutter": "1.5rem",
-            "gutter-mobile": "1rem",
-            "margin": "3rem",
-            "margin-mobile": "1.25rem",
-            "space-xs": "0.25rem",
-            "space-sm": "0.5rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "space-xl": "2.5rem"
-          },
-          boxShadow: {
-            "warm-diffuse": "0 12px 32px rgba(5,12,15,0.45)",
-            "modal-ambient": "0 24px 60px rgba(4,10,13,0.7)",
-            "brass-glow": "0 0 24px rgba(201,160,91,0.12)"
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Player Modal & Custom Overlay Styles -->
-  <link rel="stylesheet" href="css/player.css">
-
-  <!-- Monetag MultiTag Official Monetization Script (Zone 290025) -->
+  <!-- Monetag MultiTag Monetization Script (Zone 290025) -->
   <script src="https://quge5.com/88/tag.min.js" data-zone="290025" async data-cfasync="false"></script>
 </head>
 
-<body class="bg-petrol-base text-parchment font-sans antialiased min-h-screen relative selection:bg-brass selection:text-brass-btn-text film-grain pb-28">
+<body class="bg-petrol-base text-parchment font-sans antialiased min-h-screen relative selection:bg-brass selection:text-[#1A1408] pb-16">
 
   <!-- =========================================================================
-       TOP STICKY NAVBAR (Google Stitch Live Scroll & State Spec)
+       1. TOP STICKY NAVBAR (Clean, Crisp & Focused)
        ========================================================================= -->
-  <header class="sticky top-0 z-40 w-full h-[72px] transition-all duration-300 ease-in-out border-b border-transparent bg-petrol-base/80 backdrop-blur-xl" id="global-navbar">
-    <div class="max-w-[1320px] mx-auto h-full px-6 flex items-center justify-between gap-6">
-      <!-- Left: Logo & Wordmark -->
+  <header class="sticky top-0 z-40 w-full h-[70px] border-b border-white/5 bg-petrol-base/90 backdrop-blur-xl transition-all duration-300" id="global-navbar">
+    <div class="max-w-[1360px] mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-4">
+      <!-- Left: Brand Logo -->
       <a class="flex items-center gap-3 group focus:outline-none cursor-pointer" onclick="switchMainScreen('discover')">
-        <div class="w-8 h-8 rounded-full border border-brass/50 flex items-center justify-center bg-petrol-raised/80 group-hover:border-brass transition-colors shadow-brass-glow">
-          <svg class="w-4 h-4 text-brass" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="m14.31 8 5.74 9.94"></path>
-            <path d="M9.69 8h11.48"></path>
-            <path d="m7.38 12 5.74-9.94"></path>
-            <path d="M9.69 16 3.95 6.06"></path>
-            <path d="M14.31 16H2.83"></path>
-            <path d="m16.62 12-5.74 9.94"></path>
-          </svg>
+        <div class="w-8 h-8 rounded-full border border-primary/60 flex items-center justify-center bg-surface-container group-hover:border-primary transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-primary text-[18px]">movie</span>
         </div>
-        <span class="font-serif font-semibold text-2xl tracking-[-0.02em] text-parchment group-hover:text-brass transition-colors">
+        <span class="font-serif font-semibold text-2xl tracking-tight text-parchment group-hover:text-primary transition-colors">
           Cinexa
         </span>
       </a>
 
-      <!-- Center: Editorial Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium" id="main-nav-links">
-        <a class="nav-link active text-parchment cursor-pointer" data-nav="discover" onclick="switchMainScreen('discover')">Discover</a>
-        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" data-nav="trending" onclick="switchMainScreen('home')">Trending</a>
-        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" data-nav="movements" onclick="openMovementsTab()">Movements</a>
+      <!-- Center: Category Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium" id="main-nav-links">
+        <a class="nav-link active text-parchment cursor-pointer" data-nav="discover" onclick="switchMainScreen('discover')">Browse All</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('anime')">🎌 Anime</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('bollywood')">🇮🇳 Bollywood</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('telugu')">🇮🇳 Tollywood</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('tamil')">🇮🇳 Kollywood</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('hollywood')">🚀 Hollywood 4K</a>
         <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" data-nav="library" onclick="switchMainScreen('library')">My Library</a>
-        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" data-nav="specs" onclick="switchMainScreen('specs')">Specs &amp; Guide</a>
       </nav>
 
-      <!-- Right: Search trigger, notifications, user avatar -->
-      <div class="flex items-center gap-4">
+      <!-- Right: Search trigger & Watchlist -->
+      <div class="flex items-center gap-3">
         <!-- Interactive Search Bar trigger -->
-        <div class="relative flex items-center">
-          <button aria-label="Open global search" class="group flex items-center justify-between gap-3 h-10 px-3.5 rounded-full bg-surface/70 hover:bg-surface border border-border-hairline/60 hover:border-brass/50 text-driftwood hover:text-parchment transition-all duration-200 cursor-pointer" id="nav-search-trigger" onclick="openModal('results')">
-            <div class="flex items-center gap-2.5">
-              <svg class="w-4 h-4 text-driftwood group-hover:text-brass transition-colors" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </svg>
-              <span class="text-sm font-sans text-driftwood/80 group-hover:text-driftwood hidden sm:inline">Search films, directors...</span>
-            </div>
-            <kbd class="font-mono text-[11px] uppercase tracking-wider text-text-muted bg-petrol-base/70 px-2 py-0.5 rounded border border-border-hairline/40 hidden sm:inline">
-              ⌘K
-            </kbd>
-          </button>
-        </div>
-
-        <!-- Notification Bell -->
-        <button aria-label="Notifications" class="relative w-10 h-10 rounded-full flex items-center justify-center text-driftwood hover:text-parchment hover:bg-surface/50 transition-colors cursor-pointer" onclick="showToast('Curator Notification: 3 new 35mm restorations added today.')">
-          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
-            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
-            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
-          </svg>
-          <span class="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-brass"></span>
+        <button aria-label="Open search" class="flex items-center justify-between gap-3 h-10 px-4 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-parchment transition-all cursor-pointer shadow-sm" onclick="openModal('results')">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-primary">search</span>
+            <span class="text-xs font-sans hidden sm:inline text-driftwood">Search films, anime...</span>
+          </div>
+          <kbd class="font-mono text-[10px] uppercase text-text-muted bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 hidden sm:inline">
+            ⌘K
+          </kbd>
         </button>
 
-        <!-- User Profile Avatar with thin brass ring -->
-        <div class="relative">
-          <div class="w-9 h-9 rounded-full p-[1.5px] border border-brass/60 hover:border-brass transition-colors cursor-pointer overflow-hidden shadow-sm" onclick="switchMainScreen('library')">
-            <img alt="Curator portrait" class="w-full h-full object-cover rounded-full grayscale contrast-125" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
-          </div>
-        </div>
+        <!-- Library Bookmark Icon -->
+        <button aria-label="Open My Library" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-driftwood hover:text-primary transition-colors cursor-pointer border border-white/10" onclick="switchMainScreen('library')" title="My Library / Watchlist">
+          <span class="material-symbols-outlined text-[20px]">bookmark</span>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- =========================================================================
-       CINEXA FEATURED SLIDESHOW HERO ENGINE (Top Recommendations, People's Fav, Trending)
+       2. CINEXA FEATURED HERO SLIDESHOW (Spacious, Cinematic & Uncluttered)
        ========================================================================= -->
-  <section class="relative -mt-[72px] pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden border-b border-border-hairline/60 bg-surface select-none" id="hero-slideshow-container">
+  <section class="relative -mt-[70px] pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden border-b border-white/5 bg-surface select-none" id="hero-slideshow-container">
     <!-- Atmospheric Ambient Backdrops with Crossfade -->
     <div class="absolute inset-0 z-0 overflow-hidden" id="slideshow-backdrop-layer">
-      <img alt="Cinema backdrop" class="w-full h-full object-cover opacity-35 filter contrast-125 brightness-90 transition-all duration-1000 scale-105" id="slide-bg-img" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'"/>
-      <!-- Multi-layered cinematic scrims -->
-      <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-surface/40"></div>
+      <img alt="Cinema backdrop" class="w-full h-full object-cover opacity-35 filter contrast-125 brightness-90 transition-all duration-1000 scale-105" id="slide-bg-img" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg'"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/85 to-surface/40"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent"></div>
-      <!-- Radial brass ambient aura -->
-      <div class="absolute top-1/3 left-1/4 w-[600px] h-[350px] bg-brass/[0.08] blur-[140px] rounded-full pointer-events-none"></div>
     </div>
 
-    <div class="max-w-[1320px] mx-auto relative z-10 pt-4 sm:pt-6">
-      <!-- TOP SLIDESHOW CATEGORY TABS -->
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="slideshow-category-tabs">
-          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-semibold shadow-sm transition-all duration-200 cursor-pointer" data-cat="all" onclick="filterSlideshowCategory('all')">
-            All Featured
-          </button>
-          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="top-recommendation" onclick="filterSlideshowCategory('top-recommendation')">
-            ✨ Top Recommendations
-          </button>
-          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="peoples-favorite" onclick="filterSlideshowCategory('peoples-favorite')">
-            🔥 People's Favorites
-          </button>
-          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="current-trending" onclick="filterSlideshowCategory('current-trending')">
-            ⚡ Current Trending
-          </button>
-          <button class="slide-cat-btn px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 border border-border-hairline/60 cursor-pointer" data-cat="award-winners" onclick="filterSlideshowCategory('award-winners')">
-            🏆 Criterion Laureates
-          </button>
-        </div>
-
-        <!-- Slide Index & Quick Nav Arrows -->
-        <div class="flex items-center gap-3">
-          <span class="font-mono text-xs text-text-muted tracking-wider" id="slide-counter-text">01 / 07</span>
-          <div class="flex items-center gap-1.5">
-            <button aria-label="Previous Slide" class="w-9 h-9 rounded-full bg-surface-container/90 backdrop-blur-md border border-border-hairline/60 text-on-surface-variant hover:text-on-surface hover:border-primary/60 flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95" onclick="prevSlide()">
-              <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-            </button>
-            <button aria-label="Next Slide" class="w-9 h-9 rounded-full bg-surface-container/90 backdrop-blur-md border border-border-hairline/60 text-on-surface-variant hover:text-on-surface hover:border-primary/60 flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95" onclick="nextSlide()">
-              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- MAIN FEATURED SLIDE DISPLAY CARD -->
+    <div class="max-w-[1360px] mx-auto relative z-10 pt-4 sm:pt-6">
+      <!-- Main Featured Slide Layout -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" id="featured-slide-card">
         <!-- Left Content Deck -->
-        <div class="lg:col-span-8 space-y-5">
-          <!-- Curatorial Kicker & Resolution Badges -->
-          <div class="flex flex-wrap items-center gap-2.5">
-            <span class="font-mono text-xs uppercase tracking-[0.08em] text-primary px-3 py-1 bg-primary/10 border border-primary/30 rounded-full flex items-center gap-1.5 shadow-sm" id="slide-badge-category">
+        <div class="lg:col-span-8 space-y-4">
+          <!-- Kicker & Category Tag -->
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs uppercase tracking-wider text-primary px-3 py-1 bg-primary/10 border border-primary/30 rounded-full flex items-center gap-1.5" id="slide-badge-category">
               <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               <span id="slide-category-text">✨ Top Recommendation</span>
             </span>
-            <span class="font-mono text-xs uppercase tracking-[0.08em] text-secondary bg-secondary/10 px-2.5 py-1 rounded-full border border-secondary/30 hidden sm:inline" id="slide-resolution-badge">
-              4K IMAX Enhanced
-            </span>
-            <span class="font-mono text-xs uppercase tracking-[0.08em] text-tertiary bg-tertiary/10 px-2.5 py-1 rounded-full border border-tertiary/30 hidden sm:inline" id="slide-audio-badge">
-              Dolby Atmos 5.1
+            <span class="font-mono text-xs uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-1 rounded-full border border-secondary/30 hidden sm:inline" id="slide-resolution-badge">
+              4K UHD Master
             </span>
           </div>
 
-          <!-- Title & Tagline -->
-          <div>
-            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-parchment leading-[1.08] transition-all duration-300" id="slide-title">
-              Dune: Part Two
-            </h1>
-            <p class="font-serif italic text-sm sm:text-base text-primary/90 mt-2 line-clamp-1" id="slide-quote">
-              “A visual and sonic triumph of contemporary sci-fi filmmaking.” — Sight & Sound
-            </p>
-          </div>
+          <!-- Title -->
+          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-parchment leading-tight transition-all" id="slide-title">
+            Dune: Part Two
+          </h1>
 
-          <!-- Metadata Chips Row -->
+          <!-- Metadata Row -->
           <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-driftwood">
             <span class="text-parchment font-medium" id="slide-year">2024</span>
             <span>•</span>
             <span id="slide-duration">2h 46m</span>
             <span>•</span>
-            <span class="px-2 py-0.5 rounded bg-surface-container-high border border-border-hairline text-parchment" id="slide-rating">PG-13</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container-high border border-white/10 text-parchment" id="slide-rating">PG-13</span>
             <span>•</span>
             <span class="text-primary font-medium flex items-center gap-1" id="slide-imdb">
               <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6 IMDb
             </span>
             <span>•</span>
             <span class="text-tertiary font-medium" id="slide-match">99% Match</span>
-            <span>•</span>
-            <span class="text-driftwood hidden sm:inline" id="slide-director">Dir. Denis Villeneuve</span>
           </div>
 
-          <!-- Synopsis Logline -->
+          <!-- Synopsis -->
           <p class="font-sans text-sm sm:text-base text-driftwood leading-relaxed max-w-2xl line-clamp-3" id="slide-synopsis">
-            Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family, wrestling with ominous visions of a holy war.
+            Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
           </p>
 
-          <!-- Cast Principals -->
-          <div class="flex items-center gap-2 text-xs font-sans text-text-muted">
-            <span class="font-mono uppercase text-outline">Cast:</span>
-            <span class="text-driftwood truncate" id="slide-cast">Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler</span>
-          </div>
-
-          <!-- ACTION BUTTON CLUSTER -->
+          <!-- Clean Action Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button class="h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2.5 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
+            <button class="h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch Now</span>
             </button>
-            <button class="h-12 px-5 rounded-full bg-surface-container-high/90 hover:bg-surface-bright text-parchment font-sans text-sm flex items-center gap-2 border border-border-hairline/80 transition-all active:scale-95 cursor-pointer shadow-sm" id="slide-btn-dossier" onclick="openSlideDossier()">
-              <span class="material-symbols-outlined text-[18px]">info</span>
-              <span>Film Dossier</span>
+            <button class="h-12 px-5 rounded-full bg-surface-container-high hover:bg-surface-bright text-parchment font-sans text-sm font-medium flex items-center gap-2 border border-white/10 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="downloadSlideMovie()">
+              <span class="material-symbols-outlined text-[18px]">download</span>
+              <span>Download 4K</span>
             </button>
-            <button class="h-12 px-4 rounded-full bg-surface-container/80 hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-border-hairline/60 transition-colors active:scale-95 cursor-pointer" id="slide-btn-watchlist" onclick="toggleSlideWatchlist()">
+            <button class="h-12 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" id="slide-btn-watchlist" onclick="toggleSlideWatchlist()">
               <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
-              <span class="hidden sm:inline" id="slide-watchlist-text">Watchlist</span>
-            </button>
-            <button class="h-12 w-12 rounded-full bg-surface-container/80 hover:bg-surface-container-high text-primary flex items-center justify-center border border-border-hairline/60 transition-colors active:scale-95 cursor-pointer" title="Rate this Film" onclick="openSlideRating()">
-              <span class="material-symbols-outlined text-[20px]">star_rate</span>
+              <span id="slide-watchlist-text">Watchlist</span>
             </button>
           </div>
         </div>
 
-        <!-- Right Side: Poster Card & Slide Thumbnails Strip -->
+        <!-- Right Side: Poster Card & Progress -->
         <div class="lg:col-span-4 flex flex-col items-center lg:items-end gap-4">
-          <!-- Active Hero Poster Badge with 35mm Frame -->
-          <div class="relative w-44 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-border-hairline/80 bg-surface-container group cursor-pointer" onclick="openSlideDossier()">
-            <img alt="Active Film Poster" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="slide-poster-img" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'"/>
+          <div class="relative w-44 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-surface-container group cursor-pointer" onclick="openSlideDossier()">
+            <img alt="Active Film Poster" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="slide-poster-img" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" onerror="this.onerror=null; this.src='https://image.tmdb.org/t/p/w500/8sNiAPPYU14PUepFNeSNGUTiHW.jpg'"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
-            <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-border-hairline/60 font-mono text-[10px] text-primary">
-              35MM ARCHIVE
-            </div>
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-surface/40 backdrop-blur-[2px]">
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
               <div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg">
                 <span class="material-symbols-outlined text-[24px]">visibility</span>
               </div>
             </div>
           </div>
 
-          <!-- Slide Progress Dots with Animated Timer -->
-          <div class="flex items-center gap-2 pt-2" id="slide-progress-dots">
-            <!-- Rendered dynamically by JS -->
-          </div>
+          <!-- Progress Dots -->
+          <div class="flex items-center gap-2" id="slide-progress-dots"></div>
         </div>
       </div>
 
-      <!-- BOTTOM DECK: MINI-THUMBNAIL NAVIGATION STRIP -->
-      <div class="mt-6 pt-4 border-t border-border-hairline/40 flex items-center justify-between gap-4">
-        <!-- Interactive Thumbnails Row -->
-        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full py-1" id="slide-thumbnails-deck">
-          <!-- Rendered dynamically by JS -->
-        </div>
+      <!-- Bottom Mini Thumbnails Strip -->
+      <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full py-1" id="slide-thumbnails-deck"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. STICKY SUB-NAV CATEGORY PILLS (All, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean)
+       ========================================================================= -->
+  <section class="w-full sticky top-[70px] z-30 py-3 bg-petrol-base/95 backdrop-blur-md border-b border-white/5 shadow-sm">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6">
+      <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar scroll-smooth" id="chip-container">
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs font-semibold bg-primary text-on-primary shadow-sm transition-all cursor-pointer" onclick="selectChip(this, 'all')">
+          All
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'anime')">
+          🎌 Anime &amp; Animation
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'bollywood')">
+          🇮🇳 Bollywood &amp; Hindi
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'telugu')">
+          🇮🇳 Tollywood (Telugu)
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'tamil')">
+          🇮🇳 Kollywood (Tamil)
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'hollywood')">
+          🚀 Hollywood 4K
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'korean')">
+          🇰🇷 Korean Cinema
+        </button>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       MAIN MULTI-SCREEN CONTAINER
+       4. MAIN MULTI-SCREEN CONTAINER
        ========================================================================= -->
-  <main class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-8 space-y-12">
+  <main class="max-w-[1360px] mx-auto px-4 sm:px-6 mt-8 space-y-12">
 
     <!-- =======================================================================
-         SCREEN 1: DISCOVER & CATALOGUE (Clean, Crisp & User-Friendly)
+         SCREEN 1: UNIFIED BROWSE & CAROUSELS (Zero Clutter)
          ======================================================================= -->
-    <div class="flex flex-col w-full screen-view" id="screen-discover">
-      <!-- Clean Editorial Page Header -->
-      <header class="w-full flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border-hairline/60">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="font-mono text-xs uppercase tracking-[0.08em] text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/30">
-              ● 4K Master Directory
-            </span>
-            <span class="font-mono text-xs text-text-muted">
-              200+ Master Works
-            </span>
-          </div>
-          <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface tracking-tight font-serif font-semibold">
-            Explore Curated Cinema
-          </h2>
-          <p class="font-body-md text-sm text-on-surface-variant mt-1 max-w-xl">
-            Stream rare 35mm restorations, festival laureates, Indian blockbusters, anime, and international master prints in 4K UHD.
-          </p>
-        </div>
+    <div class="flex flex-col w-full screen-view space-y-12" id="screen-discover">
 
-        <!-- Clean Live Search Input & Quick Filter Controls -->
-        <div class="flex flex-wrap items-center gap-3">
-          <div class="relative min-w-[280px]">
-            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-lg pointer-events-none">search</span>
-            <input class="w-full bg-surface-container text-on-surface placeholder:text-text-muted font-sans text-sm pl-10 pr-4 py-2.5 rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all border border-border-hairline/60 shadow-sm" id="discover-inline-search" oninput="handleDiscoverSearch(this.value)" placeholder="Search 200+ films, anime, actors, directors..." type="text"/>
-          </div>
-        </div>
-      </header>
-
-      <!-- Clean Filter Strip (Genre, Dubbing Audio, Sorting) -->
-      <div class="w-full py-4 flex flex-wrap items-center justify-between gap-4 border-b border-border-hairline/40">
-        <!-- Filter Dropdowns -->
-        <div class="flex flex-wrap items-center gap-3">
-          <!-- Genre Dropdown -->
-          <div class="relative">
-            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-genre-select" onchange="applyDiscoverFilters()">
-              <option value="all">All Genres</option>
-              <option value="Action">Action &amp; Adventure</option>
-              <option value="Sci-Fi">Sci-Fi &amp; Cyberpunk</option>
-              <option value="Romance">Romance &amp; Melodrama</option>
-              <option value="Drama">Drama &amp; Laureates</option>
-              <option value="Thriller">Psychological Thriller</option>
-              <option value="Animation">Anime &amp; Animation</option>
-            </select>
-            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
-          </div>
-
-          <!-- Audio Dubbing Dropdown -->
-          <div class="relative">
-            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-audio-select" onchange="applyDiscoverFilters()">
-              <option value="all">All Audio / Dubs</option>
-              <option value="hindi">🇮🇳 Hindi Dubbed</option>
-              <option value="tamil">🇮🇳 Tamil Dubbed</option>
-              <option value="telugu">🇮🇳 Telugu Dubbed</option>
-              <option value="english">🇺🇸 English Dubbed</option>
-              <option value="korean">🇰🇷 Korean Audio</option>
-              <option value="japanese">🇯🇵 Japanese Audio</option>
-            </select>
-            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
-          </div>
-
-          <!-- Region Dropdown -->
-          <div class="relative">
-            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-region-select" onchange="applyDiscoverFilters()">
-              <option value="all">All Regions</option>
-              <option value="South Korea">South Korea</option>
-              <option value="India">India</option>
-              <option value="Japan">Japan</option>
-              <option value="United States">Hollywood (USA)</option>
-              <option value="France">France &amp; Europe</option>
-            </select>
-            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
-          </div>
-        </div>
-
-        <!-- Sort Control -->
-        <div class="flex items-center gap-2">
-          <span class="font-mono text-xs text-text-muted uppercase">Sort:</span>
-          <div class="relative">
-            <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3.5 pr-8 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="filter-sort-select" onchange="applyDiscoverFilters()">
-              <option value="rating">Highest Rated ★</option>
-              <option value="newest">Newest Release</option>
-              <option value="title">Title (A–Z)</option>
-            </select>
-            <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW STATE A: FILTERED GRID WORKFLOW -->
-      <div class="w-full mt-6 flex flex-col lg:flex-row gap-8 items-start" id="view-filtered-grid">
-        <!-- LEFT SIDEBAR: Deep Filter Engine -->
-        <aside class="w-full lg:w-[280px] flex-shrink-0 lg:sticky lg:top-24 space-y-6">
-          <div class="bg-surface-container p-5 rounded-2xl shadow-warm-diffuse space-y-6 border border-border-hairline/60">
-            <!-- Sidebar Control Header -->
-            <div class="flex items-center justify-between pb-3 border-b border-surface-container-highest">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-base">filter_alt</span>
-                <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-medium">Filters</span>
-              </div>
-              <button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/40 underline-offset-4 cursor-pointer" onclick="resetFilters()">
-                Reset all
+      <!-- DEDICATED HORIZONTAL CAROUSELS -->
+      <div class="space-y-12" id="catalogue-content">
+        <!-- 1. Trending Reel -->
+        <section class="w-full space-y-4" id="section-row-trending">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold flex items-center gap-2">
+              <span>⚡ Trending Now</span>
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
               </button>
             </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-trending"></div>
+        </section>
 
-            <!-- 1. Availability Toggles -->
-            <div class="space-y-3">
-              <label class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Distribution Access</label>
-              <div class="grid grid-cols-3 gap-1 p-1 bg-surface-container-lowest rounded-xl">
-                <button class="font-label-sm text-label-sm py-1.5 rounded-lg bg-surface-container text-on-surface text-center font-medium shadow-sm">
-                  Stream (492)
-                </button>
-                <button class="font-label-sm text-label-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface text-center">
-                  Rent (610)
-                </button>
-                <button class="font-label-sm text-label-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface text-center">
-                  Buy (182)
-                </button>
-              </div>
-            </div>
+        <!-- 2. Top 10 Worldwide (Numbered Row) -->
+        <section class="w-full space-y-4" id="section-row-numbered">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🏆 Top 10 Critics' Choice
+            </h3>
+          </div>
+          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-numbered"></div>
+        </section>
 
-            <!-- 2. Genres with Bespoke Checkboxes -->
-            <div class="space-y-3 pt-2">
-              <div class="flex items-center justify-between">
-                <label class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Genre &amp; Form</label>
-                <span class="font-label-sm text-label-sm text-primary">3 Active</span>
-              </div>
-              <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
-                <label class="flex items-center justify-between group cursor-pointer py-0.5">
-                  <div class="flex items-center gap-2.5">
-                    <input checked="" class="w-4 h-4 rounded appearance-none bg-surface-container-lowest checked:bg-primary-container checked:after:content-['✓'] checked:after:text-on-primary checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-[10px] checked:after:font-bold transition-all cursor-pointer" type="checkbox"/>
-                    <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Sci-Fi</span>
-                  </div>
-                  <span class="font-label-sm text-label-sm text-outline">319</span>
-                </label>
-                <label class="flex items-center justify-between group cursor-pointer py-0.5">
-                  <div class="flex items-center gap-2.5">
-                    <input checked="" class="w-4 h-4 rounded appearance-none bg-surface-container-lowest checked:bg-primary-container checked:after:content-['✓'] checked:after:text-on-primary checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-[10px] checked:after:font-bold transition-all cursor-pointer" type="checkbox"/>
-                    <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Psychological Thriller</span>
-                  </div>
-                  <span class="font-label-sm text-label-sm text-outline">214</span>
-                </label>
-                <label class="flex items-center justify-between group cursor-pointer py-0.5">
-                  <div class="flex items-center gap-2.5">
-                    <input checked="" class="w-4 h-4 rounded appearance-none bg-surface-container-lowest checked:bg-primary-container checked:after:content-['✓'] checked:after:text-on-primary checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-[10px] checked:after:font-bold transition-all cursor-pointer" type="checkbox"/>
-                    <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Korean New Wave</span>
-                  </div>
-                  <span class="font-label-sm text-label-sm text-outline">108</span>
-                </label>
-                <label class="flex items-center justify-between group cursor-pointer py-0.5">
-                  <div class="flex items-center gap-2.5">
-                    <input class="w-4 h-4 rounded appearance-none bg-surface-container-lowest checked:bg-primary-container transition-all cursor-pointer" type="checkbox"/>
-                    <span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Drama</span>
-                  </div>
-                  <span class="font-label-sm text-label-sm text-outline">842</span>
-                </label>
-                <label class="flex items-center justify-between group cursor-pointer py-0.5">
-                  <div class="flex items-center gap-2.5">
-                    <input class="w-4 h-4 rounded appearance-none bg-surface-container-lowest checked:bg-primary-container transition-all cursor-pointer" type="checkbox"/>
-                    <span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Romance / Melodrama</span>
-                  </div>
-                  <span class="font-label-sm text-label-sm text-outline">290</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- 3. Region Filter -->
-            <div class="space-y-3 pt-2">
-              <label class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Region &amp; Country</label>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-medium">South Korea</span>
-                <span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface cursor-pointer">Japan</span>
-                <span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface cursor-pointer">France</span>
-                <span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface cursor-pointer">United States</span>
-                <span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface cursor-pointer">India</span>
-              </div>
-            </div>
-
-            <!-- 4. Curatorial Marks -->
-            <div class="space-y-2 pt-2">
-              <label class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Editorial Badges</label>
-              <div class="flex flex-col gap-1.5">
-                <label class="flex items-center gap-2 cursor-pointer group">
-                  <input checked="" class="w-3.5 h-3.5 rounded bg-surface-container-lowest checked:bg-primary-container" type="checkbox"/>
-                  <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary">Criterion Collection</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer group">
-                  <input checked="" class="w-3.5 h-3.5 rounded bg-surface-container-lowest checked:bg-primary-container" type="checkbox"/>
-                  <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary">Cannes Palme d'Or / Grand Prix</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer group">
-                  <input class="w-3.5 h-3.5 rounded bg-surface-container-lowest checked:bg-primary-container" type="checkbox"/>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface">35mm Restored Master</span>
-                </label>
-              </div>
+        <!-- 3. Anime & Animation -->
+        <section class="w-full space-y-4" id="section-row-anime">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🎌 Anime &amp; Animation Masterpieces
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
             </div>
           </div>
-        </aside>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-anime"></div>
+        </section>
 
-        <!-- RIGHT CATALOG AREA: Filter Bar & Responsive Card Matrix -->
-        <div class="flex-1 w-full space-y-8">
-          <!-- Results Sub-Nav Bar -->
-          <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container p-4 rounded-2xl shadow-warm-diffuse border border-border-hairline/60">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="font-label-sm text-label-sm text-primary font-medium mr-2" id="discover-counter">159 ARCHIVED WORKS</span>
-              <!-- Removable active filter chips -->
-              <div class="flex flex-wrap items-center gap-1.5">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
-                  Sci-Fi <button class="text-outline hover:text-on-surface leading-none">×</button>
-                </span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
-                  Psychological Thriller <button class="text-outline hover:text-on-surface leading-none">×</button>
-                </span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
-                  South Korea <button class="text-outline hover:text-on-surface leading-none">×</button>
-                </span>
-              </div>
-            </div>
-            <!-- Sorting Controls -->
-            <div class="flex items-center gap-3">
-              <div class="relative">
-                <select class="appearance-none bg-surface-container-lowest text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-1.5 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/40">
-                  <option>Curator Score (High to Low)</option>
-                  <option>Release Year (Newest)</option>
-                  <option>Recently Restored</option>
-                  <option>Runtime (Descending)</option>
-                </select>
-                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">expand_more</span>
-              </div>
+        <!-- 4. Bollywood Hits -->
+        <section class="w-full space-y-4" id="section-row-bollywood">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🇮🇳 Bollywood &amp; Hindi Blockbusters
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
             </div>
           </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-bollywood"></div>
+        </section>
 
-          <!-- Dynamic 4/5-Column Poster Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6" id="catalogGrid"></div>
-        </div>
-      </div>
-
-      <!-- VIEW STATE B: GENRE & MOVEMENT TILES LANDING -->
-      <section class="w-full hidden space-y-8" id="view-genre-tiles">
-        <div class="flex items-end justify-between border-b border-surface-container-highest pb-4">
-          <div>
-            <span class="font-label-sm text-label-sm uppercase tracking-[0.08em] text-primary">Cinematic Currents</span>
-            <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface mt-1 font-serif">Browse by Movement &amp; Discipline</h3>
-          </div>
-          <p class="font-body-sm text-body-sm text-outline max-w-sm text-right hidden md:block">
-            Deep historic lineages and thematic curation spanning pre-war realism to contemporary neon-cyberpunk.
-          </p>
-        </div>
-
-        <!-- Curated Grid of 3:2 Ratio Tiles -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Movement Tile 1: Sci-Fi & Cyberpunk -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('sci-fi')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Sci-Fi & Cyberpunk"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1982–2024</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">319 Curated Works</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  Sci-Fi &amp; Cyberpunk
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
+        <!-- 5. Tollywood (Telugu) -->
+        <section class="w-full space-y-4" id="section-row-telugu">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🇮🇳 Tollywood (Telugu Blockbusters)
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
             </div>
           </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-telugu"></div>
+        </section>
 
-          <!-- Movement Tile 2: Korean Melodrama -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('korean')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Korean Melodrama"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1998–Present</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">108 Curated Works</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  Korean Melodrama
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
+        <!-- 6. Kollywood (Tamil) -->
+        <section class="w-full space-y-4" id="section-row-tamil">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🇮🇳 Kollywood (Tamil Masterpieces)
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
             </div>
           </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-tamil"></div>
+        </section>
 
-          <!-- Movement Tile 3: French New Wave -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('french')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="French New Wave"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1958–1968</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">94 Master Prints</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  French New Wave
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Movement Tile 4: Psychological Horror & Thriller -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('thriller')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/7CENyUim29IEsaJhUxIGymCRvPu.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Psychological Horror"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1960–2024</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">214 Curated Works</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  Psychological Horror
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Movement Tile 5: Japanese Neo-Noir -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('japanese')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Japanese Neo-Noir"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1970–2023</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">162 Curated Works</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  Japanese Neo-Noir
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Movement Tile 6: Poetic Realism -->
-          <div class="group relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface-container shadow-warm-diffuse cursor-pointer" onclick="filterCatalogByMovement('poetic')">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://image.tmdb.org/t/p/original/7HR38hMBl23lf38MAN63y4pKsHz.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Poetic Realism"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container/60 to-transparent"></div>
-            <div class="absolute inset-0 p-6 flex flex-col justify-between">
-              <div class="flex justify-between items-start">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container-lowest/80 text-primary">Decades: 1930–1949</span>
-                <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">north_east</span>
-              </div>
-              <div>
-                <span class="font-label-sm text-label-sm text-outline block mb-1">87 Restorations</span>
-                <h4 class="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors font-serif">
-                  Poetic Realism
-                </h4>
-                <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 mt-2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- =======================================================================
-         SCREEN 2: HOME / TRENDING CAROUSELS (Clean Cinema Browsing)
-         ======================================================================= -->
-    <div class="flex flex-col w-full screen-view hidden" id="screen-home">
-
-      <!-- CATEGORY FILTER STRIP (Sticky / Sub-nav with Edge Gradients) -->
-      <section class="w-full sticky top-[72px] z-30 mb-10 py-3 -mx-2 px-2 backdrop-blur-md bg-surface-dim/80">
-        <div class="relative w-full overflow-hidden flex items-center">
-          <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1 px-4 scroll-smooth w-full" id="chip-container">
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm font-semibold bg-primary text-on-primary shadow-sm transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'all')">
-              All Curations
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'anime')">
-              🎌 Anime &amp; Animation
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'bollywood')">
-              🇮🇳 Bollywood &amp; Hindi Dubs
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'telugu')">
-              🇮🇳 Tollywood (Telugu)
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'tamil')">
-              🇮🇳 Kollywood (Tamil)
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'korean')">
-              🇰🇷 Korean Cinema
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'hollywood')">
+        <!-- 7. Hollywood 4K -->
+        <section class="w-full space-y-4" id="section-row-hollywood">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
               🚀 Hollywood 4K &amp; IMAX
-            </button>
-            <button class="chip-item whitespace-nowrap h-10 px-5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-all duration-200 cursor-pointer" onclick="selectChip(this, 'world')">
-              🌍 World Cinema
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTENT ROWS CONTAINER -->
-      <div class="w-full space-y-16" id="catalogue-content">
-        <!-- ROW 1: "Trending This Week" (Standard Movie Row) -->
-        <section class="w-full space-y-5" id="section-row-trending">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Featured Daily</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                ⚡ Trending This Week
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                UPDATED DAILY • 4K UHD &amp; HIGH-SPEED DOWNLOAD
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
               </button>
-              <button aria-label="Next films" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-trending', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
               </button>
             </div>
           </div>
-
-          <!-- Horizontal Snap Carousel -->
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-trending">
-            <!-- Populated dynamically by JS -->
-          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-hollywood"></div>
         </section>
 
-        <!-- ROW 2: 🎌 Anime & Japanese Animation -->
-        <section class="w-full space-y-5" id="section-row-anime">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-secondary font-semibold">Studio Ghibli &amp; Shonen Masterpieces</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🎌 Anime &amp; Japanese Animation
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                ORIGINAL AUDIO + MULTI-LANGUAGE DUBS &amp; SUBTITLES
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous anime" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+        <!-- 8. Korean Cinema -->
+        <section class="w-full space-y-4" id="section-row-korean">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🇰🇷 Korean Cinema &amp; K-Melodrama
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
               </button>
-              <button aria-label="Next anime" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-anime', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
               </button>
             </div>
           </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-anime">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 3: 🇮🇳 Bollywood Hits & Hindi Cinema -->
-        <section class="w-full space-y-5" id="section-row-bollywood">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Hindi Blockbusters &amp; High-Octane Action</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🇮🇳 Bollywood Hits &amp; Hindi Dubs
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                DOLBY ATMOS AUDIO • 1080P/4K ULTRA HD
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous bollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button aria-label="Next bollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-bollywood', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-bollywood">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 4: 🇮🇳 Tollywood Blockbusters (Telugu) -->
-        <section class="w-full space-y-5" id="section-row-telugu">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-tertiary font-semibold">Telugu Cinema Mega Spectacles</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🇮🇳 Tollywood Blockbusters (Telugu)
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                RRR, BAAHUBALI, KALKI, SALAAR &amp; MORE
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous telugu" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button aria-label="Next telugu" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-telugu', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-telugu">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 5: 🇮🇳 Kollywood Masterpieces (Tamil) -->
-        <section class="w-full space-y-5" id="section-row-tamil">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-secondary font-semibold">Tamil Cinema Pioneers &amp; Action Masterworks</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🇮🇳 Kollywood Masterpieces (Tamil)
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                LEO, JAILER, VIKRAM, PONNIYIN SELVAN &amp; MASTER
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous tamil" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button aria-label="Next tamil" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-tamil', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-tamil">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 6: 🚀 Hollywood 4K & IMAX -->
-        <section class="w-full space-y-5" id="section-row-hollywood">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">Global Box Office Titans</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🚀 Hollywood 4K &amp; IMAX
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                DUNE, OPPENHEIMER, INTERSTELLAR, AVATAR &amp; MORE
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous hollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button aria-label="Next hollywood" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-hollywood', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-hollywood">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 7: 🇰🇷 Korean Cinema & K-Melodrama -->
-        <section class="w-full space-y-5" id="section-row-korean">
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">KOFA &amp; Cannes Laureates</span>
-              </div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🇰🇷 Korean Cinema &amp; K-Melodrama
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                A MOMENT TO REMEMBER, PARASITE, PAST LIVES &amp; THE CLASSIC
-              </p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button aria-label="Previous korean" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', -1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button aria-label="Next korean" class="w-9 h-9 rounded-full flex items-center justify-center border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/60 transition-colors cursor-pointer" onclick="scrollRow('carousel-korean', 1)">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-korean">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 8: "Top 10 in World Cinema" (Numbered Row with Oversized Outlined Serif Numerals) -->
-        <section class="w-full space-y-6">
-          <div class="flex items-end justify-between">
-            <div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🏆 Top 10 Critics' Choice
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                CURATED BY CRITICS CIRCLE • GLOBAL BOX &amp; FESTIVALS
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-3 -mx-2 px-2 snap-x snap-mandatory" id="carousel-numbered">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-
-        <!-- ROW 9: "Continue Exploring: Trailer Logbook" (Wide 16:9 Row Variant) -->
-        <section class="w-full space-y-6">
-          <div class="flex items-end justify-between">
-            <div>
-              <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">
-                🎬 Theatrical 16:9 Previews
-              </h3>
-              <p class="font-label-sm text-label-sm text-outline uppercase tracking-[0.08em] mt-1">
-                RESUME WATCHED PREVIEWS &amp; ARCHIVAL CLIPS
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-wide">
-            <!-- Populated dynamically by JS -->
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         SCREEN 3: MY LIBRARY (From Stitch media_1791016017507.html)
-         ======================================================================= -->
-    <div class="flex flex-col w-full screen-view hidden" id="screen-library">
-      <!-- Sub-View Switcher -->
-      <div class="pt-2 pb-4 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar border-b border-border-hairline/60 mb-6">
-        <div>
-          <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-medium block mb-1">Cinexa Archive</span>
-          <h2 class="font-headline-lg text-4xl text-on-surface font-serif">My Library</h2>
-        </div>
-        <div class="inline-flex p-1 rounded-full bg-surface-container-low shadow-inner border border-border-hairline/60">
-          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 bg-primary text-on-primary font-bold shadow-sm cursor-pointer" id="view-library-btn" onclick="switchLibrarySubView('library')">
-            Library View
-          </button>
-          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer" id="view-search-btn" onclick="switchLibrarySubView('search')">
-            Search Overlay
-          </button>
-          <button class="px-3.5 py-1.5 rounded-full text-label-sm font-label-sm uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface cursor-pointer" id="view-empty-btn" onclick="switchLibrarySubView('empty')">
-            Empty State
-          </button>
-        </div>
-      </div>
-
-      <!-- SUB-VIEW 1: MAIN LIBRARY & STATS -->
-      <div class="space-y-8" id="library-subview-main">
-        <!-- 2x2 Bento Stats Grid -->
-        <section class="mb-8">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Films Seen</span>
-                <span class="material-symbols-outlined text-primary text-[18px]">theaters</span>
-              </div>
-              <div>
-                <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">148</div>
-                <span class="font-label-sm text-label-sm text-tertiary">↑ 12 this month</span>
-              </div>
-            </div>
-            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Hours Logged</span>
-                <span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
-              </div>
-              <div>
-                <div class="font-headline-md text-3xl text-on-surface font-semibold leading-none mb-1.5 font-serif">312<span class="font-label-md text-sm text-on-surface-variant">h</span></div>
-                <span class="font-label-sm text-label-sm text-on-surface-variant">14 curatorial archives</span>
-              </div>
-            </div>
-            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Top Genre</span>
-                <span class="material-symbols-outlined text-secondary text-[18px]">local_fire_department</span>
-              </div>
-              <div>
-                <div class="font-headline-sm text-xl text-on-surface font-semibold truncate leading-tight mb-1 font-serif">Melodrama</div>
-                <span class="font-label-sm text-label-sm text-on-surface-variant">28% of collection</span>
-              </div>
-            </div>
-            <div class="p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex flex-col justify-between border border-border-hairline/60">
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Avg Rating</span>
-                <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              </div>
-              <div>
-                <div class="flex items-baseline gap-1 mb-1">
-                  <span class="font-headline-md text-3xl text-primary font-semibold leading-none font-serif">4.2</span>
-                  <span class="font-label-sm text-label-sm text-on-surface-variant">/5.0</span>
-                </div>
-                <span class="font-label-sm text-label-sm text-on-surface-variant">86 titles reviewed</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- High Density Film List -->
-        <section class="flex flex-col gap-3 mb-8" id="library-film-rows">
-          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('a-moment-to-remember')">
-            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-              <img class="w-full h-full object-cover" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="A Moment to Remember"/>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between gap-1 mb-0.5">
-                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">A Moment to Remember</h3>
-                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.8</span>
-              </div>
-              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-                <span>2004</span>
-                <span>•</span>
-                <span class="text-secondary">35MM RESTORED</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-label-sm text-[10px] uppercase font-bold tracking-wider">MUBI MASTER</span>
-            </div>
-            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('a-moment-to-remember');">
-              <span class="material-symbols-outlined text-[20px]">star_rate</span>
-            </button>
-          </article>
-
-          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('dune-part-two')">
-            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" onerror="this.onerror=null; this.src='/images/dune-desert-backdrop.jpg'" alt="Dune: Part Two"/>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between gap-1 mb-0.5">
-                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Dune: Part Two</h3>
-                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.6</span>
-              </div>
-              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-                <span>2024</span>
-                <span>•</span>
-                <span class="text-tertiary">IMAX 70MM</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-[10px] uppercase font-bold tracking-wider">4K MASTER</span>
-            </div>
-            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('dune-part-two');">
-              <span class="material-symbols-outlined text-[20px]">star_rate</span>
-            </button>
-          </article>
-
-          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('past-lives')">
-            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Past Lives"/>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between gap-1 mb-0.5">
-                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Past Lives</h3>
-                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.7</span>
-              </div>
-              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-                <span>2023</span>
-                <span>•</span>
-                <span class="text-secondary">35MM PANAVISION</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-sm text-[10px] uppercase font-bold tracking-wider">A24 ARCHIVE</span>
-            </div>
-            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('past-lives');">
-              <span class="material-symbols-outlined text-[20px]">star_rate</span>
-            </button>
-          </article>
-
-          <article class="p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-sm flex items-center gap-4 cursor-pointer border border-border-hairline/60" onclick="openFilmBySlug('parasite')">
-            <div class="w-14 h-20 shrink-0 rounded-lg overflow-hidden bg-surface-container-lowest">
-              <img class="w-full h-full object-cover" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Parasite"/>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between gap-1 mb-0.5">
-                <h3 class="font-headline-sm text-lg text-on-surface font-semibold truncate font-serif">Parasite</h3>
-                <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">★ 4.9</span>
-              </div>
-              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-xs mb-1">
-                <span>2019</span>
-                <span>•</span>
-                <span class="text-tertiary">4K UHD HDR</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-secondary-container/40 text-secondary font-label-sm text-[10px] uppercase font-bold tracking-wider">CRITERION #1052</span>
-            </div>
-            <button aria-label="Rate Film" class="w-10 h-10 shrink-0 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="event.stopPropagation(); openRatingDialogModal('parasite');">
-              <span class="material-symbols-outlined text-[20px]">star_rate</span>
-            </button>
-          </article>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-korean"></div>
         </section>
       </div>
 
-      <!-- SUB-VIEW 2: INLINE SEARCH & FILTER OVERLAY -->
-      <div class="hidden space-y-6" id="library-subview-search">
-        <div class="p-5 rounded-2xl bg-surface-container border border-border-hairline/80 space-y-4">
-          <div class="relative flex items-center">
-            <span class="material-symbols-outlined absolute left-4 text-primary text-[22px]">search</span>
-            <input class="w-full pl-12 pr-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-base placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary border border-border-hairline/60" id="library-search-input" oninput="handleLibrarySearch(this.value)" placeholder="Search your saved titles, directors, movements..." type="text"/>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="font-mono text-xs uppercase tracking-wider text-text-muted mr-1">Quick Filters:</span>
-            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-primary text-on-primary font-bold cursor-pointer" onclick="filterLibraryCollection('all')">All Saved (42)</button>
-            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('restorations')">35mm Restorations (14)</button>
-            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('imax')">IMAX &amp; 4K (18)</button>
-            <button class="px-3 py-1 rounded-full font-label-sm text-xs uppercase bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-border-hairline/60 cursor-pointer" onclick="filterLibraryCollection('masterpiece')">5★ Masterpieces (10)</button>
-          </div>
-        </div>
-        <!-- Dynamic Results Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="library-search-results">
-          <!-- Populated by handleLibrarySearch -->
-        </div>
-      </div>
-
-      <!-- SUB-VIEW 3: EMPTY ARCHIVAL VAULT STATE -->
-      <div class="hidden py-16 px-6 text-center rounded-2xl bg-surface-container border border-border-hairline/60 space-y-4" id="library-subview-empty">
-        <div class="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 text-primary flex items-center justify-center mx-auto mb-2">
-          <span class="material-symbols-outlined text-[32px]">bookmark_remove</span>
-        </div>
-        <h3 class="font-headline-md text-2xl sm:text-3xl text-on-surface font-serif">Your Archival Vault is Currently Empty</h3>
-        <p class="font-body-md text-on-surface-variant max-w-md mx-auto text-sm leading-relaxed">
-          You haven't bookmarked any 35mm restorations or world cinema master prints yet. Explore our curatorial catalog to start assembling your private screening log.
-        </p>
-        <div class="pt-3">
-          <button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-body-sm text-sm font-bold shadow-md hover:bg-brass-hover transition-all cursor-pointer" onclick="switchMainScreen('discover')">
-            Explore 159 Master Films
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         SCREEN 4: FILM DETAILS DOSSIER (From Stitch media_1791016069173.html)
-         ======================================================================= -->
-    <div class="flex flex-col w-full screen-view hidden" id="screen-details">
-      <!-- Visual Well -->
-      <div class="relative w-full h-[360px] md:h-[480px] rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-hairline/60">
-        <div class="w-full h-full bg-cover bg-center" id="details-hero-img" style="background-image: url('/images/moment-to-remember-backdrop.jpg')"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-petrol-base via-petrol-base/60 to-transparent"></div>
-
-        <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
-          <button aria-label="Back to Catalog" class="w-11 h-11 rounded-full bg-surface-container/90 backdrop-blur-md text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-transform active:scale-95 cursor-pointer border border-border-hairline/40" onclick="switchMainScreen('discover')">
-            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-          </button>
-          <div class="flex items-center gap-2">
-            <button aria-label="Enter Theatre Preview" class="h-11 px-4 rounded-full bg-surface-container/90 backdrop-blur-md text-primary hover:bg-surface-container-high flex items-center gap-1.5 shadow-lg transition-all text-label-sm font-mono uppercase tracking-wider cursor-pointer border border-border-hairline/40" onclick="playCurrentFilmInPlayer()">
-              <span class="material-symbols-outlined text-[18px]">screen_rotation</span>
-              <span>Theatre</span>
-            </button>
-            <button aria-label="Share Dossier" class="w-11 h-11 rounded-full bg-surface-container/90 backdrop-blur-md text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-transform active:scale-95 cursor-pointer border border-border-hairline/40" onclick="showToast('Film dossier link copied to clipboard!')">
-              <span class="material-symbols-outlined text-[20px]">ios_share</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Overlapping Poster & Metadata -->
-      <div class="relative -mt-20 px-4 sm:px-6 z-10 flex flex-col sm:flex-row gap-6 items-start">
-        <div class="w-36 sm:w-48 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl bg-surface-container border border-border-hairline/80 shrink-0">
-          <img class="w-full h-full object-cover" id="details-poster-img" src="/images/moment-to-remember-backdrop.jpg" onerror="this.onerror=null; this.src='/images/moment-to-remember-backdrop.jpg'" alt="Film Poster"/>
-        </div>
-        <div class="flex-1 min-w-0 pt-2 space-y-2">
-          <div class="flex items-center gap-2">
-            <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold" id="details-restoration-tag">Restored Print</span>
-            <span class="text-outline text-xs">•</span>
-            <span class="font-label-sm text-label-sm text-on-surface-variant text-xs" id="details-archive-tag">KOFA National Archive</span>
-          </div>
-          <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-serif" id="details-title">
-            A Moment to Remember
-          </h2>
-          <p class="font-body-sm text-sm text-on-surface-variant italic" id="details-korean-title">
-            내 머리 속의 지우개 <span class="font-label-sm text-outline not-italic ml-1">(2004)</span>
-          </p>
-          <p class="font-body-md text-primary italic max-w-2xl leading-relaxed" id="details-tagline">
-            “If my memory disappears, what will become of our love?”
-          </p>
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <span class="font-label-sm text-primary font-bold px-2.5 py-1 rounded bg-surface-container border border-border-hairline/60" id="details-score">★ 8.1</span>
-            <span class="font-label-sm text-tertiary font-semibold" id="details-match">98% MATCH</span>
-            <span class="font-label-sm text-outline" id="details-duration">2h 24m</span>
-            <span class="font-label-sm text-secondary bg-secondary-container/40 px-2 py-0.5 rounded text-xs font-semibold" id="details-age">18+</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Action Tray -->
-      <div class="mt-6 flex flex-wrap items-center gap-3">
-        <button class="h-12 px-6 rounded-full bg-primary text-on-primary font-body-md font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 hover:bg-primary-fixed cursor-pointer" onclick="playCurrentFilmInPlayer()">
-          <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-          <span>Watch Master Film</span>
-        </button>
-        <button class="h-12 px-6 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-body-md font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 border border-primary/40 cursor-pointer" onclick="downloadFilmDirect(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '15859', '4k')">
-          <span class="material-symbols-outlined text-[20px]">download</span>
-          <span>Download 4K UHD</span>
-        </button>
-        <button class="h-12 px-5 rounded-full bg-surface-container text-on-surface font-body-sm text-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer border border-border-hairline/60" onclick="toggleDetailsWatchlist()">
-          <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
-          <span id="details-watchlist-text">Add to Watchlist</span>
-        </button>
-        <button class="h-12 px-5 rounded-full bg-surface-container text-on-surface font-body-sm text-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors active:scale-95 cursor-pointer border border-border-hairline/60" onclick="openRatingDialogModal()">
-          <span class="material-symbols-outlined text-[18px] text-primary">star</span>
-          <span>Rate (5★)</span>
-        </button>
-      </div>
-
-      <!-- Synopsis & Where to Watch -->
-      <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div class="lg:col-span-8 space-y-6">
-          <div class="space-y-2">
-            <h3 class="font-headline-sm text-xl text-on-surface font-serif">Curator's Overview</h3>
-            <p class="font-body-md text-on-surface-variant leading-relaxed" id="details-synopsis">
-              Su-jin, a delicate fashion designer reeling from heartbreak, crosses paths with Chul-soo, an austere construction foreman harboring literary aspirations. What blossoms from an accidental encounter outside a convenience store evolves into one of Korean cinema's most heartbreaking portraits of vulnerability. As early-onset Alzheimer's begins erasing their cherished domestic memories, the two construct an enduring sanctuary of love against inevitable erasure.
+      <!-- FULL CATALOG SECTION (Full-Width Responsive 4/5-Column Grid with Simple Filter Bar) -->
+      <section class="w-full pt-8 border-t border-white/5 space-y-6" id="section-full-catalog">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              Explore All Master Works
+            </h3>
+            <p class="text-xs font-mono text-driftwood mt-1" id="discover-counter">
+              202 VERIFIED MASTER FILMS
             </p>
           </div>
-          <!-- 16:9 Theatrical Preview Player -->
-          <div class="space-y-2">
-            <h3 class="font-headline-sm text-xl text-on-surface font-serif">Theatrical Preview</h3>
-            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container shadow-xl group cursor-pointer border border-border-hairline/60" onclick="playCurrentFilmInPlayer()">
-              <div class="w-full h-full bg-cover bg-center" id="details-trailer-poster" style="background-image: url('/images/moment-to-remember-backdrop.jpg')"></div>
-              <div class="absolute inset-0 bg-petrol-base/40 flex items-center justify-center">
-                <div class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                  <span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                </div>
-              </div>
+
+          <!-- Clean Filter Controls Row -->
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Inline Search Input -->
+            <div class="relative min-w-[220px]">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-base pointer-events-none">search</span>
+              <input class="w-full bg-surface-container text-on-surface placeholder:text-text-muted font-sans text-xs pl-9 pr-3 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-primary border border-white/10" id="discover-inline-search" oninput="handleDiscoverSearch(this.value)" placeholder="Search catalog..." type="text"/>
+            </div>
+
+            <!-- Genre Dropdown -->
+            <div class="relative">
+              <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3 pr-7 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary border border-white/10" id="filter-genre-select" onchange="applyDiscoverFilters()">
+                <option value="all">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Anime">Anime</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Drama">Drama</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-driftwood text-xs pointer-events-none">expand_more</span>
+            </div>
+
+            <!-- Audio Dubbing Dropdown -->
+            <div class="relative">
+              <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3 pr-7 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary border border-white/10" id="filter-audio-select" onchange="applyDiscoverFilters()">
+                <option value="all">All Audio</option>
+                <option value="hindi">🇮🇳 Hindi Dubbed</option>
+                <option value="tamil">🇮🇳 Tamil Dubbed</option>
+                <option value="telugu">🇮🇳 Telugu Dubbed</option>
+                <option value="english">🇺🇸 English Dubbed</option>
+                <option value="original">Original Audio</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-driftwood text-xs pointer-events-none">expand_more</span>
+            </div>
+
+            <!-- Sort Dropdown -->
+            <div class="relative">
+              <select class="appearance-none bg-surface-container text-on-surface font-sans text-xs font-medium pl-3 pr-7 py-2 rounded-full cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary border border-white/10" id="filter-sort-select" onchange="applyDiscoverFilters()">
+                <option value="rating">Highest Rated ★</option>
+                <option value="newest">Newest First</option>
+                <option value="title">Title (A–Z)</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-driftwood text-xs pointer-events-none">expand_more</span>
             </div>
           </div>
         </div>
 
-        <!-- Where to Watch Accordion & Specs -->
-        <div class="lg:col-span-4 space-y-6">
-          <div class="bg-surface-container rounded-xl p-4 border border-border-hairline/60 space-y-3">
-            <h3 class="font-label-md text-label-md uppercase text-primary font-semibold">Streaming Mirrors &amp; Failover</h3>
-            <div class="space-y-2">
-              <div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-hover transition-colors" onclick="playCurrentFilmInPlayer('local')">
-                <div class="font-body-sm text-sm text-on-surface font-medium">Server 1 (Cinexa 4K Master)</div>
-                <span class="font-label-sm text-xs text-tertiary">Verified</span>
-              </div>
-              <div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-hover transition-colors" onclick="playCurrentFilmInPlayer('fastcdn')">
-                <div class="font-body-sm text-sm text-on-surface font-medium">Server 2 (FastCDN Edge)</div>
-                <span class="font-label-sm text-xs text-outline">1080p/4K</span>
-              </div>
-            </div>
-          </div>
+        <!-- Full-Width Responsive Card Grid (No Cramped Sidebars) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5" id="catalogGrid"></div>
+      </section>
+    </div>
+
+    <!-- =======================================================================
+         SCREEN 2: MY LIBRARY (Clean Watchlist Grid)
+         ======================================================================= -->
+    <div class="flex flex-col w-full screen-view hidden space-y-6" id="screen-library">
+      <div class="flex items-center justify-between border-b border-white/5 pb-4">
+        <div>
+          <span class="font-mono text-xs uppercase text-primary font-semibold">Personal Vault</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-parchment font-semibold mt-1">My Watchlist &amp; Saved Films</h2>
         </div>
+        <button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-medium text-parchment border border-white/10 transition-colors cursor-pointer" onclick="switchMainScreen('discover')">
+          ← Back to Browse
+        </button>
+      </div>
+
+      <!-- Watchlist Grid Container -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5" id="library-grid">
+        <!-- Rendered dynamically by JS -->
       </div>
     </div>
 
     <!-- =======================================================================
-         SCREEN 5: SPECS & ACCESSIBILITY ARCHITECTURE (From Stitch media_1791015978498.html)
+         SCREEN 3: FILM DETAILS DOSSIER (Clean & Focused)
          ======================================================================= -->
-    <div class="flex flex-col w-full screen-view hidden" id="screen-specs">
-      <!-- Living Blueprint Summary Header -->
-      <section class="w-full bg-surface-container-low p-6 sm:p-8 rounded-2xl border border-border-hairline/60 mb-10">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Living Blueprint v2.4</span>
-        </div>
-        <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-serif mb-2">Design System &amp; Accessibility Architecture</h2>
-        <p class="font-body-md text-on-surface-variant max-w-3xl leading-relaxed">
-          Tactile art-house editorial aesthetics, deterministic 8px spatial rhythm, zero-CLS layout anchors, and resilient offline failure states for Cinexa.
-        </p>
-      </section>
+    <div class="flex flex-col w-full screen-view hidden space-y-8" id="screen-details">
+      <!-- Backdrop Banner -->
+      <div class="relative w-full h-[320px] sm:h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-white/5">
+        <div class="w-full h-full bg-cover bg-center" id="details-hero-img" style="background-image: url('https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-petrol-base via-petrol-base/70 to-transparent"></div>
 
-      <!-- Sub Tabs: Specs, 404 Lost Reel, Offline Local Vault -->
-      <div class="flex items-center gap-2 border-b border-border-hairline/60 pb-3 mb-8 overflow-x-auto no-scrollbar">
-        <button class="px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary font-bold shadow-sm transition-all cursor-pointer" id="spec-tab-guide" onclick="switchSpecTab('guide')">
-          Design Spec &amp; Audit
-        </button>
-        <button class="px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all cursor-pointer" id="spec-tab-404" onclick="switchSpecTab('404')">
-          Resilient State: 404 Lost Reel
-        </button>
-        <button class="px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all cursor-pointer" id="spec-tab-offline" onclick="switchSpecTab('offline')">
-          Resilient State: Offline Vault
+        <button aria-label="Back" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-surface-container/90 backdrop-blur-md text-on-surface hover:text-primary flex items-center justify-center shadow-lg transition-transform active:scale-95 cursor-pointer border border-white/10" onclick="switchMainScreen('discover')">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
         </button>
       </div>
 
-      <!-- Spec Tab 1: Harmonized Palette & Contrast Matrix -->
-      <div class="space-y-8" id="spec-panel-guide">
-        <div>
-          <h3 class="font-headline-sm text-2xl text-on-surface font-serif mb-1">Harmonized Palette &amp; Contrast Matrix</h3>
-          <p class="font-body-sm text-on-surface-variant mb-6">Calibrated against #0E1A1F (Petrol Base) to guarantee WCAG AAA readability.</p>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="p-4 rounded-xl bg-petrol-base border border-border-hairline shadow-sm flex flex-col justify-between h-36">
-              <span class="font-label-sm text-xs font-semibold">Petrol Base</span>
-              <span class="font-mono text-xs text-outline">#0E1A1F (Base)</span>
-            </div>
-            <div class="p-4 rounded-xl bg-petrol-raised border border-border-hairline shadow-sm flex flex-col justify-between h-36">
-              <span class="font-label-sm text-xs font-semibold">Raised Petrol</span>
-              <span class="font-mono text-xs text-outline">#132329 (Tier 1)</span>
-            </div>
-            <div class="p-4 rounded-xl bg-primary text-on-primary shadow-sm flex flex-col justify-between h-36">
-              <span class="font-label-sm text-xs font-semibold">Muted Brass</span>
-              <span class="font-mono text-xs opacity-90">#C9A05B (5.6:1 AA)</span>
-            </div>
-            <div class="p-4 rounded-xl bg-surface border border-border-hairline shadow-sm flex flex-col justify-between h-36">
-              <span class="font-label-sm text-xs font-semibold text-tertiary">Sage Green</span>
-              <span class="font-mono text-xs text-outline">#8DA897 (7.8:1 AAA)</span>
-            </div>
+      <!-- Overlapping Poster & Metadata Header -->
+      <div class="relative -mt-24 px-4 sm:px-6 z-10 flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-36 sm:w-48 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl bg-surface-container border border-white/10 shrink-0">
+          <img class="w-full h-full object-cover" id="details-poster-img" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" alt="Film Poster"/>
+        </div>
+        <div class="flex-1 min-w-0 pt-2 space-y-3">
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-parchment" id="details-title">
+            Dune: Part Two
+          </h2>
+          <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-driftwood">
+            <span class="text-primary font-bold px-2 py-0.5 rounded bg-surface-container border border-white/10" id="details-score">★ 8.6</span>
+            <span class="text-tertiary font-semibold" id="details-match">99% MATCH</span>
+            <span class="text-parchment" id="details-year">2024</span>
+            <span>•</span>
+            <span id="details-duration">2h 46m</span>
+            <span>•</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container text-parchment" id="details-age">PG-13</span>
+          </div>
+          <p class="font-sans text-sm text-driftwood leading-relaxed max-w-2xl" id="details-synopsis">
+            Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button class="h-11 px-6 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 hover:bg-brass-hover cursor-pointer" onclick="playCurrentFilmInPlayer()">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Watch 4K</span>
+            </button>
+            <button class="h-11 px-5 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-primary/40 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="downloadFilmDirect(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '', '4k')">
+              <span class="material-symbols-outlined text-[18px]">download</span>
+              <span>Download 4K</span>
+            </button>
+            <button class="h-11 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="toggleDetailsWatchlist()">
+              <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+              <span id="details-watchlist-text">Watchlist</span>
+            </button>
           </div>
         </div>
-      </div>
-
-      <!-- Spec Tab 2: 404 Lost Reel State -->
-      <div class="hidden space-y-6 text-center py-12 p-8 rounded-2xl bg-surface-container border border-border-hairline/60" id="spec-panel-404">
-        <div class="w-20 h-20 rounded-full bg-secondary/15 text-secondary flex items-center justify-center mx-auto mb-4">
-          <span class="material-symbols-outlined text-[36px]">movie_off</span>
-        </div>
-        <h3 class="font-headline-lg text-3xl text-on-surface font-serif">This reel was lost in the archives.</h3>
-        <p class="font-body-md text-on-surface-variant max-w-md mx-auto">
-          The requested 35mm film print or retrospective dossier has been decommissioned or relocated to the KOFA central vaults.
-        </p>
-        <button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-body-sm font-bold shadow-md cursor-pointer hover:bg-primary-fixed" onclick="switchMainScreen('discover')">
-          Return to Curated Discover
-        </button>
-      </div>
-
-      <!-- Spec Tab 3: Offline Vault State -->
-      <div class="hidden space-y-6 text-center py-12 p-8 rounded-2xl bg-surface-container border border-border-hairline/60" id="spec-panel-offline">
-        <div class="w-20 h-20 rounded-full bg-primary/15 text-primary flex items-center justify-center mx-auto mb-4">
-          <span class="material-symbols-outlined text-[36px]">wifi_off</span>
-        </div>
-        <h3 class="font-headline-lg text-3xl text-on-surface font-serif">Projector Offline: Working from Local Vault</h3>
-        <p class="font-body-md text-on-surface-variant max-w-md mx-auto">
-          You are currently disconnected. All 42 indexed film dossiers and cached screenplays remain fully readable offline.
-        </p>
-        <button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-body-sm font-bold shadow-md cursor-pointer hover:bg-primary-fixed" onclick="simulateReconnect()">
-          <span id="retry-btn-text">Test Network Connection</span>
-        </button>
       </div>
     </div>
   </main>
 
   <!-- =========================================================================
-       GLOBAL COMMAND SEARCH MODAL (⌘K)
+       5. SEARCH MODAL OVERLAY (⌘K / Ctrl+K)
        ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/80 backdrop-blur-md hidden items-start justify-center pt-24 px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
-    <div class="relative w-full max-w-[640px] rounded-[20px] bg-surface border border-border-hairline shadow-modal-ambient overflow-hidden" onclick="event.stopPropagation()">
-      <!-- Input header -->
-      <div class="p-5 border-b border-border-hairline flex items-center gap-4 bg-petrol-raised/60">
-        <svg class="w-5 h-5 text-brass flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </svg>
-        <input class="w-full bg-transparent font-serif text-lg text-parchment placeholder:text-text-muted focus:outline-none" id="modal-search-input" oninput="handleModalSearch(this.value)" placeholder="Search films, directors, actors..." type="text"/>
-        <button class="font-mono text-xs text-text-muted hover:text-parchment px-2 py-1 rounded bg-petrol-base border border-border-hairline cursor-pointer" onclick="closeModal()">
-          ESC
-        </button>
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-start justify-center pt-20 px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-surface-container p-5 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+        <span class="material-symbols-outlined text-primary text-2xl">search</span>
+        <input class="w-full bg-transparent font-sans text-base text-parchment placeholder:text-text-muted focus:outline-none" id="modal-search-input" oninput="handleModalSearch(this.value)" placeholder="Search 200+ movies, anime, actors, directors..." type="text"/>
+        <kbd class="font-mono text-xs text-text-muted px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10">ESC</kbd>
       </div>
-      <!-- Quick filters row in live modal -->
-      <div class="px-5 py-3 border-b border-border-hairline/40 bg-petrol-base/40 flex items-center gap-2 overflow-x-auto no-scrollbar">
-        <span class="font-mono text-[11px] uppercase tracking-wider text-text-muted pr-1">Pills:</span>
-        <button class="font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-hover text-driftwood hover:text-parchment border border-border-hairline/60 cursor-pointer" onclick="setSearchPill('Drama')">Drama</button>
-        <button class="font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-hover text-driftwood hover:text-parchment border border-border-hairline/60 cursor-pointer" onclick="setSearchPill('Sci-Fi')">Sci-Fi</button>
-        <button class="font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-hover text-driftwood hover:text-parchment border border-border-hairline/60 cursor-pointer" onclick="setSearchPill('Anime')">Anime</button>
-        <button class="font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-hover text-driftwood hover:text-parchment border border-border-hairline/60 cursor-pointer" onclick="setSearchPill('Korean')">Korean</button>
-        <button class="font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-surface-hover text-driftwood hover:text-parchment border border-border-hairline/60 cursor-pointer" onclick="setSearchPill('Romance')">Romance</button>
-      </div>
-      <!-- Live Dynamic Container for Results or Empty -->
-      <div class="max-h-[380px] overflow-y-auto divide-y divide-border-hairline/40" id="modal-content-area"></div>
-      <!-- Footer instructions -->
-      <div class="px-5 py-3 bg-petrol-base border-t border-border-hairline flex items-center justify-between text-text-muted text-[11px] font-mono">
-        <div class="flex items-center gap-4">
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-border-hairline text-driftwood">↑</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-border-hairline text-driftwood">↓</kbd> Navigate</span>
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-border-hairline text-driftwood">↵</kbd> Open</span>
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-border-hairline text-driftwood">ESC</kbd> Close</span>
-        </div>
-        <span class="text-brass">Legal Streaming Indicators Verified</span>
-      </div>
+      <div class="max-h-[380px] overflow-y-auto divide-y divide-white/5 pr-1" id="modal-content-area"></div>
     </div>
   </div>
 
   <!-- =========================================================================
-       LEGAL, DMCA & TMDB ATTRIBUTION MODAL
-       ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="legal-modal-overlay" onclick="closeLegalModal()">
-    <div class="relative w-full max-w-xl rounded-2xl bg-surface-container p-6 sm:p-8 shadow-2xl border border-border-hairline/80 space-y-5" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between pb-3 border-b border-border-hairline/60">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
-          <h3 class="font-serif text-lg text-on-surface font-semibold" id="legal-modal-title">Terms &amp; Archival Charter</h3>
-        </div>
-        <button class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors cursor-pointer" onclick="closeLegalModal()">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-
-      <div class="font-body-sm text-sm text-on-surface-variant space-y-4 max-h-[60vh] overflow-y-auto pr-2 leading-relaxed" id="legal-modal-body">
-        <!-- Injected dynamically by JS -->
-      </div>
-
-      <div class="pt-3 border-t border-border-hairline/60 flex items-center justify-between">
-        <span class="font-mono text-xs text-outline">Cinexa Preservation Guild • 2025</span>
-        <button class="px-5 py-2 rounded-full bg-primary text-on-primary font-sans text-xs font-bold uppercase tracking-wider hover:bg-brass-hover transition-colors cursor-pointer" onclick="closeLegalModal()">
-          I Understand
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       5-STAR RATING & JOURNAL DIALOG MODAL
-       ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="rating-modal-overlay" onclick="closeRatingDialogModal()">
-    <div class="relative w-full max-w-md rounded-2xl bg-surface p-6 shadow-modal-ambient border border-border-hairline" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-brass"></span>
-          <span class="font-mono text-xs uppercase tracking-widest text-brass font-semibold">Archival Film Journal</span>
-        </div>
-        <button class="text-driftwood hover:text-parchment cursor-pointer" onclick="closeRatingDialogModal()">
-          <span class="material-symbols-outlined">close</span>
-        </button>
-      </div>
-      <h3 class="font-serif text-lg text-parchment font-semibold mb-1" id="rating-modal-film-title">A Moment to Remember (2004)</h3>
-      <p class="font-sans text-xs text-driftwood mb-5">Log your personal critical evaluation, projection gauge, and reflections.</p>
-      <div class="flex flex-col items-center justify-center py-4 bg-petrol-base rounded-xl mb-5 border border-border-hairline/60">
-        <span class="font-mono text-xs uppercase text-text-muted mb-2">Critical Score</span>
-        <div class="flex items-center gap-2 text-brass text-3xl cursor-pointer" id="star-rating-cluster">
-          <span class="material-symbols-outlined text-[32px] star-rate active" data-value="1" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-[32px] star-rate active" data-value="2" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-[32px] star-rate active" data-value="3" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-[32px] star-rate active" data-value="4" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-[32px] star-rate active" data-value="5" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <span class="font-serif text-brass font-bold mt-2 text-sm" id="star-score-text">5.0 / 5.0 ★ Masterpiece</span>
-      </div>
-      <button class="w-full h-12 rounded-full bg-brass text-brass-btn-text font-sans text-sm font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-brass-hover transition-colors cursor-pointer" onclick="saveRatingToJournal()">
-        <span>Save to Library Logbook</span>
-        <span class="material-symbols-outlined text-[18px]">bookmark_added</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       CINEMA 4K PLAYER MODAL (Multi-Server, Audio Dubbing & Subtitle Sync)
+       6. CINEMA 4K PLAYER MODAL (Multi-Server, Audio Dubbing & Subtitle Sync)
        ========================================================================= -->
   <div class="player-modal" id="player-modal">
     <div class="player-container">
@@ -1637,257 +612,125 @@
           <div class="playing-badge">● 4K CINEMA STREAM • DOLBY MULTI-AUDIO</div>
           <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
-        <div class="flex items-center gap-3">
-          <button class="player-pill-btn font-bold bg-primary text-on-primary hover:bg-brass-hover flex items-center gap-1.5 shadow-lg active:scale-95 cursor-pointer px-4 py-1.5 rounded-full" onclick="CinexaPlayer.downloadFilm('4k')">
+        <div class="player-header-actions">
+          <button class="player-btn-download" onclick="CinexaPlayer.downloadFilm('4k')" title="Download 4K UHD Master">
             <span class="material-symbols-outlined text-[16px]">download</span>
             <span>Download 4K</span>
           </button>
-          <button aria-label="Close cinema player" class="close-player-btn" id="close-player-btn" onclick="closePlayerModal()">&times;</button>
+          <button class="close-player-btn" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>
       </div>
 
-      <!-- 1. Stream Server Mirrors Bar -->
-      <div class="stream-control-strip">
-        <span class="strip-label">
-          <span class="material-symbols-outlined text-[14px] text-primary">dns</span>
-          <span>SERVER:</span>
-        </span>
-        <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">
-          <span>⚡ Server 1 (VidLink 4K Fast)</span>
-        </button>
-        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">
-          <span>🎧 Server 2 (Multi-Audio &amp; Dubbed)</span>
-        </button>
-        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">
-          <span>🌐 Server 3 (VidSrc CC Edge)</span>
-        </button>
-        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">
-          <span>🚀 Server 4 (AutoEmbed CDN)</span>
-        </button>
-        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">
-          <span>☁️ Server 5 (VidSrc Cloud)</span>
-        </button>
-        <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="local" onclick="CinexaPlayer.switchServer('local')">
-          <span>🎞️ Server 6 (Local 4K Master)</span>
-        </button>
+      <!-- Video Viewport Frame -->
+      <div class="video-viewport">
+        <iframe allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen class="video-iframe" id="video-iframe" src=""></iframe>
+        <video class="custom-video-player" controls id="custom-video-player" playsinline style="display: none;">
+          <source src="" type="video/mp4"/>
+        </video>
       </div>
 
-      <!-- 2. Audio Track & Multi-Language Dubbing Bar -->
-      <div class="stream-control-strip">
-        <span class="strip-label">
-          <span class="material-symbols-outlined text-[14px] text-secondary">graphic_eq</span>
-          <span>AUDIO DUB:</span>
-        </span>
-        <button class="player-pill-btn player-audio-btn active cursor-pointer" data-audio="original" onclick="CinexaPlayer.switchAudio('original')">
-          <span>Original Studio Audio</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="hindi" onclick="CinexaPlayer.switchAudio('hindi')">
-          <span>🇮🇳 Hindi Dubbed (हिंदी)</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="tamil" onclick="CinexaPlayer.switchAudio('tamil')">
-          <span>🇮🇳 Tamil Dubbed (தமிழ்)</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="telugu" onclick="CinexaPlayer.switchAudio('telugu')">
-          <span>🇮🇳 Telugu Dubbed (తెలుగు)</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="english" onclick="CinexaPlayer.switchAudio('english')">
-          <span>🇺🇸 English Dubbed</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="spanish" onclick="CinexaPlayer.switchAudio('spanish')">
-          <span>🇪🇸 Spanish Dubbed</span>
-        </button>
-        <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="french" onclick="CinexaPlayer.switchAudio('french')">
-          <span>🇫🇷 French Dubbed</span>
-        </button>
-      </div>
-
-      <!-- 3. Subtitles & Real-Time Sync Timing Bar -->
-      <div class="stream-control-strip justify-between">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="strip-label">
-            <span class="material-symbols-outlined text-[14px] text-tertiary">subtitles</span>
-            <span>SUBTITLES:</span>
-          </span>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="off" onclick="CinexaPlayer.switchSubtitle('off')">Off</button>
-          <button class="player-pill-btn player-sub-btn active cursor-pointer" data-sub="en" onclick="CinexaPlayer.switchSubtitle('en')">English (CC)</button>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="hi" onclick="CinexaPlayer.switchSubtitle('hi')">Hindi (हिंदी)</button>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="ta" onclick="CinexaPlayer.switchSubtitle('ta')">Tamil (தமிழ்)</button>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="ko" onclick="CinexaPlayer.switchSubtitle('ko')">Korean (한국어)</button>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="es" onclick="CinexaPlayer.switchSubtitle('es')">Spanish (Español)</button>
-          <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="fr" onclick="CinexaPlayer.switchSubtitle('fr')">French (Français)</button>
+      <!-- Controls Tray -->
+      <div class="player-controls-tray">
+        <!-- Servers Row -->
+        <div class="player-control-group">
+          <span class="group-label">⚡ Fast Servers:</span>
+          <div class="player-pill-cluster">
+            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 1 (VidLink 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 2 (Multi-Audio &amp; Dubbed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">Server 3 (VidSrc CC)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 4 (AutoEmbed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">Server 5 (VidSrc Cloud)</button>
+          </div>
         </div>
 
-        <!-- Real-Time Subtitle Sync Offset Buttons -->
-        <div class="flex items-center gap-2 pt-1 sm:pt-0">
-          <span class="font-mono text-[11px] text-text-muted uppercase tracking-wider hidden md:inline">Sync Offset:</span>
-          <button class="sync-ctrl-btn cursor-pointer" title="Delay subtitles by 0.5s if subtitles are too fast" onclick="CinexaPlayer.adjustSubtitleSync(-0.5)">
-            ⏪ -0.5s Slower
-          </button>
-          <button class="sync-ctrl-btn cursor-pointer" title="Reset subtitle sync" onclick="CinexaPlayer.adjustSubtitleSync(0)">
-            ⏱️ 0.0s
-          </button>
-          <button class="sync-ctrl-btn cursor-pointer" title="Advance subtitles by 0.5s if movie is faster" onclick="CinexaPlayer.adjustSubtitleSync(0.5)">
-            ⏩ +0.5s Faster
-          </button>
-          <span class="font-mono text-xs text-primary font-bold pl-1" id="sub-sync-indicator">0.0s (In Sync)</span>
+        <!-- Audio Dubbing Row -->
+        <div class="player-control-group">
+          <span class="group-label">🎧 Audio Dubbing:</span>
+          <div class="player-pill-cluster">
+            <button class="player-pill-btn player-audio-btn active cursor-pointer" data-audio="original" onclick="CinexaPlayer.switchAudio('original')">Original Audio</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="hindi" onclick="CinexaPlayer.switchAudio('hindi')">🇮🇳 Hindi Dubbed</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="tamil" onclick="CinexaPlayer.switchAudio('tamil')">🇮🇳 Tamil Dubbed</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="telugu" onclick="CinexaPlayer.switchAudio('telugu')">🇮🇳 Telugu Dubbed</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="english" onclick="CinexaPlayer.switchAudio('english')">🇺🇸 English Dubbed</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="japanese" onclick="CinexaPlayer.switchAudio('japanese')">🇯🇵 Japanese Audio</button>
+            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="korean" onclick="CinexaPlayer.switchAudio('korean')">🇰🇷 Korean Audio</button>
+          </div>
         </div>
-      </div>
 
-      <!-- 4. 1-Click High-Speed Download Quality Strip -->
-      <div class="stream-control-strip">
-        <span class="strip-label">
-          <span class="material-symbols-outlined text-[14px] text-primary">download</span>
-          <span>DOWNLOAD:</span>
-        </span>
-        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('4k')">
-          <span>⬇ 4K UHD Master (Direct High-Speed)</span>
-        </button>
-        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('1080p')">
-          <span>⬇ 1080p Full HD</span>
-        </button>
-        <button class="player-pill-btn cursor-pointer hover:border-primary/60" onclick="CinexaPlayer.downloadFilm('720p')">
-          <span>⬇ 720p HD (Mobile)</span>
-        </button>
-      </div>
-
-      <!-- Video Viewport -->
-      <div class="video-wrapper" id="video-wrapper">
-        <iframe class="video-iframe" id="video-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        <video class="custom-video-player" id="custom-video-player" controls preload="metadata" playsinline></video>
-      </div>
-
-      <!-- Quick Helpful Guide on Player Stream -->
-      <div class="player-footer-info flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-outline">
-        <div class="flex items-center gap-3">
-          <span class="text-primary flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">verified</span>
-            <span>4K Ultra HD &amp; Multi-Audio Verified</span>
-          </span>
-          <span>•</span>
-          <span>Press <kbd class="px-1.5 py-0.5 rounded bg-surface-container border border-border-hairline text-on-surface">F</kbd> for Fullscreen</span>
-          <span>•</span>
-          <span>Press <kbd class="px-1.5 py-0.5 rounded bg-surface-container border border-border-hairline text-on-surface">ESC</kbd> to Close</span>
-        </div>
-        <div class="text-on-surface-variant">
-          If any server buffers, switch to <strong class="text-primary">Server 2 (Multi-Audio)</strong> or <strong class="text-primary">Server 1 (VidLink)</strong>.
+        <!-- Subtitles & Sync Controller -->
+        <div class="player-control-group">
+          <span class="group-label">💬 Subtitles &amp; Sync:</span>
+          <div class="player-pill-cluster">
+            <button class="player-pill-btn player-sub-btn active cursor-pointer" data-sub="en" onclick="CinexaPlayer.switchSubtitle('en')">English (CC)</button>
+            <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="hi" onclick="CinexaPlayer.switchSubtitle('hi')">Hindi Subtitles</button>
+            <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="off" onclick="CinexaPlayer.switchSubtitle('off')">Turn Off</button>
+            
+            <div class="subtitle-sync-widget ml-2">
+              <span class="font-mono text-xs text-driftwood">Sync:</span>
+              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(-0.5)" title="Delay Subtitles by 0.5s">-0.5s</button>
+              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(0)" title="Reset Subtitle Sync Offset">0.0s</button>
+              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(0.5)" title="Advance Subtitles by 0.5s">+0.5s</button>
+              <span class="font-mono text-xs text-primary font-bold" id="sub-sync-indicator">0.0s (In Sync)</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       MOBILE FILTER BOTTOM SHEET
+       7. LEGAL & DMCA MODAL
        ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-surface-container-lowest/85 backdrop-blur-md hidden items-end sm:items-center justify-center p-0 sm:p-4" id="mobile-filter-modal">
-    <div class="w-full max-w-[420px] bg-surface-container rounded-t-[28px] sm:rounded-2xl max-h-[88vh] flex flex-col shadow-modal-ambient overflow-hidden">
-      <div class="w-full pt-3 pb-1 flex justify-center">
-        <div class="w-10 h-1 bg-outline-variant rounded-full"></div>
-      </div>
-      <div class="px-6 py-3 flex items-center justify-between border-b border-surface-container-highest">
-        <div>
-          <h3 class="font-headline-sm text-lg text-on-surface font-serif">Filter Directory</h3>
-          <span class="font-label-sm text-xs text-primary">3 Active Parameters</span>
-        </div>
-        <button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface cursor-pointer" onclick="toggleMobileSheet(false)">
-          <span class="material-symbols-outlined text-base">close</span>
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="legal-modal-overlay" onclick="closeLegalModal()">
+    <div class="relative w-full max-w-xl rounded-2xl bg-surface-container p-6 sm:p-8 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="font-serif text-lg text-parchment font-semibold" id="legal-modal-title">Terms &amp; Information</h3>
+        <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeLegalModal()">
+          <span class="material-symbols-outlined text-[20px]">close</span>
         </button>
       </div>
-      <div class="p-5 bg-surface-container-lowest border-t border-surface-container-highest">
-        <button class="w-full h-[52px] rounded-full bg-primary text-on-primary font-body-md font-semibold flex items-center justify-center gap-2 shadow-warm-diffuse hover:bg-primary transition-colors cursor-pointer" onclick="toggleMobileSheet(false)">
-          <span>Show 159 Curated Films</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      <div class="font-sans text-xs text-driftwood space-y-3 max-h-[55vh] overflow-y-auto pr-2 leading-relaxed" id="legal-modal-body"></div>
+      <div class="pt-3 border-t border-white/10 flex justify-end">
+        <button class="px-5 py-2 rounded-full bg-primary text-on-primary font-sans text-xs font-bold uppercase tracking-wider hover:bg-brass-hover transition-colors cursor-pointer" onclick="closeLegalModal()">
+          Close
         </button>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       FLOATING WATCHLIST TOAST NOTIFICATION
+       8. TOAST NOTIFICATION
        ========================================================================= -->
-  <div class="fixed bottom-20 left-4 right-4 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 max-w-md mx-auto" id="watchlist-toast">
-    <div class="h-13 px-4 py-2.5 rounded-full bg-surface-container-high/95 backdrop-blur-xl shadow-2xl flex items-center justify-between gap-3 border border-primary/30">
-      <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-6 h-6 rounded-full bg-tertiary/20 flex items-center justify-center shrink-0">
-          <span class="material-symbols-outlined text-[16px] text-tertiary" style="font-variation-settings: 'FILL' 1;">check</span>
-        </div>
-        <p class="font-body-sm text-xs text-on-surface truncate" id="toast-text">
-          Added to Watchlist
-        </p>
-      </div>
-      <button class="shrink-0 font-label-sm text-xs uppercase tracking-wider text-primary font-semibold px-2 py-1 active:scale-95 transition-transform cursor-pointer" id="toast-undo">
-        Undo
-      </button>
-    </div>
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-high text-parchment border border-white/10 shadow-2xl transition-all duration-300 transform translate-y-12 opacity-0 pointer-events-none" id="watchlist-toast">
+    <span class="material-symbols-outlined text-primary text-[20px]">info</span>
+    <span class="font-sans text-xs font-medium" id="toast-message">Notification message</span>
+    <button class="font-mono text-xs text-primary font-semibold hover:underline ml-2 cursor-pointer" id="toast-undo">Dismiss</button>
   </div>
 
   <!-- =========================================================================
-       REFINED MASTER FOOTER (From Stitch export)
+       9. CLEAN ELEGANT FOOTER (Uncluttered)
        ========================================================================= -->
-  <footer class="w-full bg-surface-container-lowest border-t border-surface-variant/40 mt-20">
-    <div class="max-w-[1320px] mx-auto px-6 pt-12 pb-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-surface-variant/30">
-        <div class="lg:col-span-4 space-y-4">
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
-              <span class="material-symbols-outlined text-[20px]">movie</span>
-            </span>
-            <span class="font-serif font-semibold text-2xl text-on-surface tracking-tight">Cinexa</span>
-            <span class="font-mono text-xs uppercase px-2 py-0.5 rounded bg-surface-container text-tertiary">
-              Archival v2.4
-            </span>
-          </div>
-          <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
-            An independent, non-commercial directory dedicated to international cinema preservation, film history scholarship, and verified legal streaming availability.
-          </p>
-          <div class="p-4 rounded-xl bg-surface-container/60 space-y-1">
-            <div class="font-mono text-xs text-primary uppercase font-semibold">Film Preservation Pledge</div>
-            <p class="font-body-sm text-xs text-outline">
-              100% of community patronage directly funds photochemical nitrate transfer at the Korean Film Archive and Bologna Cineteca.
-            </p>
-          </div>
-        </div>
-
-        <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-          <div>
-            <h4 class="font-mono text-xs uppercase tracking-wider text-primary mb-4 font-semibold">Explore</h4>
-            <ul class="space-y-2 font-body-sm text-xs text-on-surface-variant">
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('discover')">Discover Works</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openMovementsTab()">Archival Movements</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('home')">Trending Reel</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openFilmBySlug('a-moment-to-remember')">35mm Restorations</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-mono text-xs uppercase tracking-wider text-primary mb-4 font-semibold">Vault</h4>
-            <ul class="space-y-2 font-body-sm text-xs text-on-surface-variant">
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('library')">My Library</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openRatingDialogModal()">Personal Logbook</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="showToast('42 films saved in local vault queue')">Watchlist Queue</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-mono text-xs uppercase tracking-wider text-primary mb-4 font-semibold">Charter</h4>
-            <ul class="space-y-2 font-body-sm text-xs text-on-surface-variant">
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('specs')">Accessibility Charter</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('specs')">Living Blueprint</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="switchMainScreen('specs')">Contrast Matrix</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-mono text-xs uppercase tracking-wider text-primary mb-4 font-semibold">Legal</h4>
-            <ul class="space-y-2 font-body-sm text-xs text-on-surface-variant">
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms of Film</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">Fair Use &amp; DMCA</a></li>
-              <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB Attribution</a></li>
-            </ul>
-          </div>
-        </div>
+  <footer class="w-full bg-surface-container-lowest border-t border-white/5 mt-16 pt-10 pb-8">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+          <span class="material-symbols-outlined text-[16px]">movie</span>
+        </span>
+        <span class="font-serif font-semibold text-lg text-parchment">Cinexa</span>
+        <span class="font-mono text-[10px] uppercase text-text-muted">4K Entertainment Engine</span>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-outline">
-        <p>© 2025 Cinexa Archival Foundation. Preserving physical &amp; independent film culture.</p>
-        <p>Film metadata &amp; streaming availability verified via legal registries.</p>
+      <div class="flex flex-wrap items-center gap-6 font-sans text-xs text-driftwood">
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('anime')">Anime</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('tamil')">Kollywood</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">DMCA Notice</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB Attribution</a>
       </div>
+
+      <p class="font-mono text-[11px] text-text-muted">© 2026 Cinexa. Streamed via decentralized legal embeds.</p>
     </div>
   </footer>
 
