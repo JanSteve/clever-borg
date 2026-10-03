@@ -38,10 +38,10 @@
       <ul class="nav-links">
         <li><a class="nav-link active" id="nav-home-link" href="#">Home</a></li>
         <li><a class="nav-link" href="#catalog-container">Blockbusters</a></li>
+        <li><a class="nav-link" href="#catalog-container">Indian Cinema</a></li>
         <li><a class="nav-link" href="#catalog-container">Anime</a></li>
         <li><a class="nav-link" href="#catalog-container">World Cinema</a></li>
-        <li><a class="nav-link" href="#catalog-container">Romance</a></li>
-        <li><a class="nav-link" href="#catalog-container">Thrillers</a></li>
+        <li><a class="nav-link" href="#catalog-container">2024–2026</a></li>
       </ul>
     </div>
 
@@ -53,7 +53,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search 1,000,000+ movies, anime..." autocomplete="off">
+          <input type="text" id="search-input" class="search-input" placeholder="Search movies, series, anime, actors..." autocomplete="off">
           <button id="search-clear-btn" class="search-clear-btn" style="display: none;">&times;</button>
         </div>
         <!-- Live Instant Search Results Popup -->
@@ -120,7 +120,6 @@
           <span class="meta-badge uhd">4K IMAX ENHANCED</span>
           <span class="hero-badge-pill" style="background: rgba(130, 86, 208, 0.2); border-color: rgba(130, 86, 208, 0.6); color: #c084fc;">★ 6X ACADEMY AWARD WINNER</span>
         </div>
-        <div id="hero-korean-title" class="hero-korean-title">듄: 파트 2 (Dune: Part Two)</div>
         <h1 id="hero-title" class="hero-title">Dune: Part Two</h1>
         <div id="hero-meta" class="hero-meta">
           <div class="rating-star-badge" style="padding: 2px 8px; font-size: 12px;">★ 8.6</div>
@@ -162,13 +161,15 @@
         <div class="category-tabs">
           <button class="tab-btn active" data-category="all">All Movies</button>
           <button class="tab-btn" data-category="blockbusters">🌍 Global Blockbusters</button>
+          <button class="tab-btn" data-category="indian">🇮🇳 Indian Cinema</button>
           <button class="tab-btn" data-category="anime">⛩️ Anime &amp; Animation</button>
-          <button class="tab-btn" data-category="romance">💖 Romance Worldwide</button>
-          <button class="tab-btn" data-category="world">🔥 Top Rated World Cinema</button>
-          <button class="tab-btn" data-category="thriller">⚡ Action &amp; Thrillers</button>
+          <button class="tab-btn" data-category="world">🇪🇸 World &amp; European</button>
+          <button class="tab-btn" data-category="upcoming">⚡ 2024–2026 Releases</button>
+          <button class="tab-btn" data-category="romance">💖 Romance &amp; Drama</button>
+          <button class="tab-btn" data-category="thriller">🎬 Action &amp; Thrillers</button>
         </div>
         <div class="catalog-info-tag">
-          <span style="color: #8256d0; font-weight: 700;">● Streambert FastCDN • Zero Ads</span>
+          <span style="color: #06b6d4; font-weight: 700;">● NovaEdge FastCDN • 4K UHD</span>
         </div>
       </div>
 
@@ -245,7 +246,7 @@
         <!-- Right: Title, Actions, Storyline, Cast -->
         <div class="preview-details-col">
           <div>
-            <div id="preview-korean-eyebrow" class="preview-korean-eyebrow">내 머리 속의 지우개</div>
+            <div id="preview-korean-eyebrow" class="preview-korean-eyebrow" style="display: none;"></div>
             <h1 id="preview-main-title" class="preview-main-title">A Moment to Remember</h1>
             <p id="preview-tagline" class="preview-tagline">"If my memory disappears, what will happen to our love?"</p>
           </div>
@@ -364,7 +365,7 @@
           <span class="ad-brand-icon">🍿</span>
           <div class="ad-text-group">
             <div class="ad-title">Stream In 4K UHD Without Buffering &bull; Free Global Access</div>
-            <div class="ad-desc">Experience over 1,000,000+ movies and series in cinema surround sound on any device.</div>
+            <div class="ad-desc">Experience thousands of movies and series in cinema surround sound on any device.</div>
           </div>
           <a href="#catalog-container" class="ad-cta-btn">Browse Movies &rarr;</a>
         </div>
@@ -453,7 +454,7 @@
 
         <div class="player-title-display">
           <div id="player-movie-name" class="player-movie-name">A Moment to Remember</div>
-          <div id="player-movie-korean" class="player-movie-korean">내 머리 속의 지우개</div>
+          <div id="player-movie-korean" class="player-movie-korean" style="display: none;"></div>
         </div>
 
         <div class="player-server-switcher" id="player-server-switcher" style="display: flex; align-items: center; gap: 6px; margin-left: auto; margin-right: 14px;">

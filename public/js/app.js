@@ -151,7 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (currentCategory !== 'all') {
-      filtered = filtered.filter(m => m.category === currentCategory || (m.genres && m.genres.some(g => g.toLowerCase().includes(currentCategory))));
+      if (currentCategory === 'indian') {
+        filtered = filtered.filter(m => m.category === 'indian' || m.country === 'India' || (m.originalLanguage && ['hi', 'te', 'ta', 'kn', 'ml'].includes(m.originalLanguage)));
+      } else if (currentCategory === 'upcoming') {
+        filtered = filtered.filter(m => m.category === 'upcoming' || (m.year && parseInt(m.year) >= 2024));
+      } else if (currentCategory === 'world') {
+        filtered = filtered.filter(m => m.category === 'world' || m.category === 'spanish' || m.category === 'european' || (m.originalLanguage && ['es', 'fr', 'de', 'it', 'zh', 'ja', 'ko'].includes(m.originalLanguage)));
+      } else if (currentCategory === 'anime') {
+        filtered = filtered.filter(m => m.category === 'anime' || (m.genres && m.genres.some(g => g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime'))));
+      } else if (currentCategory === 'blockbusters') {
+        filtered = filtered.filter(m => m.category === 'blockbusters' || m.category === 'trending');
+      } else if (currentCategory === 'romance') {
+        filtered = filtered.filter(m => m.category === 'romance' || (m.genres && m.genres.some(g => g.toLowerCase().includes('romance') || g.toLowerCase().includes('drama'))));
+      } else if (currentCategory === 'thriller') {
+        filtered = filtered.filter(m => m.category === 'thriller' || m.category === 'mystery' || (m.genres && m.genres.some(g => g.toLowerCase().includes('action') || g.toLowerCase().includes('thriller') || g.toLowerCase().includes('sci-fi'))));
+      } else {
+        filtered = filtered.filter(m => m.category === currentCategory || (m.genres && m.genres.some(g => g.toLowerCase().includes(currentCategory))));
+      }
     }
 
     if (searchQuery.trim() !== '') {
@@ -169,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
                  q.includes('woo-sung');
         }
         return (m.title && m.title.toLowerCase().includes(q)) ||
-          (m.koreanTitle && m.koreanTitle.toLowerCase().includes(q)) ||
           (m.genres && m.genres.some(g => g.toLowerCase().includes(q))) ||
           (m.cast && m.cast.some(c => c.toLowerCase().includes(q))) ||
           (m.director && m.director.toLowerCase().includes(q)) ||
@@ -196,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
           <h3 style="color: #fff; font-size: 18px; margin-bottom: 6px;">Searching Global Movie Database...</h3>
-          <p>Type any movie title to discover millions of titles worldwide.</p>
+          <p>Type any movie title to discover titles worldwide in 4K UHD.</p>
         </div>
       `;
       return;
@@ -204,29 +219,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (currentCategory === 'all' && searchQuery.trim() === '') {
       const sections = [
-        { key: 'blockbusters', title: '🌍 Global Trending & Hollywood Blockbusters', korean: '글로벌 블록버스터 톱 10' },
-        { key: 'anime', title: '⛩️ Anime Masterpieces & Animation', korean: '극장판 애니메이션 명작' },
-        { key: 'romance', title: '💖 Romance & Melodrama Worldwide', korean: '세계적인 감성 로맨스 명작' },
-        { key: 'world', title: '🔥 Top Rated World Cinema', korean: '월드 시네마 명작 컬렉션' },
-        { key: 'thriller', title: '⚡ Action, Sci-Fi & Dark Thrillers', korean: '스릴러 & 액션 대작' }
+        { 
+          key: 'blockbusters', 
+          title: '🌍 Global Trending & Hollywood Blockbusters',
+          filter: m => m.category === 'blockbusters' || m.category === 'trending'
+        },
+        { 
+          key: 'upcoming', 
+          title: '⚡ Latest 2024–2026 World Premieres',
+          filter: m => (m.year && parseInt(m.year) >= 2024) || m.category === 'upcoming'
+        },
+        { 
+          key: 'indian', 
+          title: '🇮🇳 Indian Cinema (Bollywood & South Hits)',
+          filter: m => m.category === 'indian' || m.country === 'India' || (m.originalLanguage && ['hi', 'te', 'ta', 'kn', 'ml'].includes(m.originalLanguage))
+        },
+        { 
+          key: 'anime', 
+          title: '⛩️ Anime Masterpieces & Animation',
+          filter: m => m.category === 'anime' || (m.genres && m.genres.some(g => g.toLowerCase().includes('animation')))
+        },
+        { 
+          key: 'world', 
+          title: '🇪🇸 International & European Cinema',
+          filter: m => (m.category === 'world' || m.category === 'spanish' || m.category === 'european' || (m.originalLanguage && ['es', 'fr', 'de', 'it', 'zh'].includes(m.originalLanguage))) && m.country !== 'India'
+        },
+        { 
+          key: 'thriller', 
+          title: '🔥 Action, Sci-Fi & Dark Thrillers',
+          filter: m => m.category === 'thriller' || m.category === 'mystery' || (m.genres && m.genres.some(g => g.toLowerCase().includes('thriller') || g.toLowerCase().includes('action')))
+        },
+        { 
+          key: 'romance', 
+          title: '💖 Romance & Melodrama Worldwide',
+          filter: m => m.category === 'romance' || (m.genres && m.genres.some(g => g.toLowerCase().includes('romance')))
+        }
       ];
 
       sections.forEach((sec, idx) => {
-        const moviesInSec = filtered.filter(m => m.category === sec.key);
+        const moviesInSec = filtered.filter(sec.filter);
         if (moviesInSec.length > 0) {
           const rowEl = document.createElement('div');
           rowEl.className = 'movie-row';
           rowEl.innerHTML = `
             <div class="row-header">
               <h2 class="row-title">${sec.title}</h2>
-              <span class="row-korean-subtitle">${sec.korean}</span>
             </div>
             <div class="movie-grid" id="grid-${sec.key}"></div>
           `;
           catalogContainer.appendChild(rowEl);
           const gridEl = rowEl.querySelector(`#grid-${sec.key}`);
           
-          moviesInSec.forEach((movie, mIdx) => {
+          moviesInSec.slice(0, 16).forEach((movie, mIdx) => {
             gridEl.appendChild(createMovieCard(movie));
             // Seamlessly inject in-feed ad card every 8 items
             if (mIdx === 5) {
@@ -263,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fallbackSvg = getPosterSvgFallback(
       movie.title,
-      movie.koreanTitle || movie.title,
+      movie.title,
       movie.year,
       movie.rating,
       movie.genres ? movie.genres[0] : 'Drama',
@@ -289,12 +333,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
       <div class="card-details">
-        <div class="card-korean-title">${movie.koreanTitle || movie.originalTitle || ''}</div>
         <div class="card-title" title="${movie.title}">${movie.title}</div>
         <div class="card-meta-row">
           <span class="card-match">${movie.matchScore || '98% Match'}</span>
           <span>${movie.year || '2024'}</span>
-          <span class="meta-badge ${isAdult ? 'badge-18' : ''}">${movie.rating || '15+'}</span>
+          <span class="meta-badge ${isAdult ? 'badge-18' : ''}">${movie.rating || '13+'}</span>
           <span class="meta-badge uhd">${movie.resolution || '4K UHD'}</span>
         </div>
         <div class="card-genres">${movie.genres ? movie.genres.slice(0, 3).join(' • ') : 'Global Cinema'}</div>
@@ -350,7 +393,15 @@ document.addEventListener('DOMContentLoaded', () => {
     specStudio.textContent = movie.studio || 'NovaFlix Studios';
 
     // Titles
-    previewKoreanEyebrow.textContent = movie.koreanTitle || movie.originalTitle || '';
+    if (previewKoreanEyebrow) {
+      if (movie.id === '15859' || movie.slug === 'a-moment-to-remember') {
+        previewKoreanEyebrow.textContent = '내 머리 속의 지우개';
+        previewKoreanEyebrow.style.display = 'block';
+      } else {
+        previewKoreanEyebrow.textContent = '';
+        previewKoreanEyebrow.style.display = 'none';
+      }
+    }
     previewMainTitle.textContent = movie.title;
     previewTagline.textContent = movie.tagline ? `"${movie.tagline}"` : `Now Streaming on NovaFlix Worldwide • ${movie.year || '2024'}`;
 
@@ -831,12 +882,11 @@ document.addEventListener('DOMContentLoaded', () => {
       item.innerHTML = `
         <img class="search-result-thumb" src="${posterSrc}" alt="${m.title}" onerror="this.onerror=null; this.src='${fallbackSvg}';">
         <div class="search-result-info">
-          <div class="search-result-korean">${m.koreanTitle || m.originalTitle || ''}</div>
           <div class="search-result-title">${m.title}</div>
           <div class="search-result-meta">
             <span style="color:#f59e0b; font-weight:700;">★ ${m.imdbRating || '8.2'}</span>
             <span>${m.year || '2024'}</span>
-            <span class="meta-badge ${isAdult ? 'badge-18' : ''}" style="padding: 1px 6px; font-size: 10px;">${m.rating || '15+'}</span>
+            <span class="meta-badge ${isAdult ? 'badge-18' : ''}" style="padding: 1px 6px; font-size: 10px;">${m.rating || '13+'}</span>
             <span>${m.genres ? m.genres[0] : 'Cinema'}</span>
             ${m.isTmdb ? '<span style="color:#06b6d4; font-size:10px; font-weight:800;">TMDB</span>' : ''}
           </div>

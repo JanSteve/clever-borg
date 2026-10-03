@@ -89,7 +89,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "dune-part-two",
     "slug": "dune-part-two",
     "title": "Dune: Part Two",
-    "koreanTitle": "듄: 파트 2",
+    "koreanTitle": "",
     "tagline": "Long live the fighters.",
     "year": "2024",
     "releaseDate": "March 1, 2024",
@@ -145,7 +145,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "oppenheimer",
     "slug": "oppenheimer",
     "title": "Oppenheimer",
-    "koreanTitle": "오펜하이머",
+    "koreanTitle": "",
     "tagline": "The world forever changes.",
     "year": "2023",
     "releaseDate": "July 21, 2023",
@@ -208,7 +208,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "deadpool-and-wolverine",
     "slug": "deadpool-and-wolverine",
     "title": "Deadpool & Wolverine",
-    "koreanTitle": "데드풀과 울버린",
+    "koreanTitle": "",
     "tagline": "Come together.",
     "year": "2024",
     "releaseDate": "July 26, 2024",
@@ -266,7 +266,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "interstellar",
     "slug": "interstellar",
     "title": "Interstellar",
-    "koreanTitle": "인터스텔라",
+    "koreanTitle": "",
     "tagline": "Mankind was born on Earth. It was never meant to die here.",
     "year": "2014",
     "releaseDate": "November 7, 2014",
@@ -317,7 +317,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "the-dark-knight",
     "slug": "the-dark-knight",
     "title": "The Dark Knight",
-    "koreanTitle": "다크 나이트",
+    "koreanTitle": "",
     "tagline": "Why so serious?",
     "year": "2008",
     "releaseDate": "July 18, 2008",
@@ -368,7 +368,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "inception",
     "slug": "inception",
     "title": "Inception",
-    "koreanTitle": "인셉션",
+    "koreanTitle": "",
     "tagline": "Your mind is the scene of the crime.",
     "year": "2010",
     "releaseDate": "July 16, 2010",
@@ -414,7 +414,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "avengers-endgame",
     "slug": "avengers-endgame",
     "title": "Avengers: Endgame",
-    "koreanTitle": "어벤져스: 엔드게임",
+    "koreanTitle": "",
     "tagline": "Part of the journey is the end.",
     "year": "2019",
     "releaseDate": "April 26, 2019",
@@ -465,7 +465,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "spider-man-across-the-spider-verse",
     "slug": "spider-man-across-the-spider-verse",
     "title": "Spider-Man: Across the Spider-Verse",
-    "koreanTitle": "스파이더맨: 어크로스 더 유니버스",
+    "koreanTitle": "",
     "tagline": "It's how you wear the mask that matters.",
     "year": "2023",
     "releaseDate": "June 2, 2023",
@@ -1090,7 +1090,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "pulp-fiction",
     "slug": "pulp-fiction",
     "title": "Pulp Fiction",
-    "koreanTitle": "펄프 픽션",
+    "koreanTitle": "",
     "tagline": "You won't know the facts until you've seen the fiction.",
     "year": "1994",
     "releaseDate": "October 14, 1994",
@@ -1147,7 +1147,7 @@ const KOREAN_MOVIES_CATALOG = [
     "id": "fight-club",
     "slug": "fight-club",
     "title": "Fight Club",
-    "koreanTitle": "파이트 클럽",
+    "koreanTitle": "",
     "tagline": "Mischief. Mayhem. Soap.",
     "year": "1999",
     "releaseDate": "October 15, 1999",
@@ -3885,7 +3885,7 @@ const KOREAN_MOVIES_CATALOG = [
     "slug": "barbie",
     "tmdbId": 346698,
     "title": "Barbie",
-    "koreanTitle": "바비",
+    "koreanTitle": "",
     "tagline": "She's everything. He's just Ken.",
     "year": "2023",
     "releaseDate": "2023-07-19",
@@ -5451,6 +5451,2730 @@ const KOREAN_MOVIES_CATALOG = [
     "backdrop": "/api/backdrop/i-the-executioner.svg",
     "trailerUrl": "https://www.youtube.com/embed?q=I%2C%20the%20Executioner%20trailer",
     "fallbackColor": "#121622",
+    "isTmdb": true
+  },
+  {
+    "id": "kalki-2898-ad",
+    "slug": "kalki-2898-ad",
+    "tmdbId": 801688,
+    "title": "Kalki 2898 AD",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Drama",
+      "Action",
+      "Fantasy",
+      "Sci-Fi"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/kalki-2898-ad.svg",
+    "backdropUrl": "/api/backdrop/kalki-2898-ad.svg",
+    "poster": "/api/poster/kalki-2898-ad.svg",
+    "backdrop": "/api/backdrop/kalki-2898-ad.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Kalki%202898%20AD%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "jawan",
+    "slug": "jawan",
+    "tmdbId": 872906,
+    "title": "Jawan",
+    "koreanTitle": "",
+    "tagline": "Experience Jawan in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023-09-07",
+    "rating": "13+",
+    "imdbRating": "7.0",
+    "matchScore": "82% Match",
+    "duration": "2h 49m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Red Chillies Entertainment",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "director": "Atlee",
+    "cast": [
+      "Shah Rukh Khan",
+      "Nayanthara",
+      "Vijay Sethupathi",
+      "Deepika Padukone",
+      "Sanjay Dutt",
+      "Priyamani"
+    ],
+    "castDetails": [
+      {
+        "name": "Shah Rukh Khan",
+        "character": "Vikram Rathore / Azad",
+        "avatar": "https://image.tmdb.org/t/p/w185/gc3Ul6EtVYKgjBuYAaD8U2qIcSl.jpg"
+      },
+      {
+        "name": "Nayanthara",
+        "character": "Narmada",
+        "avatar": "https://image.tmdb.org/t/p/w185/sYUzvjsSsqeOgBblSzda6ZwwbEa.jpg"
+      },
+      {
+        "name": "Vijay Sethupathi",
+        "character": "Kalee Gaikwad",
+        "avatar": "https://image.tmdb.org/t/p/w185/a3HWdfCAbplrvoMNEJCjnkbqqOo.jpg"
+      },
+      {
+        "name": "Deepika Padukone",
+        "character": "Aishwarya Rathore",
+        "avatar": "https://image.tmdb.org/t/p/w185/rzvvBQ0r6oiqDdzcsdTRB7jN4Rx.jpg"
+      },
+      {
+        "name": "Sanjay Dutt",
+        "character": "Madhavan Naik",
+        "avatar": "https://image.tmdb.org/t/p/w185/oq4pnvWhl1HxKpp0KVlSfAr3Tiu.jpg"
+      },
+      {
+        "name": "Priyamani",
+        "character": "Laxmi",
+        "avatar": "https://image.tmdb.org/t/p/w185/grcW2eMm77Q2Kj1xX0HvZlRpGRR.jpg"
+      }
+    ],
+    "synopsis": "An emotional journey of a prison warden, driven by a personal vendetta while keeping up to a promise made years ago, recruits inmates to commit outrageous crimes that shed light on corruption and injustice, in an attempt to get even with his past,  and that leads him to an unexpected reunion.",
+    "storyline": "An emotional journey of a prison warden, driven by a personal vendetta while keeping up to a promise made years ago, recruits inmates to commit outrageous crimes that shed light on corruption and injustice, in an attempt to get even with his past,  and that leads him to an unexpected reunion.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/5LtSjMNw6j3LkG29Oa4O0iY5U8.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/5LtSjMNw6j3LkG29Oa4O0iY5U8.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/MWOlnZSnXJo?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "pathaan",
+    "slug": "pathaan",
+    "tmdbId": 864692,
+    "title": "Pathaan",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/pathaan.svg",
+    "backdropUrl": "/api/backdrop/pathaan.svg",
+    "poster": "/api/poster/pathaan.svg",
+    "backdrop": "/api/backdrop/pathaan.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Pathaan%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "animal",
+    "slug": "animal",
+    "tmdbId": 781732,
+    "title": "Animal",
+    "koreanTitle": "",
+    "tagline": "A father-son bond carved in blood.",
+    "year": "2023",
+    "releaseDate": "2023-12-01",
+    "rating": "13+",
+    "imdbRating": "6.1",
+    "matchScore": "73% Match",
+    "duration": "3h 21m",
+    "country": "India",
+    "language": "hi",
+    "studio": "T-Series",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "director": "Sandeep Reddy Vanga",
+    "cast": [
+      "Ranbir Kapoor",
+      "Rashmika Mandanna",
+      "Anil Kapoor",
+      "Bobby Deol",
+      "Triptii Dimri",
+      "Prem Chopra"
+    ],
+    "castDetails": [
+      {
+        "name": "Ranbir Kapoor",
+        "character": "Ranvijay Balbir Singh / Aziz Haque",
+        "avatar": "https://image.tmdb.org/t/p/w185/a5xWgKh7f4XofIl7ZwisxOi616K.jpg"
+      },
+      {
+        "name": "Rashmika Mandanna",
+        "character": "Geetanjali Singh",
+        "avatar": "https://image.tmdb.org/t/p/w185/lj16BGfdqygHF8PZVt2KO8GUXn1.jpg"
+      },
+      {
+        "name": "Anil Kapoor",
+        "character": "Balbir Singh",
+        "avatar": "https://image.tmdb.org/t/p/w185/dwvnpiwg9m2zj0VHzlgzEotFl0G.jpg"
+      },
+      {
+        "name": "Bobby Deol",
+        "character": "Abrar Haque",
+        "avatar": "https://image.tmdb.org/t/p/w185/2npVa3PduichY8e7qBiE54m9VVP.jpg"
+      },
+      {
+        "name": "Triptii Dimri",
+        "character": "Zoya Riaz",
+        "avatar": "https://image.tmdb.org/t/p/w185/d4eKm8PqGPHdInHB6zzFDclJbxc.jpg"
+      },
+      {
+        "name": "Prem Chopra",
+        "character": "Bade Daarji",
+        "avatar": "https://image.tmdb.org/t/p/w185/4hLAhScWZA6utfg8VCivwVH6FHy.jpg"
+      }
+    ],
+    "synopsis": "The hardened son of a powerful industrialist returns home after years abroad and vows to take bloody revenge on those threatening his father's life.",
+    "storyline": "The hardened son of a powerful industrialist returns home after years abroad and vows to take bloody revenge on those threatening his father's life.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/lprsAHkwMxk2iC6VZxNmV0H7g1t.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/lprsAHkwMxk2iC6VZxNmV0H7g1t.jpg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Animal%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "fighter",
+    "slug": "fighter",
+    "tmdbId": 784651,
+    "title": "Fighter",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/fighter.svg",
+    "backdropUrl": "/api/backdrop/fighter.svg",
+    "poster": "/api/poster/fighter.svg",
+    "backdrop": "/api/backdrop/fighter.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Fighter%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "stree-2",
+    "slug": "stree-2",
+    "tmdbId": 1112426,
+    "title": "Stree 2",
+    "koreanTitle": "",
+    "tagline": "Sarkatein Ka Aatank",
+    "year": "2024",
+    "releaseDate": "2024-08-15",
+    "rating": "13+",
+    "imdbRating": "6.7",
+    "matchScore": "79% Match",
+    "duration": "2h 23m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Maddock Films",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Horror",
+      "Comedy"
+    ],
+    "director": "Amar Kaushik",
+    "cast": [
+      "Rajkummar Rao",
+      "Shraddha Kapoor",
+      "Aparshakti Khurana",
+      "Abhishek Banerjee",
+      "Pankaj Tripathi",
+      "Anya Singh"
+    ],
+    "castDetails": [
+      {
+        "name": "Rajkummar Rao",
+        "character": "Vicky",
+        "avatar": "https://image.tmdb.org/t/p/w185/ttBY7Y8x4NCpXfGS9Tc1NN8ISos.jpg"
+      },
+      {
+        "name": "Shraddha Kapoor",
+        "character": "Unnamed Woman",
+        "avatar": "https://image.tmdb.org/t/p/w185/tFx6DRETklfkFIUu5Sl5TCN1gD9.jpg"
+      },
+      {
+        "name": "Aparshakti Khurana",
+        "character": "Bittu",
+        "avatar": "https://image.tmdb.org/t/p/w185/w7OEkPAaweO1JU105Qqvg073yW8.jpg"
+      },
+      {
+        "name": "Abhishek Banerjee",
+        "character": "'Jana' Janardan",
+        "avatar": "https://image.tmdb.org/t/p/w185/cfyRkFBFfodBbNKbsTc8eG9YtVj.jpg"
+      },
+      {
+        "name": "Pankaj Tripathi",
+        "character": "Rudra",
+        "avatar": "https://image.tmdb.org/t/p/w185/f3Vxz0QB7PHeyPcXrfJX14Xkxnu.jpg"
+      },
+      {
+        "name": "Anya Singh",
+        "character": "Chitti",
+        "avatar": "https://image.tmdb.org/t/p/w185/epszHS7QSn7FjcCv4z2sWR1KBb0.jpg"
+      }
+    ],
+    "synopsis": "Following the events of 'Stree', the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a terrifying headless entity. Once again, it's up to Vicky and friends to save their town and loved ones.",
+    "storyline": "Following the events of 'Stree', the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a terrifying headless entity. Once again, it's up to Vicky and friends to save their town and loved ones.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/nfnhwfUEFuSOxxf4jDdBlY6Lccw.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/fVV0A67kDjTTQ4CvUn8LoletRmI.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/nfnhwfUEFuSOxxf4jDdBlY6Lccw.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/fVV0A67kDjTTQ4CvUn8LoletRmI.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/VlvOgk5BHS4?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "rrr",
+    "slug": "rrr",
+    "tmdbId": 579974,
+    "title": "RRR",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2022",
+    "releaseDate": "2022",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "te",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "History",
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/rrr.svg",
+    "backdropUrl": "/api/backdrop/rrr.svg",
+    "poster": "/api/poster/rrr.svg",
+    "backdrop": "/api/backdrop/rrr.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=RRR%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "k-g-f-chapter-2",
+    "slug": "k-g-f-chapter-2",
+    "tmdbId": 587412,
+    "title": "K.G.F: Chapter 2",
+    "koreanTitle": "",
+    "tagline": "The World Is My Territory",
+    "year": "2022",
+    "releaseDate": "2022-04-14",
+    "rating": "13+",
+    "imdbRating": "7.4",
+    "matchScore": "86% Match",
+    "duration": "2h 48m",
+    "country": "India",
+    "language": "kn",
+    "studio": "Hombale Films",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Adventure",
+      "Crime"
+    ],
+    "director": "Prashanth Neel",
+    "cast": [
+      "Yash",
+      "Sanjay Dutt",
+      "Raveena Tandon",
+      "Srinidhi Shetty",
+      "Archana Jois",
+      "Achyuth Kumar"
+    ],
+    "castDetails": [
+      {
+        "name": "Yash",
+        "character": "Raja Krishnappa Bairya 'Rocky'",
+        "avatar": "https://image.tmdb.org/t/p/w185/ixHvgN8hGh8YgWd3j9RqUATvBiy.jpg"
+      },
+      {
+        "name": "Sanjay Dutt",
+        "character": "Adheera",
+        "avatar": "https://image.tmdb.org/t/p/w185/oq4pnvWhl1HxKpp0KVlSfAr3Tiu.jpg"
+      },
+      {
+        "name": "Raveena Tandon",
+        "character": "Ramika Sen",
+        "avatar": "https://image.tmdb.org/t/p/w185/4z0X9ZMgyNZRHfJG4G2Z10rhLpu.jpg"
+      },
+      {
+        "name": "Srinidhi Shetty",
+        "character": "Reena",
+        "avatar": "https://image.tmdb.org/t/p/w185/pTsixKDFS3n2xsvR6wDZ9J6jjfQ.jpg"
+      },
+      {
+        "name": "Archana Jois",
+        "character": "Shanthamma",
+        "avatar": "https://image.tmdb.org/t/p/w185/kRmgREIRxLxNKssJMT7YxzNXmFH.jpg"
+      },
+      {
+        "name": "Achyuth Kumar",
+        "character": "Guru Pandyan",
+        "avatar": "https://image.tmdb.org/t/p/w185/zO1MoCgaz0RxILjga8VYXguROMp.jpg"
+      }
+    ],
+    "synopsis": "The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes. His allies look up to Rocky as their Savior, the government sees him as a threat to law and order; enemies are clamoring for revenge and conspiring for his downfall. Bloodier battles and darker days await as Rocky continues on his quest for unchallenged supremacy.",
+    "storyline": "The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes. His allies look up to Rocky as their Savior, the government sees him as a threat to law and order; enemies are clamoring for revenge and conspiring for his downfall. Bloodier battles and darker days await as Rocky continues on his quest for unchallenged supremacy.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/khNVygolU0TxLIDWff5tQlAhZ23.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/nsV5Mfi9FAV4w8eDsdr7uqVswOk.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/khNVygolU0TxLIDWff5tQlAhZ23.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/nsV5Mfi9FAV4w8eDsdr7uqVswOk.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/Qah9sSIXJqk?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "salaar-part-1-ceasefire",
+    "slug": "salaar-part-1-ceasefire",
+    "tmdbId": 770906,
+    "title": "Salaar: Part 1 – Ceasefire",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "te",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/salaar-part-1-ceasefire.svg",
+    "backdropUrl": "/api/backdrop/salaar-part-1-ceasefire.svg",
+    "poster": "/api/poster/salaar-part-1-ceasefire.svg",
+    "backdrop": "/api/backdrop/salaar-part-1-ceasefire.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Salaar%3A%20Part%201%20%E2%80%93%20Ceasefire%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "brahm-stra-part-one-shiva",
+    "slug": "brahm-stra-part-one-shiva",
+    "tmdbId": 496331,
+    "title": "Brahmāstra Part One: Shiva",
+    "koreanTitle": "",
+    "tagline": "The God of all elements.",
+    "year": "2022",
+    "releaseDate": "2022-09-08",
+    "rating": "13+",
+    "imdbRating": "6.3",
+    "matchScore": "75% Match",
+    "duration": "2h 48m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Dharma Productions",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Action",
+      "Romance",
+      "Fantasy"
+    ],
+    "director": "Ayan Mukerji",
+    "cast": [
+      "Ranbir Kapoor",
+      "Alia Bhatt",
+      "Mouni Roy",
+      "Amitabh Bachchan",
+      "Nagarjuna Akkineni",
+      "Shah Rukh Khan"
+    ],
+    "castDetails": [
+      {
+        "name": "Ranbir Kapoor",
+        "character": "Shiva",
+        "avatar": "https://image.tmdb.org/t/p/w185/a5xWgKh7f4XofIl7ZwisxOi616K.jpg"
+      },
+      {
+        "name": "Alia Bhatt",
+        "character": "Isha Chatterjee",
+        "avatar": "https://image.tmdb.org/t/p/w185/lAgBZgHKTo6amIO9CfNxUbm1usH.jpg"
+      },
+      {
+        "name": "Mouni Roy",
+        "character": "Junoon",
+        "avatar": "https://image.tmdb.org/t/p/w185/bopoygerwuqnt1WaTPULn5izxRQ.jpg"
+      },
+      {
+        "name": "Amitabh Bachchan",
+        "character": "Guru",
+        "avatar": "https://image.tmdb.org/t/p/w185/u69PvpWqGkywSm0YjFiw77j9eqS.jpg"
+      },
+      {
+        "name": "Nagarjuna Akkineni",
+        "character": "Anish Shetty",
+        "avatar": "https://image.tmdb.org/t/p/w185/y6A79KaYhxRZ7OUsDm2dq2MFSm2.jpg"
+      },
+      {
+        "name": "Shah Rukh Khan",
+        "character": "Mohan Bhargav",
+        "avatar": "https://image.tmdb.org/t/p/w185/gc3Ul6EtVYKgjBuYAaD8U2qIcSl.jpg"
+      }
+    ],
+    "synopsis": "The story of Shiva – a young man on the brink of an epic love, with a girl named Isha. But their world is turned upside down when Shiva learns that he has a mysterious connection to the Brahmāstra... and a great power within him that he doesn’t understand just yet - the power of Fire.",
+    "storyline": "The story of Shiva – a young man on the brink of an epic love, with a girl named Isha. But their world is turned upside down when Shiva learns that he has a mysterious connection to the Brahmāstra... and a great power within him that he doesn’t understand just yet - the power of Fire.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/x61qdvHIsr9U53FwoLVDQqAGur0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/9oAqll65ytlOBLzZwUwkmo5RwIK.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/x61qdvHIsr9U53FwoLVDQqAGur0.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/9oAqll65ytlOBLzZwUwkmo5RwIK.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/JwZRx6IGL_k?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "dangal",
+    "slug": "dangal",
+    "tmdbId": 360814,
+    "title": "Dangal",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2016",
+    "releaseDate": "2016",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Drama",
+      "Family",
+      "Comedy"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/dangal.svg",
+    "backdropUrl": "/api/backdrop/dangal.svg",
+    "poster": "/api/poster/dangal.svg",
+    "backdrop": "/api/backdrop/dangal.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Dangal%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "3-idiots",
+    "slug": "3-idiots",
+    "tmdbId": 20453,
+    "title": "3 Idiots",
+    "koreanTitle": "",
+    "tagline": "Aal Izz Well!",
+    "year": "2009",
+    "releaseDate": "2009-12-23",
+    "rating": "15+",
+    "imdbRating": "8.0",
+    "matchScore": "92% Match",
+    "duration": "2h 51m",
+    "country": "India",
+    "language": "hi",
+    "studio": "Vidhu Vinod Chopra Productions",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "indian",
+    "genres": [
+      "Drama",
+      "Comedy"
+    ],
+    "director": "Rajkumar Hirani",
+    "cast": [
+      "Aamir Khan",
+      "R. Madhavan",
+      "Sharman Joshi",
+      "Kareena Kapoor Khan",
+      "Boman Irani",
+      "Omi Vaidya"
+    ],
+    "castDetails": [
+      {
+        "name": "Aamir Khan",
+        "character": "Ranchoddas \"Rancho\" Chanchad",
+        "avatar": "https://image.tmdb.org/t/p/w185/6uiZSwi2kvd1jZ7X7Xz9W9VGuV4.jpg"
+      },
+      {
+        "name": "R. Madhavan",
+        "character": "Farhan Qureshi",
+        "avatar": "https://image.tmdb.org/t/p/w185/gaDrAdXxIrbBRCd9cX8YvJDEuLb.jpg"
+      },
+      {
+        "name": "Sharman Joshi",
+        "character": "Raju Rastogi",
+        "avatar": "https://image.tmdb.org/t/p/w185/mQr8ynFFVq08qgQ4aSNl5B0ko8v.jpg"
+      },
+      {
+        "name": "Kareena Kapoor Khan",
+        "character": "Pia Sahastrabudhhe",
+        "avatar": "https://image.tmdb.org/t/p/w185/kp9xnwDALUt6nuPBGuJHlvnxGnM.jpg"
+      },
+      {
+        "name": "Boman Irani",
+        "character": "Viru \"Virus\" Sahastrabudhhe",
+        "avatar": "https://image.tmdb.org/t/p/w185/5J7GiiNar9bg9rGYeA2L30JXE2W.jpg"
+      },
+      {
+        "name": "Omi Vaidya",
+        "character": "Chatur \"Silencer\" Ramalingam",
+        "avatar": "https://image.tmdb.org/t/p/w185/G37HGmfBM8b6pTczZrpJmTFIGl.jpg"
+      }
+    ],
+    "synopsis": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
+    "storyline": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/66A9MqXOyVFCssoloscw79z8Tew.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/u7kuUaySqXBVAtqEl9vkTkAzHV9.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/66A9MqXOyVFCssoloscw79z8Tew.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/u7kuUaySqXBVAtqEl9vkTkAzHV9.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/22zjP29xZGM?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "society-of-the-snow",
+    "slug": "society-of-the-snow",
+    "tmdbId": 906126,
+    "title": "Society of the Snow",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Spain",
+    "language": "es",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "spanish",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/society-of-the-snow.svg",
+    "backdropUrl": "/api/backdrop/society-of-the-snow.svg",
+    "poster": "/api/poster/society-of-the-snow.svg",
+    "backdrop": "/api/backdrop/society-of-the-snow.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Society%20of%20the%20Snow%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "pan-s-labyrinth",
+    "slug": "pan-s-labyrinth",
+    "tmdbId": 1417,
+    "title": "Pan's Labyrinth",
+    "koreanTitle": "",
+    "tagline": "Innocence has a power evil cannot imagine.",
+    "year": "2006",
+    "releaseDate": "2006-10-11",
+    "rating": "15+",
+    "imdbRating": "7.8",
+    "matchScore": "90% Match",
+    "duration": "1h 58m",
+    "country": "Spain",
+    "language": "es",
+    "studio": "Estudios Picasso",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "spanish",
+    "genres": [
+      "Fantasy",
+      "Drama",
+      "War"
+    ],
+    "director": "Guillermo del Toro",
+    "cast": [
+      "Ivana Baquero",
+      "Sergi López",
+      "Maribel Verdú",
+      "Doug Jones",
+      "Ariadna Gil",
+      "Álex Angulo"
+    ],
+    "castDetails": [
+      {
+        "name": "Ivana Baquero",
+        "character": "Ofelia",
+        "avatar": "https://image.tmdb.org/t/p/w185/egEyy7m35EF1OrBs0ik7YGEadpC.jpg"
+      },
+      {
+        "name": "Sergi López",
+        "character": "Capitán Vidal",
+        "avatar": "https://image.tmdb.org/t/p/w185/n3HcmUflYYaHUiQmzaayi0yqcRf.jpg"
+      },
+      {
+        "name": "Maribel Verdú",
+        "character": "Mercedes",
+        "avatar": "https://image.tmdb.org/t/p/w185/7hxTsW5CKi2lkz5yGMWShki7DOo.jpg"
+      },
+      {
+        "name": "Doug Jones",
+        "character": "Fauno / Pale Man",
+        "avatar": "https://image.tmdb.org/t/p/w185/rpvvWATYWHGjedJea0G97XufOwU.jpg"
+      },
+      {
+        "name": "Ariadna Gil",
+        "character": "Carmen",
+        "avatar": "https://image.tmdb.org/t/p/w185/4g5IyK6br9UCRqLLlW8z5ZLFtYf.jpg"
+      },
+      {
+        "name": "Álex Angulo",
+        "character": "Dr. Ferreiro",
+        "avatar": null
+      }
+    ],
+    "synopsis": "In post–civil war Spain, 10-year-old Ofelia moves with her pregnant mother to live under the control of her cruel stepfather. Drawn into a mysterious labyrinth, she meets a faun who reveals that she may be a lost princess from an underground kingdom. To return to her true father, she must complete a series of surreal and perilous tasks that blur the line between reality and fantasy.",
+    "storyline": "In post–civil war Spain, 10-year-old Ofelia moves with her pregnant mother to live under the control of her cruel stepfather. Drawn into a mysterious labyrinth, she meets a faun who reveals that she may be a lost princess from an underground kingdom. To return to her true father, she must complete a series of surreal and perilous tasks that blur the line between reality and fantasy.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7wb2Ldp0oAx1lcZvffq9RfWoI2h.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6G6nqSW9S7EHA9HrYl0Z8uo2H7f.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/7wb2Ldp0oAx1lcZvffq9RfWoI2h.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/6G6nqSW9S7EHA9HrYl0Z8uo2H7f.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/OBGKGm3RYos?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-secret-in-their-eyes",
+    "slug": "the-secret-in-their-eyes",
+    "tmdbId": 25376,
+    "title": "The Secret in Their Eyes",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2009",
+    "releaseDate": "2009",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Argentina",
+    "language": "es",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "spanish",
+    "genres": [
+      "Mystery",
+      "Thriller",
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/the-secret-in-their-eyes.svg",
+    "backdropUrl": "/api/backdrop/the-secret-in-their-eyes.svg",
+    "poster": "/api/poster/the-secret-in-their-eyes.svg",
+    "backdrop": "/api/backdrop/the-secret-in-their-eyes.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=The%20Secret%20in%20Their%20Eyes%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "roma",
+    "slug": "roma",
+    "tmdbId": 426426,
+    "title": "Roma",
+    "koreanTitle": "",
+    "tagline": "There are periods in history that scar societies and moments in life that transform us as individuals.",
+    "year": "2018",
+    "releaseDate": "2018-11-21",
+    "rating": "13+",
+    "imdbRating": "7.6",
+    "matchScore": "88% Match",
+    "duration": "2h 15m",
+    "country": "Mexico",
+    "language": "es",
+    "studio": "Participant",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "spanish",
+    "genres": [
+      "Drama"
+    ],
+    "director": "Alfonso Cuarón",
+    "cast": [
+      "Yalitza Aparicio",
+      "Marina de Tavira",
+      "Diego Cortina Autrey",
+      "Carlos Peralta",
+      "Marco Graf",
+      "Daniela Demesa"
+    ],
+    "castDetails": [
+      {
+        "name": "Yalitza Aparicio",
+        "character": "Cleo Gutiérrez",
+        "avatar": "https://image.tmdb.org/t/p/w185/wiZEyqNTNkevCT768bKvvOJvCHb.jpg"
+      },
+      {
+        "name": "Marina de Tavira",
+        "character": "Sofía",
+        "avatar": "https://image.tmdb.org/t/p/w185/rGGjW1UnUL1Q4TGlfRL3W5yuyq1.jpg"
+      },
+      {
+        "name": "Diego Cortina Autrey",
+        "character": "Toño",
+        "avatar": "https://image.tmdb.org/t/p/w185/sjk18uMlWDEW1SghHtYOckS2Bmm.jpg"
+      },
+      {
+        "name": "Carlos Peralta",
+        "character": "Paco",
+        "avatar": "https://image.tmdb.org/t/p/w185/rCtVtycU3dG8Z3nWhi1XSsEbPN.jpg"
+      },
+      {
+        "name": "Marco Graf",
+        "character": "Pepe",
+        "avatar": "https://image.tmdb.org/t/p/w185/na3AUeMwiN027NAb8gr4FfgBJJK.jpg"
+      },
+      {
+        "name": "Daniela Demesa",
+        "character": "Sofi",
+        "avatar": "https://image.tmdb.org/t/p/w185/sM27P5vM5SNRJvSJqjdlIfDeYml.jpg"
+      }
+    ],
+    "synopsis": "In 1970s Mexico City, two domestic workers help a mother of four while her husband is away for an extended period of time.",
+    "storyline": "In 1970s Mexico City, two domestic workers help a mother of four while her husband is away for an extended period of time.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/dtIIyQyALk57ko5bjac7hi01YQ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zl9uqCl5iUSb50sTk2BPzw6bJnU.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/dtIIyQyALk57ko5bjac7hi01YQ.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/zl9uqCl5iUSb50sTk2BPzw6bJnU.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/6BS27ngZtxg?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "wild-tales",
+    "slug": "wild-tales",
+    "tmdbId": 265195,
+    "title": "Wild Tales",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2014",
+    "releaseDate": "2014",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Argentina",
+    "language": "es",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "spanish",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Comedy"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/wild-tales.svg",
+    "backdropUrl": "/api/backdrop/wild-tales.svg",
+    "poster": "/api/poster/wild-tales.svg",
+    "backdrop": "/api/backdrop/wild-tales.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Wild%20Tales%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "anatomy-of-a-fall",
+    "slug": "anatomy-of-a-fall",
+    "tmdbId": 915935,
+    "title": "Anatomy of a Fall",
+    "koreanTitle": "",
+    "tagline": "Did she do it?",
+    "year": "2023",
+    "releaseDate": "2023-08-23",
+    "rating": "13+",
+    "imdbRating": "7.5",
+    "matchScore": "87% Match",
+    "duration": "2h 31m",
+    "country": "France",
+    "language": "fr",
+    "studio": "Les Films de Pierre",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Thriller",
+      "Mystery",
+      "Crime"
+    ],
+    "director": "Justine Triet",
+    "cast": [
+      "Sandra Hüller",
+      "Swann Arlaud",
+      "Milo Machado-Graner",
+      "Antoine Reinartz",
+      "Samuel Theis",
+      "Jehnny Beth"
+    ],
+    "castDetails": [
+      {
+        "name": "Sandra Hüller",
+        "character": "Sandra Voyter",
+        "avatar": "https://image.tmdb.org/t/p/w185/jQfKXVCPTH9KEnzHHU4QemCnlMe.jpg"
+      },
+      {
+        "name": "Swann Arlaud",
+        "character": "Maître Vincent Renzi",
+        "avatar": "https://image.tmdb.org/t/p/w185/38iX2NHO7pMdQH1ygoGEJ8E82WV.jpg"
+      },
+      {
+        "name": "Milo Machado-Graner",
+        "character": "Daniel",
+        "avatar": "https://image.tmdb.org/t/p/w185/wdpeIXaFvSSAJq88dv6Ofzgscd7.jpg"
+      },
+      {
+        "name": "Antoine Reinartz",
+        "character": "Advocate General",
+        "avatar": "https://image.tmdb.org/t/p/w185/OHGtRqIim2cEHOYKPlbgNOV6Cb.jpg"
+      },
+      {
+        "name": "Samuel Theis",
+        "character": "Samuel Maleski",
+        "avatar": "https://image.tmdb.org/t/p/w185/5sPD9wpbh4h4iwzlg4XzYrmYxTN.jpg"
+      },
+      {
+        "name": "Jehnny Beth",
+        "character": "Marge Berger",
+        "avatar": "https://image.tmdb.org/t/p/w185/lMSMHufDKEtTsKYuxDKcMZDtDb7.jpg"
+      }
+    ],
+    "synopsis": "A woman is suspected of her husband's murder, and their blind son faces a moral dilemma as the sole witness.",
+    "storyline": "A woman is suspected of her husband's murder, and their blind son faces a moral dilemma as the sole witness.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/1ho0d4LNZw3Y0voeKmSvPSgJOJ2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/1ho0d4LNZw3Y0voeKmSvPSgJOJ2.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/vtNYnjWUFqE?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "am-lie",
+    "slug": "am-lie",
+    "tmdbId": 194,
+    "title": "Amélie",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2001",
+    "releaseDate": "2001",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "France",
+    "language": "fr",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/am-lie.svg",
+    "backdropUrl": "/api/backdrop/am-lie.svg",
+    "poster": "/api/poster/am-lie.svg",
+    "backdrop": "/api/backdrop/am-lie.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Am%C3%A9lie%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "portrait-of-a-lady-on-fire",
+    "slug": "portrait-of-a-lady-on-fire",
+    "tmdbId": 531428,
+    "title": "Portrait of a Lady on Fire",
+    "koreanTitle": "",
+    "tagline": "Don't regret. Remember.",
+    "year": "2019",
+    "releaseDate": "2019-09-06",
+    "rating": "15+",
+    "imdbRating": "8.1",
+    "matchScore": "93% Match",
+    "duration": "2h 1m",
+    "country": "France",
+    "language": "fr",
+    "studio": "Lilies Films",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "director": "Céline Sciamma",
+    "cast": [
+      "Noémie Merlant",
+      "Adèle Haenel",
+      "Luàna Bajrami",
+      "Valeria Golino",
+      "Christel Baras",
+      "Armande Boulanger"
+    ],
+    "castDetails": [
+      {
+        "name": "Noémie Merlant",
+        "character": "Marianne",
+        "avatar": "https://image.tmdb.org/t/p/w185/l9ECDc9GGIESuKuT5zxIJknAD33.jpg"
+      },
+      {
+        "name": "Adèle Haenel",
+        "character": "Héloïse",
+        "avatar": "https://image.tmdb.org/t/p/w185/uf2BVprWBZB7hxv0lj1RO48EDEZ.jpg"
+      },
+      {
+        "name": "Luàna Bajrami",
+        "character": "Sophie",
+        "avatar": "https://image.tmdb.org/t/p/w185/2fqQuPWmdvcaScBqguN4rcRXcWc.jpg"
+      },
+      {
+        "name": "Valeria Golino",
+        "character": "La Comtesse",
+        "avatar": "https://image.tmdb.org/t/p/w185/bLw0lNPEhICtbTLtnTswamefN7C.jpg"
+      },
+      {
+        "name": "Christel Baras",
+        "character": "La faiseuse d'ange",
+        "avatar": "https://image.tmdb.org/t/p/w185/lZdOrS1y7ADRm99GCl05vpV8zLF.jpg"
+      },
+      {
+        "name": "Armande Boulanger",
+        "character": "L'élève atelier",
+        "avatar": "https://image.tmdb.org/t/p/w185/3qiFTfRl8x68D8u6aUXWmV5POEb.jpg"
+      }
+    ],
+    "synopsis": "On an isolated island in Brittany at the end of the eighteenth century, a female painter is obliged to paint a wedding portrait of a young woman.",
+    "storyline": "On an isolated island in Brittany at the end of the eighteenth century, a female painter is obliged to paint a wedding portrait of a young woman.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ivJ5UzT6IzucLVfbZwCCwiJJoBz.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ivJ5UzT6IzucLVfbZwCCwiJJoBz.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/xUF1tjxV2P0?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "la-haine",
+    "slug": "la-haine",
+    "tmdbId": 406,
+    "title": "La Haine",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "1995",
+    "releaseDate": "1995",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "France",
+    "language": "fr",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/la-haine.svg",
+    "backdropUrl": "/api/backdrop/la-haine.svg",
+    "poster": "/api/poster/la-haine.svg",
+    "backdrop": "/api/backdrop/la-haine.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=La%20Haine%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "all-quiet-on-the-western-front",
+    "slug": "all-quiet-on-the-western-front",
+    "tmdbId": 49046,
+    "title": "All Quiet on the Western Front",
+    "koreanTitle": "",
+    "tagline": "Experience All Quiet on the Western Front in 4K HDR.",
+    "year": "2022",
+    "releaseDate": "2022-10-07",
+    "rating": "13+",
+    "imdbRating": "7.7",
+    "matchScore": "89% Match",
+    "duration": "2h 27m",
+    "country": "Germany",
+    "language": "de",
+    "studio": "Amusement Park Films",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "War",
+      "Drama"
+    ],
+    "director": "Edward Berger",
+    "cast": [
+      "Felix Kammerer",
+      "Albrecht Schuch",
+      "Aaron Hilmer",
+      "Moritz Klaus",
+      "Adrian Grünewald",
+      "Edin Hasanović"
+    ],
+    "castDetails": [
+      {
+        "name": "Felix Kammerer",
+        "character": "Paul Bäumer",
+        "avatar": "https://image.tmdb.org/t/p/w185/T12faHW0QXunSZbv6YNmDWG7bC.jpg"
+      },
+      {
+        "name": "Albrecht Schuch",
+        "character": "Stanislaus 'Kat' Katczinsky",
+        "avatar": "https://image.tmdb.org/t/p/w185/bYqsnHVbaLTnffo4Dj5UiyPBm4U.jpg"
+      },
+      {
+        "name": "Aaron Hilmer",
+        "character": "Albert Kropp",
+        "avatar": "https://image.tmdb.org/t/p/w185/wVVbhpjsDeC6GI9Pa37qqbuVhZd.jpg"
+      },
+      {
+        "name": "Moritz Klaus",
+        "character": "Franz Müller",
+        "avatar": "https://image.tmdb.org/t/p/w185/lTHzlm3oYg8rLYOI4FZ58EvG8ao.jpg"
+      },
+      {
+        "name": "Adrian Grünewald",
+        "character": "Ludwig Behm",
+        "avatar": "https://image.tmdb.org/t/p/w185/2QHe0fAcPKKaHpIeNVp9Ei3AuEu.jpg"
+      },
+      {
+        "name": "Edin Hasanović",
+        "character": "Tjaden Stackfleet",
+        "avatar": "https://image.tmdb.org/t/p/w185/MW0VhzAHi3oMtnzNuESbpx02Wa.jpg"
+      }
+    ],
+    "synopsis": "Paul Baumer and his friends Albert and Muller, egged on by romantic dreams of heroism, voluntarily enlist in the German army. Full of excitement and patriotic fervour, the boys enthusiastically march into a war they believe in. But once on the Western Front, they discover the soul-destroying horror of World War I.",
+    "storyline": "Paul Baumer and his friends Albert and Muller, egged on by romantic dreams of heroism, voluntarily enlist in the German army. Full of excitement and patriotic fervour, the boys enthusiastically march into a war they believe in. But once on the Western Front, they discover the soul-destroying horror of World War I.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/xBwtP27cx8WfjHJVFkpuV6F1RES.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/xBwtP27cx8WfjHJVFkpuV6F1RES.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/41Qxg3kuZ6k?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-zone-of-interest",
+    "slug": "the-zone-of-interest",
+    "tmdbId": 467244,
+    "title": "The Zone of Interest",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United Kingdom",
+    "language": "de",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Drama",
+      "History",
+      "War"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/the-zone-of-interest.svg",
+    "backdropUrl": "/api/backdrop/the-zone-of-interest.svg",
+    "poster": "/api/poster/the-zone-of-interest.svg",
+    "backdrop": "/api/backdrop/the-zone-of-interest.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=The%20Zone%20of%20Interest%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "life-is-beautiful",
+    "slug": "life-is-beautiful",
+    "tmdbId": 637,
+    "title": "Life Is Beautiful",
+    "koreanTitle": "",
+    "tagline": "An unforgettable fable that proves love, family and imagination conquer all.",
+    "year": "1997",
+    "releaseDate": "1997-12-20",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "1h 56m",
+    "country": "Italy",
+    "language": "it",
+    "studio": "Mario e Vittorio Cecchi Gori - C.E.I.A.D.",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "director": "Roberto Benigni",
+    "cast": [
+      "Roberto Benigni",
+      "Nicoletta Braschi",
+      "Giorgio Cantarini",
+      "Giustino Durano",
+      "Sergio Bini Bustric",
+      "Marisa Paredes"
+    ],
+    "castDetails": [
+      {
+        "name": "Roberto Benigni",
+        "character": "Guido",
+        "avatar": "https://image.tmdb.org/t/p/w185/ba1Sg02XxCphu6E1dWDMAH1GzeE.jpg"
+      },
+      {
+        "name": "Nicoletta Braschi",
+        "character": "Dora",
+        "avatar": "https://image.tmdb.org/t/p/w185/9IeE3Iz9HXZVTrvhjSCKlR4FLxB.jpg"
+      },
+      {
+        "name": "Giorgio Cantarini",
+        "character": "Giosué",
+        "avatar": "https://image.tmdb.org/t/p/w185/1tKZHpVTYcw8EP3naVTZFlrOkhQ.jpg"
+      },
+      {
+        "name": "Giustino Durano",
+        "character": "Zio",
+        "avatar": "https://image.tmdb.org/t/p/w185/5VbG50qZNUnpx6UW7594RUlX7SZ.jpg"
+      },
+      {
+        "name": "Sergio Bini Bustric",
+        "character": "Ferruccio",
+        "avatar": "https://image.tmdb.org/t/p/w185/crnlLn1SxP2LqbsXNr8CQrvaiNc.jpg"
+      },
+      {
+        "name": "Marisa Paredes",
+        "character": "Dora's Mother",
+        "avatar": "https://image.tmdb.org/t/p/w185/71esuRUCyeSyib35mTFPkR24zH7.jpg"
+      }
+    ],
+    "synopsis": "A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.",
+    "storyline": "A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/74hLDKjD5aGYOotO6esUVaeISa2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/6aNKD81RHR1DqUUa8kOZ1TBY1Lp.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/74hLDKjD5aGYOotO6esUVaeISa2.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/6aNKD81RHR1DqUUa8kOZ1TBY1Lp.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/pAYEQP8gx3w?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-great-beauty",
+    "slug": "the-great-beauty",
+    "tmdbId": 179144,
+    "title": "The Great Beauty",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2013",
+    "releaseDate": "2013",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Italy",
+    "language": "it",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "european",
+    "genres": [
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/the-great-beauty.svg",
+    "backdropUrl": "/api/backdrop/the-great-beauty.svg",
+    "poster": "/api/poster/the-great-beauty.svg",
+    "backdrop": "/api/backdrop/the-great-beauty.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=The%20Great%20Beauty%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "monster",
+    "slug": "monster",
+    "tmdbId": 1050035,
+    "title": "Monster",
+    "koreanTitle": "",
+    "tagline": "Are they the ones we dream of, or the ones we fail to see among us?",
+    "year": "2023",
+    "releaseDate": "2023-06-02",
+    "rating": "15+",
+    "imdbRating": "7.9",
+    "matchScore": "91% Match",
+    "duration": "2h 5m",
+    "country": "Japan",
+    "language": "ja",
+    "studio": "TOHO",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "anime",
+    "genres": [
+      "Mystery",
+      "Thriller",
+      "Drama"
+    ],
+    "director": "Hirokazu Kore-eda",
+    "cast": [
+      "Sakura Ando",
+      "Soya Kurokawa",
+      "Hinata Hiiragi",
+      "Eita Nagayama",
+      "Yuko Tanaka",
+      "Mitsuki Takahata"
+    ],
+    "castDetails": [
+      {
+        "name": "Sakura Ando",
+        "character": "Saori Mugino",
+        "avatar": "https://image.tmdb.org/t/p/w185/k2R2ryEFEuUe2f3Dsd5yH8aRdqV.jpg"
+      },
+      {
+        "name": "Soya Kurokawa",
+        "character": "Minato Mugino",
+        "avatar": "https://image.tmdb.org/t/p/w185/zqBT16EdgLX9ToPwU6qhuY09QBI.jpg"
+      },
+      {
+        "name": "Hinata Hiiragi",
+        "character": "Yori Hoshikawa",
+        "avatar": "https://image.tmdb.org/t/p/w185/sKhMVQUIoNpqVVuFM3gKp5jvKgg.jpg"
+      },
+      {
+        "name": "Eita Nagayama",
+        "character": "Michitoshi Hori",
+        "avatar": "https://image.tmdb.org/t/p/w185/10Q2xdJyMJ4Bngx8NDYtFbBcWLQ.jpg"
+      },
+      {
+        "name": "Yuko Tanaka",
+        "character": "Makiko Fushimi",
+        "avatar": "https://image.tmdb.org/t/p/w185/fMonAnp3OQ16FmGy5SGhEJRcuVI.jpg"
+      },
+      {
+        "name": "Mitsuki Takahata",
+        "character": "Hirona Suzumura",
+        "avatar": "https://image.tmdb.org/t/p/w185/ufoy27qFIbFyTy37B7WzlhD49Ef.jpg"
+      }
+    ],
+    "synopsis": "After an outburst at school involving her son, a concerned single mother demands answers, triggering a sequence of deepening suspicion and turmoil.",
+    "storyline": "After an outburst at school involving her son, a concerned single mother demands answers, triggering a sequence of deepening suspicion and turmoil.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/kvUJUyUGOhEoiWWNH04IXoExPE2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/dZJcOyRonN0Kb7kJR3DE3esGn16.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/kvUJUyUGOhEoiWWNH04IXoExPE2.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/dZJcOyRonN0Kb7kJR3DE3esGn16.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/Y8_KfdcIMBY?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "drive-my-car",
+    "slug": "drive-my-car",
+    "tmdbId": 758866,
+    "title": "Drive My Car",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2021",
+    "releaseDate": "2021",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Japan",
+    "language": "ja",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "world",
+    "genres": [
+      "Drama"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/drive-my-car.svg",
+    "backdropUrl": "/api/backdrop/drive-my-car.svg",
+    "poster": "/api/poster/drive-my-car.svg",
+    "backdrop": "/api/backdrop/drive-my-car.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Drive%20My%20Car%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "seven-samurai",
+    "slug": "seven-samurai",
+    "tmdbId": 346,
+    "title": "Seven Samurai",
+    "koreanTitle": "",
+    "tagline": "Unmatched for suspense and spectacle!",
+    "year": "1954",
+    "releaseDate": "1954-04-26",
+    "rating": "15+",
+    "imdbRating": "8.5",
+    "matchScore": "97% Match",
+    "duration": "3h 27m",
+    "country": "Japan",
+    "language": "ja",
+    "studio": "TOHO",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "world",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "director": "Akira Kurosawa",
+    "cast": [
+      "Toshirō Mifune",
+      "Takashi Shimura",
+      "Yoshio Inaba",
+      "Seiji Miyaguchi",
+      "Minoru Chiaki",
+      "Daisuke Katō"
+    ],
+    "castDetails": [
+      {
+        "name": "Toshirō Mifune",
+        "character": "Kikuchiyo",
+        "avatar": "https://image.tmdb.org/t/p/w185/cZ5ybA7cDA0EBMaM5jX2f7RNBVb.jpg"
+      },
+      {
+        "name": "Takashi Shimura",
+        "character": "Kambei Shimada",
+        "avatar": "https://image.tmdb.org/t/p/w185/ydyAm2vyBbEPZRICIMqqjDm0NM9.jpg"
+      },
+      {
+        "name": "Yoshio Inaba",
+        "character": "Gorobei Katayama",
+        "avatar": "https://image.tmdb.org/t/p/w185/5qIAqM5PegWTNq67qNofz78fb6U.jpg"
+      },
+      {
+        "name": "Seiji Miyaguchi",
+        "character": "Kyuzo",
+        "avatar": "https://image.tmdb.org/t/p/w185/mAGkZlsowKzgpvvi40mRLU4vA53.jpg"
+      },
+      {
+        "name": "Minoru Chiaki",
+        "character": "Heihachi Hayashida",
+        "avatar": "https://image.tmdb.org/t/p/w185/9E3efYEg8pxANdfVLqYGiX8zJE8.jpg"
+      },
+      {
+        "name": "Daisuke Katō",
+        "character": "Shichiroji",
+        "avatar": "https://image.tmdb.org/t/p/w185/dTcLO2XWLwp6RiJTpwDjxzbnuSp.jpg"
+      }
+    ],
+    "synopsis": "A samurai answers a village's request for protection after he falls on hard times. The town needs protection from bandits, so the samurai gathers six others to help him teach the people how to defend themselves, and the villagers provide the soldiers with food.",
+    "storyline": "A samurai answers a village's request for protection after he falls on hard times. The town needs protection from bandits, so the samurai gathers six others to help him teach the people how to defend themselves, and the villagers provide the soldiers with food.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lOMGc8bnSwQhS4XyE1S99uH8NXf.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qvZ91FwMq6O47VViAr8vZNQz3WI.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/lOMGc8bnSwQhS4XyE1S99uH8NXf.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/qvZ91FwMq6O47VViAr8vZNQz3WI.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/RsRN65PlaIM?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "crouching-tiger-hidden-dragon",
+    "slug": "crouching-tiger-hidden-dragon",
+    "tmdbId": 146,
+    "title": "Crouching Tiger, Hidden Dragon",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2000",
+    "releaseDate": "2000",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Taiwan",
+    "language": "zh",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "world",
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Action"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/crouching-tiger-hidden-dragon.svg",
+    "backdropUrl": "/api/backdrop/crouching-tiger-hidden-dragon.svg",
+    "poster": "/api/poster/crouching-tiger-hidden-dragon.svg",
+    "backdrop": "/api/backdrop/crouching-tiger-hidden-dragon.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Crouching%20Tiger%2C%20Hidden%20Dragon%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "in-the-mood-for-love",
+    "slug": "in-the-mood-for-love",
+    "tmdbId": 843,
+    "title": "In the Mood for Love",
+    "koreanTitle": "",
+    "tagline": "Feel the heat, keep the feeling burning, let the sensation explode.",
+    "year": "2000",
+    "releaseDate": "2000-09-29",
+    "rating": "15+",
+    "imdbRating": "8.1",
+    "matchScore": "93% Match",
+    "duration": "1h 39m",
+    "country": "Hong Kong",
+    "language": "zh",
+    "studio": "Block 2 Pictures",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "romance",
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "director": "Wong Kar-Wai",
+    "cast": [
+      "Maggie Cheung",
+      "Tony Leung Chiu-wai",
+      "Siu Ping-Lam",
+      "Rebecca Pan",
+      "Kelly Lai Chen",
+      "Joe Cheung Tung-Cho"
+    ],
+    "castDetails": [
+      {
+        "name": "Maggie Cheung",
+        "character": "Su Li-zhen",
+        "avatar": "https://image.tmdb.org/t/p/w185/hre6xmoDbh67YN7wR5nhUazPTlb.jpg"
+      },
+      {
+        "name": "Tony Leung Chiu-wai",
+        "character": "Chow Mo-wan",
+        "avatar": "https://image.tmdb.org/t/p/w185/idGzkwbm0BiLdrrKfcXecFNXbDu.jpg"
+      },
+      {
+        "name": "Siu Ping-Lam",
+        "character": "Ah Ping",
+        "avatar": "https://image.tmdb.org/t/p/w185/tJrW8Tg6XoZjKKaXBP1qbFV0PFF.jpg"
+      },
+      {
+        "name": "Rebecca Pan",
+        "character": "Mrs. Suen",
+        "avatar": "https://image.tmdb.org/t/p/w185/fbFl1uGb5Uo2FPA5S5jvgGevHYE.jpg"
+      },
+      {
+        "name": "Kelly Lai Chen",
+        "character": "Mr. Ho",
+        "avatar": "https://image.tmdb.org/t/p/w185/6RrS6v8ayfdLFSTSOK7BhKZRKXr.jpg"
+      },
+      {
+        "name": "Joe Cheung Tung-Cho",
+        "character": "Man Living in Mr. Koo's Apartment",
+        "avatar": "https://image.tmdb.org/t/p/w185/4RJ9r6FP6kQUmEUWZylPByh7TtG.jpg"
+      }
+    ],
+    "synopsis": "In 1960s Hong Kong, two neighbors form an intimate bond after making a discovery about their spouses in this visually stunning tale of unrequited love.",
+    "storyline": "In 1960s Hong Kong, two neighbors form an intimate bond after making a discovery about their spouses in this visually stunning tale of unrequited love.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8BgGbbWiLNhPtkMkN0gGTnbtvBv.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ffQFnAUm2Uu4RU0nijpjPRf9TBT.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/8BgGbbWiLNhPtkMkN0gGTnbtvBv.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ffQFnAUm2Uu4RU0nijpjPRf9TBT.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/rc3QleuaQMw?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "ip-man",
+    "slug": "ip-man",
+    "tmdbId": 14756,
+    "title": "Ip Man",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2008",
+    "releaseDate": "2008",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "Hong Kong",
+    "language": "zh",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "thriller",
+    "genres": [
+      "Drama",
+      "Action",
+      "History"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/ip-man.svg",
+    "backdropUrl": "/api/backdrop/ip-man.svg",
+    "poster": "/api/poster/ip-man.svg",
+    "backdrop": "/api/backdrop/ip-man.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Ip%20Man%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-wandering-earth-ii",
+    "slug": "the-wandering-earth-ii",
+    "tmdbId": 842675,
+    "title": "The Wandering Earth II",
+    "koreanTitle": "",
+    "tagline": "Experience The Wandering Earth II in 4K HDR.",
+    "year": "2023",
+    "releaseDate": "2023-01-22",
+    "rating": "13+",
+    "imdbRating": "7.3",
+    "matchScore": "85% Match",
+    "duration": "2h 54m",
+    "country": "China",
+    "language": "zh",
+    "studio": "Guo Fan Culture and Media",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Science Fiction",
+      "Action",
+      "Adventure"
+    ],
+    "director": "Frant Gwo",
+    "cast": [
+      "Wu Jing",
+      "Andy Lau",
+      "Li Xuejian",
+      "Sha Yi",
+      "Ning Li",
+      "Wang Zhi"
+    ],
+    "castDetails": [
+      {
+        "name": "Wu Jing",
+        "character": "Liu Peiqiang",
+        "avatar": "https://image.tmdb.org/t/p/w185/pgE2SqqtbT6dNo8waDMTpYuVVCj.jpg"
+      },
+      {
+        "name": "Andy Lau",
+        "character": "Tu Hengyu",
+        "avatar": "https://image.tmdb.org/t/p/w185/z9R2yerjfgxwDWIH8sjiS0hhcre.jpg"
+      },
+      {
+        "name": "Li Xuejian",
+        "character": "Zhou Zhezhi",
+        "avatar": "https://image.tmdb.org/t/p/w185/22QFJKWJPNj3O3A6PdRKJc0qeKK.jpg"
+      },
+      {
+        "name": "Sha Yi",
+        "character": "Zhang Peng",
+        "avatar": "https://image.tmdb.org/t/p/w185/ip9GpE5RhxBzqlbbVX0DwktOlss.jpg"
+      },
+      {
+        "name": "Ning Li",
+        "character": "Ma Zhao",
+        "avatar": "https://image.tmdb.org/t/p/w185/afb9OxvJ1SrSPlIraX0HqIeil5l.jpg"
+      },
+      {
+        "name": "Wang Zhi",
+        "character": "Liu Qi's Mom",
+        "avatar": "https://image.tmdb.org/t/p/w185/q9KQAA8587VmYH6pxfd6DfVTFmj.jpg"
+      }
+    ],
+    "synopsis": "Humans built huge engines on the surface of the earth to find a new home. But the road to the universe is perilous. In order to save earth, young people once again have to step forward to start a race against time for life and death.",
+    "storyline": "Humans built huge engines on the surface of the earth to find a new home. But the road to the universe is perilous. In order to save earth, young people once again have to step forward to start a race against time for life and death.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/hEA7bpWw5IRKOW2MVjvx46SWevU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/94cS0mzODEoNIXFT7nhPcI8V4IJ.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/hEA7bpWw5IRKOW2MVjvx46SWevU.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/94cS0mzODEoNIXFT7nhPcI8V4IJ.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/23XQsJMYG84?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "moana-2",
+    "slug": "moana-2",
+    "tmdbId": 1241982,
+    "title": "Moana 2",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Adventure",
+      "Animation",
+      "Comedy",
+      "Family",
+      "Fantasy"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/moana-2.svg",
+    "backdropUrl": "/api/backdrop/moana-2.svg",
+    "poster": "/api/poster/moana-2.svg",
+    "backdrop": "/api/backdrop/moana-2.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Moana%202%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "wicked",
+    "slug": "wicked",
+    "tmdbId": 402431,
+    "title": "Wicked",
+    "koreanTitle": "",
+    "tagline": "Everyone deserves the chance to fly.",
+    "year": "2024",
+    "releaseDate": "2024-10-16",
+    "rating": "13+",
+    "imdbRating": "6.9",
+    "matchScore": "81% Match",
+    "duration": "2h 42m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Universal Pictures",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Drama",
+      "Romance",
+      "Fantasy"
+    ],
+    "director": "Jon M. Chu",
+    "cast": [
+      "Cynthia Erivo",
+      "Ariana Grande",
+      "Michelle Yeoh",
+      "Jonathan Bailey",
+      "Ethan Slater",
+      "Marissa Bode"
+    ],
+    "castDetails": [
+      {
+        "name": "Cynthia Erivo",
+        "character": "Elphaba",
+        "avatar": "https://image.tmdb.org/t/p/w185/gIAXqZwZCBqkh2ppfAV4xcnMxki.jpg"
+      },
+      {
+        "name": "Ariana Grande",
+        "character": "Galinda / Glinda",
+        "avatar": "https://image.tmdb.org/t/p/w185/d4HtCXm58GuqVJVGgDKFn0dEj8M.jpg"
+      },
+      {
+        "name": "Michelle Yeoh",
+        "character": "Madame Morrible",
+        "avatar": "https://image.tmdb.org/t/p/w185/i6fHvGt7Rb8oVyjjdQVV6vEHB94.jpg"
+      },
+      {
+        "name": "Jonathan Bailey",
+        "character": "Fiyero",
+        "avatar": "https://image.tmdb.org/t/p/w185/i9m6JsYKQot3kbMMFsvbEuFarvq.jpg"
+      },
+      {
+        "name": "Ethan Slater",
+        "character": "Boq",
+        "avatar": "https://image.tmdb.org/t/p/w185/xIgqyrM78FPt7Pb2Vv3IvJcnOWS.jpg"
+      },
+      {
+        "name": "Marissa Bode",
+        "character": "Nessarose",
+        "avatar": "https://image.tmdb.org/t/p/w185/9n4IPNHY3Yp9JGDx8syinu9z7DX.jpg"
+      }
+    ],
+    "synopsis": "In the land of Oz, ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda at Shiz University, and the two's unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.",
+    "storyline": "In the land of Oz, ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda at Shiz University, and the two's unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/w22GVYotTIVC1dUd58mRhwPqiS.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/w22GVYotTIVC1dUd58mRhwPqiS.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/kOnQ1sexTuc?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "kraven-the-hunter",
+    "slug": "kraven-the-hunter",
+    "tmdbId": 539972,
+    "title": "Kraven the Hunter",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/kraven-the-hunter.svg",
+    "backdropUrl": "/api/backdrop/kraven-the-hunter.svg",
+    "poster": "/api/poster/kraven-the-hunter.svg",
+    "backdrop": "/api/backdrop/kraven-the-hunter.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Kraven%20the%20Hunter%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "sonic-the-hedgehog-3",
+    "slug": "sonic-the-hedgehog-3",
+    "tmdbId": 939243,
+    "title": "Sonic the Hedgehog 3",
+    "koreanTitle": "",
+    "tagline": "New adventure. New rival.",
+    "year": "2024",
+    "releaseDate": "2024-12-19",
+    "rating": "13+",
+    "imdbRating": "7.6",
+    "matchScore": "88% Match",
+    "duration": "1h 50m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Paramount Pictures",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Comedy",
+      "Family"
+    ],
+    "director": "Jeff Fowler",
+    "cast": [
+      "Ben Schwartz",
+      "Jim Carrey",
+      "Keanu Reeves",
+      "Idris Elba",
+      "Colleen O'Shaughnessey",
+      "James Marsden"
+    ],
+    "castDetails": [
+      {
+        "name": "Ben Schwartz",
+        "character": "Sonic (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/hWEQe66jXUAGVhbU5dy8s0IrrAQ.jpg"
+      },
+      {
+        "name": "Jim Carrey",
+        "character": "Ivo Robotnik / Gerald Robotnik",
+        "avatar": "https://image.tmdb.org/t/p/w185/y3U9QfPN6sJaGl6l68xjwWj28ig.jpg"
+      },
+      {
+        "name": "Keanu Reeves",
+        "character": "Shadow (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/8RZLOyYGsoRe9p44q3xin9QkMHv.jpg"
+      },
+      {
+        "name": "Idris Elba",
+        "character": "Knuckles (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/be1bVF7qGX91a6c5WeRPs5pKXln.jpg"
+      },
+      {
+        "name": "Colleen O'Shaughnessey",
+        "character": "Tails (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/y3Kl5tCX1XD6uyL9wefTRbEXTwj.jpg"
+      },
+      {
+        "name": "James Marsden",
+        "character": "Tom",
+        "avatar": "https://image.tmdb.org/t/p/w185/lf7OnfKZnMgNh9b98764tqSocGK.jpg"
+      }
+    ],
+    "synopsis": "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
+    "storyline": "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/7kz26vJu4Wk?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "mufasa-the-lion-king",
+    "slug": "mufasa-the-lion-king",
+    "tmdbId": 762509,
+    "title": "Mufasa: The Lion King",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Adventure",
+      "Family",
+      "Animation"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/mufasa-the-lion-king.svg",
+    "backdropUrl": "/api/backdrop/mufasa-the-lion-king.svg",
+    "poster": "/api/poster/mufasa-the-lion-king.svg",
+    "backdrop": "/api/backdrop/mufasa-the-lion-king.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Mufasa%3A%20The%20Lion%20King%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "nosferatu",
+    "slug": "nosferatu",
+    "tmdbId": 426063,
+    "title": "Nosferatu",
+    "koreanTitle": "",
+    "tagline": "Succumb to the darkness.",
+    "year": "2024",
+    "releaseDate": "2024-12-25",
+    "rating": "13+",
+    "imdbRating": "6.7",
+    "matchScore": "79% Match",
+    "duration": "2h 13m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Focus Features",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "thriller",
+    "genres": [
+      "Horror",
+      "Fantasy"
+    ],
+    "director": "Robert Eggers",
+    "cast": [
+      "Lily-Rose Depp",
+      "Nicholas Hoult",
+      "Bill Skarsgård",
+      "Aaron Taylor-Johnson",
+      "Willem Dafoe",
+      "Emma Corrin"
+    ],
+    "castDetails": [
+      {
+        "name": "Lily-Rose Depp",
+        "character": "Ellen Hutter",
+        "avatar": "https://image.tmdb.org/t/p/w185/fulxfCO2UjDTVX3lhy4mup4wXqM.jpg"
+      },
+      {
+        "name": "Nicholas Hoult",
+        "character": "Thomas Hutter",
+        "avatar": "https://image.tmdb.org/t/p/w185/pXm8GWTm9eIA8pUGOjvmYjlxamu.jpg"
+      },
+      {
+        "name": "Bill Skarsgård",
+        "character": "Count Orlok",
+        "avatar": "https://image.tmdb.org/t/p/w185/xBXLx1m0uzhXIbY3wN8lmPGeUHl.jpg"
+      },
+      {
+        "name": "Aaron Taylor-Johnson",
+        "character": "Friedrich Harding",
+        "avatar": "https://image.tmdb.org/t/p/w185/pFtHhih2XEaFaD3qOFyQW6q83br.jpg"
+      },
+      {
+        "name": "Willem Dafoe",
+        "character": "Prof. Albin Eberhart von Franz",
+        "avatar": "https://image.tmdb.org/t/p/w185/ui8e4sgZAwMPi3hzEO53jyBJF9B.jpg"
+      },
+      {
+        "name": "Emma Corrin",
+        "character": "Anna Harding",
+        "avatar": "https://image.tmdb.org/t/p/w185/miSbXJBlq6S3dVvOr7OoNL4axW6.jpg"
+      }
+    ],
+    "synopsis": "A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.",
+    "storyline": "A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/gprjiZWY43vxSKngMha1wfb5TGG.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/gprjiZWY43vxSKngMha1wfb5TGG.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/X9hFwBygvlI?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-wild-robot",
+    "slug": "the-wild-robot",
+    "tmdbId": 1184918,
+    "title": "The Wild Robot",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2024",
+    "releaseDate": "2024",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Family",
+      "Animation",
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/the-wild-robot.svg",
+    "backdropUrl": "/api/backdrop/the-wild-robot.svg",
+    "poster": "/api/poster/the-wild-robot.svg",
+    "backdrop": "/api/backdrop/the-wild-robot.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=The%20Wild%20Robot%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "captain-america-brave-new-world",
+    "slug": "captain-america-brave-new-world",
+    "tmdbId": 822119,
+    "title": "Captain America: Brave New World",
+    "koreanTitle": "",
+    "tagline": "The future favors the brave.",
+    "year": "2025",
+    "releaseDate": "2025-02-12",
+    "rating": "13+",
+    "imdbRating": "6.0",
+    "matchScore": "72% Match",
+    "duration": "1h 59m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Marvel Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Science Fiction"
+    ],
+    "director": "Julius Onah",
+    "cast": [
+      "Anthony Mackie",
+      "Harrison Ford",
+      "Danny Ramirez",
+      "Shira Haas",
+      "Tim Blake Nelson",
+      "Carl Lumbly"
+    ],
+    "castDetails": [
+      {
+        "name": "Anthony Mackie",
+        "character": "Sam Wilson / Captain America",
+        "avatar": "https://image.tmdb.org/t/p/w185/vecvTm7SimizluJkyIwBxeLbvRm.jpg"
+      },
+      {
+        "name": "Harrison Ford",
+        "character": "President Thaddeus Ross",
+        "avatar": "https://image.tmdb.org/t/p/w185/pjBMJVPpcZK23Vt1nzr1zEBTWrP.jpg"
+      },
+      {
+        "name": "Danny Ramirez",
+        "character": "Joaquin Torres",
+        "avatar": "https://image.tmdb.org/t/p/w185/7ZvcfWA5O5ULiupbHZtGGEPwnpI.jpg"
+      },
+      {
+        "name": "Shira Haas",
+        "character": "Ruth Bat-Seraph",
+        "avatar": "https://image.tmdb.org/t/p/w185/eZRs79ZMoctjDk0SbPhzMNcs34a.jpg"
+      },
+      {
+        "name": "Tim Blake Nelson",
+        "character": "Samuel Sterns",
+        "avatar": "https://image.tmdb.org/t/p/w185/rWuTGiAMaaHIJ30eRkQS23LbRSW.jpg"
+      },
+      {
+        "name": "Carl Lumbly",
+        "character": "Isaiah Bradley",
+        "avatar": "https://image.tmdb.org/t/p/w185/ew1URcenWNl1Uclsz9ADiRb0uBD.jpg"
+      }
+    ],
+    "synopsis": "After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.",
+    "storyline": "After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ce3prrjh9ZehEl5JinNqr4jIeaB.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ce3prrjh9ZehEl5JinNqr4jIeaB.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/SOwJjV6Y_l0?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "thunderbolts",
+    "slug": "thunderbolts",
+    "tmdbId": 986056,
+    "title": "Thunderbolts*",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2025",
+    "releaseDate": "2025",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/thunderbolts.svg",
+    "backdropUrl": "/api/backdrop/thunderbolts.svg",
+    "poster": "/api/poster/thunderbolts.svg",
+    "backdrop": "/api/backdrop/thunderbolts.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Thunderbolts*%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "superman",
+    "slug": "superman",
+    "tmdbId": 1061474,
+    "title": "Superman",
+    "koreanTitle": "",
+    "tagline": "Look up.",
+    "year": "2025",
+    "releaseDate": "2025-07-09",
+    "rating": "13+",
+    "imdbRating": "7.3",
+    "matchScore": "85% Match",
+    "duration": "2h 10m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Troll Court Entertainment",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action"
+    ],
+    "director": "James Gunn",
+    "cast": [
+      "David Corenswet",
+      "Rachel Brosnahan",
+      "Nicholas Hoult",
+      "Edi Gathegi",
+      "Nathan Fillion",
+      "Isabela Merced"
+    ],
+    "castDetails": [
+      {
+        "name": "David Corenswet",
+        "character": "Superman",
+        "avatar": "https://image.tmdb.org/t/p/w185/jWEOTZuV8xN1M2SpEkZQFcyt3tP.jpg"
+      },
+      {
+        "name": "Rachel Brosnahan",
+        "character": "Lois Lane",
+        "avatar": "https://image.tmdb.org/t/p/w185/rO0QB7J89EpS4LmPWR2Zg5Qd6vY.jpg"
+      },
+      {
+        "name": "Nicholas Hoult",
+        "character": "Lex Luthor",
+        "avatar": "https://image.tmdb.org/t/p/w185/pXm8GWTm9eIA8pUGOjvmYjlxamu.jpg"
+      },
+      {
+        "name": "Edi Gathegi",
+        "character": "Mr. Terrific",
+        "avatar": "https://image.tmdb.org/t/p/w185/dt8yMyycDlzxkjhmuuJJ4tXDbp4.jpg"
+      },
+      {
+        "name": "Nathan Fillion",
+        "character": "Guy Gardner",
+        "avatar": "https://image.tmdb.org/t/p/w185/aW6vCxkUZtwb6iH2Wf88Uq0XNVv.jpg"
+      },
+      {
+        "name": "Isabela Merced",
+        "character": "Hawkgirl",
+        "avatar": "https://image.tmdb.org/t/p/w185/7O5GWIH8IHwU4kGZIhC3JkGDiZr.jpg"
+      }
+    ],
+    "synopsis": "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+    "storyline": "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ldyfo0BKmz5rWtJJKCvwaNS4cJT.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/yRBc6WY3r1Fz5Cjd6DhSvzqunED.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/ldyfo0BKmz5rWtJJKCvwaNS4cJT.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/yRBc6WY3r1Fz5Cjd6DhSvzqunED.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/MikgqM0LXr4?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "the-fantastic-four-first-steps",
+    "slug": "the-fantastic-four-first-steps",
+    "tmdbId": 617126,
+    "title": "The Fantastic Four: First Steps",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2025",
+    "releaseDate": "2025",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Sci-Fi",
+      "Adventure",
+      "Action"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/the-fantastic-four-first-steps.svg",
+    "backdropUrl": "/api/backdrop/the-fantastic-four-first-steps.svg",
+    "poster": "/api/poster/the-fantastic-four-first-steps.svg",
+    "backdrop": "/api/backdrop/the-fantastic-four-first-steps.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=The%20Fantastic%20Four%3A%20First%20Steps%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "mission-impossible-the-final-reckoning",
+    "slug": "mission-impossible-the-final-reckoning",
+    "tmdbId": 575265,
+    "title": "Mission: Impossible - The Final Reckoning",
+    "koreanTitle": "",
+    "tagline": "Our lives are the sum of our choices.",
+    "year": "2025",
+    "releaseDate": "2025-05-17",
+    "rating": "13+",
+    "imdbRating": "7.2",
+    "matchScore": "84% Match",
+    "duration": "2h 50m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Paramount Pictures",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Adventure"
+    ],
+    "director": "Christopher McQuarrie",
+    "cast": [
+      "Tom Cruise",
+      "Hayley Atwell",
+      "Ving Rhames",
+      "Simon Pegg",
+      "Esai Morales",
+      "Pom Klementieff"
+    ],
+    "castDetails": [
+      {
+        "name": "Tom Cruise",
+        "character": "Ethan Hunt",
+        "avatar": "https://image.tmdb.org/t/p/w185/maf8PhSvDCdEwjEMbYfGpojR5RP.jpg"
+      },
+      {
+        "name": "Hayley Atwell",
+        "character": "Grace",
+        "avatar": "https://image.tmdb.org/t/p/w185/x57wXHexIjD2ywly9cRA4rov7cu.jpg"
+      },
+      {
+        "name": "Ving Rhames",
+        "character": "Luther Stickell",
+        "avatar": "https://image.tmdb.org/t/p/w185/tOVDvu1EQP78AwaUw6uh1wN818E.jpg"
+      },
+      {
+        "name": "Simon Pegg",
+        "character": "Benji Dunn",
+        "avatar": "https://image.tmdb.org/t/p/w185/jw8bEEoTOithyNf0qxu4Zt1yaKp.jpg"
+      },
+      {
+        "name": "Esai Morales",
+        "character": "Gabriel",
+        "avatar": "https://image.tmdb.org/t/p/w185/cNYciYzUzxraGlw0BPql1QePi5H.jpg"
+      },
+      {
+        "name": "Pom Klementieff",
+        "character": "Paris",
+        "avatar": "https://image.tmdb.org/t/p/w185/hfUKAI2kXTMMWjno0i4sLPJud5N.jpg"
+      }
+    ],
+    "synopsis": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — with the world's governments and a mysterious ghost from Hunt's past on their trail. Joined by new allies and armed with the means to shut the Entity down for good, Hunt is in a race against time to prevent the world as we know it from changing forever.",
+    "storyline": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — with the world's governments and a mysterious ghost from Hunt's past on their trail. Joined by new allies and armed with the means to shut the Entity down for good, Hunt is in a race against time to prevent the world as we know it from changing forever.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/iKPsC9EFUafRP9SrUznI61getVP.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/538U9snNc2fpnOmYXAPUh3zn31H.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/iKPsC9EFUafRP9SrUznI61getVP.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/538U9snNc2fpnOmYXAPUh3zn31H.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/Wd3fzHu1UlY?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "avatar-fire-and-ash",
+    "slug": "avatar-fire-and-ash",
+    "tmdbId": 83533,
+    "title": "Avatar: Fire and Ash",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2025",
+    "releaseDate": "2025",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Sci-Fi",
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/avatar-fire-and-ash.svg",
+    "backdropUrl": "/api/backdrop/avatar-fire-and-ash.svg",
+    "poster": "/api/poster/avatar-fire-and-ash.svg",
+    "backdrop": "/api/backdrop/avatar-fire-and-ash.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Avatar%3A%20Fire%20and%20Ash%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "ballerina",
+    "slug": "ballerina",
+    "tmdbId": 541671,
+    "title": "Ballerina",
+    "koreanTitle": "",
+    "tagline": "Vengeance has a new face.",
+    "year": "2025",
+    "releaseDate": "2025-06-04",
+    "rating": "13+",
+    "imdbRating": "7.3",
+    "matchScore": "85% Match",
+    "duration": "2h 5m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Thunder Road",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "thriller",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Crime"
+    ],
+    "director": "Len Wiseman",
+    "cast": [
+      "Ana de Armas",
+      "Keanu Reeves",
+      "Ian McShane",
+      "Anjelica Huston",
+      "Gabriel Byrne",
+      "Catalina Sandino Moreno"
+    ],
+    "castDetails": [
+      {
+        "name": "Ana de Armas",
+        "character": "Eve",
+        "avatar": "https://image.tmdb.org/t/p/w185/3vxvsmYLTf4jnr163SUlBIw51ee.jpg"
+      },
+      {
+        "name": "Keanu Reeves",
+        "character": "John Wick",
+        "avatar": "https://image.tmdb.org/t/p/w185/8RZLOyYGsoRe9p44q3xin9QkMHv.jpg"
+      },
+      {
+        "name": "Ian McShane",
+        "character": "Winston",
+        "avatar": "https://image.tmdb.org/t/p/w185/rteBJYNgD1yGsHg2HGZAIrYHz1t.jpg"
+      },
+      {
+        "name": "Anjelica Huston",
+        "character": "The Director",
+        "avatar": "https://image.tmdb.org/t/p/w185/6hnYeHa7Rc1w1MmQ3JsLSIb7yCX.jpg"
+      },
+      {
+        "name": "Gabriel Byrne",
+        "character": "The Chancellor",
+        "avatar": "https://image.tmdb.org/t/p/w185/9r9oDGENg92VYYFMkV4C09IUlrb.jpg"
+      },
+      {
+        "name": "Catalina Sandino Moreno",
+        "character": "Lena",
+        "avatar": "https://image.tmdb.org/t/p/w185/4nLPgs0v1rFZz3c0p9e5Euk0VkU.jpg"
+      }
+    ],
+    "synopsis": "Taking place during the events of John Wick: Chapter 3 – Parabellum, Eve Macarro begins her training in the assassin traditions of the Ruska Roma.",
+    "storyline": "Taking place during the events of John Wick: Chapter 3 – Parabellum, Eve Macarro begins her training in the assassin traditions of the Ruska Roma.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2VUmvqsHb6cEtdfscEA6fqqVzLg.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1yktYsxkmUtUFTUnCAUaqG6FEiz.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2VUmvqsHb6cEtdfscEA6fqqVzLg.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/1yktYsxkmUtUFTUnCAUaqG6FEiz.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/Oqo_Vqt8vBE?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "tron-ares",
+    "slug": "tron-ares",
+    "tmdbId": 533533,
+    "title": "Tron: Ares",
+    "koreanTitle": "",
+    "tagline": "Experience undefined in 4K HDR.",
+    "year": "2025",
+    "releaseDate": "2025",
+    "rating": "15+",
+    "imdbRating": "8.4",
+    "matchScore": "96% Match",
+    "duration": "2h 15m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Global Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Sci-Fi",
+      "Adventure",
+      "Action"
+    ],
+    "director": "Renowned Director",
+    "cast": [
+      "All-Star Cast"
+    ],
+    "castDetails": [],
+    "synopsis": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "storyline": "Experience undefined in 4K Ultra HD streaming on NovaFlix.",
+    "posterUrl": "/api/poster/tron-ares.svg",
+    "backdropUrl": "/api/backdrop/tron-ares.svg",
+    "poster": "/api/poster/tron-ares.svg",
+    "backdrop": "/api/backdrop/tron-ares.svg",
+    "trailerUrl": "https://www.youtube.com/embed?q=Tron%3A%20Ares%20trailer",
+    "fallbackColor": "#0f1420",
+    "isTmdb": true
+  },
+  {
+    "id": "zootopia-2",
+    "slug": "zootopia-2",
+    "tmdbId": 1084242,
+    "title": "Zootopia 2",
+    "koreanTitle": "",
+    "tagline": "They're back with a twissst.",
+    "year": "2025",
+    "releaseDate": "2025-11-26",
+    "rating": "13+",
+    "imdbRating": "7.7",
+    "matchScore": "89% Match",
+    "duration": "1h 48m",
+    "country": "United States",
+    "language": "en",
+    "studio": "Walt Disney Animation Studios",
+    "resolution": "4K Ultra HD",
+    "audio": "Dolby Atmos / 5.1 Surround",
+    "category": "blockbusters",
+    "genres": [
+      "Animation",
+      "Adventure",
+      "Comedy",
+      "Mystery",
+      "Family"
+    ],
+    "director": "Jared Bush",
+    "cast": [
+      "Ginnifer Goodwin",
+      "Jason Bateman",
+      "Ke Huy Quan",
+      "Fortune Feimster",
+      "Andy Samberg",
+      "David Strathairn"
+    ],
+    "castDetails": [
+      {
+        "name": "Ginnifer Goodwin",
+        "character": "Judy Hopps (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/eByMpalFhQxUYuzA0srCN8rnfOZ.jpg"
+      },
+      {
+        "name": "Jason Bateman",
+        "character": "Nick Wilde (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/8e6mt0vGjPo6eW52gqRuXy5YnfN.jpg"
+      },
+      {
+        "name": "Ke Huy Quan",
+        "character": "Gary De'Snake (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/iestHyn7PLuVowj5Jaa1SGPboQ4.jpg"
+      },
+      {
+        "name": "Fortune Feimster",
+        "character": "Nibbles Maplestick (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/9f2p2T61K4pIvKQMLRlow8znkXU.jpg"
+      },
+      {
+        "name": "Andy Samberg",
+        "character": "Pawbert Lynxley (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/jMXU5oG3i93SH1yhkpbBGskFiJl.jpg"
+      },
+      {
+        "name": "David Strathairn",
+        "character": "Milton Lynxley (voice)",
+        "avatar": "https://image.tmdb.org/t/p/w185/w5YM2cGefPnkoyIXCi2UrCQW53r.jpg"
+      }
+    ],
+    "synopsis": "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De'Snake arrives and turns the animal metropolis upside down. To crack the case, Judy and Nick must go undercover to unexpected new parts of town, where their growing partnership is tested like never before.",
+    "storyline": "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De'Snake arrives and turns the animal metropolis upside down. To crack the case, Judy and Nick must go undercover to unexpected new parts of town, where their growing partnership is tested like never before.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/lgotja3xMoJZbynwHfcQcJAEMWH.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/lgotja3xMoJZbynwHfcQcJAEMWH.jpg",
+    "trailerUrl": "https://www.youtube.com/embed/gvfijvp_QZU?autoplay=1&rel=0",
+    "fallbackColor": "#0f1420",
     "isTmdb": true
   }
 ];

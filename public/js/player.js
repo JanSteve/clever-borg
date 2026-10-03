@@ -255,7 +255,15 @@ class KFlixPlayer {
   open(movie, serverMode = 'auto') {
     this.currentMovie = movie;
     this.movieTitle.textContent = movie.title || movie.filename || 'Hosted Cinema Film';
-    this.movieKorean.textContent = movie.koreanTitle || movie.originalTitle || '';
+    if (this.movieKorean) {
+      if (movie.koreanTitle && (movie.id === '15859' || movie.slug === 'a-moment-to-remember')) {
+        this.movieKorean.textContent = movie.koreanTitle;
+        this.movieKorean.style.display = 'block';
+      } else {
+        this.movieKorean.textContent = '';
+        this.movieKorean.style.display = 'none';
+      }
+    }
 
     // 18+ Content Advisory Warning Configuration
     const isAdult = movie.is18Plus || (movie.rating && movie.rating.includes('18')) || (movie.contentWarning && movie.contentWarning.length > 0);
