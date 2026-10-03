@@ -351,8 +351,8 @@ const server = http.createServer((req, res) => {
   }
 
   // Static File Serving
-  const safePath = pathname === '/' ? '/index.html' : pathname;
-  let filePath = path.resolve(PUBLIC_DIR, '.' + safePath);
+  const cleanPath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+  let filePath = path.join(PUBLIC_DIR, cleanPath);
 
   // Security: prevent directory traversal
   if (!filePath.startsWith(PUBLIC_DIR)) {
