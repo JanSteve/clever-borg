@@ -36,6 +36,7 @@ class KFlixPlayer {
     this.movieKorean = document.getElementById('player-movie-korean');
     this.qualityBadge = document.getElementById('player-quality-badge');
     this.ageBadge = document.getElementById('player-age-badge');
+    this.playerTopDlBtn = document.getElementById('player-top-dl-btn');
     this.backBtn = document.getElementById('player-back-btn');
 
     // 18+ Content Advisory Toast
@@ -183,6 +184,24 @@ class KFlixPlayer {
       this.pipBtn.style.display = 'none';
     }
 
+    // Quick 4K Offline Download trigger
+    if (this.playerTopDlBtn) {
+      this.playerTopDlBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (window.NovaFlixApp && typeof window.NovaFlixApp.openDownloadModal === 'function') {
+          window.NovaFlixApp.openDownloadModal(this.currentMovie);
+        }
+      });
+    }
+
+    // Interactive 4K Resolution Toggle
+    if (this.qualityBadge) {
+      this.qualityBadge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.cycleQuality();
+      });
+    }
+
     // Exit Player
     this.backBtn.addEventListener('click', () => this.close());
 
@@ -201,6 +220,16 @@ class KFlixPlayer {
 
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => this.onKeyDown(e));
+  }
+
+  cycleQuality() {
+    const qualities = ['4K UHD (2160P)', '1080P FHD (PRO)', '720P HD (SAVER)', 'AUTO (4K ADAPTIVE)'];
+    const current = this.qualityBadge ? this.qualityBadge.textContent : '';
+    const idx = qualities.indexOf(current);
+    const next = idx === -1 ? '4K UHD (2160P)' : qualities[(idx + 1) % qualities.length];
+    if (this.qualityBadge) this.qualityBadge.textContent = next;
+    this.showCenterFeedback('quality');
+    this.showAdvisoryToast(`⚡ Stream Resolution Switched to ${next}`);
   }
 
   showAdvisoryToast(message) {

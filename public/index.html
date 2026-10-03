@@ -298,6 +298,13 @@
               <span>Watch Trailer</span>
             </button>
 
+            <button id="btn-preview-download" class="btn-cineby-download" title="Download Master Movie in 4K UHD">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+              </svg>
+              <span>Download 4K</span>
+            </button>
+
             <button id="btn-preview-watchlist" class="btn-cineby-icon-action" title="Add to Watchlist">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
@@ -461,8 +468,14 @@
         </div>
 
         <div class="player-top-badges">
+          <button id="player-top-dl-btn" class="player-top-dl-btn" title="Download Master File in 4K UHD">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+            </svg>
+            <span>4K Download</span>
+          </button>
           <span id="player-age-badge" class="player-badge badge-18" style="background:#e50914; color:#fff; border-color:#e50914;">18+</span>
-          <span id="player-quality-badge" class="player-badge" style="border-color:#f59e0b; color:#f59e0b;">AUTO (1080P)</span>
+          <span id="player-quality-badge" class="player-badge" style="border-color:#f59e0b; color:#f59e0b; cursor:pointer;" title="Click to toggle resolution">4K UHD (2160P)</span>
           <span class="player-badge">DOLBY 5.1</span>
         </div>
       </div>
@@ -600,6 +613,103 @@
               </svg>
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NovaFlix 4K Master Offline Download Hub Modal -->
+  <div id="download-modal" class="download-modal-overlay">
+    <div class="download-modal-container">
+      <button id="download-modal-close" class="download-modal-close" title="Close">&times;</button>
+      
+      <div class="download-modal-header">
+        <div class="download-header-badge">⚡ FASTCDN 4K MASTER DOWNLOAD HUB</div>
+        <h2 id="dl-movie-title" class="download-movie-title">Dune: Part Two (2024)</h2>
+        <div class="download-server-status">
+          <span class="status-indicator"></span>
+          <span>FastCDN Edge Cluster &bull; 54.8 MB/s High-Speed Mirror &bull; 100% Uncompressed</span>
+        </div>
+      </div>
+
+      <div class="download-options-grid">
+        <!-- Option 1: 4K UHD Remastered -->
+        <div class="dl-option-card active" data-quality="4k" data-size="7.8 GB">
+          <div class="dl-option-header">
+            <span class="dl-quality-badge badge-4k">4K UHD</span>
+            <span class="dl-size-badge">7.8 GB</span>
+          </div>
+          <div class="dl-option-body">
+            <div class="dl-option-title">2160p Ultra HD Master (Dolby Vision)</div>
+            <div class="dl-option-meta">HEVC / H.265 &bull; Dolby Atmos 7.1 &bull; 60 FPS Crystal Clear</div>
+          </div>
+          <div class="dl-option-radio"><div class="radio-dot"></div></div>
+        </div>
+
+        <!-- Option 2: 1080p Full HD -->
+        <div class="dl-option-card" data-quality="1080p" data-size="2.6 GB">
+          <div class="dl-option-header">
+            <span class="dl-quality-badge badge-1080p">1080p FHD</span>
+            <span class="dl-size-badge">2.6 GB</span>
+          </div>
+          <div class="dl-option-body">
+            <div class="dl-option-title">1080p Crisp Cinema HD</div>
+            <div class="dl-option-meta">H.264 AVC &bull; 5.1 Surround Sound &bull; Optimal for TV / PC</div>
+          </div>
+          <div class="dl-option-radio"><div class="radio-dot"></div></div>
+        </div>
+
+        <!-- Option 3: 720p Mobile HD -->
+        <div class="dl-option-card" data-quality="720p" data-size="1.1 GB">
+          <div class="dl-option-header">
+            <span class="dl-quality-badge badge-720p">720p HD</span>
+            <span class="dl-size-badge">1.1 GB</span>
+          </div>
+          <div class="dl-option-body">
+            <div class="dl-option-title">720p Mobile Fast Saver</div>
+            <div class="dl-option-meta">High Efficiency &bull; Stereo Audio &bull; Instant Fast Download</div>
+          </div>
+          <div class="dl-option-radio"><div class="radio-dot"></div></div>
+        </div>
+      </div>
+
+      <!-- Subtitle Selector -->
+      <div class="dl-subtitles-section">
+        <label class="dl-section-label">INCLUDE SUBTITLES (.SRT / .VTT):</label>
+        <div class="dl-sub-pills">
+          <button class="dl-sub-pill active" data-sub="en">English (CC)</button>
+          <button class="dl-sub-pill active" data-sub="ko">한국어 (Korean)</button>
+          <button class="dl-sub-pill" data-sub="es">Español</button>
+          <button class="dl-sub-pill" data-sub="fr">Français</button>
+          <button class="dl-sub-pill" data-sub="ar">العربية</button>
+        </div>
+      </div>
+
+      <!-- Progress & Download Trigger -->
+      <div class="download-action-area">
+        <div id="dl-progress-bar-container" class="dl-progress-bar-container" style="display: none;">
+          <div class="dl-progress-labels">
+            <span id="dl-progress-status">Connecting to Edge Mirror...</span>
+            <span id="dl-progress-pct">0%</span>
+          </div>
+          <div class="dl-progress-track">
+            <div id="dl-progress-fill" class="dl-progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="download-buttons-row">
+          <button id="btn-start-download" class="btn-start-download">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+            </svg>
+            <span id="btn-download-text">Start Direct 4K Download</span>
+          </button>
+          <button id="btn-copy-stream-link" class="btn-copy-link" title="Copy Direct Stream URL">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+            </svg>
+            <span>Direct Link</span>
+          </button>
         </div>
       </div>
     </div>

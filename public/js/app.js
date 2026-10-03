@@ -573,6 +573,158 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 7.5. NovaFlix 4K Master Offline Download Hub Logic
+  const btnPreviewDownload = document.getElementById('btn-preview-download');
+  const downloadModal = document.getElementById('download-modal');
+  const downloadModalClose = document.getElementById('download-modal-close');
+  const dlMovieTitle = document.getElementById('dl-movie-title');
+  const dlOptionCards = document.querySelectorAll('.dl-option-card');
+  const dlSubPills = document.querySelectorAll('.dl-sub-pill');
+  const btnStartDownload = document.getElementById('btn-start-download');
+  const btnCopyStreamLink = document.getElementById('btn-copy-stream-link');
+  const dlProgressBarContainer = document.getElementById('dl-progress-bar-container');
+  const dlProgressStatus = document.getElementById('dl-progress-status');
+  const dlProgressPct = document.getElementById('dl-progress-pct');
+  const dlProgressFill = document.getElementById('dl-progress-fill');
+  const btnDownloadText = document.getElementById('btn-download-text');
+
+  let selectedQuality = '4k';
+  let selectedSize = '7.8 GB';
+  let activeDownloadMovie = null;
+  let downloadInProgress = false;
+
+  function openDownloadModal(movie) {
+    activeDownloadMovie = movie || activePreviewMovie || KOREAN_MOVIES_CATALOG[1];
+    if (dlMovieTitle) {
+      dlMovieTitle.textContent = `${activeDownloadMovie.title} (${activeDownloadMovie.year || '2024'})`;
+    }
+    if (dlProgressBarContainer) dlProgressBarContainer.style.display = 'none';
+    if (btnDownloadText) {
+      btnDownloadText.textContent = `Start Direct ${selectedQuality.toUpperCase()} Download (${selectedSize})`;
+    }
+    if (downloadModal) {
+      downloadModal.classList.add('active');
+    }
+  }
+
+  function closeDownloadModal() {
+    if (downloadModal) downloadModal.classList.remove('active');
+    downloadInProgress = false;
+  }
+
+  if (btnPreviewDownload) {
+    btnPreviewDownload.addEventListener('click', () => {
+      openDownloadModal(activePreviewMovie);
+    });
+  }
+
+  if (downloadModalClose) {
+    downloadModalClose.addEventListener('click', closeDownloadModal);
+  }
+
+  if (downloadModal) {
+    downloadModal.addEventListener('click', (e) => {
+      if (e.target === downloadModal) closeDownloadModal();
+    });
+  }
+
+  dlOptionCards.forEach(card => {
+    card.addEventListener('click', () => {
+      dlOptionCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      selectedQuality = card.dataset.quality || '4k';
+      selectedSize = card.dataset.size || '7.8 GB';
+      if (btnDownloadText) {
+        btnDownloadText.textContent = `Start Direct ${selectedQuality.toUpperCase()} Download (${selectedSize})`;
+      }
+    });
+  });
+
+  dlSubPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pill.classList.toggle('active');
+    });
+  });
+
+  if (btnStartDownload) {
+    btnStartDownload.addEventListener('click', () => {
+      if (downloadInProgress) return;
+      downloadInProgress = true;
+
+      const target = activeDownloadMovie || activePreviewMovie || KOREAN_MOVIES_CATALOG[1];
+      const isTargetPrank = target.id === '15859' || target.slug === 'a-moment-to-remember';
+
+      if (dlProgressBarContainer) dlProgressBarContainer.style.display = 'block';
+
+      let progress = 0;
+      const stages = [
+        { pct: 25, status: 'Connecting to FastCDN 4K Node (Seoul / Tokyo / US-East)...' },
+        { pct: 55, status: 'Multiplexing HEVC 4K Ultra Streams & Dolby Atmos Audio...' },
+        { pct: 85, status: 'Injecting Subtitle Packs & Cryptographic Signatures...' },
+        { pct: 100, status: 'Direct FastCDN 4K Download Ready!' }
+      ];
+
+      let stageIdx = 0;
+      const interval = setInterval(() => {
+        if (stageIdx < stages.length) {
+          const s = stages[stageIdx];
+          progress = s.pct;
+          if (dlProgressFill) dlProgressFill.style.width = `${progress}%`;
+          if (dlProgressPct) dlProgressPct.textContent = `${progress}%`;
+          if (dlProgressStatus) dlProgressStatus.textContent = s.status;
+          stageIdx++;
+        } else {
+          clearInterval(interval);
+          downloadInProgress = false;
+
+          // Trigger download action
+          if (isTargetPrank) {
+            window.location.href = `/api/stream?file=0918%20(1).mp4&download=1`;
+          } else {
+            const tmdbId = target.tmdbId || target.id;
+            const downloadLink = `https://vidlink.pro/movie/${tmdbId}`;
+            const a = document.createElement('a');
+            a.href = downloadLink;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+
+          if (btnDownloadText) btnDownloadText.textContent = '✓ Download Stream Initiated!';
+          setTimeout(() => {
+            if (btnDownloadText) btnDownloadText.textContent = `Start Direct ${selectedQuality.toUpperCase()} Download (${selectedSize})`;
+          }, 4000);
+        }
+      }, 450);
+    });
+  }
+
+  if (btnCopyStreamLink) {
+    btnCopyStreamLink.addEventListener('click', () => {
+      const target = activeDownloadMovie || activePreviewMovie || KOREAN_MOVIES_CATALOG[1];
+      const tmdbId = target.tmdbId || target.id;
+      const mirrorUrl = `https://vidlink.pro/movie/${tmdbId}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(mirrorUrl);
+      }
+      btnCopyStreamLink.innerHTML = `<span>✓ Copied!</span>`;
+      setTimeout(() => {
+        btnCopyStreamLink.innerHTML = `
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+          </svg>
+          <span>Direct Link</span>
+        `;
+      }, 2500);
+    });
+  }
+
+  window.NovaFlixApp = {
+    openDownloadModal
+  };
+
   // 8. Live Instant Search Dropdown with TMDB Global Lookup
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim();

@@ -138,14 +138,19 @@ function handleStreamRequest(req, res, query) {
     const chunkSize = (end - start) + 1;
     const stream = fs.createReadStream(filePath, { start, end });
 
-    res.writeHead(206, {
+    const isDownload = query.download === '1' || query.dl === '1';
+    const headers = {
       'Content-Range': `bytes ${start}-${end}/${fileSize}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunkSize,
       'Content-Type': contentType,
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-cache, no-store, must-revalidate'
-    });
+    };
+    if (isDownload) {
+      headers['Content-Disposition'] = `attachment; filename="${encodeURIComponent(safeFilename)}"`;
+    }
+    res.writeHead(206, headers);
 
     stream.pipe(res);
     stream.on('error', err => {
@@ -157,13 +162,18 @@ function handleStreamRequest(req, res, query) {
     });
   } else {
     // Normal initial request (full file header or range-capable probe)
-    res.writeHead(200, {
+    const isDownload = query.download === '1' || query.dl === '1';
+    const headers = {
       'Content-Length': fileSize,
       'Content-Type': contentType,
       'Accept-Ranges': 'bytes',
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-cache'
-    });
+    };
+    if (isDownload) {
+      headers['Content-Disposition'] = `attachment; filename="${encodeURIComponent(safeFilename)}"`;
+    }
+    res.writeHead(200, headers);
     fs.createReadStream(filePath).pipe(res);
   }
 }

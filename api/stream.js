@@ -26,6 +26,7 @@ module.exports = (req, res) => {
     const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
     const chunksize = (end - start) + 1;
     const file = fs.createReadStream(filePath, { start, end });
+    const isDownload = query.download === '1' || query.dl === '1';
     const head = {
       'Content-Range': `bytes ${start}-${end}/${fileSize}`,
       'Accept-Ranges': 'bytes',
@@ -33,15 +34,22 @@ module.exports = (req, res) => {
       'Content-Type': 'video/mp4',
       'Access-Control-Allow-Origin': '*'
     };
+    if (isDownload) {
+      head['Content-Disposition'] = `attachment; filename="${encodeURIComponent(path.basename(requestedFile))}"`;
+    }
     res.writeHead(206, head);
     file.pipe(res);
   } else {
+    const isDownload = query.download === '1' || query.dl === '1';
     const head = {
       'Content-Length': fileSize,
       'Content-Type': 'video/mp4',
       'Accept-Ranges': 'bytes',
       'Access-Control-Allow-Origin': '*'
     };
+    if (isDownload) {
+      head['Content-Disposition'] = `attachment; filename="${encodeURIComponent(path.basename(requestedFile))}"`;
+    }
     res.writeHead(200, head);
     fs.createReadStream(filePath).pipe(res);
   }
