@@ -922,7 +922,7 @@
 
       <!-- Video Viewport Frame -->
       <div class="video-wrapper relative w-full aspect-video bg-black overflow-hidden">
-        <iframe allow="autoplay; fullscreen; picture-in-picture; encrypted-media; clipboard-write" allowfullscreen class="video-iframe absolute inset-0 w-full h-full border-0 bg-black" id="video-iframe" src=""></iframe>
+        <iframe allow="autoplay; fullscreen; picture-in-picture; encrypted-media; clipboard-write; web-share" referrerpolicy="origin" allowfullscreen class="video-iframe absolute inset-0 w-full h-full border-0 bg-black" id="video-iframe" src=""></iframe>
         <video class="custom-video-player absolute inset-0 w-full h-full" controls id="custom-video-player" playsinline style="display: none;">
           <source src="" type="video/mp4"/>
         </video>
@@ -937,13 +937,18 @@
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
           <span class="text-xs font-mono uppercase text-driftwood shrink-0">⚡ Server:</span>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button class="player-pill-btn stream-server-btn active cursor-pointer text-xs" data-server="vidsrc_pm" onclick="CinexaPlayer.switchServer('vidsrc_pm')">Server 1 (Cloud Ultra)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidsrc_to" onclick="CinexaPlayer.switchServer('vidsrc_to')">Server 2 (VidSrc To)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="twoembed_cc" onclick="CinexaPlayer.switchServer('twoembed_cc')">Server 3 (2Embed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 4 (AutoEmbed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 5 (VidLink)</button>
+            <button class="player-pill-btn stream-server-btn active cursor-pointer text-xs" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 1 (AutoEmbed 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidsrc_pm" onclick="CinexaPlayer.switchServer('vidsrc_pm')">Server 2 (VidSrc PM)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="twoembed_cc" onclick="CinexaPlayer.switchServer('twoembed_cc')">Server 3 (2Embed CC)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="twoembed_skin" onclick="CinexaPlayer.switchServer('twoembed_skin')">Server 4 (2Embed Cinema)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidsrc_to" onclick="CinexaPlayer.switchServer('vidsrc_to')">Server 5 (VidSrc To)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 6 (VidLink Pro)</button>
           </div>
         </div>
+        <p class="text-[11px] font-sans text-driftwood pt-0.5 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[13px] text-primary">info</span>
+          <span>If a movie takes time to load or shows an error, tap any server button above to switch streams instantly.</span>
+        </p>
       </div>
     </div>
   </div>

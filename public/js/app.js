@@ -1177,11 +1177,11 @@ function toggleDetailsWatchlist() {
 
 function playCurrentFilmInPlayer(serverOrSlug) {
   let film = currentActiveMovie;
-  const validServers = ['vidlink', 'multiaudio', 'vidsrc_cc', 'autoembed', 'vidsrc_xyz', 'local'];
+  const validServers = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink', 'local'];
 
   if (typeof serverOrSlug === 'string' && !validServers.includes(serverOrSlug)) {
     const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug);
+    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug || (m.tmdbId && String(m.tmdbId) === serverOrSlug));
     if (found) film = found;
   }
 
@@ -1192,7 +1192,7 @@ function playCurrentFilmInPlayer(serverOrSlug) {
   currentActiveMovie = film;
   saveWatchProgress(film, Math.floor(Math.random() * 40) + 20);
 
-  let chosenServer = 'vidlink';
+  let chosenServer = 'autoembed';
   if (typeof serverOrSlug === 'string' && validServers.includes(serverOrSlug)) {
     chosenServer = serverOrSlug;
   }

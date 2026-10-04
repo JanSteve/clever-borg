@@ -8,11 +8,11 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['vidsrc_pm', 'vidsrc_to', 'twoembed_cc', 'autoembed', 'vidlink', 'twoembed_skin'];
+const SERVER_ORDER = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink'];
 
 const CinexaPlayer = {
   currentMovie: null,
-  currentServer: 'vidsrc_pm',
+  currentServer: 'autoembed',
   currentAudio: 'original',
   currentSubtitle: 'en',
   subtitleOffset: 0.0,
@@ -45,12 +45,12 @@ const CinexaPlayer = {
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
-        this.switchServer('vidsrc_pm');
+        this.switchServer('autoembed');
       };
     }
   },
 
-  openPlayer(movie, server = 'vidsrc_pm', season = 1, episode = 1) {
+  openPlayer(movie, server = 'autoembed', season = 1, episode = 1) {
     if (!this.modal) this.init();
     this.currentMovie = movie || {
       id: 'dune-part-two',
@@ -65,7 +65,7 @@ const CinexaPlayer = {
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
                         server === 'local';
     
-    this.currentServer = isLocalFilm ? 'local' : (server === 'embedsu' || server === 'vidlink' ? 'vidsrc_pm' : server);
+    this.currentServer = isLocalFilm ? 'local' : (server && SERVER_ORDER.includes(server) ? server : 'autoembed');
     this.currentAudio = 'original';
     this.subtitleOffset = 0.0;
     this.currentSeason = parseInt(season) || 1;
@@ -219,14 +219,15 @@ const CinexaPlayer = {
     this.loadStreamSource();
     if (typeof showToast === 'function') {
       const serverNames = {
-        vidlink: 'Server 1 (VidLink Pro 4K - Ultra Reliable)',
+        autoembed: 'Server 1 (AutoEmbed 4K - Fast & Reliable)',
         vidsrc_pm: 'Server 2 (VidSrc Cloud Ultra)',
-        autoembed: 'Server 3 (AutoEmbed Fast CDN)',
-        twoembed_cc: 'Server 4 (2Embed Prime)',
-        twoembed_skin: 'Server 5 (2Embed Cinema)',
-        local: 'Server 6 (Cinexa Local Master)'
+        twoembed_cc: 'Server 3 (2Embed Prime)',
+        twoembed_skin: 'Server 4 (2Embed Cinema)',
+        vidsrc_to: 'Server 5 (VidSrc To)',
+        vidlink: 'Server 6 (VidLink Pro)',
+        local: 'Cinexa Local Master'
       };
-      showToast(`Switched to ${serverNames[server] || server}`);
+      showToast(`⚡ Switched to ${serverNames[server] || server}`);
     }
   },
 
