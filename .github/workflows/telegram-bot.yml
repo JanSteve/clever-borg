@@ -2,9 +2,17 @@ name: Auto Telegram Movie Poster
 
 on:
   schedule:
-    # Runs automatically every 10 minutes (144 times a day) non-stop
-    - cron: '*/10 * * * *'
+    # Cron fallback heartbeat every 4 hours
+    - cron: '0 */4 * * *'
   workflow_dispatch: # Allows manual 1-click trigger button in GitHub Actions tab
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: telegram-autoposter
+  cancel-in-progress: true
 
 jobs:
   post-movie-update:
@@ -21,8 +29,31 @@ jobs:
       - name: Generate Global SEO Sitemap & Index
         run: node scripts/generate-sitemap.js
 
-      - name: Run Telegram Channel Auto-Poster & Viral SEO Engine
+      - name: Run Guaranteed 10-Minute Continuous Auto-Poster Loop
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-        run: node scripts/telegram-autoposter.js
+        run: |
+          echo "🚀 Starting Guaranteed 10-Minute Continuous Loop..."
+          # Runs 30 drops (10 mins each = 5 hours guaranteed non-stop posting)
+          for i in {1..30}; do
+            echo "=================================================="
+            echo "📢 DISPATCHING DROP #$i at $(date -u)"
+            echo "=================================================="
+            node scripts/telegram-autoposter.js
+            
+            if [ $i -lt 30 ]; then
+              echo "⏳ Waiting 10 minutes (600 seconds) for next drop..."
+              sleep 600
+            fi
+          done
+          echo "✅ Completed 5-hour continuous batch (30 drops)!"
+
+      - name: Auto Chain-Trigger Next 5-Hour Batch
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo "🔄 Automatically spawning the next continuous batch..."
+          gh api -X POST /repos/$REPO/actions/workflows/telegram-bot.yml/dispatches -f ref=main || echo "Next batch scheduled by cron."
