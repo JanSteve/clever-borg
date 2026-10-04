@@ -5,6 +5,46 @@
 
 const KOREAN_MOVIES_CATALOG = [
   {
+    "id": "jana-nayagan-2026",
+    "slug": "jana-nayagan-2026",
+    "tmdbId": "1184918",
+    "isSeries": false,
+    "type": "movie",
+    "title": "Jana Nayagan (Jan Neta)",
+    "tagline": "The Torch Bearer of Democracy.",
+    "year": "2026",
+    "releaseDate": "January 2026",
+    "rating": "16+",
+    "imdbRating": "8.8",
+    "matchScore": "99% Match",
+    "duration": "2h 37m",
+    "country": "India",
+    "studio": "KVN Productions / H. Vinoth",
+    "resolution": "4K Ultra HD Master",
+    "audio": "Hindi Dubbed 5.1 + Tamil + Telugu + Malayalam + Kannada",
+    "category": "tamil",
+    "genres": [
+      "Action",
+      "Political Drama",
+      "Thriller"
+    ],
+    "director": "H. Vinoth",
+    "cast": [
+      "Thalapathy Vijay",
+      "Bobby Deol",
+      "Pooja Hegde",
+      "Mamitha Baiju",
+      "Gautham Vasudev Menon",
+      "Prakash Raj",
+      "Priyamani"
+    ],
+    "synopsis": "Thalapathy Vetri Kondan IPS battles a high-level political conspiracy and high-tech defense syndicate led by the ruthless John Himmler, fighting to protect democracy in his monumental final cinematic appearance.",
+    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg"
+  },
+  {
     "id": "panchayat-season-3",
     "slug": "panchayat-season-3",
     "tmdbId": "101094",
