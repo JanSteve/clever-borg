@@ -1539,24 +1539,29 @@ function _renderModalSearchResults(val) {
   container.innerHTML = matches.slice(0, 10).map(m => {
     const poster = m.posterUrl || m.poster || m.backdropUrl || getPosterFallbackSvg(m.title, m.year);
     const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
+    const id = m.slug || m.id;
     return `
-      <div class="p-3 hover:bg-surface-container-high flex items-center justify-between gap-3 cursor-pointer group transition-colors" onclick="closeModal(); openFilmDetails('${m.slug || m.id}')">
+      <div class="p-2.5 sm:p-3 hover:bg-surface-container-high flex items-center justify-between gap-3 cursor-pointer group transition-colors rounded-xl" onclick="closeModal(); openFilmDetails('${id}')">
         <div class="flex items-center gap-3 min-w-0">
-          <div class="w-9 h-[54px] rounded overflow-hidden bg-black flex-shrink-0 border border-white/10">
+          <div class="w-10 h-[58px] rounded-lg overflow-hidden bg-black flex-shrink-0 border border-white/10 shadow-sm">
             <img src="${poster}" alt="${m.title}" class="w-full h-full object-cover" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')">
           </div>
           <div class="min-w-0 space-y-0.5">
-            <h4 class="font-sans font-semibold text-xs text-parchment group-hover:text-primary truncate">${m.title}</h4>
-            <div class="flex items-center gap-2 font-mono text-[10px] text-driftwood">
+            <h4 class="font-sans font-semibold text-xs sm:text-sm text-parchment group-hover:text-primary truncate">${m.title}</h4>
+            <div class="flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-driftwood">
               <span>${m.year || '2024'}</span>
               <span>•</span>
-              <span class="text-tertiary">${m.country || '4K UHD'}</span>
+              <span class="text-primary font-medium">★ ${m.imdbRating || '8.0'}</span>
+              <span>•</span>
+              <span class="text-tertiary uppercase truncate">${m.category ? m.category.toUpperCase() : '4K UHD'}</span>
             </div>
           </div>
         </div>
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="font-mono text-xs text-primary font-medium">★ ${m.imdbRating || '8.0'}</span>
-          <kbd class="font-mono text-[10px] text-text-muted bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10">↵</kbd>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs flex items-center gap-1 hover:bg-brass-hover transition-colors shadow-sm active:scale-95 cursor-pointer" onclick="event.stopPropagation(); closeModal(); playCurrentFilmInPlayer('${id}')" title="Play Film Now">
+            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span class="hidden xs:inline">Watch</span>
+          </button>
         </div>
       </div>
     `;
