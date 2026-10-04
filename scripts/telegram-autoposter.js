@@ -1,7 +1,8 @@
 /**
- * Cinexa Telegram Channel Viral Auto-Poster & Growth Engine
- * Automatically posts trending 2024-2026 films & series with 4K posters,
- * high-ranking SEO hashtags, deep-links, and viral share triggers every hour.
+ * Cinexa Telegram Channel Master Auto-Poster & Viral Growth Engine
+ * Automatically posts top-rated, trending 2024-2026 films & series every 10 minutes
+ * with 4K posters, comprehensive IMDb details, multi-audio info, SEO discovery tags,
+ * and high-converting direct watch & Monetag monetization buttons.
  */
 
 const https = require('https');
@@ -10,6 +11,7 @@ const catalog = require('../public/js/movies-data.js');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID; // e.g. "@cinexafilms" or "-100123456789"
 const BASE_URL = 'https://cinexa-films.vercel.app';
+const MONETAG_DIRECT_LINK = process.env.MONETAG_DIRECT_LINK || 'https://omg10.com/4/11952303';
 
 if (!BOT_TOKEN || !CHANNEL_ID) {
   console.error('⚠️ Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHANNEL_ID environment variables.');
@@ -17,9 +19,7 @@ if (!BOT_TOKEN || !CHANNEL_ID) {
   process.exit(1);
 }
 
-const MONETAG_DIRECT_LINK = process.env.MONETAG_DIRECT_LINK || 'https://omg10.com/4/11952303';
-
-// Telegram Channel Public Username / Link for viral referrals
+// Telegram Channel Public Username / Link for referrals
 const cleanChannelHandle = CHANNEL_ID.startsWith('@') 
   ? CHANNEL_ID.replace('@', '') 
   : '';
@@ -116,10 +116,20 @@ function generateViralHashtags(film) {
   
   const genreTags = Array.isArray(film.genres) 
     ? film.genres.slice(0, 3).map(g => '#' + sanitize(g)).join(' ')
-    : '#Action #SciFi';
+    : '#Action #Thriller';
 
-  const baseTrendingTags = '#Trending #MovieHub #WatchOnline #4KMovies #HindiDubbed #EnglishMovies #OTTReleases';
-  return `${titleTag} ${yearTag} ${genreTags} ${baseTrendingTags}`;
+  const categoryTag = film.category ? `#${sanitize(film.category.toUpperCase())}` : '#CINEMA';
+  const baseTrendingTags = '#WatchFree #4KMovies #HindiDubbed #EnglishMovies #DualAudio #OTTRelease #TelegramFilms';
+  return `${titleTag} ${yearTag} ${categoryTag} ${genreTags} ${baseTrendingTags}`;
+}
+
+function getRatingStars(rating) {
+  const num = parseFloat(rating) || 8.0;
+  if (num >= 9.0) return '⭐️⭐️⭐️⭐️⭐️ (Masterpiece)';
+  if (num >= 8.5) return '⭐️⭐️⭐️⭐️⭐️ (Must Watch)';
+  if (num >= 8.0) return '⭐️⭐️⭐️⭐️ (Critically Acclaimed)';
+  if (num >= 7.0) return '⭐️⭐️⭐️⭐️ (Super Hit)';
+  return '⭐️⭐️⭐️ (Popular)';
 }
 
 async function postFeaturedFilm() {
@@ -128,25 +138,30 @@ async function postFeaturedFilm() {
     process.exit(1);
   }
 
-  // 1. Hourly category rotation to keep posts varied and appealing to different audiences
-  const currentHour = new Date().getUTCHours();
+  // Curate highest-rated and top trending titles
+  const currentMinute = new Date().getUTCMinutes();
+  const rotationSlot = Math.floor(currentMinute / 10) % 5;
+  
   let candidatePool = [];
 
-  if (currentHour % 4 === 0) {
-    // Hollywood 4K Blockbusters
-    candidatePool = catalog.filter(m => (m.category === 'hollywood' || !m.isSeries) && parseInt(m.year) >= 2024);
-  } else if (currentHour % 4 === 1) {
-    // Bollywood & South Cinema
-    candidatePool = catalog.filter(m => (m.category === 'bollywood' || m.category === 'south' || (m.audio && m.audio.includes('Hindi'))) && parseInt(m.year) >= 2024);
-  } else if (currentHour % 4 === 2) {
-    // Anime & Global Hits
+  if (rotationSlot === 0) {
+    // 🌟 Top 4K Hollywood Blockbusters (2024-2026)
+    candidatePool = catalog.filter(m => (m.category === 'hollywood' || !m.isSeries) && (parseFloat(m.imdbRating) >= 7.8 || parseInt(m.year) >= 2024));
+  } else if (rotationSlot === 1) {
+    // 🇮🇳 Top Bollywood & Pan-India South Blockbusters
+    candidatePool = catalog.filter(m => (m.category === 'bollywood' || m.category === 'south' || (m.audio && m.audio.includes('Hindi'))) && parseInt(m.year) >= 2023);
+  } else if (rotationSlot === 2) {
+    // 📺 Top Trending Web Series & OTT Originals (Netflix, Prime, HBO, Disney)
+    candidatePool = catalog.filter(m => (m.type === 'tv' || m.isSeries || m.category === 'series') && parseInt(m.year) >= 2023);
+  } else if (rotationSlot === 3) {
+    // 🎌 Premier Anime & Global Animations (Solo Leveling, Demon Slayer, Ghibli, etc.)
     candidatePool = catalog.filter(m => m.category === 'anime' || (m.genres && m.genres.includes('Animation')));
   } else {
-    // Hot OTT & Web Series
-    candidatePool = catalog.filter(m => m.type === 'tv' || m.isSeries || m.category === 'series');
+    // 💎 All-Time Masterpieces & 4K IMAX Hits
+    candidatePool = catalog.filter(m => parseFloat(m.imdbRating) >= 8.4);
   }
 
-  // Fallback to full recent catalog if category pool is empty
+  // Fallbacks
   if (candidatePool.length === 0) {
     candidatePool = catalog.filter(m => parseInt(m.year) >= 2024);
   }
@@ -157,32 +172,47 @@ async function postFeaturedFilm() {
   const film = candidatePool[Math.floor(Math.random() * candidatePool.length)];
 
   const isSeries = film.type === 'tv' || film.isSeries;
-  const typeTag = isSeries ? '📺 Web Series / OTT Original' : '🎬 4K Cinema Release';
-  const audioInfo = film.audio || 'Multi-Audio (Hindi / English / Tamil / Telugu)';
-  const genreList = Array.isArray(film.genres) ? film.genres.join(' • ') : 'Action • Sci-Fi';
+  const badge = isSeries 
+    ? '📺 TOP TRENDING WEB SERIES • ALL EPISODES' 
+    : '🎬 4K ULTRA HD THEATRICAL RELEASE';
+
+  const audioInfo = film.audio || 'Multi-Audio (Hindi 5.1 + English + Tamil + Telugu)';
+  const genreList = Array.isArray(film.genres) ? film.genres.join(' • ') : 'Action • Sci-Fi • Thriller';
+  const ratingStars = getRatingStars(film.imdbRating);
+  const durationText = isSeries 
+    ? `${film.seasons || 'Complete'} Seasons • All Episodes Available` 
+    : (film.duration || '2h 18m');
+  
+  const castInfo = film.cast ? `\n👥 <b>Starring:</b> ${film.cast.slice(0, 70)}...` : '';
+  const directorInfo = film.director ? `\n🎬 <b>Director:</b> ${film.director}` : '';
+  const synopsisClean = (film.synopsis || film.overview || film.tagline || 'Experience high octane cinema in crystal clear 4K UHD with multi-server playback and zero buffering.').slice(0, 320);
+
   const hashtags = generateViralHashtags(film);
 
   const watchUrl = `${BASE_URL}?q=${encodeURIComponent(film.title)}`;
-  const shareText = `🔥 Watch "${film.title}" in 4K Ultra HD for free on Cinexa! Join our Telegram for hourly 4K releases: ${channelJoinUrl}`;
+  const shareText = `🔥 Watch "${film.title}" in 4K Ultra HD for free on Cinexa! Join our Telegram for 10-min 4K releases: ${channelJoinUrl}`;
   const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(watchUrl)}&text=${encodeURIComponent(shareText)}`;
 
   const caption = 
-`🍿 <b>NOW STREAMING ON CINEXA</b> 🍿
+`🍿 <b>CINEXA 4K PREMIERE DROPS</b> 🍿
 
-🎬 <b>${film.title} (${film.year || '2025'})</b>
-🏷 <i>${typeTag}</i>
+✨ <b>${film.title.toUpperCase()} (${film.year || '2025'})</b>
+🏷 <i>${badge}</i>
 
-⭐ <b>IMDb:</b> ${film.imdbRating || '8.4'}/10  |  ⏱ <b>Duration:</b> ${film.duration || '2h 15m'}
+⭐ <b>IMDb Rating:</b> ${film.imdbRating || '8.5'}/10 • ${ratingStars}
+⏱ <b>Format:</b> ${durationText}
 🎭 <b>Genres:</b> ${genreList}
-🔊 <b>Audio:</b> ${audioInfo}
-⚡ <b>Stream Quality:</b> Ultra HD 4K • Dolby 5.1 • 8 High-Speed CDN Servers
+🔊 <b>Audio:</b> ${audioInfo}${castInfo}${directorInfo}
 
-📝 <i>"${(film.synopsis || film.tagline || 'Experience cinema master in ultra high-definition with zero buffering.').slice(0, 300)}..."</i>
+⚡ <b>Stream Specs:</b> 4K Ultra HD (2160p) • HDR10 • Dolby Atmos 5.1 • 8 CDN Mirror Servers
 
-━━━━━━━━━━━━━━━━━━━━
+📝 <b>Synopsis:</b>
+<i>"${synopsisClean}..."</i>
+
+━━━━━━━━━━━━━━━━━━━━━
 ${hashtags}
-━━━━━━━━━━━━━━━━━━━━
-👇 <b>Tap below to watch or share with friends:</b>`;
+━━━━━━━━━━━━━━━━━━━━━
+👇 <b>Tap below to stream instantly or download in 4K:</b>`;
 
   const inlineKeyboard = [
     [
@@ -191,18 +221,18 @@ ${hashtags}
     ],
     [
       { text: '👥 Share with Friends (Viral)', url: telegramShareUrl },
-      { text: '🔔 Join Channel for Updates', url: channelJoinUrl }
+      { text: '🔔 Subscribe for 10-Min 4K Drops', url: channelJoinUrl }
     ]
   ];
 
   const poster = film.posterUrl || film.poster || film.backdropUrl || 'https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg';
 
-  console.log(`📡 Sending "${film.title}" (${film.year}) to Telegram Channel: ${CHANNEL_ID}...`);
+  console.log(`📡 Sending "${film.title}" (${film.year}) [${badge}] to Telegram Channel: ${CHANNEL_ID}...`);
 
   try {
     const response = await sendTelegramPhoto(poster, caption, inlineKeyboard);
     if (response.ok) {
-      console.log('✅ Successfully posted photo & details to Telegram Channel!');
+      console.log('✅ Successfully posted curated 4K film to Telegram Channel!');
     } else {
       console.warn('⚠️ sendPhoto failed, attempting fallback text message...', response);
       // Fallback if image fails to load

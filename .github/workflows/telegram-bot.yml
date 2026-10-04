@@ -2,8 +2,8 @@ name: Auto Telegram Movie Poster
 
 on:
   schedule:
-    # Runs automatically every 15 minutes (96 times a day) non-stop
-    - cron: '*/15 * * * *'
+    # Runs automatically every 10 minutes (144 times a day) non-stop
+    - cron: '*/10 * * * *'
   workflow_dispatch: # Allows manual 1-click trigger button in GitHub Actions tab
 
 jobs:
