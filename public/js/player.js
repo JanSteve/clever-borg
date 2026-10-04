@@ -61,10 +61,65 @@ const CinexaPlayer = {
   nextServer() {
     this.serverIndex = (this.serverIndex + 1) % this.servers.length;
     const srv = this.servers[this.serverIndex];
+    this.updateServerUI(true);
     if (typeof showToast === 'function') {
       showToast(`⚡ Switched to ${srv.name}`);
     }
     this.loadCloudStream();
+  },
+
+  updateServerUI(isManualSwitch = false) {
+    const srv = this.servers[this.serverIndex] || this.servers[0];
+    const nextSrv = this.servers[(this.serverIndex + 1) % this.servers.length];
+
+    // Header badge
+    const headerNameEl = document.getElementById('player-current-server-name');
+    if (headerNameEl) {
+      headerNameEl.innerText = srv.name;
+    }
+
+    // Header badge animation
+    const headerBadgeEl = document.getElementById('player-active-server-badge');
+    if (headerBadgeEl) {
+      headerBadgeEl.classList.remove('scale-105', 'bg-amber-500/30', 'text-amber-300');
+      void headerBadgeEl.offsetWidth; // trigger reflow
+      headerBadgeEl.classList.add('scale-105', 'bg-amber-500/30', 'text-amber-300');
+      setTimeout(() => {
+        headerBadgeEl.classList.remove('scale-105', 'bg-amber-500/30', 'text-amber-300');
+      }, 600);
+    }
+
+    // Tray badge
+    const trayBadgeEl = document.getElementById('player-tray-server-badge');
+    if (trayBadgeEl) {
+      trayBadgeEl.innerText = srv.name;
+    }
+
+    // Switch button label
+    const btnLabelEl = document.getElementById('player-switch-btn-label');
+    if (btnLabelEl) {
+      btnLabelEl.innerText = `Switch (${nextSrv.name.split(' (')[0]})`;
+    }
+
+    if (isManualSwitch) {
+      this.showServerSwitchToast(srv.name);
+    }
+  },
+
+  showServerSwitchToast(serverName) {
+    const toast = document.getElementById('player-server-switch-toast');
+    const toastText = document.getElementById('player-server-switch-toast-text');
+    if (toast && toastText) {
+      toastText.innerText = `Switched to ${serverName}`;
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      if (this.switchToastTimer) clearTimeout(this.switchToastTimer);
+      this.switchToastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      }, 3000);
+    }
   },
 
   showLoading() {
@@ -108,10 +163,12 @@ const CinexaPlayer = {
       year: '2024'
     };
 
+    this.serverIndex = 0; // default to #1 verified master stream
     this.currentSeason = parseInt(season) || 1;
     this.currentEpisode = parseInt(episode) || 1;
 
     this.updateTitleUI();
+    this.updateServerUI(false);
     this.renderSeriesControlsUI();
     this.loadStreamSource();
 
