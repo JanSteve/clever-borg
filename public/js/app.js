@@ -362,6 +362,7 @@ function selectNavCategory(category) {
   if (container) {
     const btn = Array.from(container.querySelectorAll('.chip-item')).find(b => {
       const txt = b.innerText.toLowerCase();
+      if (category === 'series') return txt.includes('series');
       if (category === 'anime') return txt.includes('anime');
       if (category === 'bollywood') return txt.includes('bollywood');
       if (category === 'telugu') return txt.includes('telugu');
@@ -406,6 +407,7 @@ function selectChip(btn, category) {
 
   // If specific section exists, smooth scroll to it
   const sectionMap = {
+    series: 'section-row-series',
     anime: 'section-row-anime',
     bollywood: 'section-row-bollywood',
     telugu: 'section-row-telugu',
@@ -468,7 +470,9 @@ function createMovieCardHtml(m, options = {}) {
   const id = m.slug || m.id;
   const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
   const isSaved = watchlistSet.has(id);
-  const tag = options.tag || (m.language ? m.language.toUpperCase() : (m.country || '4K'));
+  const isSeries = m.type === 'tv' || m.isSeries;
+  const defaultTag = isSeries ? (m.seasons ? `${m.seasons} SEASONS` : 'SERIES') : (m.language ? m.language.toUpperCase() : (m.country || '4K'));
+  const tag = options.tag || defaultTag;
 
   return `
     <div class="group relative flex-shrink-0 w-[190px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
@@ -478,6 +482,7 @@ function createMovieCardHtml(m, options = {}) {
         
         <div class="absolute top-2 left-2 z-10 flex items-center gap-1">
           <span class="font-sans text-[10px] px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-on-surface uppercase border border-white/10 font-medium">${rating}</span>
+          ${isSeries ? '<span class="font-sans text-[9px] px-1.5 py-0.5 rounded-full bg-primary/20 text-primary uppercase border border-primary/30 font-bold">TV</span>' : ''}
         </div>
 
         <button aria-label="Save to Watchlist" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
@@ -548,8 +553,8 @@ function getContinueWatchingList() {
   } catch (e) {}
   // Default sample records if fresh visitor
   return [
-    { id: 'dune-part-two', title: 'Dune: Part Two', poster: 'https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg', year: '2024', imdbRating: '8.6', percent: 65, timeRemaining: '58m left' },
-    { id: 'spirited-away', title: 'Spirited Away', poster: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg', year: '2001', imdbRating: '8.6', percent: 38, timeRemaining: '1h 17m left' }
+    { id: 'solo-leveling-series', title: 'Solo Leveling', poster: 'https://image.tmdb.org/t/p/w500/geCRueV3ElhRTr0xtJuPxJ8BGd1.jpg', year: '2024', imdbRating: '8.5', percent: 65, timeRemaining: 'S1:E4 (18m left)' },
+    { id: 'dune-part-two', title: 'Dune: Part Two', poster: 'https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg', year: '2024', imdbRating: '8.6', percent: 45, timeRemaining: '1h 12m left' }
   ];
 }
 
@@ -605,15 +610,20 @@ function clearContinueWatching() {
 function filterTrendingRows(category = 'all') {
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
 
+  // 0. TV & Web Series
+  const seriesFilms = catalog.filter(m => m.type === 'tv' || m.isSeries);
+
   // 1. Kollywood: ONLY pure Tamil movies
   const tamilFilms = catalog.filter(m => 
+    !m.isSeries && (
     m.category === 'tamil' || 
     (m.language && /^(ta|tamil)$/i.test(m.language.trim())) ||
-    (m.title && /^(Leo|Jailer|Vikram|Ponniyin Selvan.*|Master|Kaithi|Amaran|Vettaiyan|Soorarai Pottru|Asuran|Jai Bhim|Super Deluxe|Thuppakki|96)$/i.test(m.title))
+    (m.title && /^(Leo|Jailer|Vikram|Ponniyin Selvan.*|Master|Kaithi|Amaran|Vettaiyan|Soorarai Pottru|Asuran|Jai Bhim|Super Deluxe|Thuppakki|96)$/i.test(m.title)))
   );
 
   // 2. Bollywood: ONLY pure Hindi movies (strictly exclude South Indian or foreign films)
   const bollywoodFilms = catalog.filter(m => 
+    !m.isSeries &&
     (m.category === 'bollywood' || (m.language && /^(hi|hindi)$/i.test(m.language.trim()))) &&
     !tamilFilms.some(t => t.id === m.id) &&
     !/RRR|Kalki|Salaar|Baahubali|Pushpa|Devara|Hanu-Man|Kantara|K\.G\.F|Sita Ramam|Lucky Baskhar|Manjummel|Aavesham|Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Amaran|Vettaiyan|Soorarai|Asuran|Jai Bhim/i.test(m.title)
@@ -621,36 +631,40 @@ function filterTrendingRows(category = 'all') {
 
   // 3. Tollywood: ONLY pure Telugu movies (strictly exclude Kannada/Malayalam/Tamil/Hindi)
   const teluguFilms = catalog.filter(m => 
+    !m.isSeries &&
     (m.category === 'telugu' || (m.language && /^(te|telugu)$/i.test(m.language.trim())) ||
     (m.title && /^(RRR|Baahubali.*|Salaar.*|Kalki 2898 AD|Pushpa.*|Devara.*|Hanu-Man|Sita Ramam|Ala Vaikunthapurramuloo|Lucky Baskhar|Arjun Reddy|Jersey|Eega)$/i.test(m.title))) &&
     !/K\.G\.F|Kantara|Manjummel|Aavesham|Leo|Jailer|Vikram|Jawan|Pathaan/i.test(m.title)
   );
 
-  // 4. Anime: ONLY Japanese Animation
+  // 4. Anime: Japanese Animation (Movies + Series)
   const animeFilms = catalog.filter(m => 
     m.category === 'anime' || 
     (m.country === 'Japan' && (m.genres && m.genres.some(g => /animation|anime/i.test(g)))) ||
     (m.language && /^(ja|japanese)$/i.test(m.language.trim()) && (m.genres && m.genres.some(g => /animation|anime/i.test(g))))
   );
 
-  // 5. Hollywood 4K: ONLY US/UK blockbusters
+  // 5. Hollywood 4K: US/UK blockbusters
   const hollywoodFilms = catalog.filter(m => 
-    m.category === 'hollywood' || 
-    ((m.country === 'United States' || m.country === 'United Kingdom' || m.country === 'United States of America') && m.category !== 'anime')
+    !m.isSeries &&
+    (m.category === 'hollywood' || 
+    ((m.country === 'United States' || m.country === 'United Kingdom' || m.country === 'United States of America') && m.category !== 'anime'))
   );
 
-  // 6. Korean Cinema: ONLY South Korean Cinema
+  // 6. Korean Cinema: South Korean Cinema
   const koreanFilms = catalog.filter(m => 
-    m.category === 'korean' || 
+    !m.isSeries &&
+    (m.category === 'korean' || 
     (m.country && m.country.includes('South Korea')) ||
-    (m.language && /^(ko|korean)$/i.test(m.language.trim()))
+    (m.language && /^(ko|korean)$/i.test(m.language.trim())))
   );
 
   // Trending
   const trendingContainer = document.getElementById('carousel-trending');
   if (trendingContainer) {
     let trendingFilms = catalog;
-    if (category === 'anime') trendingFilms = animeFilms;
+    if (category === 'series') trendingFilms = seriesFilms;
+    else if (category === 'anime') trendingFilms = animeFilms;
     else if (category === 'bollywood') trendingFilms = bollywoodFilms;
     else if (category === 'telugu') trendingFilms = teluguFilms;
     else if (category === 'tamil') trendingFilms = tamilFilms;
@@ -658,6 +672,12 @@ function filterTrendingRows(category = 'all') {
     else if (category === 'hollywood') trendingFilms = hollywoodFilms;
 
     trendingContainer.innerHTML = trendingFilms.slice(0, 16).map(m => createMovieCardHtml(m)).join('');
+  }
+
+  // Dedicated TV & Web Series
+  const seriesContainer = document.getElementById('carousel-series');
+  if (seriesContainer) {
+    seriesContainer.innerHTML = seriesFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'SERIES' })).join('');
   }
 
   // Dedicated Anime

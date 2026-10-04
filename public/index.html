@@ -153,6 +153,7 @@
       <!-- Center: Category Navigation Links -->
       <nav class="hidden lg:flex items-center gap-6 text-sm font-medium" id="main-nav-links">
         <a class="nav-link active text-parchment cursor-pointer" data-nav="discover" onclick="switchMainScreen('discover')">Browse All</a>
+        <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('series')">📺 TV &amp; Web Series</a>
         <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('anime')">🎌 Anime</a>
         <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('bollywood')">🇮🇳 Bollywood</a>
         <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('telugu')">🇮🇳 Tollywood</a>
@@ -167,7 +168,7 @@
         <button aria-label="Open search" class="flex items-center justify-between gap-3 h-10 px-4 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-parchment transition-all cursor-pointer shadow-sm" onclick="openModal('results')">
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-[18px] text-primary">search</span>
-            <span class="text-xs font-sans hidden sm:inline text-driftwood">Search films, anime...</span>
+            <span class="text-xs font-sans hidden sm:inline text-driftwood">Search films, anime, series...</span>
           </div>
           <kbd class="font-mono text-[10px] uppercase text-text-muted bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 hidden sm:inline">
             ⌘K
@@ -278,7 +279,7 @@
   </section>
 
   <!-- =========================================================================
-       3. STICKY SUB-NAV CATEGORY PILLS (All, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean, Surprise Me)
+       3. STICKY SUB-NAV CATEGORY PILLS (All, Series, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean, Surprise Me)
        ========================================================================= -->
   <section class="w-full sticky top-[70px] z-30 py-3 bg-petrol-base/95 backdrop-blur-md border-b border-white/5 shadow-sm">
     <div class="max-w-[1360px] mx-auto px-4 sm:px-6">
@@ -289,6 +290,9 @@
         <button class="chip-item whitespace-nowrap h-9 px-4 rounded-full font-sans text-xs font-semibold bg-gradient-to-r from-amber-600/30 to-primary/30 text-primary border border-primary/40 hover:border-primary transition-all flex items-center gap-1.5 cursor-pointer shadow-sm" onclick="triggerSurpriseMe()" title="Spin a Random Curated Movie">
           <span class="material-symbols-outlined text-[15px]">casino</span>
           <span>Surprise Me</span>
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'series')">
+          📺 TV &amp; Web Series
         </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'anime')">
           🎌 Anime &amp; Animation
@@ -352,6 +356,24 @@
             </div>
           </div>
           <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-trending"></div>
+        </section>
+
+        <!-- 1B. TV & Web Series Reel -->
+        <section class="w-full space-y-4" id="section-row-series">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold flex items-center gap-2">
+              <span>📺 Binge-Worthy TV &amp; Web Series</span>
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-series', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-series', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-series"></div>
         </section>
 
         <!-- 2. Top 10 Worldwide (Numbered Row) -->
@@ -834,6 +856,10 @@
           <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="player-header-actions">
+          <button class="player-btn-download flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-on-primary transition-all" onclick="CinexaPlayer.openCineHDMirror()" title="Open title directly on CineHD.vc search mirror">
+            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+            <span>CineHD Mirror</span>
+          </button>
           <button class="player-btn-download flex items-center gap-1.5" onclick="CinexaPlayer.nextServer()" title="Switch to another 4K server if stream is slow or buffering">
             <span class="material-symbols-outlined text-[16px]">swap_horiz</span>
             <span>Switch Server</span>
@@ -856,18 +882,21 @@
 
       <!-- Controls Tray -->
       <div class="player-controls-tray">
+        <!-- Series Controls Row (Injected Dynamically when TV Series is loaded) -->
+        <div id="player-series-controls" style="display: none;"></div>
+
         <!-- Servers Row -->
         <div class="player-control-group">
           <span class="group-label">⚡ Fast Servers:</span>
           <div class="player-pill-cluster">
-            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="embedsu" onclick="CinexaPlayer.switchServer('embedsu')">Server 1 (Embed.su 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 2 (VidLink Pro 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 3 (Multi-Audio &amp; Dubbed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_vip" onclick="CinexaPlayer.switchServer('vidsrc_vip')">Server 4 (VidSrc VIP 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_to" onclick="CinexaPlayer.switchServer('vidsrc_to')">Server 5 (VidSrc To Cloud)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 6 (AutoEmbed CDN)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="twoembed" onclick="CinexaPlayer.switchServer('twoembed')">Server 7 (2Embed Cinema)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_me" onclick="CinexaPlayer.switchServer('vidsrc_me')">Server 8 (VidSrc ME)</button>
+            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 1 (VidLink Pro 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 2 (Multi-Audio &amp; Dubbed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">Server 3 (VidSrc CC Cloud)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">Server 4 (VidSrc XYZ HD)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 5 (AutoEmbed CDN)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="twoembed" onclick="CinexaPlayer.switchServer('twoembed')">Server 6 (2Embed Cinema)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="embedsu" onclick="CinexaPlayer.switchServer('embedsu')">Server 7 (Embed.su 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_vip" onclick="CinexaPlayer.switchServer('vidsrc_vip')">Server 8 (VidSrc VIP)</button>
           </div>
         </div>
 

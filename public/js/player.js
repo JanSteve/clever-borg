@@ -1,20 +1,23 @@
 /**
- * CINEXA: Master 4K Video Player & Multi-Language Dubbing Engine
+ * CINEXA: Master 4K Video Player, TV Series Controller & Multi-Language Dubbing Engine
  * Features:
- * - 8 High-Speed 4K/1080p Streaming Servers with Auto-Failover (Embed.su, VidLink, MultiEmbed, VidSrc VIP, AutoEmbed, 2Embed, VidSrc Cloud, Local)
+ * - 8 High-Speed 4K/1080p Streaming Servers with Auto-Failover (VidLink, MultiEmbed, VidSrc CC, VidSrc XYZ, AutoEmbed, 2Embed, Embed.su, VidSrc VIP)
+ * - Complete TV Series & Web Series Season/Episode Navigation with 1-Click Jump
  * - Multi-Language Audio & Dubbing (Hindi, Tamil, Telugu, English, Korean, Japanese, French, Spanish)
  * - Subtitle Language Selection & Real-Time Sync Controller ([-0.5s] [0.0s] [+0.5s])
- * - 1-Click "🔄 Next Server" Auto-Switching to fix any unplayable streams immediately
+ * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['embedsu', 'vidlink', 'multiaudio', 'vidsrc_vip', 'vidsrc_to', 'autoembed', 'twoembed', 'vidsrc_me'];
+const SERVER_ORDER = ['vidlink', 'multiaudio', 'vidsrc_cc', 'vidsrc_xyz', 'autoembed', 'twoembed', 'embedsu', 'vidsrc_vip'];
 
 const CinexaPlayer = {
   currentMovie: null,
-  currentServer: 'embedsu',
+  currentServer: 'vidlink',
   currentAudio: 'original',
   currentSubtitle: 'en',
   subtitleOffset: 0.0,
+  currentSeason: 1,
+  currentEpisode: 1,
 
   init() {
     this.modal = document.getElementById('player-modal');
@@ -23,6 +26,7 @@ const CinexaPlayer = {
     this.iframeEl = document.getElementById('video-iframe');
     this.closeBtn = document.getElementById('close-player-btn');
     this.syncIndicator = document.getElementById('sub-sync-indicator');
+    this.seriesControlsEl = document.getElementById('player-series-controls');
 
     if (this.closeBtn) {
       this.closeBtn.onclick = () => this.closePlayer();
@@ -41,12 +45,12 @@ const CinexaPlayer = {
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
-        this.switchServer('embedsu');
+        this.switchServer('vidlink');
       };
     }
   },
 
-  openPlayer(movie, server = 'embedsu') {
+  openPlayer(movie, server = 'vidlink', season = 1, episode = 1) {
     if (!this.modal) this.init();
     this.currentMovie = movie || {
       id: 'dune-part-two',
@@ -61,19 +65,142 @@ const CinexaPlayer = {
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
                         server === 'local';
     
-    this.currentServer = isLocalFilm ? 'local' : server;
+    this.currentServer = isLocalFilm ? 'local' : (server === 'embedsu' ? 'vidlink' : server);
     this.currentAudio = 'original';
     this.subtitleOffset = 0.0;
+    this.currentSeason = parseInt(season) || 1;
+    this.currentEpisode = parseInt(episode) || 1;
 
-    if (this.titleEl) {
-      this.titleEl.innerText = `${this.currentMovie.title} (${this.currentMovie.year || '2024'})`;
-    }
-
+    this.updateTitleUI();
+    this.renderSeriesControlsUI();
     this.updateControlsUI();
     this.loadStreamSource();
 
     if (this.modal) {
       this.modal.classList.add('active');
+    }
+  },
+
+  updateTitleUI() {
+    if (!this.titleEl || !this.currentMovie) return;
+    const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
+    if (isTV) {
+      this.titleEl.innerHTML = `${this.currentMovie.title} <span class="text-primary text-sm font-mono ml-2 font-bold px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/30">S${this.currentSeason} : E${this.currentEpisode}</span>`;
+    } else {
+      this.titleEl.innerText = `${this.currentMovie.title} (${this.currentMovie.year || '2024'})`;
+    }
+  },
+
+  renderSeriesControlsUI() {
+    let container = document.getElementById('player-series-controls');
+    if (!container) {
+      const controlsTray = document.querySelector('.player-controls-tray');
+      if (controlsTray) {
+        container = document.createElement('div');
+        container.id = 'player-series-controls';
+        container.className = 'player-control-group border-b border-white/5 pb-3 mb-2';
+        controlsTray.insertBefore(container, controlsTray.firstChild);
+      }
+    }
+
+    if (!container) return;
+
+    const isTV = this.currentMovie && (this.currentMovie.type === 'tv' || this.currentMovie.isSeries);
+    if (!isTV) {
+      container.style.display = 'none';
+      container.innerHTML = '';
+      return;
+    }
+
+    container.style.display = 'block';
+
+    const maxSeasons = this.currentMovie.seasons || 1;
+    const totalEpisodes = this.currentMovie.episodesCount || 12;
+    const epsInSeason = Math.min(24, Math.max(8, Math.ceil(totalEpisodes / maxSeasons)));
+
+    let seasonBtns = '';
+    for (let s = 1; s <= maxSeasons; s++) {
+      const activeClass = (s === this.currentSeason) ? 'active font-bold' : '';
+      seasonBtns += `<button class="player-pill-btn ${activeClass}" onclick="CinexaPlayer.setSeason(${s})">Season ${s}</button>`;
+    }
+
+    let episodeBtns = '';
+    for (let e = 1; e <= epsInSeason; e++) {
+      const activeClass = (e === this.currentEpisode) ? 'active font-bold' : '';
+      episodeBtns += `<button class="player-pill-btn ${activeClass}" onclick="CinexaPlayer.setEpisode(${e})">Ep ${e}</button>`;
+    }
+
+    container.innerHTML = `
+      <div class="space-y-2.5">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="group-label">📺 Seasons:</span>
+            <div class="player-pill-cluster">${seasonBtns}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="player-pill-btn text-xs" onclick="CinexaPlayer.prevEpisode()" title="Previous Episode">⏮ Prev Ep</button>
+            <button class="player-pill-btn text-xs bg-primary/20 text-primary border-primary/40" onclick="CinexaPlayer.nextEpisode()" title="Next Episode">Next Ep ⏭</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+          <span class="group-label whitespace-nowrap">🎞 Episodes:</span>
+          <div class="player-pill-cluster overflow-x-auto no-scrollbar">${episodeBtns}</div>
+        </div>
+      </div>
+    `;
+  },
+
+  setSeason(s) {
+    this.currentSeason = parseInt(s) || 1;
+    this.currentEpisode = 1;
+    this.updateTitleUI();
+    this.renderSeriesControlsUI();
+    this.loadStreamSource();
+    if (typeof showToast === 'function') {
+      showToast(`📺 Switched to Season ${this.currentSeason}`);
+    }
+  },
+
+  setEpisode(e) {
+    this.currentEpisode = parseInt(e) || 1;
+    this.updateTitleUI();
+    this.renderSeriesControlsUI();
+    this.loadStreamSource();
+    if (typeof showToast === 'function') {
+      showToast(`▶ Now Playing Episode ${this.currentEpisode}`);
+    }
+  },
+
+  nextEpisode() {
+    this.currentEpisode += 1;
+    this.updateTitleUI();
+    this.renderSeriesControlsUI();
+    this.loadStreamSource();
+    if (typeof showToast === 'function') {
+      showToast(`▶ Now Playing Episode ${this.currentEpisode}`);
+    }
+  },
+
+  prevEpisode() {
+    if (this.currentEpisode > 1) {
+      this.currentEpisode -= 1;
+      this.updateTitleUI();
+      this.renderSeriesControlsUI();
+      this.loadStreamSource();
+      if (typeof showToast === 'function') {
+        showToast(`▶ Now Playing Episode ${this.currentEpisode}`);
+      }
+    }
+  },
+
+  openCineHDMirror() {
+    if (!this.currentMovie) return;
+    const title = this.currentMovie.title || 'Movie';
+    const query = encodeURIComponent(title);
+    const cineUrl = `https://cinehd.vc/search?q=${query}`;
+    window.open(cineUrl, '_blank');
+    if (typeof showToast === 'function') {
+      showToast(`🚀 Opening "${title}" on CineHD Mirror...`);
     }
   },
 
@@ -103,14 +230,14 @@ const CinexaPlayer = {
     this.loadStreamSource();
     if (typeof showToast === 'function') {
       const serverNames = {
-        embedsu: 'Server 1 (Embed.su 4K Ultra Fast)',
-        vidlink: 'Server 2 (VidLink Pro 4K)',
-        multiaudio: 'Server 3 (Multi-Audio & Dubbed)',
-        vidsrc_vip: 'Server 4 (VidSrc VIP 4K)',
-        vidsrc_to: 'Server 5 (VidSrc To Cloud)',
-        autoembed: 'Server 6 (AutoEmbed Fast CDN)',
-        twoembed: 'Server 7 (2Embed Cinema)',
-        vidsrc_me: 'Server 8 (VidSrc ME)',
+        vidlink: 'Server 1 (VidLink Pro 4K - Ultra Reliable)',
+        multiaudio: 'Server 2 (Multi-Audio & Dubbed)',
+        vidsrc_cc: 'Server 3 (VidSrc CC Cloud)',
+        vidsrc_xyz: 'Server 4 (VidSrc XYZ HD)',
+        autoembed: 'Server 5 (AutoEmbed Fast CDN)',
+        twoembed: 'Server 6 (2Embed Cinema)',
+        embedsu: 'Server 7 (Embed.su 4K)',
+        vidsrc_vip: 'Server 8 (VidSrc VIP)',
         local: 'Server 9 (Cinexa 4K Master)'
       };
       showToast(`Switched to ${serverNames[server] || server}`);
@@ -137,9 +264,9 @@ const CinexaPlayer = {
       showToast(`🎧 Audio Track Set: ${audioLabels[audioLang] || audioLang}`);
     }
 
-    // When dubbing is requested, automatically prioritize MultiEmbed or EmbedSU which support multi-audio streams
+    // Automatically switch to MultiEmbed or VidLink when regional dubbing is selected
     if (['hindi', 'tamil', 'telugu', 'spanish', 'french'].includes(audioLang)) {
-      if (this.currentServer !== 'multiaudio' && this.currentServer !== 'embedsu') {
+      if (this.currentServer !== 'multiaudio' && this.currentServer !== 'vidlink') {
         this.currentServer = 'multiaudio';
         this.updateControlsUI();
       }
@@ -165,7 +292,6 @@ const CinexaPlayer = {
       showToast(`💬 Subtitles: ${subLabels[subLang] || subLang}`);
     }
 
-    // Toggle video tracks for HTML5 player
     if (this.videoEl && this.videoEl.textTracks) {
       for (let i = 0; i < this.videoEl.textTracks.length; i++) {
         const track = this.videoEl.textTracks[i];
@@ -198,22 +324,6 @@ const CinexaPlayer = {
       } else {
         badge.innerText = `${this.subtitleOffset}s (Delay)`;
         badge.className = 'font-mono text-xs text-secondary font-bold';
-      }
-    }
-
-    // Apply real-time cue shift on HTML5 video player textTracks
-    if (this.videoEl && this.videoEl.textTracks) {
-      for (let i = 0; i < this.videoEl.textTracks.length; i++) {
-        const track = this.videoEl.textTracks[i];
-        if (track.cues) {
-          for (let j = 0; j < track.cues.length; j++) {
-            const cue = track.cues[j];
-            if (cue) {
-              cue.startTime = Math.max(0, cue.startTime + delta);
-              cue.endTime = Math.max(0.1, cue.endTime + delta);
-            }
-          }
-        }
       }
     }
 
@@ -262,6 +372,10 @@ const CinexaPlayer = {
     if (!this.currentMovie) return;
 
     const tmdbId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
+    const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
+    const s = this.currentSeason || 1;
+    const e = this.currentEpisode || 1;
+
     const isLocalFilm = (this.currentMovie.slug === 'a-moment-to-remember' || 
                          this.currentMovie.id === '15859' || 
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
@@ -279,37 +393,57 @@ const CinexaPlayer = {
       return;
     }
 
-    // Multi-Server Cloud Stream Matrix
+    // High-Speed Multi-Server Matrix (Supporting Movies & TV Series)
     let streamUrl = '';
 
     switch (this.currentServer) {
-      case 'embedsu':
-        streamUrl = `https://embed.su/embed/movie/${tmdbId}`;
-        break;
       case 'vidlink':
-        streamUrl = `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
+        streamUrl = isTV
+          ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`
+          : `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
         break;
+
       case 'multiaudio':
-        streamUrl = `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
+        streamUrl = isTV
+          ? `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1&s=${s}&e=${e}`
+          : `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
         break;
-      case 'vidsrc_vip':
-        streamUrl = `https://vidsrc.vip/embed/movie/${tmdbId}`;
+
+      case 'vidsrc_cc':
+        streamUrl = isTV
+          ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.cc/v2/embed/movie/${tmdbId}`;
         break;
-      case 'vidsrc_to':
-        streamUrl = `https://vidsrc.to/embed/movie/${tmdbId}`;
+
+      case 'vidsrc_xyz':
+        streamUrl = isTV
+          ? `https://vidsrc.xyz/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.xyz/embed/movie/${tmdbId}`;
         break;
+
       case 'autoembed':
-        streamUrl = `https://autoembed.co/movie/tmdb/${tmdbId}`;
+        streamUrl = isTV
+          ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}`
+          : `https://autoembed.co/movie/tmdb/${tmdbId}`;
         break;
+
       case 'twoembed':
-        streamUrl = `https://www.2embed.skin/embed/movie/${tmdbId}`;
+        streamUrl = isTV
+          ? `https://www.2embed.skin/embed/tv/${tmdbId}&s=${s}&e=${e}`
+          : `https://www.2embed.skin/embed/movie/${tmdbId}`;
         break;
-      case 'vidsrc_me':
-        streamUrl = `https://vidsrc.me/embed/movie?tmdb=${tmdbId}`;
+
+      case 'embedsu':
+        streamUrl = isTV
+          ? `https://embed.su/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://embed.su/embed/movie/${tmdbId}`;
         break;
-      case 'local':
+
+      case 'vidsrc_vip':
       default:
-        streamUrl = `https://embed.su/embed/movie/${tmdbId}`;
+        streamUrl = isTV
+          ? `https://vidsrc.vip/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.vip/embed/movie/${tmdbId}`;
     }
 
     if (this.videoEl) {
@@ -336,10 +470,13 @@ const CinexaPlayer = {
       link.click();
       document.body.removeChild(link);
     } else {
+      const isTV = movie.type === 'tv' || movie.isSeries;
+      const s = this.currentSeason || 1;
+      const e = this.currentEpisode || 1;
       const downloadUrls = {
-        '4k': `https://embed.su/embed/movie/${tmdbId}`,
-        '1080p': `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`,
-        '720p': `https://autoembed.co/movie/tmdb/${tmdbId}`
+        '4k': isTV ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}` : `https://vidlink.pro/movie/${tmdbId}`,
+        '1080p': isTV ? `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1&s=${s}&e=${e}` : `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`,
+        '720p': isTV ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}` : `https://autoembed.co/movie/tmdb/${tmdbId}`
       };
       const url = downloadUrls[quality] || downloadUrls['4k'];
       window.open(url, '_blank');
