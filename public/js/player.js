@@ -58,8 +58,12 @@ const CinexaPlayer = {
     }
   },
 
-  nextServer() {
-    this.serverIndex = (this.serverIndex + 1) % this.servers.length;
+  switchServer(index) {
+    if (typeof index === 'number' && index >= 0 && index < this.servers.length) {
+      this.serverIndex = index;
+    } else {
+      this.serverIndex = 0;
+    }
     const srv = this.servers[this.serverIndex];
     this.updateServerUI(true);
     if (typeof showToast === 'function') {
@@ -68,17 +72,22 @@ const CinexaPlayer = {
     this.loadCloudStream();
   },
 
+  nextServer() {
+    const nextIdx = (this.serverIndex + 1) % this.servers.length;
+    this.switchServer(nextIdx);
+  },
+
   updateServerUI(isManualSwitch = false) {
     const srv = this.servers[this.serverIndex] || this.servers[0];
     const nextSrv = this.servers[(this.serverIndex + 1) % this.servers.length];
 
-    // Header badge
+    // Header badge text
     const headerNameEl = document.getElementById('player-current-server-name');
     if (headerNameEl) {
       headerNameEl.innerText = srv.name;
     }
 
-    // Header badge animation
+    // Header badge pulse animation
     const headerBadgeEl = document.getElementById('player-active-server-badge');
     if (headerBadgeEl) {
       headerBadgeEl.classList.remove('scale-105', 'bg-amber-500/30', 'text-amber-300');
@@ -100,6 +109,18 @@ const CinexaPlayer = {
     if (btnLabelEl) {
       btnLabelEl.innerText = `Switch (${nextSrv.name.split(' (')[0]})`;
     }
+
+    // Server Pills styling
+    const serverButtons = document.querySelectorAll('#player-servers-list .server-pill-btn');
+    serverButtons.forEach((btn, idx) => {
+      if (idx === this.serverIndex) {
+        btn.className = 'server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-md flex items-center gap-1.5';
+        btn.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-black"></span><span>${this.servers[idx].name}</span>`;
+      } else {
+        btn.className = 'server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5';
+        btn.innerHTML = `<span>${this.servers[idx].name}</span>`;
+      }
+    });
 
     if (isManualSwitch) {
       this.showServerSwitchToast(srv.name);

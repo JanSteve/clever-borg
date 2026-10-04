@@ -981,24 +981,39 @@
         <!-- Series Controls Row (Injected Dynamically when TV Series is loaded) -->
         <div id="player-series-controls" style="display: none;"></div>
 
-        <!-- Clean Non-Disturbing Stream Notice with Active Server Indicator -->
-        <div class="flex items-center justify-between flex-wrap gap-2.5 p-3 rounded-xl bg-surface-container-high/90 border border-primary/25 text-xs">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="material-symbols-outlined text-primary text-lg shrink-0">verified</span>
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xs font-semibold text-parchment">Currently Playing:</span>
-                <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/40">Server 1 (VidSrc 4K)</span>
-              </div>
-              <p class="font-sans text-driftwood text-[11px] mt-0.5">
-                If playback buffers or takes time, tap <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Switch Server</strong> to switch stream.
-              </p>
+        <!-- Streaming Server Selector & Notice Row -->
+        <div class="p-3 sm:p-4 rounded-xl bg-surface-container-high/90 border border-primary/25 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-xs font-semibold text-parchment flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-base">dns</span>
+                <span>Active Server:</span>
+              </span>
+              <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidSrc 4K)</span>
             </div>
+            <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md self-start sm:self-auto" onclick="CinexaPlayer.nextServer()">
+              <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
+              <span id="player-switch-btn-label">Next Server</span>
+            </button>
           </div>
-          <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md" onclick="CinexaPlayer.nextServer()">
-            <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
-            <span id="player-switch-btn-label">Switch Server</span>
-          </button>
+
+          <!-- Direct Server Select Buttons -->
+          <div class="flex items-center gap-2 flex-wrap" id="player-servers-list">
+            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-sm flex items-center gap-1.5" data-server-index="0" onclick="CinexaPlayer.switchServer(0)">
+              <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
+              <span>Server 1 (VidSrc 4K)</span>
+            </button>
+            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5" data-server-index="1" onclick="CinexaPlayer.switchServer(1)">
+              <span>Server 2 (VidLink Pro)</span>
+            </button>
+            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5" data-server-index="2" onclick="CinexaPlayer.switchServer(2)">
+              <span>Server 3 (2Embed Cinema)</span>
+            </button>
+          </div>
+
+          <p class="font-sans text-driftwood text-[11px] leading-relaxed pt-1 border-t border-white/5">
+            <span class="text-primary font-semibold">💡 Stream Notice:</span> If this server takes time to load or buffers, tap any server button above or click <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Next Server</strong> to switch stream.
+          </p>
         </div>
       </div>
     </div>
@@ -1076,9 +1091,9 @@
   </footer>
 
   <!-- Core Scripts -->
-  <script src="js/movies-data.js"></script>
-  <script src="js/tmdb-service.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/movies-data.js?v=2.8"></script>
+  <script src="js/tmdb-service.js?v=2.8"></script>
+  <script src="js/player.js?v=2.8"></script>
+  <script src="js/app.js?v=2.8"></script>
 </body>
 </html>
