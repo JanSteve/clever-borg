@@ -292,6 +292,9 @@
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'anime')">
           🎌 Anime &amp; Animation
         </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-amber-500/30 text-amber-300 hover:text-amber-200 transition-all cursor-pointer" onclick="selectChip(this, 'cartoons')">
+          🧸 Hindi Toons &amp; Cartoons
+        </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'bollywood')">
           🇮🇳 Bollywood (Hindi)
         </button>
@@ -397,6 +400,25 @@
             </div>
           </div>
           <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-anime"></div>
+        </section>
+
+        <!-- Hindi Cartoons & Toons (AnimeSalt Collection) -->
+        <section class="w-full space-y-4" id="section-row-cartoons">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold flex items-center gap-2">
+              <span>🧸 Hindi Toons &amp; Cartoons</span>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-sans font-medium border border-amber-500/30">AnimeSalt Collection</span>
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-cartoons', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-cartoons', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-cartoons"></div>
         </section>
 
         <!-- 4. Bollywood Hits -->
@@ -624,6 +646,7 @@
                 <option value="all">All Genres</option>
                 <option value="Action">Action</option>
                 <option value="Anime">Anime</option>
+                <option value="Animation">🧸 Animation &amp; Cartoons</option>
                 <option value="Sci-Fi">Sci-Fi</option>
                 <option value="Drama">Drama</option>
                 <option value="Romance">Romance</option>

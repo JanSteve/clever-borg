@@ -383,6 +383,7 @@ function selectNavCategory(category) {
     const btn = Array.from(container.querySelectorAll('.chip-item')).find(b => {
       const txt = b.innerText.toLowerCase();
       if (category === 'series') return txt.includes('series');
+      if (category === 'cartoons') return txt.includes('cartoons') || txt.includes('toons');
       if (category === 'anime') return txt.includes('anime');
       if (category === 'bollywood') return txt.includes('bollywood');
       if (category === 'telugu') return txt.includes('telugu');
@@ -435,6 +436,7 @@ function selectChip(btn, category) {
   // If specific section exists, smooth scroll to it
   const sectionMap = {
     series: 'section-row-series',
+    cartoons: 'section-row-cartoons',
     anime: 'section-row-anime',
     bollywood: 'section-row-bollywood',
     telugu: 'section-row-telugu',
@@ -683,6 +685,13 @@ function filterTrendingRows(category = 'all') {
     (m.language && /^(ja|japanese)$/i.test(m.language.trim()) && (m.genres && m.genres.some(g => /animation|anime/i.test(g))))
   );
 
+  // 4b. Hindi Cartoons & Toons (AnimeSalt Collection)
+  const cartoonFilms = catalog.filter(m => 
+    m.category === 'cartoons' || 
+    (m.industry && m.industry.includes('AnimeSalt')) ||
+    /doraemon|shin-chan|shinchan|ben 10|ninja hattori|perman|kiteretsu|chhota bheem|oggy|courage the cowardly|kick buttowski|slugterra|generator rex|motu patlu|roll no 21/i.test(m.title || '')
+  );
+
   // 5. Hollywood 4K: US/UK blockbusters
   const hollywoodFilms = catalog.filter(m => 
     !m.isSeries &&
@@ -727,6 +736,7 @@ function filterTrendingRows(category = 'all') {
   if (trendingContainer) {
     let trendingFilms = catalog;
     if (category === 'series') trendingFilms = seriesFilms;
+    else if (category === 'cartoons') trendingFilms = cartoonFilms;
     else if (category === 'anime') trendingFilms = animeFilms;
     else if (category === 'bollywood') trendingFilms = bollywoodFilms;
     else if (category === 'telugu') trendingFilms = teluguFilms;
@@ -754,6 +764,7 @@ function filterTrendingRows(category = 'all') {
 
   populate('carousel-series', seriesFilms, 'SERIES');
   populate('carousel-anime', animeFilms, 'ANIME 4K');
+  populate('carousel-cartoons', cartoonFilms, 'HINDI TOON');
   populate('carousel-bollywood', bollywoodFilms, 'HINDI');
   populate('carousel-telugu', teluguFilms, 'TELUGU');
   populate('carousel-tamil', tamilFilms, 'TAMIL');
