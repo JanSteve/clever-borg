@@ -8,7 +8,7 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['vidlink', 'vidsrc_cc', 'vidsrc_xyz', 'autoembed', 'twoembed', 'vidsrc_vip'];
+const SERVER_ORDER = ['vidlink', 'vidsrc_pm', 'autoembed', 'twoembed_cc', 'twoembed_skin'];
 
 const CinexaPlayer = {
   currentMovie: null,
@@ -220,14 +220,11 @@ const CinexaPlayer = {
     if (typeof showToast === 'function') {
       const serverNames = {
         vidlink: 'Server 1 (VidLink Pro 4K - Ultra Reliable)',
-        multiaudio: 'Server 2 (Multi-Audio & Dubbed)',
-        vidsrc_cc: 'Server 3 (VidSrc CC Cloud)',
-        vidsrc_xyz: 'Server 4 (VidSrc XYZ HD)',
-        autoembed: 'Server 5 (AutoEmbed Fast CDN)',
-        twoembed: 'Server 6 (2Embed Cinema)',
-        embedsu: 'Server 7 (Embed.su 4K)',
-        vidsrc_vip: 'Server 8 (VidSrc VIP)',
-        local: 'Server 9 (Cinexa 4K Master)'
+        vidsrc_pm: 'Server 2 (VidSrc Cloud Ultra)',
+        autoembed: 'Server 3 (AutoEmbed Fast CDN)',
+        twoembed_cc: 'Server 4 (2Embed Prime)',
+        twoembed_skin: 'Server 5 (2Embed Cinema)',
+        local: 'Server 6 (Cinexa Local Master)'
       };
       showToast(`Switched to ${serverNames[server] || server}`);
     }
@@ -251,14 +248,6 @@ const CinexaPlayer = {
 
     if (typeof showToast === 'function') {
       showToast(`🎧 Audio Track Set: ${audioLabels[audioLang] || audioLang}`);
-    }
-
-    // Automatically switch to MultiEmbed or VidLink when regional dubbing is selected
-    if (['hindi', 'tamil', 'telugu', 'spanish', 'french'].includes(audioLang)) {
-      if (this.currentServer !== 'multiaudio' && this.currentServer !== 'vidlink') {
-        this.currentServer = 'multiaudio';
-        this.updateControlsUI();
-      }
     }
     this.loadStreamSource();
   },
@@ -392,16 +381,10 @@ const CinexaPlayer = {
           : `https://vidlink.pro/movie/${tmdbId}`;
         break;
 
-      case 'vidsrc_cc':
+      case 'vidsrc_pm':
         streamUrl = isTV
-          ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}`
-          : `https://vidsrc.cc/v2/embed/movie/${tmdbId}`;
-        break;
-
-      case 'vidsrc_xyz':
-        streamUrl = isTV
-          ? `https://vidsrc.xyz/embed/tv/${tmdbId}/${s}/${e}`
-          : `https://vidsrc.xyz/embed/movie/${tmdbId}`;
+          ? `https://vidsrc.pm/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.pm/embed/movie/${tmdbId}`;
         break;
 
       case 'autoembed':
@@ -410,17 +393,17 @@ const CinexaPlayer = {
           : `https://autoembed.co/movie/tmdb/${tmdbId}`;
         break;
 
-      case 'twoembed':
+      case 'twoembed_cc':
+        streamUrl = isTV
+          ? `https://www.2embed.cc/embedtv/${tmdbId}&s=${s}&e=${e}`
+          : `https://www.2embed.cc/embed/${tmdbId}`;
+        break;
+
+      case 'twoembed_skin':
+      default:
         streamUrl = isTV
           ? `https://www.2embed.skin/embed/tv/${tmdbId}&s=${s}&e=${e}`
           : `https://www.2embed.skin/embed/movie/${tmdbId}`;
-        break;
-
-      case 'vidsrc_vip':
-      default:
-        streamUrl = isTV
-          ? `https://vidsrc.vip/embed/tv/${tmdbId}/${s}/${e}`
-          : `https://vidsrc.vip/embed/movie/${tmdbId}`;
     }
 
     if (this.videoEl) {
@@ -452,7 +435,7 @@ const CinexaPlayer = {
       const e = this.currentEpisode || 1;
       const downloadUrls = {
         '4k': isTV ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}` : `https://vidlink.pro/movie/${tmdbId}`,
-        '1080p': isTV ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}` : `https://vidsrc.cc/v2/embed/movie/${tmdbId}`,
+        '1080p': isTV ? `https://vidsrc.pm/embed/tv/${tmdbId}/${s}/${e}` : `https://vidsrc.pm/embed/movie/${tmdbId}`,
         '720p': isTV ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}` : `https://autoembed.co/movie/tmdb/${tmdbId}`
       };
       const url = downloadUrls[quality] || downloadUrls['4k'];

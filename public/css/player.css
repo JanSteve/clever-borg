@@ -5,10 +5,10 @@
 .player-modal {
   position: fixed;
   inset: 0;
-  background: rgba(9, 21, 26, 0.96);
+  background: rgba(9, 21, 26, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  z-index: 100;
+  z-index: 99999;
   display: none;
   align-items: center;
   justify-content: center;
@@ -832,6 +832,34 @@ video::cue {
 }
 
 @media (max-width: 768px) {
+  .player-modal {
+    padding: 0 !important;
+    align-items: stretch !important;
+    background: #000000 !important;
+  }
+  .player-container {
+    max-width: 100% !important;
+    max-height: 100vh !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  .player-header {
+    padding: 10px 14px !important;
+  }
+  .player-movie-title {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+  }
+  .close-player-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+  }
+  .player-btn-download {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+  }
   .player-top-bar { padding: 16px 20px; }
   .player-bottom-controls { padding: 0 20px 20px 20px; }
   .player-movie-korean { display: none; }
