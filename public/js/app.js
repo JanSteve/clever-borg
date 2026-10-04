@@ -365,6 +365,23 @@ function switchMainScreen(screenName) {
     }
   });
 
+  // Update Mobile Bottom Nav Active State
+  const mobileHome = document.getElementById('mobile-nav-home');
+  const mobileLibrary = document.getElementById('mobile-nav-library');
+  if (mobileHome && mobileLibrary) {
+    if (screenName === 'library') {
+      mobileLibrary.classList.add('text-primary');
+      mobileLibrary.classList.remove('text-driftwood');
+      mobileHome.classList.remove('text-primary');
+      mobileHome.classList.add('text-driftwood');
+    } else {
+      mobileHome.classList.add('text-primary');
+      mobileHome.classList.remove('text-driftwood');
+      mobileLibrary.classList.remove('text-primary');
+      mobileLibrary.classList.add('text-driftwood');
+    }
+  }
+
   if (screenName === 'library') {
     renderLibraryGrid();
   } else if (screenName === 'discover') {
@@ -520,7 +537,7 @@ function createMovieCardHtml(m, options = {}) {
   const tag = options.tag || defaultTag;
 
   return `
-    <div class="group relative flex-shrink-0 w-[190px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
+    <div class="group relative flex-shrink-0 w-[140px] sm:w-[190px] snap-start transition-all duration-300 cursor-pointer" onclick="openFilmBySlug('${id}')">
       <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-2xl">
         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
         <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none"></div>
@@ -799,10 +816,10 @@ function filterTrendingRows(category = 'all') {
 
       return `
         <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${id}')">
-          <span class="font-serif text-[110px] font-normal leading-none text-transparent select-none pointer-events-none -mr-6 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.5;">
+          <span class="font-serif text-[75px] sm:text-[110px] font-normal leading-none text-transparent select-none pointer-events-none -mr-4 sm:-mr-6 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.5;">
             ${num}
           </span>
-          <div class="relative w-[170px] z-10">
+          <div class="relative w-[130px] sm:w-[170px] z-10">
             <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-md group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-2xl transition-all duration-300">
               <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
               <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">

@@ -135,19 +135,19 @@
   <!-- =========================================================================
        1. TOP STICKY NAVBAR (Clean, Crisp & Focused)
        ========================================================================= -->
-  <header class="sticky top-0 z-40 w-full h-[70px] border-b border-white/5 bg-petrol-base/90 backdrop-blur-xl transition-all duration-300" id="global-navbar">
-    <div class="max-w-[1360px] mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-4">
+  <header class="sticky top-0 z-40 w-full h-[60px] sm:h-[70px] border-b border-white/5 bg-petrol-base/90 backdrop-blur-xl transition-all duration-300" id="global-navbar">
+    <div class="max-w-[1360px] mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-3">
       <!-- Left: Brand Logo -->
-      <a class="flex items-center gap-3 group focus:outline-none cursor-pointer" onclick="switchMainScreen('discover')">
-        <div class="w-8 h-8 rounded-full border border-primary/60 flex items-center justify-center bg-surface-container group-hover:border-primary transition-colors shadow-sm">
-          <span class="material-symbols-outlined text-primary text-[18px]">movie</span>
+      <a class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none cursor-pointer" onclick="switchMainScreen('discover')">
+        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-primary/60 flex items-center justify-center bg-surface-container group-hover:border-primary transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-primary text-[16px] sm:text-[18px]">movie</span>
         </div>
-        <span class="font-serif font-semibold text-2xl tracking-tight text-parchment group-hover:text-primary transition-colors">
+        <span class="font-serif font-semibold text-xl sm:text-2xl tracking-tight text-parchment group-hover:text-primary transition-colors">
           Cinexa
         </span>
       </a>
 
-      <!-- Center: Category Navigation Links -->
+      <!-- Center: Category Navigation Links (Desktop) -->
       <nav class="hidden lg:flex items-center gap-6 text-sm font-medium" id="main-nav-links">
         <a class="nav-link active text-parchment cursor-pointer" data-nav="discover" onclick="switchMainScreen('discover')">Browse All</a>
         <a class="nav-link text-driftwood hover:text-parchment cursor-pointer" onclick="selectNavCategory('series')">📺 TV &amp; Web Series</a>
@@ -160,18 +160,19 @@
       </nav>
 
       <!-- Right: Search trigger & Watchlist -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
         <!-- Interactive Search Bar trigger -->
-        <button aria-label="Open search" class="flex items-center justify-between gap-3 h-10 px-4 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-parchment transition-all cursor-pointer shadow-sm" onclick="openModal('results')">
-          <div class="flex items-center gap-2">
+        <button aria-label="Open search" class="flex items-center justify-between gap-2 sm:gap-3 h-9 sm:h-10 px-3 sm:px-4 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-parchment transition-all cursor-pointer shadow-sm active:scale-95" onclick="openModal('results')">
+          <div class="flex items-center gap-1.5 sm:gap-2">
             <span class="material-symbols-outlined text-[18px] text-primary">search</span>
             <span class="text-xs font-sans hidden sm:inline text-driftwood">Search films, anime, series...</span>
+            <span class="text-xs font-sans inline sm:hidden text-driftwood">Search...</span>
           </div>
         </button>
 
         <!-- Library Bookmark Icon -->
-        <button aria-label="Open My Library" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-driftwood hover:text-primary transition-colors cursor-pointer border border-white/10" onclick="switchMainScreen('library')" title="My Library / Watchlist">
-          <span class="material-symbols-outlined text-[20px]">bookmark</span>
+        <button aria-label="Open My Library" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-driftwood hover:text-primary transition-colors cursor-pointer border border-white/10 active:scale-95" onclick="switchMainScreen('library')" title="My Library / Watchlist">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">bookmark</span>
         </button>
       </div>
     </div>
@@ -180,7 +181,7 @@
   <!-- =========================================================================
        2. CINEXA FEATURED HERO SLIDESHOW (Spacious, Cinematic & Uncluttered)
        ========================================================================= -->
-  <section class="relative -mt-[70px] pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden border-b border-white/5 bg-surface select-none" id="hero-slideshow-container">
+  <section class="relative -mt-[60px] sm:-mt-[70px] pt-20 sm:pt-24 pb-8 sm:pb-16 px-3 sm:px-6 overflow-hidden border-b border-white/5 bg-surface select-none" id="hero-slideshow-container">
     <!-- Atmospheric Ambient Backdrops with Crossfade -->
     <div class="absolute inset-0 z-0 overflow-hidden" id="slideshow-backdrop-layer">
       <img alt="Cinema backdrop" class="w-full h-full object-cover opacity-35 filter contrast-125 brightness-90 transition-all duration-1000 scale-105" id="slide-bg-img" src="https://image.tmdb.org/t/p/original/eZ239CUp1d6OryZEBPnO2n87gMG.jpg" onerror="this.onerror=null; this.src='https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg'"/>
@@ -188,26 +189,26 @@
       <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent"></div>
     </div>
 
-    <div class="max-w-[1360px] mx-auto relative z-10 pt-4 sm:pt-6">
+    <div class="max-w-[1360px] mx-auto relative z-10 pt-2 sm:pt-6">
       <!-- Main Featured Slide Layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" id="featured-slide-card">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center" id="featured-slide-card">
         <!-- Left Content Deck -->
-        <div class="lg:col-span-8 space-y-4">
+        <div class="lg:col-span-8 space-y-3 sm:space-y-4">
           <!-- Kicker & Category Tag -->
           <div class="flex items-center gap-2.5">
-            <span class="font-mono text-xs uppercase tracking-wider text-primary px-3 py-1 bg-primary/10 border border-primary/30 rounded-full flex items-center gap-1.5" id="slide-badge-category">
+            <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-primary px-2.5 sm:px-3 py-0.5 sm:py-1 bg-primary/10 border border-primary/30 rounded-full flex items-center gap-1.5" id="slide-badge-category">
               <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               <span id="slide-category-text">✨ Top Recommendation</span>
             </span>
           </div>
 
           <!-- Title -->
-          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-parchment leading-tight transition-all" id="slide-title">
+          <h1 class="font-serif text-2xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-parchment leading-tight transition-all" id="slide-title">
             Dune: Part Two
           </h1>
 
           <!-- Metadata Row -->
-          <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-driftwood">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono text-driftwood">
             <span class="text-parchment font-medium" id="slide-year">2024</span>
             <span>•</span>
             <span id="slide-duration">2h 46m</span>
@@ -220,13 +221,13 @@
           </div>
 
           <!-- Synopsis -->
-          <p class="font-sans text-sm sm:text-base text-driftwood leading-relaxed max-w-2xl line-clamp-3" id="slide-synopsis">
+          <p class="font-sans text-xs sm:text-base text-driftwood leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-3" id="slide-synopsis">
             Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
           </p>
 
           <!-- Clean Action Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button class="h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
+            <button class="w-full sm:w-auto h-11 sm:h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center justify-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch Now</span>
             </button>
@@ -234,8 +235,8 @@
         </div>
 
         <!-- Right Side: Poster Card & Progress -->
-        <div class="lg:col-span-4 flex flex-col items-center lg:items-end gap-4">
-          <div class="relative w-44 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-surface-container group cursor-pointer" onclick="openSlideDossier()">
+        <div class="lg:col-span-4 hidden sm:flex flex-col items-center lg:items-end gap-4">
+          <div class="relative w-40 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-surface-container group cursor-pointer" onclick="openSlideDossier()">
             <img alt="Active Film Poster" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="slide-poster-img" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" onerror="this.onerror=null; this.src='https://image.tmdb.org/t/p/w500/8sNiAPPYU14PUepFNeSNGUTiHW.jpg'"/>
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
@@ -253,9 +254,9 @@
   </section>
 
   <!-- =========================================================================
-       3. STICKY SUB-NAV CATEGORY PILLS (All, Series, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean, Surprise Me)
+       3. STICKY SUB-NAV CATEGORY PILLS
        ========================================================================= -->
-  <section class="w-full sticky top-[70px] z-30 py-3 bg-petrol-base/95 backdrop-blur-md border-b border-white/5 shadow-sm">
+  <section class="w-full sticky top-[60px] sm:top-[70px] z-30 py-2 sm:py-3 bg-petrol-base/95 backdrop-blur-md border-b border-white/5 shadow-sm">
     <div class="max-w-[1360px] mx-auto px-4 sm:px-6">
       <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar scroll-smooth" id="chip-container">
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs font-semibold bg-primary text-on-primary shadow-sm transition-all cursor-pointer" onclick="selectChip(this, 'all')">
@@ -907,25 +908,24 @@
       </div>
     </div>
   </div>
-    </div>
-  </div>
 
   <!-- =========================================================================
        5. SEARCH MODAL OVERLAY (⌘K / Ctrl+K)
        ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-start justify-center pt-20 px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
-    <div class="relative w-full max-w-2xl rounded-2xl bg-surface-container p-5 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
-      <div class="flex items-center gap-3 border-b border-white/10 pb-3">
-        <span class="material-symbols-outlined text-primary text-2xl">search</span>
-        <input class="w-full bg-transparent font-sans text-base text-parchment placeholder:text-text-muted focus:outline-none" id="modal-search-input" oninput="handleModalSearch(this.value)" placeholder="Search 200+ movies, anime, actors, directors..." type="text"/>
-        <kbd class="font-mono text-xs text-text-muted px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10">ESC</kbd>
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-start justify-center pt-16 sm:pt-20 px-3 sm:px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-surface-container p-4 sm:p-5 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-2.5 sm:gap-3 border-b border-white/10 pb-3">
+        <span class="material-symbols-outlined text-primary text-xl sm:text-2xl">search</span>
+        <input class="w-full bg-transparent font-sans text-sm sm:text-base text-parchment placeholder:text-text-muted focus:outline-none" id="modal-search-input" oninput="handleModalSearch(this.value)" placeholder="Search movies, anime, series, actors..." type="text"/>
+        <button class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-driftwood hover:text-parchment text-xs cursor-pointer sm:hidden" onclick="closeModal()">✕</button>
+        <kbd class="hidden sm:inline-block font-mono text-xs text-text-muted px-2 py-0.5 rounded bg-surface-container-lowest border border-white/10">ESC</kbd>
       </div>
-      <div class="max-h-[380px] overflow-y-auto divide-y divide-white/5 pr-1" id="modal-content-area"></div>
+      <div class="max-h-[60vh] sm:max-h-[380px] overflow-y-auto divide-y divide-white/5 pr-1" id="modal-content-area"></div>
     </div>
   </div>
 
   <!-- =========================================================================
-       6. CINEMA 4K MASTER PLAYER MODAL (100% Verified Single Ultra-Fast Server)
+       6. CINEMA 4K MASTER PLAYER MODAL
        ========================================================================= -->
   <div class="player-modal" id="player-modal">
     <div class="player-container">
@@ -942,9 +942,10 @@
           <h2 class="player-movie-title truncate font-serif text-sm sm:text-xl font-semibold text-parchment mt-1" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="player-header-actions flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <button class="player-btn-download flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="CinexaPlayer.nextServer()" title="Switch to Alternate 4K Stream">
+          <button class="player-btn-download flex items-center gap-1.5 text-xs px-2.5 sm:px-3 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="CinexaPlayer.nextServer()" title="Switch to Alternate 4K Stream">
             <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
-            <span>Switch Server</span>
+            <span class="hidden xs:inline">Switch Server</span>
+            <span class="inline xs:hidden">Switch</span>
           </button>
           <button class="close-player-btn w-8 h-8 rounded-full bg-white/10 hover:bg-primary hover:text-on-primary text-parchment flex items-center justify-center text-sm font-bold transition-all cursor-pointer active:scale-95 shrink-0" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>
@@ -982,8 +983,8 @@
         <div id="player-series-controls" style="display: none;"></div>
 
         <!-- Streaming Server Selector & Notice Row -->
-        <div class="p-3 sm:p-4 rounded-xl bg-surface-container-high/90 border border-primary/25 space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div class="p-3 sm:p-4 rounded-xl bg-surface-container-high/90 border border-primary/25 space-y-2.5">
+          <div class="flex items-center justify-between gap-2 flex-wrap">
             <div class="flex items-center gap-2 flex-wrap">
               <span class="text-xs font-semibold text-parchment flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-primary text-base">dns</span>
@@ -991,28 +992,28 @@
               </span>
               <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidSrc 4K)</span>
             </div>
-            <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md self-start sm:self-auto" onclick="CinexaPlayer.nextServer()">
+            <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md" onclick="CinexaPlayer.nextServer()">
               <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
               <span id="player-switch-btn-label">Next Server</span>
             </button>
           </div>
 
-          <!-- Direct Server Select Buttons -->
-          <div class="flex items-center gap-2 flex-wrap" id="player-servers-list">
-            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-sm flex items-center gap-1.5" data-server-index="0" onclick="CinexaPlayer.switchServer(0)">
+          <!-- Direct Server Select Buttons (Responsive Grid) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full pt-1" id="player-servers-list">
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-sm flex items-center justify-center gap-1.5" data-server-index="0" onclick="CinexaPlayer.switchServer(0)">
               <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
               <span>Server 1 (VidSrc 4K)</span>
             </button>
-            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5" data-server-index="1" onclick="CinexaPlayer.switchServer(1)">
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="1" onclick="CinexaPlayer.switchServer(1)">
               <span>Server 2 (VidLink Pro)</span>
             </button>
-            <button class="server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5" data-server-index="2" onclick="CinexaPlayer.switchServer(2)">
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="2" onclick="CinexaPlayer.switchServer(2)">
               <span>Server 3 (2Embed Cinema)</span>
             </button>
           </div>
 
-          <p class="font-sans text-driftwood text-[11px] leading-relaxed pt-1 border-t border-white/5">
-            <span class="text-primary font-semibold">💡 Stream Notice:</span> If this server takes time to load or buffers, tap any server button above or click <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Next Server</strong> to switch stream.
+          <p class="font-sans text-driftwood text-[11px] leading-relaxed pt-1.5 border-t border-white/5">
+            <span class="text-primary font-semibold">💡 Stream Notice:</span> If this server takes time to load or buffers, tap any server button above to switch stream instantly.
           </p>
         </div>
       </div>
@@ -1023,7 +1024,7 @@
        7. LEGAL & DMCA MODAL
        ========================================================================= -->
   <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="legal-modal-overlay" onclick="closeLegalModal()">
-    <div class="relative w-full max-w-xl rounded-2xl bg-surface-container p-6 sm:p-8 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
+    <div class="relative w-full max-w-xl rounded-2xl bg-surface-container p-5 sm:p-8 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
       <div class="flex items-center justify-between pb-3 border-b border-white/10">
         <h3 class="font-serif text-lg text-parchment font-semibold" id="legal-modal-title">Terms &amp; Information</h3>
         <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeLegalModal()">
@@ -1042,16 +1043,16 @@
   <!-- =========================================================================
        8. TOAST NOTIFICATION
        ========================================================================= -->
-  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-high text-parchment border border-white/10 shadow-2xl transition-all duration-300 transform translate-y-12 opacity-0 pointer-events-none" id="watchlist-toast">
-    <span class="material-symbols-outlined text-primary text-[20px]">info</span>
-    <span class="font-sans text-xs font-medium" id="toast-message">Notification message</span>
-    <button class="font-mono text-xs text-primary font-semibold hover:underline ml-2 cursor-pointer" id="toast-undo">Dismiss</button>
+  <div class="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-high text-parchment border border-white/10 shadow-2xl transition-all duration-300 transform translate-y-12 opacity-0 pointer-events-none max-w-[90vw]" id="watchlist-toast">
+    <span class="material-symbols-outlined text-primary text-[20px] shrink-0">info</span>
+    <span class="font-sans text-xs font-medium truncate" id="toast-message">Notification message</span>
+    <button class="font-mono text-xs text-primary font-semibold hover:underline ml-2 cursor-pointer shrink-0" id="toast-undo">Dismiss</button>
   </div>
 
   <!-- =========================================================================
        9. CLEAN ELEGANT FOOTER (Uncluttered)
        ========================================================================= -->
-  <footer class="w-full bg-surface-container-lowest border-t border-white/5 mt-16 pt-10 pb-8">
+  <footer class="w-full bg-surface-container-lowest border-t border-white/5 mt-16 pt-10 pb-24 lg:pb-8">
     <div class="max-w-[1360px] mx-auto px-4 sm:px-6 space-y-6">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-3">
@@ -1061,7 +1062,7 @@
           <span class="font-serif font-semibold text-lg text-parchment">Cinexa</span>
         </div>
 
-        <div class="flex flex-wrap items-center gap-6 font-sans text-xs text-driftwood">
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 font-sans text-xs text-driftwood">
           <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('anime')">Anime</a>
           <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
           <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
@@ -1090,10 +1091,32 @@
     </div>
   </footer>
 
+  <!-- =========================================================================
+       10. MOBILE BOTTOM NAVIGATION DOCK (Touch-Friendly Native UX)
+       ========================================================================= -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#071318]/95 backdrop-blur-2xl border-t border-white/10 px-2 py-1.5 flex items-center justify-around shadow-2xl safe-area-bottom" id="mobile-nav-dock">
+    <button class="flex flex-col items-center gap-0.5 text-primary focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="switchMainScreen('discover'); window.scrollTo({top: 0, behavior: 'smooth'})" id="mobile-nav-home">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[10px] font-sans font-bold tracking-tight">Browse</span>
+    </button>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="openModal('results')" id="mobile-nav-search">
+      <span class="material-symbols-outlined text-[22px]">search</span>
+      <span class="text-[10px] font-sans font-semibold tracking-tight">Search</span>
+    </button>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="triggerSurpriseMe()" id="mobile-nav-surprise">
+      <span class="material-symbols-outlined text-[22px] text-primary">casino</span>
+      <span class="text-[10px] font-sans font-semibold tracking-tight">Surprise</span>
+    </button>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="switchMainScreen('library')" id="mobile-nav-library">
+      <span class="material-symbols-outlined text-[22px]">bookmark</span>
+      <span class="text-[10px] font-sans font-semibold tracking-tight">Library</span>
+    </button>
+  </nav>
+
   <!-- Core Scripts -->
-  <script src="js/movies-data.js?v=2.8"></script>
-  <script src="js/tmdb-service.js?v=2.8"></script>
-  <script src="js/player.js?v=2.8"></script>
-  <script src="js/app.js?v=2.8"></script>
+  <script src="js/movies-data.js?v=2.9"></script>
+  <script src="js/tmdb-service.js?v=2.9"></script>
+  <script src="js/player.js?v=2.9"></script>
+  <script src="js/app.js?v=2.9"></script>
 </body>
 </html>
