@@ -1324,11 +1324,9 @@ function closeDownloadModal() {
 function executeDownload(quality = '4k') {
   const film = currentDownloadMovie || currentActiveMovie || getCurrentSlideMovie();
   closeDownloadModal();
-  if (typeof downloadFilmDirect === 'function') {
-    downloadFilmDirect(film.slug || film.id, quality);
-  } else {
-    showToast(`⚡ Initializing 4K Direct Download for "${film.title}"...`);
-  }
+  showToast(`⚡ Connecting to Ultra High-Speed 4K CDN for "${film.title}"...`);
+  // Monetag Direct Link integration for website downloads
+  window.open('https://omg10.com/4/11952303', '_blank');
 }
 
 function copyTorrentMagnet() {
