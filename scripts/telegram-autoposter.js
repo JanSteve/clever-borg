@@ -110,8 +110,7 @@ function sendTelegramMessage(text, inlineKeyboard) {
 }
 
 /**
- * Generates high-converting Telegram Global Search SEO keywords and variations
- * so whenever any user searches for a movie in Telegram search, this channel ranks #1.
+ * Generates compact high-converting Telegram Global Search SEO keywords (kept under length budget)
  */
 function generateTelegramSearchSEO(film) {
   const sanitize = tag => tag.replace(/[^a-zA-Z0-9]/g, '');
@@ -119,38 +118,17 @@ function generateTelegramSearchSEO(film) {
   const rawClean = sanitize(titleClean);
   const year = film.year || '2025';
 
-  // Hashtags
-  const h1 = `#${rawClean}`;
-  const h2 = `#${rawClean}FullMovie`;
-  const h3 = `#${rawClean}HindiDubbed`;
-  const h4 = `#${rawClean}Download`;
-  const h5 = `#${rawClean}4K`;
-  const h6 = `#${rawClean}${year}`;
+  const hashtags = `#${rawClean} #${rawClean}HindiDubbed #${rawClean}4K #${rawClean}Download #4KMovies #HindiDubbed #DualAudio #WatchFree #Cinexa`;
+  const searchQueries = `🔍 <i>${titleClean} Full Movie Download | ${titleClean} in Hindi Dubbed 4K | ${titleClean} Watch Online</i>`;
 
-  const genreTags = Array.isArray(film.genres) 
-    ? film.genres.slice(0, 3).map(g => '#' + sanitize(g)).join(' ')
-    : '#Action #Thriller';
-
-  const catTag = film.category ? `#${sanitize(film.category.toUpperCase())}` : '#CINEMA';
-  const generalTags = '#4KMovies #HindiDubbed #DualAudio #WatchOnline #TelegramMovies #OTTRelease #Cinexa';
-
-  const hashtagsBlock = `${h1} ${h2} ${h3} ${h4} ${h5} ${h6} ${catTag} ${genreTags} ${generalTags}`;
-
-  // Search Query Index block (Matches raw text typed into Telegram search bar)
-  const searchQueries = 
-`🔍 <b>Global Search Tags:</b>
-<i>${titleClean} Full Movie Download | ${titleClean} in Hindi Dubbed 4K | ${titleClean} ${year} Watch Online Free | ${titleClean} HD 1080p 720p Dual Audio Multi-Sub | ${titleClean} OTT Release Telegram Link</i>`;
-
-  return { hashtagsBlock, searchQueries };
+  return { hashtags, searchQueries };
 }
 
 function getRatingStars(rating) {
   const num = parseFloat(rating) || 8.0;
-  if (num >= 9.0) return '⭐️⭐️⭐️⭐️⭐️ (Masterpiece)';
   if (num >= 8.5) return '⭐️⭐️⭐️⭐️⭐️ (Must Watch)';
-  if (num >= 8.0) return '⭐️⭐️⭐️⭐️ (Critically Acclaimed)';
-  if (num >= 7.0) return '⭐️⭐️⭐️⭐️ (Super Hit)';
-  return '⭐️⭐️⭐️ (Popular)';
+  if (num >= 7.5) return '⭐️⭐️⭐️⭐️ (Super Hit)';
+  return '⭐️⭐️⭐️⭐️ (Popular)';
 }
 
 async function postFeaturedFilm() {
@@ -194,48 +172,45 @@ async function postFeaturedFilm() {
 
   const isSeries = film.type === 'tv' || film.isSeries;
   const badge = isSeries 
-    ? '📺 TOP TRENDING WEB SERIES • ALL EPISODES' 
-    : '🎬 4K ULTRA HD THEATRICAL RELEASE';
+    ? '📺 TOP TRENDING SERIES' 
+    : '🎬 4K THEATRICAL RELEASE';
 
   const audioInfo = film.audio || 'Multi-Audio (Hindi 5.1 + English + Tamil + Telugu)';
-  const genreList = Array.isArray(film.genres) ? film.genres.join(' • ') : 'Action • Sci-Fi • Thriller';
+  const genreList = Array.isArray(film.genres) ? film.genres.slice(0, 3).join(' • ') : 'Action • Sci-Fi';
   const ratingStars = getRatingStars(film.imdbRating);
   const durationText = isSeries 
-    ? `${film.seasons || 'Complete'} Seasons • All Episodes Available` 
-    : (film.duration || '2h 18m');
+    ? `${film.seasons || 'Complete'} Seasons • All Episodes` 
+    : (film.duration || '2h 15m');
   
-  const castInfo = film.cast ? `\n👥 <b>Starring:</b> ${film.cast.slice(0, 65)}...` : '';
-  const directorInfo = film.director ? `\n🎬 <b>Director:</b> ${film.director}` : '';
-  const synopsisClean = (film.synopsis || film.overview || film.tagline || 'Experience high octane cinema in crystal clear 4K UHD with multi-server playback and zero buffering.').slice(0, 260);
+  const synopsisClean = (film.synopsis || film.overview || film.tagline || 'Experience high-octane cinema in ultra 4K UHD with multi-server failover.').slice(0, 140);
 
-  const { hashtagsBlock, searchQueries } = generateTelegramSearchSEO(film);
+  const { hashtags, searchQueries } = generateTelegramSearchSEO(film);
 
   const watchUrl = `${BASE_URL}?q=${encodeURIComponent(film.title)}`;
   const shareText = `🔥 Watch "${film.title}" in 4K Ultra HD for free on Cinexa! Join our Telegram for 10-min 4K releases: ${channelJoinUrl}`;
   const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(watchUrl)}&text=${encodeURIComponent(shareText)}`;
 
+  // Strict length budget under 850 chars for Telegram sendPhoto 1024-char limit
   const caption = 
 `🍿 <b>CINEXA 4K PREMIERE DROPS</b> 🍿
 
 ✨ <b>${film.title.toUpperCase()} (${film.year || '2025'})</b>
 🏷 <i>${badge}</i>
 
-⭐ <b>IMDb Rating:</b> ${film.imdbRating || '8.5'}/10 • ${ratingStars}
+⭐ <b>IMDb:</b> ${film.imdbRating || '8.5'}/10 • ${ratingStars}
 ⏱ <b>Format:</b> ${durationText}
 🎭 <b>Genres:</b> ${genreList}
-🔊 <b>Audio:</b> ${audioInfo}${castInfo}${directorInfo}
+🔊 <b>Audio:</b> ${audioInfo}
+⚡ <b>Quality:</b> 4K Ultra HD (2160p) • HDR10 • Dolby 5.1
 
-⚡ <b>Stream Specs:</b> 4K Ultra HD (2160p) • HDR10 • Dolby Atmos 5.1 • 8 CDN Mirror Servers
-
-📝 <b>Synopsis:</b>
-<i>"${synopsisClean}..."</i>
+📝 <i>"${synopsisClean}..."</i>
 
 ━━━━━━━━━━━━━━━━━━━━━
 ${searchQueries}
 
-${hashtagsBlock}
+${hashtags}
 ━━━━━━━━━━━━━━━━━━━━━
-👇 <b>Tap below to stream instantly or download in 4K:</b>`;
+👇 <b>Tap below to stream or download in 4K:</b>`;
 
   const inlineKeyboard = [
     [
@@ -244,21 +219,20 @@ ${hashtagsBlock}
     ],
     [
       { text: '👥 Share with Friends (Viral)', url: telegramShareUrl },
-      { text: '🔔 Subscribe for 10-Min 4K Drops', url: channelJoinUrl }
+      { text: '🔔 Subscribe for 10-Min Drops', url: channelJoinUrl }
     ]
   ];
 
   const poster = film.posterUrl || film.poster || film.backdropUrl || 'https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg';
 
-  console.log(`📡 Sending "${film.title}" (${film.year}) [${badge}] with Global Search SEO to Channel: ${CHANNEL_ID}...`);
+  console.log(`📡 Sending "${film.title}" (${film.year}) [${badge}] to Channel: ${CHANNEL_ID}... Caption length: ${caption.length}`);
 
   try {
     const response = await sendTelegramPhoto(poster, caption, inlineKeyboard);
     if (response.ok) {
-      console.log('✅ Successfully posted 4K film with Global Search SEO to Telegram Channel!');
+      console.log('✅ Successfully posted 4K photo & caption to Telegram Channel!');
     } else {
       console.warn('⚠️ sendPhoto failed, attempting fallback text message...', response);
-      // Fallback if image fails to load
       const fallbackResponse = await sendTelegramMessage(caption, inlineKeyboard);
       if (fallbackResponse.ok) {
         console.log('✅ Fallback text message successfully sent to channel!');
