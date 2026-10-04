@@ -56,6 +56,9 @@ const CinexaPlayer = {
         this.loadCloudStream();
       };
     }
+
+    // Render initial server list UI
+    this.renderServerListUI();
   },
 
   switchServer(index) {
@@ -110,21 +113,61 @@ const CinexaPlayer = {
       btnLabelEl.innerText = `Switch (${nextSrv.name.split(' (')[0]})`;
     }
 
-    // Server Pills styling
-    const serverButtons = document.querySelectorAll('#player-servers-list .server-pill-btn');
-    serverButtons.forEach((btn, idx) => {
-      if (idx === this.serverIndex) {
-        btn.className = 'server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-md flex items-center gap-1.5';
-        btn.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-black"></span><span>${this.servers[idx].name}</span>`;
-      } else {
-        btn.className = 'server-pill-btn px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center gap-1.5';
-        btn.innerHTML = `<span>${this.servers[idx].name}</span>`;
-      }
-    });
+    // Ensure server list buttons are dynamically rendered and updated for all browsers
+    this.renderServerListUI();
 
     if (isManualSwitch) {
       this.showServerSwitchToast(srv.name);
     }
+  },
+
+  renderServerListUI() {
+    let container = document.getElementById('player-servers-list');
+    if (!container) {
+      const controlsTray = document.querySelector('.player-controls-tray') || document.querySelector('.player-container');
+      if (controlsTray) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 sm:p-4 rounded-xl bg-surface-container-high/90 border border-primary/25 space-y-2.5 my-2';
+        wrapper.innerHTML = `
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-xs font-semibold text-parchment flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-base">dns</span>
+                <span>Active Server:</span>
+              </span>
+              <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidSrc 4K)</span>
+            </div>
+            <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md" onclick="CinexaPlayer.nextServer()">
+              <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
+              <span id="player-switch-btn-label">Next Server</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full pt-1" id="player-servers-list"></div>
+          <p class="font-sans text-driftwood text-[11px] leading-relaxed pt-1.5 border-t border-white/5">
+            <span class="text-primary font-semibold">💡 Stream Notice:</span> If this server takes time to load or buffers, tap any server button above or click <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Next Server</strong> to switch stream.
+          </p>
+        `;
+        controlsTray.appendChild(wrapper);
+        container = document.getElementById('player-servers-list');
+      }
+    }
+
+    if (!container) return;
+
+    container.innerHTML = this.servers.map((srv, idx) => {
+      const isActive = (idx === this.serverIndex);
+      const activeClass = isActive 
+        ? 'border-primary bg-primary text-on-primary font-bold shadow-md' 
+        : 'border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment font-medium';
+      const dot = isActive ? '<span class="w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>' : '';
+
+      return `
+        <button type="button" class="server-pill-btn w-full px-3 py-2 sm:py-2.5 rounded-xl text-xs font-mono transition-all cursor-pointer active:scale-95 border flex items-center justify-center gap-1.5 ${activeClass}" data-server-index="${idx}" onclick="CinexaPlayer.switchServer(${idx})" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
+          ${dot}
+          <span>${srv.name}</span>
+        </button>
+      `;
+    }).join('');
   },
 
   showServerSwitchToast(serverName) {

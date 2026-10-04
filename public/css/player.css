@@ -831,41 +831,47 @@ video::cue {
   border-radius: 4px;
 }
 
-/* Dedicated Server Switcher Bar */
-.player-server-bar {
-  background: #0d191f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  user-select: none;
-  -webkit-user-select: none;
+/* Dedicated Server Switcher Bar & Cross-Browser Grid */
+#player-servers-list {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px !important;
+  width: 100% !important;
 }
 
-.player-server-bar .player-pill-btn {
-  padding: 4px 11px;
-  font-size: 11.5px;
-  border-radius: 9999px;
-  transition: all 0.15s ease;
-  white-space: nowrap;
+@media (max-width: 640px) {
+  #player-servers-list {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-.player-server-bar .player-pill-btn:hover {
-  background: rgba(236, 192, 119, 0.2);
-  border-color: rgba(236, 192, 119, 0.4);
-  color: #ede6d6;
+.server-pill-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 8px 12px !important;
+  border-radius: 12px !important;
+  font-family: 'Courier Prime', monospace !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  min-height: 40px !important;
 }
 
-.player-server-bar .player-pill-btn.active {
-  background: #ecc077 !important;
-  color: #1a1408 !important;
-  border-color: #ecc077 !important;
-  font-weight: 700;
-  box-shadow: 0 0 14px rgba(236, 192, 119, 0.4);
+.server-pill-btn:hover {
+  filter: brightness(1.15);
 }
 
-.player-server-bar .player-pill-btn:active,
+.server-pill-btn:active,
 .player-btn-download:active,
 .close-player-btn:active {
-  transform: scale(0.92) !important;
-  filter: brightness(1.2);
+  transform: scale(0.94) !important;
 }
 
 .safe-area-bottom {
