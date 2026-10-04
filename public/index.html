@@ -950,6 +950,40 @@
   </div>
 
   <!-- =========================================================================
+       4E. WATCH WITH FRIENDS / VIRAL SOCIAL SHARE MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/90 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="share-modal-overlay" onclick="closeShareModal()">
+    <div class="relative w-full max-w-md rounded-2xl bg-surface-container p-5 sm:p-6 shadow-2xl border border-primary/30 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">group</span>
+          <h3 class="font-serif text-lg sm:text-xl text-parchment font-semibold">Watch with Friends</h3>
+        </div>
+        <button class="w-7 h-7 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center text-xs cursor-pointer" onclick="closeShareModal()">✕</button>
+      </div>
+
+      <p class="text-xs font-sans text-driftwood">Invite your friends to stream <span class="text-parchment font-semibold" id="share-movie-title">this title</span> together in 4K Ultra HD for free!</p>
+
+      <!-- Share Buttons Grid -->
+      <div class="grid grid-cols-2 gap-2.5 pt-1">
+        <button class="h-11 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-400 font-sans font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95" onclick="shareToPlatform('whatsapp')">
+          <span>💬 WhatsApp</span>
+        </button>
+        <button class="h-11 px-3 rounded-xl bg-sky-600/20 hover:bg-sky-600/30 border border-sky-500/40 text-sky-400 font-sans font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95" onclick="shareToPlatform('telegram')">
+          <span>✈️ Telegram</span>
+        </button>
+        <button class="h-11 px-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-400 font-sans font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95" onclick="shareToPlatform('discord')">
+          <span>🎮 Discord</span>
+        </button>
+        <button class="h-11 px-3 rounded-xl bg-primary/20 hover:bg-primary/30 border border-primary/40 text-primary font-sans font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95" onclick="copyWatchLink()">
+          <span class="material-symbols-outlined text-[16px]">link</span>
+          <span>Copy 4K Link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
        5. SEARCH MODAL OVERLAY (⌘K / Ctrl+K)
        ========================================================================= -->
   <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-start justify-center pt-16 sm:pt-20 px-3 sm:px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
@@ -986,6 +1020,10 @@
             <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
             <span class="hidden xs:inline">Switch Server</span>
             <span class="inline xs:hidden">Switch</span>
+          </button>
+          <button class="flex items-center gap-1.5 text-xs px-2.5 sm:px-3 py-1.5 rounded-full bg-surface-container-high text-driftwood hover:text-primary border border-white/10 hover:border-primary/40 active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="openShareModal(currentActiveMovie)" title="Watch Together / Share with Friends">
+            <span class="material-symbols-outlined text-[15px]">group</span>
+            <span class="hidden sm:inline">Share</span>
           </button>
           <button class="close-player-btn w-8 h-8 rounded-full bg-white/10 hover:bg-primary hover:text-on-primary text-parchment flex items-center justify-center text-sm font-bold transition-all cursor-pointer active:scale-95 shrink-0" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>

@@ -1702,6 +1702,87 @@ function handleHashNavigation() {
 
 window.addEventListener('hashchange', handleHashNavigation);
 
+// =========================================================================
+// 10. VIRAL "WATCH WITH FRIENDS" & MONETAG REVENUE ENGINE
+// =========================================================================
+
+let currentShareMovie = null;
+
+function openShareModal(movie) {
+  const film = movie || currentActiveMovie || getCurrentSlideMovie();
+  if (!film) return;
+  currentShareMovie = film;
+  
+  const titleEl = document.getElementById('share-movie-title');
+  if (titleEl) titleEl.innerText = `"${film.title}"`;
+
+  const overlay = document.getElementById('share-modal-overlay');
+  if (overlay) {
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+  }
+}
+
+function closeShareModal() {
+  const overlay = document.getElementById('share-modal-overlay');
+  if (overlay) {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+}
+
+function copyWatchLink() {
+  const film = currentShareMovie || currentActiveMovie || getCurrentSlideMovie();
+  const slug = film.slug || film.id || encodeURIComponent(film.title);
+  const shareUrl = `https://cinexa-films.vercel.app/?play=${slug}`;
+  
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      showToast('🔗 4K Streaming Link copied to clipboard!');
+      closeShareModal();
+    });
+  } else {
+    showToast('🔗 Link ready: ' + shareUrl);
+    closeShareModal();
+  }
+}
+
+function shareToPlatform(platform) {
+  const film = currentShareMovie || currentActiveMovie || getCurrentSlideMovie();
+  const slug = film.slug || film.id || encodeURIComponent(film.title);
+  const shareUrl = `https://cinexa-films.vercel.app/?play=${slug}`;
+  const text = `🍿 Stream "${film.title}" (${film.year || '2025'}) in full 4K Ultra HD for free on Cinexa!`;
+
+  let finalUrl = '';
+  if (platform === 'whatsapp') {
+    finalUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + '\n' + shareUrl)}`;
+  } else if (platform === 'telegram') {
+    finalUrl = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
+  } else if (platform === 'discord') {
+    copyWatchLink();
+    showToast('🎮 Link copied! Paste into your Discord server.');
+    return;
+  }
+
+  if (finalUrl) {
+    window.open(finalUrl, '_blank');
+    closeShareModal();
+  }
+}
+
+// Smart 24-hour rate-limited Monetag Direct Link revenue trigger
+function triggerSmartMonetagAd() {
+  try {
+    const lastAd = localStorage.getItem('cinexa_last_ad_ts');
+    const now = Date.now();
+    // Trigger once every 12-24 hours max
+    if (!lastAd || (now - parseInt(lastAd)) > 12 * 60 * 60 * 1000) {
+      localStorage.setItem('cinexa_last_ad_ts', String(now));
+      window.open('https://omg10.com/4/11952303', '_blank');
+    }
+  } catch (e) {}
+}
+
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initFeaturedSlideshow();
