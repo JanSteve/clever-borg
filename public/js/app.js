@@ -605,44 +605,45 @@ function clearContinueWatching() {
 function filterTrendingRows(category = 'all') {
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
 
-  const animeFilms = catalog.filter(m => 
-    m.category === 'anime' || 
-    m.country === 'Japan' || 
-    (m.genres && m.genres.some(g => typeof g === 'string' && (g.toLowerCase().includes('animation') || g.toLowerCase().includes('anime'))))
-  );
-
-  const teluguFilms = catalog.filter(m => 
-    m.category === 'telugu' || 
-    (m.language && m.language.toLowerCase().includes('telugu')) || 
-    (m.audio && m.audio.toLowerCase().includes('telugu')) ||
-    (m.title && /RRR|Baahubali|Salaar|Kalki|Pushpa|Devara|Hanu-Man|Kantara|Sita Ramam|Lucky Baskhar/i.test(m.title))
-  );
-
+  // 1. Kollywood: ONLY pure Tamil movies
   const tamilFilms = catalog.filter(m => 
     m.category === 'tamil' || 
-    (m.language && m.language.toLowerCase().includes('tamil')) || 
-    (m.audio && m.audio.toLowerCase().includes('tamil')) ||
-    (m.title && /Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Amaran|Vettaiyan/i.test(m.title))
+    (m.language && /^(ta|tamil)$/i.test(m.language.trim())) ||
+    (m.title && /^(Leo|Jailer|Vikram|Ponniyin Selvan.*|Master|Kaithi|Amaran|Vettaiyan|Soorarai Pottru|Asuran|Jai Bhim|Super Deluxe|Thuppakki|96)$/i.test(m.title))
   );
 
+  // 2. Bollywood: ONLY pure Hindi movies (strictly exclude South Indian or foreign films)
   const bollywoodFilms = catalog.filter(m => 
-    m.category === 'bollywood' ||
-    (m.country === 'India' && !teluguFilms.some(t => t.id === m.id) && !tamilFilms.some(t => t.id === m.id)) ||
-    (m.audio && m.audio.toLowerCase().includes('hindi')) ||
-    (m.title && /Jawan|Pathaan|Animal|Fighter|Stree|Dangal|3 Idiots|Brahmāstra|Tumbbad|PK|Lagaan|Zindagi Na Milegi/i.test(m.title))
+    (m.category === 'bollywood' || (m.language && /^(hi|hindi)$/i.test(m.language.trim()))) &&
+    !tamilFilms.some(t => t.id === m.id) &&
+    !/RRR|Kalki|Salaar|Baahubali|Pushpa|Devara|Hanu-Man|Kantara|K\.G\.F|Sita Ramam|Lucky Baskhar|Manjummel|Aavesham|Leo|Jailer|Vikram|Ponniyin|Master|Kaithi|Amaran|Vettaiyan|Soorarai|Asuran|Jai Bhim/i.test(m.title)
   );
 
+  // 3. Tollywood: ONLY pure Telugu movies (strictly exclude Kannada/Malayalam/Tamil/Hindi)
+  const teluguFilms = catalog.filter(m => 
+    (m.category === 'telugu' || (m.language && /^(te|telugu)$/i.test(m.language.trim())) ||
+    (m.title && /^(RRR|Baahubali.*|Salaar.*|Kalki 2898 AD|Pushpa.*|Devara.*|Hanu-Man|Sita Ramam|Ala Vaikunthapurramuloo|Lucky Baskhar|Arjun Reddy|Jersey|Eega)$/i.test(m.title))) &&
+    !/K\.G\.F|Kantara|Manjummel|Aavesham|Leo|Jailer|Vikram|Jawan|Pathaan/i.test(m.title)
+  );
+
+  // 4. Anime: ONLY Japanese Animation
+  const animeFilms = catalog.filter(m => 
+    m.category === 'anime' || 
+    (m.country === 'Japan' && (m.genres && m.genres.some(g => /animation|anime/i.test(g)))) ||
+    (m.language && /^(ja|japanese)$/i.test(m.language.trim()) && (m.genres && m.genres.some(g => /animation|anime/i.test(g))))
+  );
+
+  // 5. Hollywood 4K: ONLY US/UK blockbusters
   const hollywoodFilms = catalog.filter(m => 
     m.category === 'hollywood' || 
-    m.country === 'United States' || 
-    m.country === 'United Kingdom' || 
-    (m.title && /Dune|Oppenheimer|Interstellar|Dark Knight|Deadpool|Avatar|Inception|Gladiator|Matrix|Blade Runner/i.test(m.title))
+    ((m.country === 'United States' || m.country === 'United Kingdom' || m.country === 'United States of America') && m.category !== 'anime')
   );
 
+  // 6. Korean Cinema: ONLY South Korean Cinema
   const koreanFilms = catalog.filter(m => 
     m.category === 'korean' || 
-    m.category === 'romance' || 
-    m.country === 'South Korea'
+    (m.country && m.country.includes('South Korea')) ||
+    (m.language && /^(ko|korean)$/i.test(m.language.trim()))
   );
 
   // Trending
@@ -785,13 +786,13 @@ function applyDiscoverFilters() {
   // Audio Dubbing filter
   if (audioVal !== 'all') {
     if (audioVal === 'hindi') {
-      filtered = filtered.filter(m => m.country === 'India' || (m.audio && m.audio.toLowerCase().includes('hindi')) || ['dune-part-two', 'oppenheimer', 'interstellar', 'avatar-the-way-of-water', 'parasite', 'spirited-away'].includes(m.slug || m.id));
+      filtered = filtered.filter(m => m.category === 'bollywood' || (m.language && /^(hi|hindi)$/i.test(m.language)) || (m.audio && m.audio.toLowerCase().includes('hindi')));
     } else if (audioVal === 'tamil') {
-      filtered = filtered.filter(m => m.category === 'tamil' || (m.audio && m.audio.toLowerCase().includes('tamil')));
+      filtered = filtered.filter(m => m.category === 'tamil' || (m.language && /^(ta|tamil)$/i.test(m.language)) || (m.audio && m.audio.toLowerCase().includes('tamil')));
     } else if (audioVal === 'telugu') {
-      filtered = filtered.filter(m => m.category === 'telugu' || (m.audio && m.audio.toLowerCase().includes('telugu')));
+      filtered = filtered.filter(m => m.category === 'telugu' || (m.language && /^(te|telugu)$/i.test(m.language)) || (m.audio && m.audio.toLowerCase().includes('telugu')));
     } else if (audioVal === 'english') {
-      filtered = filtered.filter(m => m.country === 'United States' || (m.audio && m.audio.toLowerCase().includes('english')));
+      filtered = filtered.filter(m => m.category === 'hollywood' || (m.country === 'United States') || (m.audio && m.audio.toLowerCase().includes('english')));
     }
   }
 
