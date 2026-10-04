@@ -8,11 +8,11 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink'];
+const SERVER_ORDER = ['vidsrc_pm', 'vidsrc_to', 'twoembed_cc', 'twoembed_skin', 'vidlink'];
 
 const CinexaPlayer = {
   currentMovie: null,
-  currentServer: 'autoembed',
+  currentServer: 'vidsrc_pm',
   currentAudio: 'original',
   currentSubtitle: 'en',
   subtitleOffset: 0.0,
@@ -45,12 +45,12 @@ const CinexaPlayer = {
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
-        this.switchServer('autoembed');
+        this.switchServer('vidsrc_pm');
       };
     }
   },
 
-  openPlayer(movie, server = 'autoembed', season = 1, episode = 1) {
+  openPlayer(movie, server = 'vidsrc_pm', season = 1, episode = 1) {
     if (!this.modal) this.init();
     this.currentMovie = movie || {
       id: 'dune-part-two',
@@ -65,7 +65,7 @@ const CinexaPlayer = {
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
                         server === 'local';
     
-    this.currentServer = isLocalFilm ? 'local' : (server && SERVER_ORDER.includes(server) ? server : 'autoembed');
+    this.currentServer = isLocalFilm ? 'local' : (server && SERVER_ORDER.includes(server) ? server : 'vidsrc_pm');
     this.currentAudio = 'original';
     this.subtitleOffset = 0.0;
     this.currentSeason = parseInt(season) || 1;
@@ -219,12 +219,11 @@ const CinexaPlayer = {
     this.loadStreamSource();
     if (typeof showToast === 'function') {
       const serverNames = {
-        autoembed: 'Server 1 (AutoEmbed 4K - Fast & Reliable)',
-        vidsrc_pm: 'Server 2 (VidSrc Cloud Ultra)',
+        vidsrc_pm: 'Server 1 (VidSrc 4K - Ultra Fast)',
+        vidsrc_to: 'Server 2 (VidSrc To)',
         twoembed_cc: 'Server 3 (2Embed Prime)',
         twoembed_skin: 'Server 4 (2Embed Cinema)',
-        vidsrc_to: 'Server 5 (VidSrc To)',
-        vidlink: 'Server 6 (VidLink Pro)',
+        vidlink: 'Server 5 (VidLink Pro)',
         local: 'Cinexa Local Master'
       };
       showToast(`⚡ Switched to ${serverNames[server] || server}`);
@@ -394,10 +393,10 @@ const CinexaPlayer = {
           : `https://www.2embed.cc/embed/${tmdbId}`;
         break;
 
-      case 'autoembed':
+      case 'twoembed_skin':
         streamUrl = isTV
-          ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}`
-          : `https://autoembed.co/movie/tmdb/${tmdbId}`;
+          ? `https://www.2embed.skin/embed/tv/${tmdbId}&s=${s}&e=${e}`
+          : `https://www.2embed.skin/embed/movie/${tmdbId}`;
         break;
 
       case 'vidlink':
@@ -406,11 +405,10 @@ const CinexaPlayer = {
           : `https://vidlink.pro/movie/${tmdbId}`;
         break;
 
-      case 'twoembed_skin':
       default:
         streamUrl = isTV
-          ? `https://www.2embed.skin/embed/tv/${tmdbId}&s=${s}&e=${e}`
-          : `https://www.2embed.skin/embed/movie/${tmdbId}`;
+          ? `https://vidsrc.pm/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.pm/embed/movie/${tmdbId}`;
     }
 
     if (this.videoEl) {

@@ -1208,7 +1208,7 @@ function playCurrentDetailsMovie() {
 
 function playCurrentFilmInPlayer(target) {
   let film = null;
-  const validServers = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink', 'local'];
+  const validServers = ['vidsrc_pm', 'vidsrc_to', 'twoembed_cc', 'twoembed_skin', 'vidlink', 'local'];
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
 
   if (typeof target === 'object' && target !== null) {
@@ -1237,7 +1237,7 @@ function playCurrentFilmInPlayer(target) {
   currentActiveMovie = film;
   saveWatchProgress(film, Math.floor(Math.random() * 40) + 20);
 
-  let chosenServer = 'autoembed';
+  let chosenServer = 'vidsrc_pm';
   if (typeof target === 'string' && validServers.includes(target)) {
     chosenServer = target;
   }
