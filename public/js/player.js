@@ -13,6 +13,12 @@ const CinexaPlayer = {
   currentSeason: 1,
   currentEpisode: 1,
   loadingTimer: null,
+  serverIndex: 0,
+  servers: [
+    { id: 'vidsrc_to', name: 'Server 1 (VidSrc 4K)', movie: id => `https://vidsrc.to/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}` },
+    { id: 'vidlink', name: 'Server 2 (VidLink Pro)', movie: id => `https://vidlink.pro/movie/${id}`, tv: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}` },
+    { id: 'twoembed_cc', name: 'Server 3 (2Embed Cinema)', movie: id => `https://www.2embed.cc/embed/${id}`, tv: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` }
+  ],
 
   init() {
     this.modal = document.getElementById('player-modal');
@@ -52,12 +58,26 @@ const CinexaPlayer = {
     }
   },
 
+  nextServer() {
+    this.serverIndex = (this.serverIndex + 1) % this.servers.length;
+    const srv = this.servers[this.serverIndex];
+    if (typeof showToast === 'function') {
+      showToast(`⚡ Switched to ${srv.name}`);
+    }
+    this.loadCloudStream();
+  },
+
   showLoading() {
     if (this.loadingTimer) clearTimeout(this.loadingTimer);
 
     if (!this.loadingOverlay) {
       this.loadingOverlay = document.getElementById('player-loading-overlay');
       this.loadingServerText = document.getElementById('player-loading-server-text');
+    }
+
+    const currentSrv = this.servers[this.serverIndex] || this.servers[0];
+    if (this.loadingServerText) {
+      this.loadingServerText.innerText = `⚡ Connecting to ${currentSrv.name}...`;
     }
 
     if (this.loadingOverlay) {
@@ -267,10 +287,10 @@ const CinexaPlayer = {
 
     this.showLoading();
 
-    // 100% Verified, Rock-Solid Working 4K Stream Provider
+    const srv = this.servers[this.serverIndex] || this.servers[0];
     const streamUrl = isTV
-      ? `https://vidsrc.to/embed/tv/${tmdbId}/${s}/${e}`
-      : `https://vidsrc.to/embed/movie/${tmdbId}`;
+      ? srv.tv(tmdbId, s, e)
+      : srv.movie(tmdbId);
 
     if (this.videoEl) {
       this.videoEl.pause();

@@ -371,6 +371,15 @@ function switchMainScreen(screenName) {
     renderContinueWatchingRow();
   }
 
+  // Clear any persistent hash on homepage navigation so page reload stays on homepage
+  if (screenName === 'discover') {
+    try {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } catch (e) {}
+  }
+
   // Instant scroll to top so content is directly visible at top of viewport
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -1121,11 +1130,6 @@ function openFilmDetails(movieOrSlug) {
   // Render Cast & Related Films
   renderDetailsCast(movie);
   renderDetailsRelated(movie);
-
-  // Update URL hash without reload
-  try {
-    history.replaceState(null, '', `#movie/${movie.slug || movie.id}`);
-  } catch (e) {}
 
   switchMainScreen('details');
 }

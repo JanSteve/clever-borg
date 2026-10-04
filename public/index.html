@@ -930,7 +930,7 @@
   <div class="player-modal" id="player-modal">
     <div class="player-container">
       <!-- Player Header -->
-      <div class="player-header flex items-center justify-between gap-2 p-3 sm:p-4 bg-[#041015]/95 border-b border-white/10">
+      <div class="player-header flex items-center justify-between gap-2 p-2.5 sm:p-4 bg-[#041015]/95 border-b border-white/10">
         <div class="player-title-info min-w-0 flex-1">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
@@ -938,7 +938,11 @@
           </div>
           <h2 class="player-movie-title truncate font-serif text-sm sm:text-xl font-semibold text-parchment mt-0.5" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
-        <div class="player-header-actions flex items-center gap-2 shrink-0">
+        <div class="player-header-actions flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button class="player-btn-download flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="CinexaPlayer.nextServer()" title="Switch to Alternate 4K Stream">
+            <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
+            <span>Switch Server</span>
+          </button>
           <button class="close-player-btn w-8 h-8 rounded-full bg-white/10 hover:bg-primary hover:text-on-primary text-parchment flex items-center justify-center text-sm font-bold transition-all cursor-pointer active:scale-95 shrink-0" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>
       </div>
@@ -952,7 +956,7 @@
             <span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-primary text-lg" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           </div>
           <div class="space-y-1">
-            <p class="text-xs font-mono font-bold text-primary uppercase tracking-wider" id="player-loading-server-text">⚡ Connecting to 4K Cinema Stream...</p>
+            <p class="text-xs font-mono font-bold text-primary uppercase tracking-wider" id="player-loading-server-text">⚡ Connecting to 4K Stream...</p>
             <p class="text-[11px] font-sans text-driftwood">Instant high-speed playback • Dolby surround</p>
           </div>
         </div>
@@ -968,12 +972,18 @@
         <!-- Series Controls Row (Injected Dynamically when TV Series is loaded) -->
         <div id="player-series-controls" style="display: none;"></div>
 
-        <div class="flex items-center justify-between gap-2 text-[11px] font-sans text-driftwood pt-0.5">
-          <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[14px] text-emerald-400">verified</span>
-            <span class="text-parchment font-medium">100% High-Speed 4K Master Stream</span>
+        <!-- Clean Non-Disturbing Stream Disclaimer Notice -->
+        <div class="flex items-center justify-between flex-wrap gap-2 p-2.5 rounded-xl bg-surface-container-high/80 border border-primary/25 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base shrink-0">info</span>
+            <p class="font-sans text-parchment text-[11.5px] leading-snug">
+              <span class="font-bold text-primary">Stream Notice:</span> If this server takes time to load or buffers, tap <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Switch Server</strong> to switch to backup stream instantly.
+            </p>
           </div>
-          <span class="font-mono text-[10px] text-primary/80 uppercase">No Ads • Direct Stream</span>
+          <button class="px-3 py-1 rounded-full bg-primary text-on-primary font-bold text-[11px] hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1 shadow-sm" onclick="CinexaPlayer.nextServer()">
+            <span class="material-symbols-outlined text-[13px]">swap_horiz</span>
+            <span>Switch Server</span>
+          </button>
         </div>
       </div>
     </div>
