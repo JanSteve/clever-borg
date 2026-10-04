@@ -722,11 +722,11 @@
             Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
           </p>
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button class="h-11 px-6 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 hover:bg-brass-hover cursor-pointer" onclick="playCurrentFilmInPlayer()">
+            <button class="h-11 px-6 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 hover:bg-brass-hover cursor-pointer" onclick="playCurrentDetailsMovie()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span id="details-watch-btn-text">Watch Now</span>
             </button>
-            <button class="h-11 px-5 rounded-full bg-surface-container text-parchment hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-white/10 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="openDownloadModal(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '')">
+            <button class="h-11 px-5 rounded-full bg-surface-container text-parchment hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-white/10 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="openDownloadModal(currentDetailsMovie || currentActiveMovie)">
               <span class="material-symbols-outlined text-[18px]">download</span>
               <span>Download</span>
             </button>
@@ -986,24 +986,41 @@
        9. CLEAN ELEGANT FOOTER (Uncluttered)
        ========================================================================= -->
   <footer class="w-full bg-surface-container-lowest border-t border-white/5 mt-16 pt-10 pb-8">
-    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
-          <span class="material-symbols-outlined text-[16px]">movie</span>
-        </span>
-        <span class="font-serif font-semibold text-lg text-parchment">Cinexa</span>
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 space-y-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+            <span class="material-symbols-outlined text-[16px]">movie</span>
+          </span>
+          <span class="font-serif font-semibold text-lg text-parchment">Cinexa</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 font-sans text-xs text-driftwood">
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('anime')">Anime</a>
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('tamil')">Kollywood</a>
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms</a>
+          <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">DMCA Notice</a>
+        </div>
+
+        <p class="font-mono text-[11px] text-text-muted">© 2026 Cinexa. Streamed via decentralized legal embeds.</p>
       </div>
 
-      <div class="flex flex-wrap items-center gap-6 font-sans text-xs text-driftwood">
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('anime')">Anime</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('tamil')">Kollywood</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">DMCA Notice</a>
+      <!-- Aura Tester Quality Assurance Credit -->
+      <div class="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-primary/15 border border-primary/40 text-primary font-mono text-[11px] font-bold flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <span>Aura Tester</span>
+          </span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-parchment font-serif font-semibold text-sm">Dr. Arunav Roy Sarkar</span>
+            <span class="text-driftwood text-xs">(Honourable Chief Minister of Assam)</span>
+          </div>
+        </div>
+        <span class="font-mono text-[11px] text-text-muted">Quality Assurance &amp; Experience Auditing</span>
       </div>
-
-      <p class="font-mono text-[11px] text-text-muted">© 2026 Cinexa. Streamed via decentralized legal embeds.</p>
     </div>
   </footer>
 

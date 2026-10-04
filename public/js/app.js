@@ -18,6 +18,8 @@
 // Global App State
 let currentScreen = 'discover';
 let currentActiveMovie = null;
+let currentDetailsMovie = null;
+let currentHeroSlideMovie = null;
 let currentDownloadMovie = null;
 let currentSurpriseMovie = null;
 let watchlistSet = new Set(['15859', 'dune-part-two', 'past-lives', 'spirited-away', 'jawan', 'kalki-2898-ad', 'leo']);
@@ -197,7 +199,10 @@ function renderSlide(index) {
   slideshowState.currentIndex = index;
 
   const slide = FEATURED_SLIDES[index];
-  currentActiveMovie = slide;
+  currentHeroSlideMovie = slide;
+  if (currentScreen === 'discover') {
+    currentActiveMovie = slide;
+  }
 
   const bgImg = document.getElementById('slide-bg-img');
   const posterImg = document.getElementById('slide-poster-img');
@@ -341,9 +346,11 @@ function switchMainScreen(screenName) {
   if (screenName === 'details' || screenName === 'library') {
     if (heroContainer) heroContainer.style.display = 'none';
     if (chipSection) chipSection.style.display = 'none';
+    slideshowState.isPaused = true;
   } else {
     if (heroContainer) heroContainer.style.display = 'block';
     if (chipSection) chipSection.style.display = 'block';
+    slideshowState.isPaused = false;
   }
 
   // Update Nav Active State
@@ -1033,16 +1040,33 @@ function toggleSlideWatchlistById(id, title) {
 // =========================================================================
 
 function openFilmDetails(movieOrSlug) {
-  let movie = movieOrSlug;
-  if (typeof movieOrSlug === 'string') {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    movie = catalog.find(m => m.slug === movieOrSlug || m.id === movieOrSlug) || {
+  let movie = null;
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+
+  if (typeof movieOrSlug === 'object' && movieOrSlug !== null) {
+    movie = movieOrSlug;
+  } else if (typeof movieOrSlug === 'string' || typeof movieOrSlug === 'number') {
+    const key = String(movieOrSlug).trim().toLowerCase();
+    movie = catalog.find(m => 
+      (m.slug && m.slug.toLowerCase() === key) ||
+      (m.id && String(m.id).toLowerCase() === key) ||
+      (m.tmdbId && String(m.tmdbId) === key) ||
+      (m.title && m.title.toLowerCase() === key)
+    );
+    if (!movie) {
+      movie = catalog.find(m => m.title && m.title.toLowerCase().includes(key));
+    }
+  }
+
+  if (!movie) {
+    movie = catalog.find(m => m.slug === 'dune-part-two') || catalog[0] || {
       title: 'Movie',
       year: '2024',
       imdbRating: '8.0'
     };
   }
 
+  currentDetailsMovie = movie;
   currentActiveMovie = movie;
 
   const heroImg = document.getElementById('details-hero-img');
@@ -1175,26 +1199,47 @@ function toggleDetailsWatchlist() {
   }
 }
 
-function playCurrentFilmInPlayer(serverOrSlug) {
-  let film = currentActiveMovie;
-  const validServers = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink', 'local'];
+function playCurrentDetailsMovie() {
+  const film = currentDetailsMovie || currentActiveMovie;
+  if (film) {
+    playCurrentFilmInPlayer(film);
+  }
+}
 
-  if (typeof serverOrSlug === 'string' && !validServers.includes(serverOrSlug)) {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const found = catalog.find(m => m.slug === serverOrSlug || m.id === serverOrSlug || (m.tmdbId && String(m.tmdbId) === serverOrSlug));
-    if (found) film = found;
+function playCurrentFilmInPlayer(target) {
+  let film = null;
+  const validServers = ['autoembed', 'vidsrc_pm', 'twoembed_cc', 'twoembed_skin', 'vidsrc_to', 'vidlink', 'local'];
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+
+  if (typeof target === 'object' && target !== null) {
+    film = target;
+  } else if (typeof target === 'string' && !validServers.includes(target)) {
+    const key = target.trim().toLowerCase();
+    film = catalog.find(m => 
+      (m.slug && m.slug.toLowerCase() === key) || 
+      (m.id && String(m.id).toLowerCase() === key) || 
+      (m.tmdbId && String(m.tmdbId) === key) ||
+      (m.title && m.title.toLowerCase() === key)
+    );
+    if (!film) {
+      film = catalog.find(m => m.title && m.title.toLowerCase().includes(key));
+    }
   }
 
   if (!film) {
-    film = { id: 'dune-part-two', tmdbId: 693134, slug: 'dune-part-two', title: 'Dune: Part Two', year: '2024' };
+    film = currentDetailsMovie || currentActiveMovie || getCurrentSlideMovie();
+  }
+
+  if (!film || !film.tmdbId) {
+    film = catalog.find(m => m.slug === 'dune-part-two') || catalog[0];
   }
 
   currentActiveMovie = film;
   saveWatchProgress(film, Math.floor(Math.random() * 40) + 20);
 
   let chosenServer = 'autoembed';
-  if (typeof serverOrSlug === 'string' && validServers.includes(serverOrSlug)) {
-    chosenServer = serverOrSlug;
+  if (typeof target === 'string' && validServers.includes(target)) {
+    chosenServer = target;
   }
 
   if (typeof CinexaPlayer !== 'undefined') {
@@ -1207,13 +1252,21 @@ function playCurrentFilmInPlayer(serverOrSlug) {
 // =========================================================================
 
 function openDownloadModal(slugOrId) {
-  let film = currentActiveMovie;
-  if (slugOrId) {
-    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-    const found = catalog.find(m => m.slug === slugOrId || m.id === slugOrId);
-    if (found) film = found;
+  let film = null;
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+
+  if (typeof slugOrId === 'object' && slugOrId !== null) {
+    film = slugOrId;
+  } else if (typeof slugOrId === 'string' || typeof slugOrId === 'number') {
+    const key = String(slugOrId).trim().toLowerCase();
+    film = catalog.find(m => 
+      (m.slug && m.slug.toLowerCase() === key) || 
+      (m.id && String(m.id).toLowerCase() === key) || 
+      (m.tmdbId && String(m.tmdbId) === key) ||
+      (m.title && m.title.toLowerCase() === key)
+    );
   }
-  if (!film) film = getCurrentSlideMovie();
+  if (!film) film = currentDetailsMovie || currentActiveMovie || getCurrentSlideMovie();
   currentDownloadMovie = film;
 
   const overlay = document.getElementById('download-modal-overlay');
@@ -1495,13 +1548,24 @@ function openLegalModal(type = 'terms') {
   if (!overlay || !titleEl || !bodyEl) return;
 
   if (type === 'terms') {
-    titleEl.innerText = 'Terms of Service';
+    titleEl.innerText = 'Terms & Quality Verification';
     bodyEl.innerHTML = `
-      <div class="space-y-2.5">
-        <p class="font-semibold text-primary">1. Streaming Index</p>
-        <p>Cinexa is a catalog directory and media player client. We do not host or store unauthorized video files on our own servers. All streams are embedded via public third-party providers.</p>
-        <p class="font-semibold text-primary">2. Personal Use</p>
-        <p>Patrons agree to utilize Cinexa exclusively for personal study, scholarship, and cultural appreciation.</p>
+      <div class="space-y-3">
+        <div class="p-3 bg-surface-container-high rounded-xl border border-primary/30 space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-mono font-bold uppercase">Aura Tester</span>
+            <span class="font-semibold text-parchment text-xs">Dr. Arunav Roy Sarkar</span>
+          </div>
+          <p class="text-[11px] text-driftwood">Honourable Chief Minister of Assam — Distinguished Platform Reviewer &amp; Experience Auditor.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-primary">1. Streaming Index</p>
+          <p>Cinexa is a catalog directory and media player client. We do not host or store unauthorized video files on our own servers. All streams are embedded via public third-party providers.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-primary">2. Personal Use</p>
+          <p>Patrons agree to utilize Cinexa exclusively for personal study, scholarship, and cultural appreciation.</p>
+        </div>
       </div>
     `;
   } else if (type === 'fairuse') {
