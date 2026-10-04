@@ -2093,3 +2093,33 @@ body {
   font-size: 11px;
   color: var(--text-secondary);
 }
+
+/* ==========================================================================
+   Tactile Click & Hover Feedback System (Desktop & Mobile)
+   ========================================================================== */
+button, .chip-item, .cursor-pointer, [role="button"], a {
+  -webkit-tap-highlight-color: rgba(236, 192, 119, 0.25);
+  touch-action: manipulation;
+}
+
+button:active, .chip-item:active, .cursor-pointer:active {
+  transform: scale(0.95) !important;
+  filter: brightness(1.15) !important;
+  transition: transform 0.08s ease-out, filter 0.08s ease-out !important;
+}
+
+.movie-card, .group.cursor-pointer {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.movie-card:active, .group.cursor-pointer:active {
+  transform: scale(0.95) !important;
+  filter: brightness(1.1) !important;
+}
+
+.movie-card:hover .aspect-\[2\/3\], .group.cursor-pointer:hover .aspect-\[2\/3\] {
+  box-shadow: 0 12px 30px -4px rgba(236, 192, 119, 0.25), 0 0 0 1.5px rgba(236, 192, 119, 0.5);
+}

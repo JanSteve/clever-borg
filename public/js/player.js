@@ -8,7 +8,28 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['vidsrc_pm', 'vidsrc_to', 'twoembed_cc', 'twoembed_skin', 'vidlink'];
+const SERVER_ORDER = [
+  'vidsrc_pm',
+  'vidsrc_to',
+  'vidsrc_cc',
+  'twoembed_cc',
+  'twoembed_skin',
+  'vidlink',
+  'smashystream',
+  'multiembed'
+];
+
+const SERVER_NAMES = {
+  vidsrc_pm: 'Server 1 (VidSrc 4K - Ultra Fast)',
+  vidsrc_to: 'Server 2 (VidSrc To)',
+  vidsrc_cc: 'Server 3 (VidSrc CC)',
+  twoembed_cc: 'Server 4 (2Embed Prime)',
+  twoembed_skin: 'Server 5 (2Embed Cinema)',
+  vidlink: 'Server 6 (VidLink Pro)',
+  smashystream: 'Server 7 (Smashy 4K)',
+  multiembed: 'Server 8 (MultiEmbed)',
+  local: 'Cinexa Local Master'
+};
 
 const CinexaPlayer = {
   currentMovie: null,
@@ -18,6 +39,8 @@ const CinexaPlayer = {
   subtitleOffset: 0.0,
   currentSeason: 1,
   currentEpisode: 1,
+  loadingTimer: null,
+  watchdogTimer: null,
 
   init() {
     this.modal = document.getElementById('player-modal');
@@ -27,6 +50,9 @@ const CinexaPlayer = {
     this.closeBtn = document.getElementById('close-player-btn');
     this.syncIndicator = document.getElementById('sub-sync-indicator');
     this.seriesControlsEl = document.getElementById('player-series-controls');
+    this.loadingOverlay = document.getElementById('player-loading-overlay');
+    this.loadingServerText = document.getElementById('player-loading-server-text');
+    this.loadingSubtext = document.getElementById('player-loading-subtext');
 
     if (this.closeBtn) {
       this.closeBtn.onclick = () => this.closePlayer();
@@ -41,12 +67,62 @@ const CinexaPlayer = {
       };
     }
 
+    // Attach iframe onload to gracefully dismiss loading overlay
+    if (this.iframeEl) {
+      this.iframeEl.addEventListener('load', () => {
+        this.hideLoading();
+      });
+    }
+
     // Handle local video errors by failing over to cloud stream
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
         this.switchServer('vidsrc_pm');
       };
+    }
+  },
+
+  showLoading(serverName) {
+    if (this.loadingTimer) clearTimeout(this.loadingTimer);
+    if (this.watchdogTimer) clearTimeout(this.watchdogTimer);
+
+    if (!this.loadingOverlay) {
+      this.loadingOverlay = document.getElementById('player-loading-overlay');
+      this.loadingServerText = document.getElementById('player-loading-server-text');
+      this.loadingSubtext = document.getElementById('player-loading-subtext');
+    }
+
+    const srvTitle = serverName || SERVER_NAMES[this.currentServer] || this.currentServer;
+
+    if (this.loadingServerText) {
+      this.loadingServerText.innerText = `⚡ Connecting to ${srvTitle}...`;
+    }
+    if (this.loadingSubtext) {
+      this.loadingSubtext.innerText = 'Optimizing 4K Ultra HD video stream...';
+    }
+    if (this.loadingOverlay) {
+      this.loadingOverlay.style.opacity = '1';
+      this.loadingOverlay.style.pointerEvents = 'auto';
+    }
+
+    // Dismiss overlay automatically after 3 seconds max so user can interact immediately
+    this.loadingTimer = setTimeout(() => {
+      this.hideLoading();
+    }, 3200);
+
+    // Watchdog timer: If server takes > 12s, show helpful toast with 1-click switch suggestion
+    this.watchdogTimer = setTimeout(() => {
+      if (typeof showToast === 'function') {
+        showToast('💡 Stream taking longer than expected? Tap "Switch Server" to try Server 2.');
+      }
+    }, 12000);
+  },
+
+  hideLoading() {
+    if (this.loadingOverlay) {
+      this.loadingOverlay.style.opacity = '0';
+      this.loadingOverlay.style.pointerEvents = 'none';
     }
   },
 
@@ -85,7 +161,7 @@ const CinexaPlayer = {
     if (!this.titleEl || !this.currentMovie) return;
     const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
     if (isTV) {
-      this.titleEl.innerHTML = `${this.currentMovie.title} <span class="text-primary text-sm font-mono ml-2 font-bold px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/30">S${this.currentSeason} : E${this.currentEpisode}</span>`;
+      this.titleEl.innerHTML = `${this.currentMovie.title} <span class="text-primary text-xs sm:text-sm font-mono ml-2 font-bold px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30">S${this.currentSeason} : E${this.currentEpisode}</span>`;
     } else {
       this.titleEl.innerText = `${this.currentMovie.title} (${this.currentMovie.year || '2024'})`;
     }
@@ -121,30 +197,30 @@ const CinexaPlayer = {
     let seasonBtns = '';
     for (let s = 1; s <= maxSeasons; s++) {
       const activeClass = (s === this.currentSeason) ? 'active font-bold' : '';
-      seasonBtns += `<button class="player-pill-btn ${activeClass}" onclick="CinexaPlayer.setSeason(${s})">Season ${s}</button>`;
+      seasonBtns += `<button class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer" onclick="CinexaPlayer.setSeason(${s})">Season ${s}</button>`;
     }
 
     let episodeBtns = '';
     for (let e = 1; e <= epsInSeason; e++) {
       const activeClass = (e === this.currentEpisode) ? 'active font-bold' : '';
-      episodeBtns += `<button class="player-pill-btn ${activeClass}" onclick="CinexaPlayer.setEpisode(${e})">Ep ${e}</button>`;
+      episodeBtns += `<button class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer" onclick="CinexaPlayer.setEpisode(${e})">Ep ${e}</button>`;
     }
 
     container.innerHTML = `
       <div class="space-y-2.5">
         <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center gap-2">
-            <span class="group-label">📺 Seasons:</span>
-            <div class="player-pill-cluster">${seasonBtns}</div>
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+            <span class="group-label font-mono text-xs text-primary font-bold shrink-0">📺 Seasons:</span>
+            <div class="player-pill-cluster flex items-center gap-1 shrink-0">${seasonBtns}</div>
           </div>
-          <div class="flex items-center gap-2">
-            <button class="player-pill-btn text-xs" onclick="CinexaPlayer.prevEpisode()" title="Previous Episode">⏮ Prev Ep</button>
-            <button class="player-pill-btn text-xs bg-primary/20 text-primary border-primary/40" onclick="CinexaPlayer.nextEpisode()" title="Next Episode">Next Ep ⏭</button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button class="player-pill-btn text-xs active:scale-95 cursor-pointer" onclick="CinexaPlayer.prevEpisode()" title="Previous Episode">⏮ Prev Ep</button>
+            <button class="player-pill-btn text-xs bg-primary/20 text-primary border-primary/40 active:scale-95 cursor-pointer" onclick="CinexaPlayer.nextEpisode()" title="Next Episode">Next Ep ⏭</button>
           </div>
         </div>
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          <span class="group-label whitespace-nowrap">🎞 Episodes:</span>
-          <div class="player-pill-cluster overflow-x-auto no-scrollbar">${episodeBtns}</div>
+          <span class="group-label whitespace-nowrap font-mono text-xs text-primary font-bold shrink-0">🎞 Episodes:</span>
+          <div class="player-pill-cluster flex items-center gap-1 overflow-x-auto no-scrollbar">${episodeBtns}</div>
         </div>
       </div>
     `;
@@ -194,6 +270,9 @@ const CinexaPlayer = {
   },
 
   closePlayer() {
+    if (this.loadingTimer) clearTimeout(this.loadingTimer);
+    if (this.watchdogTimer) clearTimeout(this.watchdogTimer);
+
     if (this.videoEl) {
       this.videoEl.pause();
       this.videoEl.src = '';
@@ -218,15 +297,7 @@ const CinexaPlayer = {
     this.updateControlsUI();
     this.loadStreamSource();
     if (typeof showToast === 'function') {
-      const serverNames = {
-        vidsrc_pm: 'Server 1 (VidSrc 4K - Ultra Fast)',
-        vidsrc_to: 'Server 2 (VidSrc To)',
-        twoembed_cc: 'Server 3 (2Embed Prime)',
-        twoembed_skin: 'Server 4 (2Embed Cinema)',
-        vidlink: 'Server 5 (VidLink Pro)',
-        local: 'Cinexa Local Master'
-      };
-      showToast(`⚡ Switched to ${serverNames[server] || server}`);
+      showToast(`⚡ Switched to ${SERVER_NAMES[server] || server}`);
     }
   },
 
@@ -315,13 +386,14 @@ const CinexaPlayer = {
   },
 
   updateControlsUI() {
-    // Update server buttons
+    // Update all server buttons anywhere on the page/modal
     document.querySelectorAll('.stream-server-btn').forEach(btn => {
       const s = btn.getAttribute('data-server');
       if (s === this.currentServer) {
-        btn.className = 'player-pill-btn stream-server-btn active cursor-pointer';
+        btn.classList.add('active', 'bg-primary', 'text-on-primary', 'font-bold');
+        btn.classList.remove('text-driftwood');
       } else {
-        btn.className = 'player-pill-btn stream-server-btn cursor-pointer';
+        btn.classList.remove('active', 'bg-primary', 'text-on-primary', 'font-bold');
       }
     });
 
@@ -349,7 +421,8 @@ const CinexaPlayer = {
   loadStreamSource() {
     if (!this.currentMovie) return;
 
-    const tmdbId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
+    const rawId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
+    const tmdbId = String(rawId).replace(/[^0-9]/g, '') || '693134';
     const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
     const s = this.currentSeason || 1;
     const e = this.currentEpisode || 1;
@@ -371,6 +444,8 @@ const CinexaPlayer = {
       return;
     }
 
+    this.showLoading(SERVER_NAMES[this.currentServer]);
+
     // High-Speed Multi-Server Matrix (Supporting Movies & TV Series)
     let streamUrl = '';
 
@@ -385,6 +460,12 @@ const CinexaPlayer = {
         streamUrl = isTV
           ? `https://vidsrc.to/embed/tv/${tmdbId}/${s}/${e}`
           : `https://vidsrc.to/embed/movie/${tmdbId}`;
+        break;
+
+      case 'vidsrc_cc':
+        streamUrl = isTV
+          ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.cc/v2/embed/movie/${tmdbId}`;
         break;
 
       case 'twoembed_cc':
@@ -403,6 +484,18 @@ const CinexaPlayer = {
         streamUrl = isTV
           ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}`
           : `https://vidlink.pro/movie/${tmdbId}`;
+        break;
+
+      case 'smashystream':
+        streamUrl = isTV
+          ? `https://player.smashy.stream/tv/${tmdbId}?s=${s}&e=${e}`
+          : `https://player.smashy.stream/movie/${tmdbId}`;
+        break;
+
+      case 'multiembed':
+        streamUrl = isTV
+          ? `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1&s=${s}&e=${e}`
+          : `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
         break;
 
       default:
