@@ -8,11 +8,11 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['vidlink', 'vidsrc_pm', 'autoembed', 'twoembed_cc', 'twoembed_skin'];
+const SERVER_ORDER = ['vidsrc_pm', 'vidsrc_to', 'twoembed_cc', 'autoembed', 'vidlink', 'twoembed_skin'];
 
 const CinexaPlayer = {
   currentMovie: null,
-  currentServer: 'vidlink',
+  currentServer: 'vidsrc_pm',
   currentAudio: 'original',
   currentSubtitle: 'en',
   subtitleOffset: 0.0,
@@ -45,12 +45,12 @@ const CinexaPlayer = {
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
-        this.switchServer('vidlink');
+        this.switchServer('vidsrc_pm');
       };
     }
   },
 
-  openPlayer(movie, server = 'vidlink', season = 1, episode = 1) {
+  openPlayer(movie, server = 'vidsrc_pm', season = 1, episode = 1) {
     if (!this.modal) this.init();
     this.currentMovie = movie || {
       id: 'dune-part-two',
@@ -65,7 +65,7 @@ const CinexaPlayer = {
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
                         server === 'local';
     
-    this.currentServer = isLocalFilm ? 'local' : (server === 'embedsu' ? 'vidlink' : server);
+    this.currentServer = isLocalFilm ? 'local' : (server === 'embedsu' || server === 'vidlink' ? 'vidsrc_pm' : server);
     this.currentAudio = 'original';
     this.subtitleOffset = 0.0;
     this.currentSeason = parseInt(season) || 1;
@@ -375,16 +375,22 @@ const CinexaPlayer = {
     let streamUrl = '';
 
     switch (this.currentServer) {
-      case 'vidlink':
-        streamUrl = isTV
-          ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}`
-          : `https://vidlink.pro/movie/${tmdbId}`;
-        break;
-
       case 'vidsrc_pm':
         streamUrl = isTV
           ? `https://vidsrc.pm/embed/tv/${tmdbId}/${s}/${e}`
           : `https://vidsrc.pm/embed/movie/${tmdbId}`;
+        break;
+
+      case 'vidsrc_to':
+        streamUrl = isTV
+          ? `https://vidsrc.to/embed/tv/${tmdbId}/${s}/${e}`
+          : `https://vidsrc.to/embed/movie/${tmdbId}`;
+        break;
+
+      case 'twoembed_cc':
+        streamUrl = isTV
+          ? `https://www.2embed.cc/embedtv/${tmdbId}&s=${s}&e=${e}`
+          : `https://www.2embed.cc/embed/${tmdbId}`;
         break;
 
       case 'autoembed':
@@ -393,10 +399,10 @@ const CinexaPlayer = {
           : `https://autoembed.co/movie/tmdb/${tmdbId}`;
         break;
 
-      case 'twoembed_cc':
+      case 'vidlink':
         streamUrl = isTV
-          ? `https://www.2embed.cc/embedtv/${tmdbId}&s=${s}&e=${e}`
-          : `https://www.2embed.cc/embed/${tmdbId}`;
+          ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}`
+          : `https://vidlink.pro/movie/${tmdbId}`;
         break;
 
       case 'twoembed_skin':

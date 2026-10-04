@@ -800,9 +800,21 @@
       </div>
 
       <!-- Controls Tray -->
-      <div class="player-controls-tray">
+      <div class="player-controls-tray p-3 sm:p-4 bg-surface-container border-t border-white/5 space-y-2.5">
         <!-- Series Controls Row (Injected Dynamically when TV Series is loaded) -->
         <div id="player-series-controls" style="display: none;"></div>
+
+        <!-- 1-Tap Fast Server Switchers -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          <span class="text-xs font-mono uppercase text-driftwood shrink-0">⚡ Server:</span>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button class="player-pill-btn stream-server-btn active cursor-pointer text-xs" data-server="vidsrc_pm" onclick="CinexaPlayer.switchServer('vidsrc_pm')">Server 1 (Cloud Ultra)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidsrc_to" onclick="CinexaPlayer.switchServer('vidsrc_to')">Server 2 (VidSrc To)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="twoembed_cc" onclick="CinexaPlayer.switchServer('twoembed_cc')">Server 3 (2Embed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 4 (AutoEmbed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer text-xs" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 5 (VidLink)</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
