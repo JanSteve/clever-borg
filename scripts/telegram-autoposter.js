@@ -28,11 +28,11 @@ function sendTelegramPhoto(photoUrl, caption) {
       reply_markup: {
         inline_keyboard: [
           [
-            { text: '▶ Watch Movie in 4K', url: `${BASE_URL}` },
-            { text: '⚡ Switch Stream', url: `${BASE_URL}` }
+            { text: '▶ Watch in 4K UHD', url: `${BASE_URL}` },
+            { text: '⚡ Switch Server', url: `${BASE_URL}` }
           ],
           [
-            { text: '🌐 Explore 350+ Full Catalog', url: `${BASE_URL}` }
+            { text: '👥 Share with Friends (Join Channel)', url: `https://t.me/share/url?url=${encodeURIComponent(BASE_URL)}&text=${encodeURIComponent('🍿 Watch full movie in 4K on Cinexa!')}` }
           ]
         ]
       }
