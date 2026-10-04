@@ -1271,12 +1271,13 @@ const KOREAN_MOVIES_CATALOG = [
     "synopsis": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan in this Palme d'Or and 4x Academy Award-winning masterpiece.",
     "storyline": "Jobless, penniless, and hopeless, the unmotivated patriarch Ki-taek and his family occupy a cramped semi-basement in Seoul. When an unexpected opportunity introduces the son to tutor for the ultra-wealthy Park family, the Kims systematically infiltrate the affluent household in an escalating game of deception.",
     "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg",
     "trailerUrl": "https://www.youtube.com/watch?v=5xH0RwpEbSU",
     "fallbackColor": "#1a2a3a",
-    "tmdbId": 496243,
+    "tmdbId": "496243",
     "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg"
+    "backdropUrl": "https://image.tmdb.org/t/p/original/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg",
+    "trailerId": "bM9QabAojCg"
   },
   {
     "id": "the-classic",
@@ -2653,11 +2654,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Song Ji-hyo"
     ],
     "synopsis": "An undercover cop embedded for eight years inside Korea's biggest crime syndicate Goldmoon faces a lethal power struggle when the chairman dies, torn between ruthless police superiors and his gangster blood-brother.",
-    "poster": "https://image.tmdb.org/t/p/w500/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/4g3d8G3H4L6uX2G7N8p5R2W5l4L.jpg",
     "backdrop": "https://image.tmdb.org/t/p/original/ce3prrjh9ZehEl5JinNqr4jIeaB.jpg",
     "fallbackColor": "#151d28",
-    "tmdbId": "822119",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "tmdbId": "162813",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/4g3d8G3H4L6uX2G7N8p5R2W5l4L.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/ce3prrjh9ZehEl5JinNqr4jIeaB.jpg"
   },
   {
@@ -5496,7 +5497,8 @@ const KOREAN_MOVIES_CATALOG = [
     "trailerUrl": "https://www.youtube.com/embed?q=Kalki%202898%20AD%20trailer",
     "fallbackColor": "#0f1420",
     "isTmdb": true,
-    "industry": "Tollywood"
+    "industry": "Tollywood",
+    "trailerId": "rn7tdg6cpW4"
   },
   {
     "id": "jawan",
@@ -9144,66 +9146,6 @@ const KOREAN_MOVIES_CATALOG = [
     "isTmdb": true
   },
   {
-    "id": "your-name",
-    "slug": "your-name",
-    "title": "Your Name.",
-    "year": "2016",
-    "rating": "15+",
-    "imdbRating": "8.4",
-    "matchScore": "99% Match",
-    "duration": "2h 10m",
-    "country": "Japan",
-    "resolution": "4K UHD Master",
-    "audio": "Japanese, English Dubbed, Hindi Dubbed",
-    "category": "anime",
-    "genres": [
-      "Animation",
-      "Romance",
-      "Drama"
-    ],
-    "director": "Acclaimed Director",
-    "cast": [
-      "All-Star Global Cast"
-    ],
-    "synopsis": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/vfJFJPepRKapMd5G2ro7klIRysq.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/mMtUybQ6hL24FXo0F3Z4j2KG7kZ.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/vfJFJPepRKapMd5G2ro7klIRysq.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/mMtUybQ6hL24FXo0F3Z4j2KG7kZ.jpg",
-    "tmdbId": "372058",
-    "isTmdb": true
-  },
-  {
-    "id": "demon-slayer-kimetsu-no-yaiba-the-movie-mugen-train",
-    "slug": "demon-slayer-kimetsu-no-yaiba-the-movie-mugen-train",
-    "title": "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
-    "year": "2020",
-    "rating": "15+",
-    "imdbRating": "8.4",
-    "matchScore": "99% Match",
-    "duration": "2h 10m",
-    "country": "Japan",
-    "resolution": "4K UHD Master",
-    "audio": "Japanese, English Dubbed, Hindi Dubbed",
-    "category": "anime",
-    "genres": [
-      "Animation",
-      "Action",
-      "Fantasy"
-    ],
-    "director": "Acclaimed Director",
-    "cast": [
-      "All-Star Global Cast"
-    ],
-    "synopsis": "Tanjiro Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyojuro Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/qjGrUmKW78MCFG8PTLDBp67S27p.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/qjGrUmKW78MCFG8PTLDBp67S27p.jpg",
-    "tmdbId": "635302",
-    "isTmdb": true
-  },
-  {
     "id": "evangelion-3-0-1-0-thrice-upon-a-time",
     "slug": "evangelion-3-0-1-0-thrice-upon-a-time",
     "title": "Evangelion: 3.0+1.0 Thrice Upon a Time",
@@ -9671,9 +9613,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Tamil (Dolby Atmos)",
     "category": "tamil",
     "industry": "Kollywood",
-    "genres": ["Drama", "Action", "Inspirational"],
+    "genres": [
+      "Drama",
+      "Action",
+      "Inspirational"
+    ],
     "director": "Sudha Kongara",
-    "cast": ["Suriya", "Aparna Balamurali", "Paresh Rawal"],
+    "cast": [
+      "Suriya",
+      "Aparna Balamurali",
+      "Paresh Rawal"
+    ],
     "synopsis": "Nedumaaran Rajangam sets out to make the common man fly and in the process takes on the world's most capital intensive industry and several enemies who stand in his way.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/gO9f000bF5e9qO2q4q8V4s5X1x0.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9697,9 +9647,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Tamil (Dolby Atmos)",
     "category": "tamil",
     "industry": "Kollywood",
-    "genres": ["Action", "Drama", "Thriller"],
+    "genres": [
+      "Action",
+      "Drama",
+      "Thriller"
+    ],
     "director": "Vetrimaaran",
-    "cast": ["Dhanush", "Manju Warrier", "Prakash Raj"],
+    "cast": [
+      "Dhanush",
+      "Manju Warrier",
+      "Prakash Raj"
+    ],
     "synopsis": "A doting father must protect his rebellious young son from a vengeful, wealthy landlord following an act of violent retaliation.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/yJg3mU2N3XWzLzVj5oG7rK4r2aT.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9723,9 +9681,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Tamil (Dolby Atmos)",
     "category": "tamil",
     "industry": "Kollywood",
-    "genres": ["Crime", "Drama", "Mystery"],
+    "genres": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
     "director": "T.J. Gnanavel",
-    "cast": ["Suriya", "Lijomol Jose", "Manikandan"],
+    "cast": [
+      "Suriya",
+      "Lijomol Jose",
+      "Manikandan"
+    ],
     "synopsis": "When a tribal man is arrested for alleged theft and goes missing from custody, his desperate pregnant wife turns to an unyielding human rights lawyer for justice.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/pafv27qU02aYc2oP9wG2Y0G9y0p.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9749,9 +9715,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Tamil (Dolby 5.1)",
     "category": "tamil",
     "industry": "Kollywood",
-    "genres": ["Comedy", "Crime", "Drama"],
+    "genres": [
+      "Comedy",
+      "Crime",
+      "Drama"
+    ],
     "director": "Thiagarajan Kumararaja",
-    "cast": ["Vijay Sethupathi", "Fahadh Faasil", "Samantha Ruth Prabhu"],
+    "cast": [
+      "Vijay Sethupathi",
+      "Fahadh Faasil",
+      "Samantha Ruth Prabhu"
+    ],
     "synopsis": "An unfaithful newlywed, an estranged trans woman, and four curious teenagers find themselves in intricate, unexpected predicaments on one fateful day in Chennai.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/wP1Nn5P7qgX4mN3V9zL2oP6q8aT.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9775,9 +9749,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Tamil (Dolby Atmos)",
     "category": "tamil",
     "industry": "Kollywood",
-    "genres": ["Action", "Thriller", "Crime"],
+    "genres": [
+      "Action",
+      "Thriller",
+      "Crime"
+    ],
     "director": "A.R. Murugadoss",
-    "cast": ["Thalapathy Vijay", "Kajal Aggarwal", "Vidyut Jammwal"],
+    "cast": [
+      "Thalapathy Vijay",
+      "Kajal Aggarwal",
+      "Vidyut Jammwal"
+    ],
     "synopsis": "An Indian Army intelligence officer on vacation in Mumbai uncovers and executes a counter-operation to neutralize a sleeper cell network before they detonate bombs across the city.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/7Lw9a1P3vQ4e7M2v1o8X9q8aT.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9801,9 +9783,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby 5.1)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Crime", "Comedy", "Thriller"],
+    "genres": [
+      "Crime",
+      "Comedy",
+      "Thriller"
+    ],
     "director": "Sriram Raghavan",
-    "cast": ["Ayushmann Khurrana", "Tabu", "Radhika Apte"],
+    "cast": [
+      "Ayushmann Khurrana",
+      "Tabu",
+      "Radhika Apte"
+    ],
     "synopsis": "A series of mysterious events unfold in the life of a piano player who pretends to be visually impaired, unwittingly witnessing the murder of a former film actor.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/dyhaB19AIC4zgvdUTU096hu2RJF.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9827,9 +9817,17 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby 5.1)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Action", "Crime", "Drama"],
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
     "director": "Anurag Kashyap",
-    "cast": ["Manoj Bajpayee", "Nawazuddin Siddiqui", "Richa Chadha"],
+    "cast": [
+      "Manoj Bajpayee",
+      "Nawazuddin Siddiqui",
+      "Richa Chadha"
+    ],
     "synopsis": "A clash between Sultan and Shahid Khan leads to the expulsion of Khan from Wasseypur, igniting a deadly multi-generational blood feud that spans over six decades.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/5mG4N8v1y0X3q7L4p8V9zL2oP6q.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9853,9 +9851,16 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby 5.1)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Comedy", "Drama"],
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
     "director": "Vikas Bahl",
-    "cast": ["Kangana Ranaut", "Rajkummar Rao", "Lisa Haydon"],
+    "cast": [
+      "Kangana Ranaut",
+      "Rajkummar Rao",
+      "Lisa Haydon"
+    ],
     "synopsis": "A Delhi girl from a traditional family sets out on a solo honeymoon to Paris and Amsterdam after her fiancé calls off their wedding days before the ceremony.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/2jP1o8X4mN3V9zL2oP6q8aT0q8X.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9879,9 +9884,16 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby Atmos)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Romance", "Drama"],
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
     "director": "Aditya Chopra",
-    "cast": ["Shah Rukh Khan", "Kajol", "Amrish Puri"],
+    "cast": [
+      "Shah Rukh Khan",
+      "Kajol",
+      "Amrish Puri"
+    ],
     "synopsis": "Raj and Simran meet on a European train journey and fall deeply in love. When Simran is taken back to India for an arranged marriage, Raj follows to win over her traditional family.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9905,9 +9917,19 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby Atmos)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Crime", "Drama", "Mystery", "Thriller"],
+    "genres": [
+      "Crime",
+      "Drama",
+      "Mystery",
+      "Thriller"
+    ],
     "director": "Abhishek Pathak",
-    "cast": ["Ajay Devgn", "Tabu", "Akshaye Khanna", "Shriya Saran"],
+    "cast": [
+      "Ajay Devgn",
+      "Tabu",
+      "Akshaye Khanna",
+      "Shriya Saran"
+    ],
     "synopsis": "Seven years after the case related to Vijay Salgaonkar and his family was closed, a series of unexpected events brings a renewed investigation that threatens to uncover the truth.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/3Uf9fX6p8V9zL2oP6q8aT0q8X4m.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -9931,9 +9953,19 @@ const KOREAN_MOVIES_CATALOG = [
     "audio": "Hindi (Dolby 5.1)",
     "category": "bollywood",
     "industry": "Bollywood",
-    "genres": ["Action", "Adventure", "Comedy", "Drama"],
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
     "director": "Kabir Khan",
-    "cast": ["Salman Khan", "Harshaali Malhotra", "Nawazuddin Siddiqui", "Kareena Kapoor"],
+    "cast": [
+      "Salman Khan",
+      "Harshaali Malhotra",
+      "Nawazuddin Siddiqui",
+      "Kareena Kapoor"
+    ],
     "synopsis": "An Indian man with a magnanimous heart takes a young mute Pakistani girl back to her homeland to reunite her with her family across the border.",
     "posterUrl": "https://image.tmdb.org/t/p/w500/pE0N8v1y0X3q7L4p8V9zL2oP6q.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
@@ -10078,12 +10110,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Manuel Garcia-Rulfo"
     ],
     "synopsis": "Five years after the events of Jurassic World Dominion, an intrepid team races to secure DNA samples from the three most colossal creatures across land, sea and air.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1125510",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zNriRTr0kWwyaXPzdg1EIxf0BWk.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/zNriRTr0kWwyaXPzdg1EIxf0BWk.jpg",
+    "tmdbId": "1234821",
+    "isTmdb": true,
+    "trailerId": "2ZhB-YO5Tnk"
   },
   {
     "id": "avengers-doomsday",
@@ -10150,11 +10183,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Jeffrey Wright"
     ],
     "synopsis": "Bruce Wayne delves deeper into Gotham's corrupt underworld as a new menace emerges from the shadows to challenge his crusade for justice.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/b1P6P6E8Q0yM5wR9oX3uK9nF5l8.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/b1P6P6E8Q0yM5wR9oX3uK9nF5l8.jpg",
     "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "414906",
+    "tmdbId": "969492",
     "isTmdb": true
   },
   {
@@ -10188,12 +10221,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Arjun Kapoor"
     ],
     "synopsis": "DCP Bajirao Singham embarks on a dangerous cross-border mission to rescue his wife Avni from a sinister syndicate, joining forces with India's fiercest officers.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1079091",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2JbNkHg8m7LaBy61LyrnnlenaxY.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/lexEx0B4WDOXGfqPTj4R8FCrE7H.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2JbNkHg8m7LaBy61LyrnnlenaxY.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/lexEx0B4WDOXGfqPTj4R8FCrE7H.jpg",
+    "tmdbId": "1014214",
+    "isTmdb": true,
+    "trailerId": "DovbhJavvfU"
   },
   {
     "id": "bhool-bhulaiyaa-3",
@@ -10223,11 +10257,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Rajpal Yadav"
     ],
     "synopsis": "Ruhaan travels to the haunted palace of Raktaghat only to be confronted by two vengeful spirits claiming to be the authentic Manjulika.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1092994",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/3AfHD1HoaQpQwKH8kxRdBKVmzeU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1TdCtQaAqZhKRSOSbPi1EPToJxN.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/3AfHD1HoaQpQwKH8kxRdBKVmzeU.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/1TdCtQaAqZhKRSOSbPi1EPToJxN.jpg",
+    "tmdbId": "980599",
     "isTmdb": true
   },
   {
@@ -10259,12 +10293,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Ashutosh Rana"
     ],
     "synopsis": "The heroic life and fierce military campaigns of Chhatrapati Sambhaji Maharaj, the valiant son of Shivaji who defended the Maratha Empire against the Mughal Empire.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1165067",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ubRsrzb6NRW8YhVTJ6jG1kpNvCi.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/s37s21YPqS7txyB0x0TRel24vgi.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/ubRsrzb6NRW8YhVTJ6jG1kpNvCi.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/s37s21YPqS7txyB0x0TRel24vgi.jpg",
+    "tmdbId": "1196943",
+    "isTmdb": true,
+    "trailerId": "F6dGg2JX8Lc"
   },
   {
     "id": "baby-john",
@@ -10295,12 +10330,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Rajpal Yadav"
     ],
     "synopsis": "A mild-mannered bakery owner is forced to shed his quiet identity and reawaken his ruthless past as a legendary police officer when dark forces threaten his family.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1084199",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/5Oqsh17dq0cIRFPynPNy5elmyxW.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7jFpkdhPn1s7tc7S71wR64qpVWE.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/5Oqsh17dq0cIRFPynPNy5elmyxW.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/7jFpkdhPn1s7tc7S71wR64qpVWE.jpg",
+    "tmdbId": "1083241",
+    "isTmdb": true,
+    "trailerId": "lVjieoMPN-c"
   },
   {
     "id": "bade-miyan-chote-miyan-2024",
@@ -10365,11 +10401,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Disha Patani"
     ],
     "synopsis": "After a disastrous hijacking mission, an off-duty special task force officer finds himself on a hijacked passenger flight and must devise a high-altitude plan to save everyone.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "923667",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/rkCRwuWgrkGTya4vLqwFugwSqeh.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/pnoOhdjceFu62dns1B1pfbdZOEy.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/rkCRwuWgrkGTya4vLqwFugwSqeh.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/pnoOhdjceFu62dns1B1pfbdZOEy.jpg",
+    "tmdbId": "899718",
     "isTmdb": true
   },
   {
@@ -10400,11 +10436,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Kiran Karmarkar"
     ],
     "synopsis": "In the wake of anti-terrorism operations in Kashmir, a top intelligence officer is chosen by the PMO to conduct a covert mission neutralizing local unrest and revoking special status.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/wzZ6uG3y10uG6N4iXb4q5r0N2Z4.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/wzZ6uG3y10uG6N4iXb4q5r0N2Z4.jpg",
     "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1239251",
+    "tmdbId": "1233413",
     "isTmdb": true
   },
   {
@@ -10436,12 +10472,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Anngad Raaj"
     ],
     "synopsis": "A family's peaceful weekend retreat becomes a living nightmare when a sinister uninvited guest uses hypnotic black magic to gain complete control over their teenage daughter.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1109418",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/oRvFzcagAcC6Q317xtV7QXzwBnj.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/yNGAfRd0VZwtSAZiC1WXWqCbvIb.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/oRvFzcagAcC6Q317xtV7QXzwBnj.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/yNGAfRd0VZwtSAZiC1WXWqCbvIb.jpg",
+    "tmdbId": "1187619",
+    "isTmdb": true,
+    "trailerId": "A_HQdwRDRrw"
   },
   {
     "id": "munjya",
@@ -10470,12 +10507,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Satyaraj"
     ],
     "synopsis": "A young man visits his ancestral village in the Konkan region and inadvertently releases Munjya, a mischievous folklore spirit obsessed with finding a bride.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1275850",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ylYdXu0SM79Qs7vOz6q7mBxanVD.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/4Yr1efAiQ55YdV9R7N4WOntpmZ5.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/ylYdXu0SM79Qs7vOz6q7mBxanVD.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/4Yr1efAiQ55YdV9R7N4WOntpmZ5.jpg",
+    "tmdbId": "1187058",
+    "isTmdb": true,
+    "trailerId": "8X3uF80H5LU"
   },
   {
     "id": "kill-2024",
@@ -10505,11 +10543,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Abhishek Chauhan"
     ],
     "synopsis": "When a gang of knife-wielding bandits terrorize passengers on a New Delhi-bound express train, an elite commando embarks on a relentless close-quarters bloodbath.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1114513",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qQclTgLMDvGBuUBFGHRipxkEwWR.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qO55CD8tgVL1T4WKn6zYFFiD6lL.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qQclTgLMDvGBuUBFGHRipxkEwWR.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/qO55CD8tgVL1T4WKn6zYFFiD6lL.jpg",
+    "tmdbId": "1439930",
     "isTmdb": true
   },
   {
@@ -10540,12 +10578,13 @@ const KOREAN_MOVIES_CATALOG = [
       "John Abraham"
     ],
     "synopsis": "Major Kabir Dhaliwal crosses paths with a lethal new operative in a globe-trotting clash of titans within the YRF Spy Universe.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1111873",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/2Yc8Kl2ldPpDzLrG2M5Ddv62FXB.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/pKIRUTnwY3YYU9urSdsuobdcliP.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2Yc8Kl2ldPpDzLrG2M5Ddv62FXB.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/pKIRUTnwY3YYU9urSdsuobdcliP.jpg",
+    "tmdbId": "1109086",
+    "isTmdb": true,
+    "trailerId": "dK1W-AViQ-M"
   },
   {
     "id": "alpha-2025",
@@ -10575,12 +10614,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Anil Kapoor"
     ],
     "synopsis": "Two female super-agents operate in deep undercover behind enemy lines to dismantle a rogue global syndicate endangering national security.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1222248",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/fWVSwgjpT2D78VUh6X8UBd2rorW.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1RgPyOhN4DRs225BGTlHJqCudII.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/fWVSwgjpT2D78VUh6X8UBd2rorW.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/1RgPyOhN4DRs225BGTlHJqCudII.jpg",
+    "tmdbId": "1311031",
+    "isTmdb": true,
+    "trailerId": "EpAlHmuA2YM"
   },
   {
     "id": "love-and-war",
@@ -10609,11 +10649,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Vicky Kaushal"
     ],
     "synopsis": "An epic emotional saga of passion, sacrifice, and honor set against the backdrop of war and complex human loyalties.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1231648",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/eNNsYveQyZduWb37KG8WMOlaVgJ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/w500/eNNsYveQyZduWb37KG8WMOlaVgJ.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/eNNsYveQyZduWb37KG8WMOlaVgJ.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w500/eNNsYveQyZduWb37KG8WMOlaVgJ.jpg",
+    "tmdbId": "1235057",
     "isTmdb": true
   },
   {
@@ -10645,11 +10685,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Meenakshi Chaudhary"
     ],
     "synopsis": "A former elite counter-terrorist squad operative is pulled out of retirement when past choices spawn a deadly new adversary of his own blood.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1103433",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/uYzHkzZPp84B7nHOKaJZWjyGFUL.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/3gw6ZMxVbfOQcQahGsmwdvFJPOa.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/uYzHkzZPp84B7nHOKaJZWjyGFUL.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/3gw6ZMxVbfOQcQahGsmwdvFJPOa.jpg",
+    "tmdbId": "324558",
     "isTmdb": true
   },
   {
@@ -10681,12 +10721,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Kovai Sarala"
     ],
     "synopsis": "A story spanning 500 years where a fearless prehistoric warrior chieftain's promise echoes through centuries, connecting to a bounty hunter in 2024.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "995926",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lycbTFBXqFN1kMdPEsnAFutKEEy.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/cpK4ZqGZVJAIIKo8EgpSHif8yNL.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/lycbTFBXqFN1kMdPEsnAFutKEEy.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/cpK4ZqGZVJAIIKo8EgpSHif8yNL.jpg",
+    "tmdbId": "622792",
+    "isTmdb": true,
+    "trailerId": "ByCDEmNig7Q"
   },
   {
     "id": "indian-2",
@@ -10717,12 +10758,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Bobby Simha"
     ],
     "synopsis": "Senapathy, the immortal vigilante freedom fighter, returns from exile to help a group of youth expose rampant corruption through social media.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/17siH6wJRQ2jZiqz9BWUhy1UtZ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8yhWlFcJ8zCqjfCvLy3lWFuawR1.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/17siH6wJRQ2jZiqz9BWUhy1UtZ.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/8yhWlFcJ8zCqjfCvLy3lWFuawR1.jpg",
     "tmdbId": "579047",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "_BggT--yxf0"
   },
   {
     "id": "maharaja-tamil",
@@ -10754,12 +10796,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Abhirami"
     ],
     "synopsis": "A quiet barber files a complaint claiming his dustbin 'Lakshmi' was stolen, baffling the police until the dark, brilliant truth of his vengeance is unraveled.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1114713",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ot1UteJ1TL3xWuhkLRNzBULw4KJ.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ot1UteJ1TL3xWuhkLRNzBULw4KJ.jpg",
+    "tmdbId": "1118224",
+    "isTmdb": true,
+    "trailerId": "Otcr-vRuaQs"
   },
   {
     "id": "raayan",
@@ -10791,11 +10834,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Prakash Raj"
     ],
     "synopsis": "A humble fast-food chef in North Chennai is forced into a brutal underworld war when his younger brother gets embroiled in a local turf conflict.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1087822",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/dHMbqpG7vZk1iEJaEkCCyixFbos.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1Us0a54s7aFDwDtIfRjlwvnLJQg.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/dHMbqpG7vZk1iEJaEkCCyixFbos.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/1Us0a54s7aFDwDtIfRjlwvnLJQg.jpg",
+    "tmdbId": "1136418",
     "isTmdb": true
   },
   {
@@ -10828,12 +10871,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Edward Sonnenblick"
     ],
     "synopsis": "In 1930s colonial British India, a disillusioned soldier deserts the army to lead a rebel militia defending his native village from atrocities.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7seqaCaaXDNUHOx4DqwpoOH8pPa.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/u2eA9pqi1q3DvevT7RuDuJHxxBT.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/7seqaCaaXDNUHOx4DqwpoOH8pPa.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/u2eA9pqi1q3DvevT7RuDuJHxxBT.jpg",
     "tmdbId": "974950",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "houUHc5vm4I"
   },
   {
     "id": "ayalaan",
@@ -10864,12 +10908,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Karunakaran"
     ],
     "synopsis": "A fun-loving country boy teams up with a quirky extraterrestrial visitor to stop a greedy corporate conglomerate from destroying Earth with deadly extraction gas.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ebG8W3shUDBqhOz3VmB4m02HkFf.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/miWYR5GcGlJ2E4tYO4Um9NT2tcS.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/ebG8W3shUDBqhOz3VmB4m02HkFf.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/miWYR5GcGlJ2E4tYO4Um9NT2tcS.jpg",
     "tmdbId": "760747",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "LC5MwTuEeeg"
   },
   {
     "id": "coolie-2025",
@@ -10901,11 +10946,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Upendra"
     ],
     "synopsis": "A high-octane gold heist and underworld war orchestrated by Deva, a legendary port loader commander fighting across international waters.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1184918",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/kr36awqmziEI5mfUElsHB0pj9zP.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/bLn0CPzrrqFLicjNTgrzaIyE0gZ.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/kr36awqmziEI5mfUElsHB0pj9zP.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/bLn0CPzrrqFLicjNTgrzaIyE0gZ.jpg",
+    "tmdbId": "1153399",
     "isTmdb": true
   },
   {
@@ -10937,11 +10982,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Priyamani"
     ],
     "synopsis": "A people's hero rises against corporate political syndicates to deliver true justice for the masses in Vijay's monumental cinematic finale.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1332016",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jt8pfSIdi47YpFMMWVRr8w5u2S0.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/v3lNH2gCojWYXVuXcT9FZLBxcSq.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/jt8pfSIdi47YpFMMWVRr8w5u2S0.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/v3lNH2gCojWYXVuXcT9FZLBxcSq.jpg",
+    "tmdbId": "1235877",
     "isTmdb": true
   },
   {
@@ -10974,12 +11019,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Gautham Vasudev Menon"
     ],
     "synopsis": "The climactic chapter exploring the ideological roots of Perumal Vaathiyar and the moral struggle of Constable Kumaresan inside the hills.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1104844",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/l2LVYzhCuwfPfN80v6lic55DIAc.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/223v5btruh9KfS0m4eVj9BnEWBn.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/l2LVYzhCuwfPfN80v6lic55DIAc.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/223v5btruh9KfS0m4eVj9BnEWBn.jpg",
+    "tmdbId": "1020354",
+    "isTmdb": true,
+    "trailerId": "GYeSfq_bj_M"
   },
   {
     "id": "game-changer",
@@ -11011,12 +11057,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Sunil"
     ],
     "synopsis": "An honest Indian Administrative Service officer fights against corrupt state politics by transforming electoral processes through fair elections.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "857598",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qtOGsZoLW7QceqKmsOy5nSM6Aik.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/aBw406SvghTKV6CTK9t84Bo9Xik.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qtOGsZoLW7QceqKmsOy5nSM6Aik.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/aBw406SvghTKV6CTK9t84Bo9Xik.jpg",
+    "tmdbId": "811944",
+    "isTmdb": true,
+    "trailerId": "QSu9-DBjMPI"
   },
   {
     "id": "the-raja-saab",
@@ -11047,12 +11094,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Sanjay Dutt"
     ],
     "synopsis": "A charming young man discovers ancient mysteries, comedic hauntings, and hidden wealth within his ancestral royal estate.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qIhqdDcxpivF2ErLMpPFXRDVSUW.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/w500/qIhqdDcxpivF2ErLMpPFXRDVSUW.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qIhqdDcxpivF2ErLMpPFXRDVSUW.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w500/qIhqdDcxpivF2ErLMpPFXRDVSUW.jpg",
     "tmdbId": "1228224",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "YFZMBqyXkqQ"
   },
   {
     "id": "guntur-kaaram",
@@ -11082,11 +11130,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Prakash Raj"
     ],
     "synopsis": "The estranged son of an influential politician returns to Guntur to resolve family disputes, rediscover ties, and fight criminal conspiracies.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "832964",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qvBt4YLy274ZmoMAfVlwmHkjVkq.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/pRb9zpNXH1u6Fd4Da9H8PaIDwoY.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qvBt4YLy274ZmoMAfVlwmHkjVkq.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/pRb9zpNXH1u6Fd4Da9H8PaIDwoY.jpg",
+    "tmdbId": "868660",
     "isTmdb": true
   },
   {
@@ -11118,12 +11166,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Aditi Balan"
     ],
     "synopsis": "A vigilante who controls his anger to unleash violence strictly on Saturdays takes on a ruthless corrupt police inspector terrorizing an innocent town.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1195634",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/e2yVhbMkpi4JvvdIhvRpS0Muge7.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/yxQACC8pPE5RpRU8nFVU830LL6u.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/e2yVhbMkpi4JvvdIhvRpS0Muge7.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/yxQACC8pPE5RpRU8nFVU830LL6u.jpg",
+    "tmdbId": "1194915",
+    "isTmdb": true,
+    "trailerId": "0_f1LzYjFI4"
   },
   {
     "id": "tillu-square",
@@ -11152,11 +11201,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Muralidhar Goud"
     ],
     "synopsis": "DJ Tillu falls head-over-heels for a mysterious woman, once again unwittingly stumbling into a high-stakes crime conspiracy and secret agency web.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1079361",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/unRseguQgs9YQbzSHTZKIE3qXa7.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zMGOItxIcvWkJztncbQPdbtliUd.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/unRseguQgs9YQbzSHTZKIE3qXa7.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/zMGOItxIcvWkJztncbQPdbtliUd.jpg",
+    "tmdbId": 1039482,
     "isTmdb": true
   },
   {
@@ -11186,12 +11235,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Prakash Raj"
     ],
     "synopsis": "A fiercely honest and unhinged police officer goes to extreme lengths to dismantle an international drug syndicate, tearing apart criminal underworlds.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/25JskXmchcYwj3jHRmcPm738MpB.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/1LOT0yesrW1l98qYzMbzx6vCRbi.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/25JskXmchcYwj3jHRmcPm738MpB.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/1LOT0yesrW1l98qYzMbzx6vCRbi.jpg",
     "tmdbId": "882059",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "z6NibtjmjOk"
   },
   {
     "id": "demon-slayer-to-the-hashira-training",
@@ -11222,12 +11272,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Hiro Shimono"
     ],
     "synopsis": "Tanjiro undergoes rigorous training with the Stone Hashira Himejima in preparation for the forthcoming all-out war against Muzan Kibutsuji.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/3daOEMQCOGU2n9EbUC0PICnUCek.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/byFQpmElaxa4sPwS0d9qQMTtygw.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/3daOEMQCOGU2n9EbUC0PICnUCek.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/byFQpmElaxa4sPwS0d9qQMTtygw.jpg",
     "tmdbId": "1216221",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "e_tfF7634jw"
   },
   {
     "id": "demon-slayer-infinity-castle-part-1",
@@ -11258,12 +11309,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Saori Hayami"
     ],
     "synopsis": "The Demon Slayer Corps plunge into the bizarre multidimensional realm of the Infinity Castle for the apocalyptic final battle against the Upper Rank demons.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/8vqeQ1dvRrGeUT1YRNJqhyI4MwF.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/w500/8vqeQ1dvRrGeUT1YRNJqhyI4MwF.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/8vqeQ1dvRrGeUT1YRNJqhyI4MwF.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/w500/8vqeQ1dvRrGeUT1YRNJqhyI4MwF.jpg",
     "tmdbId": "1309831",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "EpAlHmuA2YM"
   },
   {
     "id": "blue-lock-episode-nagi",
@@ -11293,12 +11345,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Kazuki Ura"
     ],
     "synopsis": "High school slacker Seishiro Nagi discovers his god-given football genius when classmate Reo Mikage recruits him for the revolutionary Blue Lock project.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1160164",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/yZYZqT1f6rddhiSdjl8NVVCoZKE.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/dJwclPgKPnV7hX3OSlvSBiCmuvB.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/yZYZqT1f6rddhiSdjl8NVVCoZKE.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/dJwclPgKPnV7hX3OSlvSBiCmuvB.jpg",
+    "tmdbId": "1104844",
+    "isTmdb": true,
+    "trailerId": "6NCsj0anAt8"
   },
   {
     "id": "spy-x-family-code-white",
@@ -11329,12 +11382,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Kenichirou Matsuda"
     ],
     "synopsis": "While on a weekend family winter trip to sample a regional pastry recipe, Anya accidentally swallows a chocolate concealing world peace secrets.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1058638",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xlIQf4y9eB14iYzNN142tROIWON.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/tKihJpAof64rjw0A8uvKohUVjra.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/xlIQf4y9eB14iYzNN142tROIWON.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/tKihJpAof64rjw0A8uvKohUVjra.jpg",
+    "tmdbId": "1062807",
+    "isTmdb": true,
+    "trailerId": "7GSVjBzzekw"
   },
   {
     "id": "my-hero-academia-youre-next",
@@ -11365,12 +11419,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Mamoru Miyano"
     ],
     "synopsis": "In a society devastated following the paranormal war, a mysterious villain calling himself Dark Might emerges claiming the mantle of the Symbol of Peace.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1214484",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/tTrI6PwqzxkgO3dvQ7BEKXM7SYR.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/tUbwMOYP4cuGL1sQ0edz5943rBY.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/tTrI6PwqzxkgO3dvQ7BEKXM7SYR.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/tUbwMOYP4cuGL1sQ0edz5943rBY.jpg",
+    "tmdbId": "1159311",
+    "isTmdb": true,
+    "trailerId": "9DgdgQfHoR8"
   },
   {
     "id": "overlord-the-sacred-kingdom",
@@ -11400,12 +11455,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Yoshino Aoyama"
     ],
     "synopsis": "When the Roble Holy Kingdom is invaded by the demonic emperor Jaldabaoth, the paladins are forced to seek aid from the terrifying Sorcerer King Ainz Ooal Gown.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1084736",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/jEvytxNa5mfW7VAUmDWsZtIdATc.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/hkJhGayONXn96CqIRM9GhWKnlCf.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/jEvytxNa5mfW7VAUmDWsZtIdATc.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/hkJhGayONXn96CqIRM9GhWKnlCf.jpg",
+    "tmdbId": "1014505",
+    "isTmdb": true,
+    "trailerId": "K9hf4dmYJwc"
   },
   {
     "id": "lotr-war-of-the-rohirrim",
@@ -11437,12 +11493,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Shaun Dooley"
     ],
     "synopsis": "183 years before The Lord of the Rings, Helm Hammerhand, the mighty King of Rohan, makes a legendary last stand at the Hornburg fortress.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "83533",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/23WCoDo6wzBfzbX7BGTNwVUqZfi.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ie8OSgIHEl6yQiGJ90dsyBWOpQA.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/23WCoDo6wzBfzbX7BGTNwVUqZfi.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ie8OSgIHEl6yQiGJ90dsyBWOpQA.jpg",
+    "tmdbId": "839033",
+    "isTmdb": true,
+    "trailerId": "9FlsJqDox5M"
   },
   {
     "id": "uprising-2024",
@@ -11474,12 +11531,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Jin Seon-kyu"
     ],
     "synopsis": "In Joseon-era Korea during wartime turmoil, two childhood friends—one a slave with supreme swordsmanship and the other his master—reunite as enemies on opposing sides of rebellion.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/N2ddXhBX5kqwA9flbm2yqFtX6b.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/zLj0peaxy5y2SlC6wNIQ4V0pfqg.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/N2ddXhBX5kqwA9flbm2yqFtX6b.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/zLj0peaxy5y2SlC6wNIQ4V0pfqg.jpg",
     "tmdbId": "1139829",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "cEU3tnJrouE"
   },
   {
     "id": "officer-black-belt",
@@ -11510,12 +11568,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Son Sang-yeon"
     ],
     "synopsis": "A talented martial artist possessing 9 dans in taekwondo, kendo, and judo teams up with a probation officer to physically prevent monitored ex-convicts from committing violent crimes.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1159311",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pWOiCearczq7zmWo4ASbUIF6HYS.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/wSZbtiFIK1fkKZdSRtn2kz2Ttfd.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/pWOiCearczq7zmWo4ASbUIF6HYS.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/wSZbtiFIK1fkKZdSRtn2kz2Ttfd.jpg",
+    "tmdbId": "1139817",
+    "isTmdb": true,
+    "trailerId": "WNkGz6aKFvk"
   },
   {
     "id": "pilot-2024",
@@ -11545,12 +11604,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Shin Seung-ho"
     ],
     "synopsis": "A star commercial airline captain gets blacklisted overnight and takes on an extreme undercover disguise as his sister to get rehired as a female pilot.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/aHMqJAcMlS1TAD6fW3Orv7Oj6s4.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/63YOeswE6SlcJRnAqeqd4Hh5cbR.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/aHMqJAcMlS1TAD6fW3Orv7Oj6s4.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/63YOeswE6SlcJRnAqeqd4Hh5cbR.jpg",
     "tmdbId": "1276086",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "mvBcZkDag9c"
   },
   {
     "id": "escape-2024",
@@ -11581,12 +11641,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Song Kang"
     ],
     "synopsis": "A North Korean sergeant near the DMZ plans a daring nighttime sprint across the border toward freedom while being relentlessly pursued by a state security officer.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ta1B8QQ3pBRA0TG8wH0CfgG6vlp.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/omRgNEWxU8wDbh5Qfdadf4l6V9n.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/ta1B8QQ3pBRA0TG8wH0CfgG6vlp.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/omRgNEWxU8wDbh5Qfdadf4l6V9n.jpg",
     "tmdbId": "1053544",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "BrV-SXI6Nmo"
   },
   {
     "id": "wonderland-2024",
@@ -11619,11 +11680,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Gong Yoo"
     ],
     "synopsis": "A simulated virtual reality service allows people to reunite with their deceased or comatose loved ones through video calls powered by artificial intelligence.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "683340",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xdhLAADGSse8KCrsDLBuM5b68Cg.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qlfqDJ9Piv5ufzYA8j2319mwKZU.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/xdhLAADGSse8KCrsDLBuM5b68Cg.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/qlfqDJ9Piv5ufzYA8j2319mwKZU.jpg",
+    "tmdbId": "1318621",
     "isTmdb": true
   },
   {
@@ -11657,12 +11718,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Lee Dong-wook"
     ],
     "synopsis": "In 1909, independence freedom fighters led by Ahn Jung-geun embark on a perilous winter journey across Russia and Harbin to assassinate the architect of Japanese occupation.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/96Jb7yjDkzluBqQZ21j54CJdYeM.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/e4GdyAtLXbaTW1RmZIc8Atf3EFZ.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/96Jb7yjDkzluBqQZ21j54CJdYeM.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/e4GdyAtLXbaTW1RmZIc8Atf3EFZ.jpg",
     "tmdbId": "914206",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "cxjTAeaCWQc"
   },
   {
     "id": "hope-2025",
@@ -11694,12 +11756,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Alicia Vikander"
     ],
     "synopsis": "Residents of a remote port village fight for survival against a mysterious alien discovery in an unprecedented sci-fi thriller from director Na Hong-jin.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "1106888",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/thdioQOYqqusDUfT6trgwMIoNaQ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/vNKlrvHiw32yrjnUoaTMGnH6soN.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/thdioQOYqqusDUfT6trgwMIoNaQ.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/vNKlrvHiw32yrjnUoaTMGnH6soN.jpg",
+    "tmdbId": "211067",
+    "isTmdb": true,
+    "trailerId": "pdROBLUzXS8"
   },
   {
     "id": "solo-leveling-series",
@@ -12089,11 +12152,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Kazuya Nakai"
     ],
     "synopsis": "When a high school girl from a family of spirit mediums meets an occult nerd boy, they challenge each other to paranormal hotspots and trigger an insane supernatural war.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/1X4I1v5xWclPba7rKfj4D86v6Pq.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7aLgN5C6e9z2L6E0lFv2Y3M9V8x.jpg",
     "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/1X4I1v5xWclPba7rKfj4D86v6Pq.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/7aLgN5C6e9z2L6E0lFv2Y3M9V8x.jpg",
     "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "240411",
+    "tmdbId": "226411",
     "isTmdb": true
   },
   {
@@ -12486,11 +12549,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Faisal Malik"
     ],
     "synopsis": "A comedy-drama, which captures the journey of an engineering graduate Abhishek, who for lack of a better job option joins as secretary of a Panchayat office in a remote village named Phulera.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "101037",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xrfvAhrMdT6Uwg5fyTyQAZBYyiu.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/iZ8EtGAqKWZdRJPzWfFseNfVxjh.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/xrfvAhrMdT6Uwg5fyTyQAZBYyiu.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/iZ8EtGAqKWZdRJPzWfFseNfVxjh.jpg",
+    "tmdbId": "101352",
     "isTmdb": true
   },
   {
@@ -12527,12 +12590,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Rasika Dugal"
     ],
     "synopsis": "The iron-fisted Akhandanand Tripathi is a millionare carpet exporter and the mafia don of Mirzapur. His son, Munna, an unworthy, power hungry heir, stops at nothing to inherit his father's legacy.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/1rxLUFVrtTo82OxhbDXJDiJVkwL.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/3dV7pWAdwIPKR2lMIACMfObXdgK.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/1rxLUFVrtTo82OxhbDXJDiJVkwL.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/3dV7pWAdwIPKR2lMIACMfObXdgK.jpg",
     "tmdbId": "84105",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "33o3s4Vs4Sw"
   },
   {
     "id": "sacred-games-series",
@@ -12567,11 +12631,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Pankaj Tripathi"
     ],
     "synopsis": "A link in their pasts leads an honest cop to a fugitive gang boss, whose cryptic warning spurs the officer on a quest to save Mumbai from cataclysm within 25 days.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "79244",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/uEbNtFbK4At9WBDGap23lt1qO9n.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/qtac9X9lSLqZFbxS71347N8MiID.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/uEbNtFbK4At9WBDGap23lt1qO9n.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/qtac9X9lSLqZFbxS71347N8MiID.jpg",
+    "tmdbId": 79352,
     "isTmdb": true
   },
   {
@@ -12606,11 +12670,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Samantha Ruth Prabhu"
     ],
     "synopsis": "A middle-class man who secretly works for the National Investigation Agency must protect the nation from terrorism while shielding his family from the secrecy of his job.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "93340",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vCtEwgPHBjwMgehFyGnIlaUXJx6.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/sAzOPtLtqeveLDncierhahMIIpK.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/vCtEwgPHBjwMgehFyGnIlaUXJx6.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/sAzOPtLtqeveLDncierhahMIIpK.jpg",
+    "tmdbId": "15643",
     "isTmdb": true
   },
   {
@@ -12645,12 +12709,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Anjali Barot"
     ],
     "synopsis": "Set in 1980's and 90's Bombay, it follows the life of Harshad Mehta, a stockbroker who took the stock market to dizzying heights and his catastrophic downfall.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "111803",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/fiimZ9Xt5cPTPHNrbS4QautBXpU.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/tTYP1npvBU90NthceezScfXGiOl.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/fiimZ9Xt5cPTPHNrbS4QautBXpU.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/tTYP1npvBU90NthceezScfXGiOl.jpg",
+    "tmdbId": "111188",
+    "isTmdb": true,
+    "trailerId": "wc5j94OkK2A"
   },
   {
     "id": "asur-series",
@@ -12685,12 +12750,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Anupriya Goenka"
     ],
     "synopsis": "A unique psychological thriller that pits two opposing worlds against each other: the less explored world of forensic science and the deep mysticism of ancient Indian mythology.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "100857",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/iQ7H87WvamQRyduAqN2zAZeirji.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/eXUr34XTqYaDwyOerFpL6sUOgDL.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/iQ7H87WvamQRyduAqN2zAZeirji.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/eXUr34XTqYaDwyOerFpL6sUOgDL.jpg",
+    "tmdbId": "100911",
+    "isTmdb": true,
+    "trailerId": "0ZwyCRhhK60"
   },
   {
     "id": "squid-game-series",
@@ -12768,12 +12834,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Lomon"
     ],
     "synopsis": "A high school becomes ground zero for a zombie virus outbreak. Trapped students must fight their way out or turn into one of the rabid infected.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/8hp2CuGnw1iP5dLBVMAPUv23swx.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/8hp2CuGnw1iP5dLBVMAPUv23swx.jpg",
     "tmdbId": "99966",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "IN5TD4VRcSM"
   },
   {
     "id": "the-glory-series",
@@ -12807,12 +12874,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Yeom Hye-ran"
     ],
     "synopsis": "Years after surviving horrific abuse in high school, a woman puts an elaborate revenge scheme into motion to make the perpetrators pay for their crimes.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/uUM4LVlPgIrww07OoEKrGWlS1Ej.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/AjwoDj77HLlqcpwEGqsnvMXm5my.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/uUM4LVlPgIrww07OoEKrGWlS1Ej.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/AjwoDj77HLlqcpwEGqsnvMXm5my.jpg",
     "tmdbId": "136283",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "tqVVrTvrI8U"
   },
   {
     "id": "crash-landing-on-you-series",
@@ -12847,10 +12915,10 @@ const KOREAN_MOVIES_CATALOG = [
       "Kim Jung-hyun"
     ],
     "synopsis": "A paragliding mishap drops a South Korean chaebol heiress in North Korea - and into the life of an army officer, who decides he will help her hide.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/fgBNLPr6mC8pxuR79ENAJY4nBmj.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/3yEHM2HT2vrUtO93YzTJNgEfiZG.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/fgBNLPr6mC8pxuR79ENAJY4nBmj.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/3yEHM2HT2vrUtO93YzTJNgEfiZG.jpg",
     "tmdbId": "94796",
     "isTmdb": true
   },
@@ -12888,12 +12956,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Yoo Jae-myung"
     ],
     "synopsis": "During a visit to his motherland, a Korean-Italian mafia lawyer gives an unrivaled conglomerate a taste of its own medicine with a side of justice.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qbkSS1cTjT4DzIwD44bdhTuYgdT.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/sf7NCqyVUNoyjYuwW5oJke1T1lH.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qbkSS1cTjT4DzIwD44bdhTuYgdT.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/sf7NCqyVUNoyjYuwW5oJke1T1lH.jpg",
     "tmdbId": "117376",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "S12-4mXCNj4"
   },
   {
     "id": "queen-of-tears-series",
@@ -12928,11 +12997,11 @@ const KOREAN_MOVIES_CATALOG = [
       "Kwak Dong-yeon"
     ],
     "synopsis": "The queen of department stores and the prince of supermarkets weather a marital crisis until love miraculously begins to bloom again against all odds.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "206586",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/lCU77Jp0iWN2e1WuSJvR7M35ebN.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/ieiq46OoeTrLkjtclmhii6iRyzP.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/lCU77Jp0iWN2e1WuSJvR7M35ebN.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/ieiq46OoeTrLkjtclmhii6iRyzP.jpg",
+    "tmdbId": "242876",
     "isTmdb": true
   },
   {
@@ -13128,12 +13197,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Kenichiro Matsuda"
     ],
     "synopsis": "Thorfinn pursues a journey with his father's killer in order to take revenge and end his life in a duel, while finding himself caught in the middle of a war for the crown of England.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "89456",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/vUHlpA5c1NXkds59reY3HMb4Abs.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/sPN7Ylc7swmyukJeQBNcRAl9usS.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/vUHlpA5c1NXkds59reY3HMb4Abs.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/sPN7Ylc7swmyukJeQBNcRAl9usS.jpg",
+    "tmdbId": "88803",
+    "isTmdb": true,
+    "trailerId": "H3fS-bZ4e2E"
   },
   {
     "id": "kaiju-no-8-series",
@@ -13168,12 +13238,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Fairouz Ai"
     ],
     "synopsis": "In a world plagued by threatening creatures known as Kaiju, Kafka Hibino aspires to enlist in The Defense Force to eliminate them, but unexpectedly transforms into a Kaiju himself.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/83yDUQVpdhv8ePy3nbTRzFaKYuQ.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/htGeuCcNhlBe8GTx3izKOsd8frw.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/83yDUQVpdhv8ePy3nbTRzFaKYuQ.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/htGeuCcNhlBe8GTx3izKOsd8frw.jpg",
     "tmdbId": "207468",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "FsAKMsUjaK0"
   },
   {
     "id": "game-of-thrones-series",
@@ -13330,12 +13401,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Christopher Walken"
     ],
     "synopsis": "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outside of work, it begins a journey to discover the truth.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "95557",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/gNbdjDi1HamTCrfvM9JeA94bNi2.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/sjx6zjQI2dLGtEL0HGWsnq6UyLU.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/gNbdjDi1HamTCrfvM9JeA94bNi2.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/sjx6zjQI2dLGtEL0HGWsnq6UyLU.jpg",
+    "tmdbId": "115036",
+    "isTmdb": true,
+    "trailerId": "rOJ1cw6mohw"
   },
   {
     "id": "the-bear-series",
@@ -13368,12 +13440,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Liza Colón-Zayas"
     ],
     "synopsis": "A young fine-dining chef returns home to Chicago to run his family's Italian beef sandwich shop after a heartbreaking death, striving to transform both the kitchen and himself.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "13916",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/aJtG4txtmiRHwAAqENQHZvBs6kY.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/aJtG4txtmiRHwAAqENQHZvBs6kY.jpg",
+    "tmdbId": "136315",
+    "isTmdb": true,
+    "trailerId": "WBlIUsFEnsw"
   },
   {
     "id": "loki-series",
@@ -13447,12 +13520,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Raashii Khanna"
     ],
     "synopsis": "An ingenious small-time artist creates the ultimate counterfeit currency design and plunges into high-stakes cat-and-mouse games with a fiery task-force cop.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/cTS86RwEBIDgCgUmjWQTSoPsK6p.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/rBOnrVlck7BIlGeWVlzYiZeg4l2.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/cTS86RwEBIDgCgUmjWQTSoPsK6p.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/rBOnrVlck7BIlGeWVlzYiZeg4l2.jpg",
     "tmdbId": "209867",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "01WEqntM1NI"
   },
   {
     "id": "delhi-crime-series",
@@ -13485,12 +13559,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Rajesh Tailang"
     ],
     "synopsis": "Following the police investigation into heinous metropolitan crimes in Delhi, DCP Vartika Chaturvedi leads a relentless task force to deliver justice.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "87910",
-    "isTmdb": true
+    "posterUrl": "https://image.tmdb.org/t/p/w500/xkpkTj6KGsjSaet0VQaq0aTn31D.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/j6djmR4hi8ULL0xUPQN4ZVyzgVN.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/xkpkTj6KGsjSaet0VQaq0aTn31D.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/j6djmR4hi8ULL0xUPQN4ZVyzgVN.jpg",
+    "tmdbId": 87508,
+    "isTmdb": true,
+    "trailerId": "jNuKwlKJx2E"
   },
   {
     "id": "paatal-lok-series",
@@ -13525,10 +13600,10 @@ const KOREAN_MOVIES_CATALOG = [
       "Abhishek Banerjee"
     ],
     "synopsis": "A down-and-out cop lands the case of a lifetime when four suspects are collared in the assassination attempt of a prime-time journalist, spiraling into the dark underworld.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/kYAPL382xw4pHSKn1fHzVoZzym3.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/bNN7Qgra9BxHzX0PyTSnxXIq9Wb.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/kYAPL382xw4pHSKn1fHzVoZzym3.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/bNN7Qgra9BxHzX0PyTSnxXIq9Wb.jpg",
     "tmdbId": "103244",
     "isTmdb": true
   },
@@ -13564,12 +13639,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Gulshan Devaiah"
     ],
     "synopsis": "In the cartel-run town of Gulaabganj, an unprecedented opium deal pulls a big-city cop and a lovesick mechanic into its chaotic, bloody web.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qehA1nHxvvPzwUuj6L9CmbMCybV.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/jSe8uPBDQboTwNr2ZdGTrgpWpDa.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/qehA1nHxvvPzwUuj6L9CmbMCybV.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/jSe8uPBDQboTwNr2ZdGTrgpWpDa.jpg",
     "tmdbId": "210080",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "0dIIChsjKBc"
   },
   {
     "id": "business-proposal-series",
@@ -13604,12 +13680,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Seol In-ah"
     ],
     "synopsis": "In disguise as her friend, Ha-ri shows up to a blind date to scare him away. But plans go awry when he turns out to be her company CEO and he makes a marriage proposal.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/zbP6wPbdFCTFnzuZoVXMw9q5Hno.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/jChgOjgYN7Vhkc5OpBbIYG4uSTG.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/zbP6wPbdFCTFnzuZoVXMw9q5Hno.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/jChgOjgYN7Vhkc5OpBbIYG4uSTG.jpg",
     "tmdbId": "154824",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "3yUYh-Rbysk"
   },
   {
     "id": "sweet-home-series",
@@ -13646,12 +13723,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Lee Do-hyun"
     ],
     "synopsis": "As humans turn into savage monsters and wreak terror, one troubled teen and his apartment neighbors fight to survive and hold on to their humanity.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/zcugNxDg59YwIf3dUHsrHmO7pc1.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/mceCXNTny6a5F3rQgShLoyARw4l.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/zcugNxDg59YwIf3dUHsrHmO7pc1.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/mceCXNTny6a5F3rQgShLoyARw4l.jpg",
     "tmdbId": "96648",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "7rI56NmD33Y"
   },
   {
     "id": "moving-series",
@@ -13689,10 +13767,10 @@ const KOREAN_MOVIES_CATALOG = [
       "Go Youn-jung"
     ],
     "synopsis": "Children with secret super powers and their parents who harbor painful past secrets face enormous dangers as rogue agencies seek to hunt them down.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/inkdLEQJepgncq4KuALnWH6JHNz.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/2kQR5RxU4Vlv7zg8GA35KGqGqOl.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/inkdLEQJepgncq4KuALnWH6JHNz.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/2kQR5RxU4Vlv7zg8GA35KGqGqOl.jpg",
     "tmdbId": "129490",
     "isTmdb": true
   },
@@ -13731,12 +13809,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Yook Sung-jae"
     ],
     "synopsis": "An immortal guardian of souls seeks a human bride to remove an invisible sword from his chest and end his eternal cursed life.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/sPkxHNw5BFvuCFGWw825TS7n6X3.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/smSbK5cd8T9XHcxEUcems23BDEF.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/sPkxHNw5BFvuCFGWw825TS7n6X3.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/smSbK5cd8T9XHcxEUcems23BDEF.jpg",
     "tmdbId": "67915",
-    "isTmdb": true
+    "isTmdb": true,
+    "trailerId": "y1ClsA-zt-I"
   },
   {
     "id": "marry-my-husband-series",
@@ -13772,22 +13851,13 @@ const KOREAN_MOVIES_CATALOG = [
       "Song Ha-yoon"
     ],
     "synopsis": "After being murdered by her husband who had an affair with her best friend, a terminally ill woman travels 10 years back in time to change her destiny.",
-    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdropUrl": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/original/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
-    "tmdbId": "226411",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/899KcBqooj8nEyPcAEU3h7AdfUo.jpg",
+    "backdropUrl": "https://image.tmdb.org/t/p/original/7BoRhg8zXP0ca9Zql4p8llCFR2P.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/899KcBqooj8nEyPcAEU3h7AdfUo.jpg",
+    "backdrop": "https://image.tmdb.org/t/p/original/7BoRhg8zXP0ca9Zql4p8llCFR2P.jpg",
+    "tmdbId": "221851",
     "isTmdb": true
   }
 ];
 
-// Also expose as MOVIES_CATALOG for backward compatibility
-const MOVIES_CATALOG = KOREAN_MOVIES_CATALOG;
-
-// Export for Node.js environments (CommonJS)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    KOREAN_MOVIES_CATALOG,
-    MOVIES_CATALOG
-  };
-}
+if (typeof module !== "undefined") module.exports = KOREAN_MOVIES_CATALOG;

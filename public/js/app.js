@@ -333,6 +333,19 @@ function switchMainScreen(screenName) {
     }
   });
 
+  // Hide hero banner and sticky category pills when viewing Details or Library
+  const heroContainer = document.getElementById('hero-slideshow-container');
+  const chipContainer = document.getElementById('chip-container');
+  const chipSection = chipContainer ? chipContainer.closest('section') : null;
+
+  if (screenName === 'details' || screenName === 'library') {
+    if (heroContainer) heroContainer.style.display = 'none';
+    if (chipSection) chipSection.style.display = 'none';
+  } else {
+    if (heroContainer) heroContainer.style.display = 'block';
+    if (chipSection) chipSection.style.display = 'block';
+  }
+
   // Update Nav Active State
   document.querySelectorAll('#main-nav-links .nav-link').forEach(link => {
     const nav = link.getAttribute('data-nav');
@@ -351,8 +364,8 @@ function switchMainScreen(screenName) {
     renderContinueWatchingRow();
   }
 
-  // Smooth scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Instant scroll to top so content is directly visible at top of viewport
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function selectNavCategory(category) {
@@ -1010,6 +1023,7 @@ function openFilmDetails(movieOrSlug) {
   const age = document.getElementById('details-age');
   const year = document.getElementById('details-year');
   const synopsis = document.getElementById('details-synopsis');
+  const watchBtnText = document.getElementById('details-watch-btn-text');
 
   const posterSrc = movie.posterUrl || movie.poster || movie.backdropUrl || getPosterFallbackSvg(movie.title, movie.year);
   const backdropSrc = movie.backdropUrl || movie.backdrop || movie.posterUrl || posterSrc;
@@ -1021,10 +1035,23 @@ function openFilmDetails(movieOrSlug) {
   }
   if (title) title.innerText = movie.title;
   if (score) score.innerText = `★ ${movie.imdbRating || '8.2'}`;
-  if (duration) duration.innerText = movie.duration || '2h 10m';
-  if (age) age.innerText = movie.rating || 'PG-13';
+  
+  const isTV = movie.type === 'tv' || movie.isSeries;
+  if (duration) {
+    if (isTV) {
+      duration.innerText = `${movie.seasons || 1} Season${(movie.seasons || 1) > 1 ? 's' : ''} • ${movie.episodesCount || 12} Episodes`;
+    } else {
+      duration.innerText = movie.duration || '2h 10m';
+    }
+  }
+
+  if (age) age.innerText = movie.rating || (isTV ? 'TV-MA' : 'PG-13');
   if (year) year.innerText = movie.year || '2024';
-  if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Available for high-speed 4K UHD streaming and direct offline download.';
+  if (synopsis) synopsis.innerText = movie.synopsis || movie.overview || 'Available for high-speed streaming in full HD.';
+  
+  if (watchBtnText) {
+    watchBtnText.innerText = isTV ? 'Watch Series (Ep 1)' : 'Watch Now';
+  }
 
   // Render Cast & Related Films
   renderDetailsCast(movie);
@@ -1318,22 +1345,6 @@ function watchSurpriseMovie() {
 // 10. KEYBOARD SHORTCUTS & NATIVE SHARE
 // =========================================================================
 
-function openShortcutsModal() {
-  const overlay = document.getElementById('shortcuts-modal-overlay');
-  if (overlay) {
-    overlay.classList.remove('hidden');
-    overlay.classList.add('flex');
-  }
-}
-
-function closeShortcutsModal() {
-  const overlay = document.getElementById('shortcuts-modal-overlay');
-  if (overlay) {
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex');
-  }
-}
-
 function shareFilmDirect() {
   const film = currentActiveMovie || getCurrentSlideMovie();
   const shareUrl = `${window.location.origin}/#movie/${film.slug || film.id}`;
@@ -1531,7 +1542,7 @@ window.addEventListener('keydown', (e) => {
   }
   if (e.key === '?' || (e.shiftKey && e.key === '/')) {
     e.preventDefault();
-    openShortcutsModal();
+    
   }
   if (e.key === 'ArrowRight') {
     nextSlide();

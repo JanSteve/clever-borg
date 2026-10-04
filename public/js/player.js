@@ -193,17 +193,6 @@ const CinexaPlayer = {
     }
   },
 
-  openCineHDMirror() {
-    if (!this.currentMovie) return;
-    const title = this.currentMovie.title || 'Movie';
-    const query = encodeURIComponent(title);
-    const cineUrl = `https://cinehd.vc/search?q=${query}`;
-    window.open(cineUrl, '_blank');
-    if (typeof showToast === 'function') {
-      showToast(`🚀 Opening "${title}" on CineHD Mirror...`);
-    }
-  },
-
   closePlayer() {
     if (this.videoEl) {
       this.videoEl.pause();

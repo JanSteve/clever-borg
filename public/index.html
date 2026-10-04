@@ -128,9 +128,6 @@
       width: 100%;
     }
   </style>
-
-  <!-- Monetag MultiTag Monetization Script (Zone 290025) -->
-  <script src="https://quge5.com/88/tag.min.js" data-zone="290025" async data-cfasync="false"></script>
 </head>
 
 <body class="bg-petrol-base text-parchment font-sans antialiased min-h-screen relative selection:bg-brass selection:text-[#1A1408] pb-16">
@@ -170,9 +167,6 @@
             <span class="material-symbols-outlined text-[18px] text-primary">search</span>
             <span class="text-xs font-sans hidden sm:inline text-driftwood">Search films, anime, series...</span>
           </div>
-          <kbd class="font-mono text-[10px] uppercase text-text-muted bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 hidden sm:inline">
-            ⌘K
-          </kbd>
         </button>
 
         <!-- Library Bookmark Icon -->
@@ -205,9 +199,6 @@
               <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               <span id="slide-category-text">✨ Top Recommendation</span>
             </span>
-            <span class="font-mono text-xs uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-1 rounded-full border border-secondary/30 hidden sm:inline" id="slide-resolution-badge">
-              4K UHD Master
-            </span>
           </div>
 
           <!-- Title -->
@@ -226,8 +217,6 @@
             <span class="text-primary font-medium flex items-center gap-1" id="slide-imdb">
               <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> 8.6 IMDb
             </span>
-            <span>•</span>
-            <span class="text-tertiary font-medium" id="slide-match">99% Match</span>
           </div>
 
           <!-- Synopsis -->
@@ -240,18 +229,6 @@
             <button class="h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch Now</span>
-            </button>
-            <button class="h-12 px-5 rounded-full bg-surface-container-high hover:bg-surface-bright text-parchment font-sans text-sm font-medium flex items-center gap-2 border border-white/10 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="downloadSlideMovie()">
-              <span class="material-symbols-outlined text-[18px]">download</span>
-              <span>Download 4K</span>
-            </button>
-            <button class="h-12 px-4 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="watchSlideTrailer()" title="Watch Official HD Trailer">
-              <span class="material-symbols-outlined text-[18px]">play_circle</span>
-              <span>Trailer</span>
-            </button>
-            <button class="h-12 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" id="slide-btn-watchlist" onclick="toggleSlideWatchlist()">
-              <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
-              <span id="slide-watchlist-text">Watchlist</span>
             </button>
           </div>
         </div>
@@ -272,9 +249,6 @@
           <div class="flex items-center gap-2" id="slide-progress-dots"></div>
         </div>
       </div>
-
-      <!-- Bottom Mini Thumbnails Strip -->
-      <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2.5 overflow-x-auto no-scrollbar w-full py-1" id="slide-thumbnails-deck"></div>
     </div>
   </section>
 
@@ -599,17 +573,21 @@
           <img class="w-full h-full object-cover" id="details-poster-img" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" alt="Film Poster"/>
         </div>
         <div class="flex-1 min-w-0 pt-2 space-y-3">
-          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-parchment" id="details-title">
-            Dune: Part Two
-          </h2>
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-parchment" id="details-title">
+              Dune: Part Two
+            </h2>
+            <button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-xs font-medium text-driftwood hover:text-parchment border border-white/10 transition-colors cursor-pointer shrink-0" onclick="switchMainScreen('discover')">
+              ← Back to Browse
+            </button>
+          </div>
           <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-driftwood">
             <span class="text-primary font-bold px-2 py-0.5 rounded bg-surface-container border border-white/10" id="details-score">★ 8.6</span>
-            <span class="text-tertiary font-semibold" id="details-match">99% MATCH</span>
-            <span class="text-parchment" id="details-year">2024</span>
+            <span class="text-parchment font-medium" id="details-year">2024</span>
             <span>•</span>
             <span id="details-duration">2h 46m</span>
             <span>•</span>
-            <span class="px-2 py-0.5 rounded bg-surface-container text-parchment" id="details-age">PG-13</span>
+            <span class="px-2 py-0.5 rounded bg-surface-container text-parchment font-medium" id="details-age">PG-13</span>
           </div>
           <p class="font-sans text-sm text-driftwood leading-relaxed max-w-2xl" id="details-synopsis">
             Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
@@ -617,11 +595,11 @@
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <button class="h-11 px-6 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center gap-2 shadow-lg transition-all active:scale-95 hover:bg-brass-hover cursor-pointer" onclick="playCurrentFilmInPlayer()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-              <span>Watch 4K</span>
+              <span id="details-watch-btn-text">Watch Now</span>
             </button>
-            <button class="h-11 px-5 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-primary/40 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="openDownloadModal(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '')">
+            <button class="h-11 px-5 rounded-full bg-surface-container text-parchment hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-white/10 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="openDownloadModal(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '')">
               <span class="material-symbols-outlined text-[18px]">download</span>
-              <span>Download 4K</span>
+              <span>Download</span>
             </button>
             <button class="h-11 px-4 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="watchCurrentFilmTrailer()" title="Watch Official HD Trailer">
               <span class="material-symbols-outlined text-[18px]">play_circle</span>
@@ -690,7 +668,7 @@
                 <span>2160p UHD HDR10+ Master</span>
                 <span class="px-1.5 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-mono font-bold">BEST</span>
               </div>
-              <p class="text-xs text-driftwood font-mono">Dolby Vision • Atmos 7.1 • ~12.8 GB</p>
+              <p class="text-xs text-driftwood font-mono">Best Quality Available</p>
             </div>
           </div>
           <span class="material-symbols-outlined text-primary text-xl">download</span>
@@ -703,7 +681,7 @@
               <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors">
                 1080p Full HD BluRay
               </div>
-              <p class="text-xs text-driftwood font-mono">10-Bit Remux • 5.1 Surround • ~2.4 GB</p>
+              <p class="text-xs text-driftwood font-mono">Standard Quality</p>
             </div>
           </div>
           <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">download</span>
@@ -716,20 +694,11 @@
               <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors">
                 720p Fast Mobile Download
               </div>
-              <p class="text-xs text-driftwood font-mono">HEVC / AAC • Data Saver • ~950 MB</p>
+              <p class="text-xs text-driftwood font-mono">Mobile Friendly</p>
             </div>
           </div>
           <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">download</span>
         </div>
-      </div>
-
-      <!-- Torrent Magnet / Link Copy Row -->
-      <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
-        <button class="text-xs font-mono text-driftwood hover:text-primary flex items-center gap-1.5 transition-colors cursor-pointer" onclick="copyTorrentMagnet()">
-          <span class="material-symbols-outlined text-[16px]">link</span>
-          <span>Copy Magnet URI</span>
-        </button>
-        <span class="text-[11px] font-mono text-text-muted">Direct High-Speed CDN</span>
       </div>
     </div>
   </div>
@@ -786,47 +755,6 @@
       </div>
     </div>
   </div>
-
-  <!-- =========================================================================
-       4E. KEYBOARD SHORTCUTS CHEAT SHEET MODAL
-       ========================================================================= -->
-  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="shortcuts-modal-overlay" onclick="closeShortcutsModal()">
-    <div class="relative w-full max-w-md rounded-2xl bg-surface-container p-6 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between pb-3 border-b border-white/10">
-        <h3 class="font-serif text-lg text-parchment font-semibold flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-[20px]">keyboard</span>
-          <span>Keyboard Shortcuts</span>
-        </h3>
-        <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeShortcutsModal()">
-          <span class="material-symbols-outlined text-[18px]">close</span>
-        </button>
-      </div>
-      <div class="grid grid-cols-2 gap-3 text-xs font-sans">
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Instant Search</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">⌘K / Ctrl+K</kbd>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Play / Pause</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">Space / K</kbd>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Fullscreen</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">F</kbd>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Mute Video</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">M</kbd>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Next Slide</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">→</kbd>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
-          <span class="text-driftwood">Close Modals</span>
-          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">ESC</kbd>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -852,21 +780,12 @@
       <!-- Player Header -->
       <div class="player-header">
         <div class="player-title-info">
-          <div class="playing-badge">● 4K CINEMA STREAM • DOLBY MULTI-AUDIO</div>
           <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="player-header-actions">
-          <button class="player-btn-download flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-on-primary transition-all" onclick="CinexaPlayer.openCineHDMirror()" title="Open title directly on CineHD.vc search mirror">
-            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-            <span>CineHD Mirror</span>
-          </button>
           <button class="player-btn-download flex items-center gap-1.5" onclick="CinexaPlayer.nextServer()" title="Switch to another 4K server if stream is slow or buffering">
             <span class="material-symbols-outlined text-[16px]">swap_horiz</span>
             <span>Switch Server</span>
-          </button>
-          <button class="player-btn-download" onclick="CinexaPlayer.downloadFilm('4k')" title="Download 4K UHD Master">
-            <span class="material-symbols-outlined text-[16px]">download</span>
-            <span>Download 4K</span>
           </button>
           <button class="close-player-btn" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>
@@ -884,53 +803,6 @@
       <div class="player-controls-tray">
         <!-- Series Controls Row (Injected Dynamically when TV Series is loaded) -->
         <div id="player-series-controls" style="display: none;"></div>
-
-        <!-- Servers Row -->
-        <div class="player-control-group">
-          <span class="group-label">⚡ Fast Servers:</span>
-          <div class="player-pill-cluster">
-            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 1 (VidLink Pro 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 2 (Multi-Audio &amp; Dubbed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">Server 3 (VidSrc CC Cloud)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">Server 4 (VidSrc XYZ HD)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 5 (AutoEmbed CDN)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="twoembed" onclick="CinexaPlayer.switchServer('twoembed')">Server 6 (2Embed Cinema)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="embedsu" onclick="CinexaPlayer.switchServer('embedsu')">Server 7 (Embed.su 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_vip" onclick="CinexaPlayer.switchServer('vidsrc_vip')">Server 8 (VidSrc VIP)</button>
-          </div>
-        </div>
-
-        <!-- Audio Dubbing Row -->
-        <div class="player-control-group">
-          <span class="group-label">🎧 Audio Dubbing:</span>
-          <div class="player-pill-cluster">
-            <button class="player-pill-btn player-audio-btn active cursor-pointer" data-audio="original" onclick="CinexaPlayer.switchAudio('original')">Original Audio</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="hindi" onclick="CinexaPlayer.switchAudio('hindi')">🇮🇳 Hindi Dubbed</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="tamil" onclick="CinexaPlayer.switchAudio('tamil')">🇮🇳 Tamil Dubbed</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="telugu" onclick="CinexaPlayer.switchAudio('telugu')">🇮🇳 Telugu Dubbed</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="english" onclick="CinexaPlayer.switchAudio('english')">🇺🇸 English Dubbed</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="japanese" onclick="CinexaPlayer.switchAudio('japanese')">🇯🇵 Japanese Audio</button>
-            <button class="player-pill-btn player-audio-btn cursor-pointer" data-audio="korean" onclick="CinexaPlayer.switchAudio('korean')">🇰🇷 Korean Audio</button>
-          </div>
-        </div>
-
-        <!-- Subtitles & Sync Controller -->
-        <div class="player-control-group">
-          <span class="group-label">💬 Subtitles &amp; Sync:</span>
-          <div class="player-pill-cluster">
-            <button class="player-pill-btn player-sub-btn active cursor-pointer" data-sub="en" onclick="CinexaPlayer.switchSubtitle('en')">English (CC)</button>
-            <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="hi" onclick="CinexaPlayer.switchSubtitle('hi')">Hindi Subtitles</button>
-            <button class="player-pill-btn player-sub-btn cursor-pointer" data-sub="off" onclick="CinexaPlayer.switchSubtitle('off')">Turn Off</button>
-            
-            <div class="subtitle-sync-widget ml-2">
-              <span class="font-mono text-xs text-driftwood">Sync:</span>
-              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(-0.5)" title="Delay Subtitles by 0.5s">-0.5s</button>
-              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(0)" title="Reset Subtitle Sync Offset">0.0s</button>
-              <button class="sync-step-btn" onclick="CinexaPlayer.adjustSubtitleSync(0.5)" title="Advance Subtitles by 0.5s">+0.5s</button>
-              <span class="font-mono text-xs text-primary font-bold" id="sub-sync-indicator">0.0s (In Sync)</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -974,7 +846,6 @@
           <span class="material-symbols-outlined text-[16px]">movie</span>
         </span>
         <span class="font-serif font-semibold text-lg text-parchment">Cinexa</span>
-        <span class="font-mono text-[10px] uppercase text-text-muted">4K Entertainment Engine</span>
       </div>
 
       <div class="flex flex-wrap items-center gap-6 font-sans text-xs text-driftwood">
@@ -982,13 +853,8 @@
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('tamil')">Kollywood</a>
-        <a class="hover:text-primary transition-colors cursor-pointer flex items-center gap-1" onclick="openShortcutsModal()" title="View Keyboard Shortcuts">
-          <span class="material-symbols-outlined text-[15px]">keyboard</span>
-          <span>Shortcuts (?)</span>
-        </a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">DMCA Notice</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB</a>
       </div>
 
       <p class="font-mono text-[11px] text-text-muted">© 2026 Cinexa. Streamed via decentralized legal embeds.</p>
