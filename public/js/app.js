@@ -921,7 +921,7 @@ function renderDiscoverCatalog(customList) {
   if (!grid) return;
 
   const catalog = customList || ((typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : []);
-  if (counter) counter.innerText = `${catalog.length} VERIFIED MASTER FILMS`;
+  if (counter) counter.innerText = `${catalog.length} VERIFIED 4K FILMS & OTT RELEASES`;
 
   if (catalog.length === 0) {
     grid.innerHTML = `
