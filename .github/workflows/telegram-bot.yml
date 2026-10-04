@@ -18,7 +18,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run Telegram Channel Auto-Poster
+      - name: Generate Global SEO Sitemap & Index
+        run: node scripts/generate-sitemap.js
+
+      - name: Run Telegram Channel Auto-Poster & Viral SEO Engine
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
