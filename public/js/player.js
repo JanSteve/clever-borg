@@ -8,7 +8,7 @@
  * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
  */
 
-const SERVER_ORDER = ['vidlink', 'multiaudio', 'vidsrc_cc', 'vidsrc_xyz', 'autoembed', 'twoembed', 'embedsu', 'vidsrc_vip'];
+const SERVER_ORDER = ['vidlink', 'vidsrc_cc', 'vidsrc_xyz', 'autoembed', 'twoembed', 'vidsrc_vip'];
 
 const CinexaPlayer = {
   currentMovie: null,
@@ -392,12 +392,6 @@ const CinexaPlayer = {
           : `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
         break;
 
-      case 'multiaudio':
-        streamUrl = isTV
-          ? `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1&s=${s}&e=${e}`
-          : `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
-        break;
-
       case 'vidsrc_cc':
         streamUrl = isTV
           ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}`
@@ -420,12 +414,6 @@ const CinexaPlayer = {
         streamUrl = isTV
           ? `https://www.2embed.skin/embed/tv/${tmdbId}&s=${s}&e=${e}`
           : `https://www.2embed.skin/embed/movie/${tmdbId}`;
-        break;
-
-      case 'embedsu':
-        streamUrl = isTV
-          ? `https://embed.su/embed/tv/${tmdbId}/${s}/${e}`
-          : `https://embed.su/embed/movie/${tmdbId}`;
         break;
 
       case 'vidsrc_vip':
@@ -464,7 +452,7 @@ const CinexaPlayer = {
       const e = this.currentEpisode || 1;
       const downloadUrls = {
         '4k': isTV ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}` : `https://vidlink.pro/movie/${tmdbId}`,
-        '1080p': isTV ? `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1&s=${s}&e=${e}` : `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`,
+        '1080p': isTV ? `https://vidsrc.cc/v2/embed/tv/${tmdbId}/${s}/${e}` : `https://vidsrc.cc/v2/embed/movie/${tmdbId}`,
         '720p': isTV ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}` : `https://autoembed.co/movie/tmdb/${tmdbId}`
       };
       const url = downloadUrls[quality] || downloadUrls['4k'];
@@ -472,7 +460,7 @@ const CinexaPlayer = {
     }
 
     if (typeof showToast === 'function') {
-      showToast(`⬇ Starting ${quality.toUpperCase()} Download for "${movie.title}"`);
+      showToast(`⬇ Starting Stream & Download for "${movie.title}"`);
     }
   }
 };
