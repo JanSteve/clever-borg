@@ -17,6 +17,8 @@ if (!BOT_TOKEN || !CHANNEL_ID) {
   process.exit(1);
 }
 
+const MONETAG_DIRECT_LINK = process.env.MONETAG_DIRECT_LINK || 'https://omg10.com/4/11952303';
+
 // Telegram Channel Public Username / Link for viral referrals
 const cleanChannelHandle = CHANNEL_ID.startsWith('@') 
   ? CHANNEL_ID.replace('@', '') 
@@ -185,11 +187,11 @@ ${hashtags}
   const inlineKeyboard = [
     [
       { text: '▶ Watch in 4K Ultra HD', url: watchUrl },
-      { text: '⚡ Switch Server', url: watchUrl }
+      { text: '📥 4K Direct Download / Mirror', url: MONETAG_DIRECT_LINK }
     ],
     [
       { text: '👥 Share with Friends (Viral)', url: telegramShareUrl },
-      { text: '🔔 Join Channel for Hourly 4K', url: channelJoinUrl }
+      { text: '🔔 Join Channel for Updates', url: channelJoinUrl }
     ]
   ];
 
