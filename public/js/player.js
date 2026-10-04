@@ -388,8 +388,8 @@ const CinexaPlayer = {
     switch (this.currentServer) {
       case 'vidlink':
         streamUrl = isTV
-          ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`
-          : `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
+          ? `https://vidlink.pro/tv/${tmdbId}/${s}/${e}`
+          : `https://vidlink.pro/movie/${tmdbId}`;
         break;
 
       case 'vidsrc_cc':

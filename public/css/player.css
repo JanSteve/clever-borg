@@ -158,10 +158,12 @@
 }
 
 /* Video Wrapper 16:9 Cinema Aspect */
-.video-wrapper {
+.video-wrapper,
+.video-viewport {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  min-height: 240px;
   background: #000;
   overflow: hidden;
 }

@@ -792,9 +792,9 @@
       </div>
 
       <!-- Video Viewport Frame -->
-      <div class="video-viewport">
-        <iframe allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen class="video-iframe" id="video-iframe" src=""></iframe>
-        <video class="custom-video-player" controls id="custom-video-player" playsinline style="display: none;">
+      <div class="video-wrapper relative w-full aspect-video bg-black overflow-hidden">
+        <iframe allow="autoplay; fullscreen; picture-in-picture; encrypted-media; clipboard-write" allowfullscreen class="video-iframe absolute inset-0 w-full h-full border-0 bg-black" id="video-iframe" src=""></iframe>
+        <video class="custom-video-player absolute inset-0 w-full h-full" controls id="custom-video-player" playsinline style="display: none;">
           <source src="" type="video/mp4"/>
         </video>
       </div>
