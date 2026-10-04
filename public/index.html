@@ -8,8 +8,12 @@
   <meta name="description" content="Watch 200+ curated movies and anime in 4K UHD with multi-language dubbing and high-speed downloads. Bollywood, Anime, Hollywood &amp; Korean Cinema.">
   <meta name="theme-color" content="#0E1A1F">
 
-  <!-- Favicon & Canonical -->
+  <!-- Favicon & Canonical & PWA Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230E1A1F' stroke='%23C9A05B' stroke-width='6'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23C9A05B'/%3E%3Ccircle cx='28' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='32' r='7' fill='%23ECC077'/%3E%3Ccircle cx='28' cy='68' r='7' fill='%23ECC077'/%3E%3Ccircle cx='72' cy='68' r='7' fill='%23ECC077'/%3E%3C/svg%3E"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Cinexa"/>
   <link rel="canonical" href="https://cinexa-films.vercel.app/"/>
   
   <!-- Open Graph / Social Sharing -->
@@ -240,6 +244,10 @@
               <span class="material-symbols-outlined text-[18px]">download</span>
               <span>Download 4K</span>
             </button>
+            <button class="h-12 px-4 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="watchSlideTrailer()" title="Watch Official HD Trailer">
+              <span class="material-symbols-outlined text-[18px]">play_circle</span>
+              <span>Trailer</span>
+            </button>
             <button class="h-12 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" id="slide-btn-watchlist" onclick="toggleSlideWatchlist()">
               <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
               <span id="slide-watchlist-text">Watchlist</span>
@@ -270,13 +278,17 @@
   </section>
 
   <!-- =========================================================================
-       3. STICKY SUB-NAV CATEGORY PILLS (All, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean)
+       3. STICKY SUB-NAV CATEGORY PILLS (All, Anime, Bollywood, Telugu, Tamil, Hollywood, Korean, Surprise Me)
        ========================================================================= -->
   <section class="w-full sticky top-[70px] z-30 py-3 bg-petrol-base/95 backdrop-blur-md border-b border-white/5 shadow-sm">
     <div class="max-w-[1360px] mx-auto px-4 sm:px-6">
       <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar scroll-smooth" id="chip-container">
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs font-semibold bg-primary text-on-primary shadow-sm transition-all cursor-pointer" onclick="selectChip(this, 'all')">
           All
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-4 rounded-full font-sans text-xs font-semibold bg-gradient-to-r from-amber-600/30 to-primary/30 text-primary border border-primary/40 hover:border-primary transition-all flex items-center gap-1.5 cursor-pointer shadow-sm" onclick="triggerSurpriseMe()" title="Spin a Random Curated Movie">
+          <span class="material-symbols-outlined text-[15px]">casino</span>
+          <span>Surprise Me</span>
         </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'anime')">
           🎌 Anime &amp; Animation
@@ -312,6 +324,18 @@
 
       <!-- DEDICATED HORIZONTAL CAROUSELS -->
       <div class="space-y-12" id="catalogue-content">
+        <!-- 0. Continue Watching Section (Dynamic) -->
+        <section class="w-full space-y-4 hidden" id="section-continue-watching">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[26px]">history</span>
+              <span>Continue Watching</span>
+            </h3>
+            <button class="text-xs font-mono text-driftwood hover:text-primary transition-colors cursor-pointer" onclick="clearContinueWatching()">Clear All</button>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-continue-watching"></div>
+        </section>
+
         <!-- 1. Trending Reel -->
         <section class="w-full space-y-4" id="section-row-trending">
           <div class="flex items-center justify-between">
@@ -573,9 +597,17 @@
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch 4K</span>
             </button>
-            <button class="h-11 px-5 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-primary/40 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="downloadFilmDirect(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '', '4k')">
+            <button class="h-11 px-5 rounded-full bg-surface-container text-primary hover:bg-surface-container-high font-sans font-semibold text-sm flex items-center gap-2 border border-primary/40 transition-all active:scale-95 cursor-pointer shadow-sm" onclick="openDownloadModal(currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '')">
               <span class="material-symbols-outlined text-[18px]">download</span>
               <span>Download 4K</span>
+            </button>
+            <button class="h-11 px-4 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="watchCurrentFilmTrailer()" title="Watch Official HD Trailer">
+              <span class="material-symbols-outlined text-[18px]">play_circle</span>
+              <span>Trailer</span>
+            </button>
+            <button class="h-11 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="shareFilmDirect()" title="Share Movie Link">
+              <span class="material-symbols-outlined text-[18px]">share</span>
+              <span>Share</span>
             </button>
             <button class="h-11 px-4 rounded-full bg-surface-container hover:bg-surface-container-high text-driftwood hover:text-parchment font-sans text-sm flex items-center gap-2 border border-white/10 transition-colors active:scale-95 cursor-pointer" onclick="toggleDetailsWatchlist()">
               <span class="material-symbols-outlined text-[18px]">bookmark_add</span>
@@ -584,8 +616,197 @@
           </div>
         </div>
       </div>
+
+      <!-- Cast & Crew Showcase -->
+      <div class="space-y-3 pt-6 border-t border-white/5" id="details-cast-section">
+        <h4 class="font-serif text-xl text-parchment font-semibold flex items-center gap-2">
+          <span>👥 Featured Cast &amp; Director</span>
+        </h4>
+        <div class="flex items-center gap-4 overflow-x-auto no-scrollbar py-2" id="details-cast-grid"></div>
+      </div>
+
+      <!-- More Like This Recommendations Carousel -->
+      <div class="space-y-4 pt-6 border-t border-white/5" id="details-related-section">
+        <div class="flex items-center justify-between">
+          <h4 class="font-serif text-xl text-parchment font-semibold">
+            ✨ More Like This
+          </h4>
+        </div>
+        <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="details-related-carousel"></div>
+      </div>
     </div>
   </main>
+
+  <!-- =========================================================================
+       4B. 4K MULTI-QUALITY DOWNLOAD HUB MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="download-modal-overlay" onclick="closeDownloadModal()">
+    <div class="relative w-full max-w-lg rounded-2xl bg-surface-container p-6 sm:p-7 shadow-2xl border border-white/10 space-y-5" onclick="event.stopPropagation()">
+      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-16 rounded-lg overflow-hidden bg-black shrink-0 border border-white/10">
+            <img class="w-full h-full object-cover" id="download-modal-poster" src="" alt="Poster"/>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-primary font-bold">4K High-Speed Download Hub</span>
+            <h3 class="font-serif text-xl text-parchment font-semibold line-clamp-1" id="download-modal-title">Dune: Part Two</h3>
+            <span class="text-xs font-mono text-driftwood" id="download-modal-year">2024 • Dolby Atmos Master</span>
+          </div>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer shrink-0" onclick="closeDownloadModal()">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Resolution Cards -->
+      <div class="space-y-2.5 font-sans" id="download-quality-options">
+        <div class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-bright border border-primary/40 hover:border-primary flex items-center justify-between gap-3 cursor-pointer transition-all group" onclick="executeDownload('4k')">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs font-mono">4K</span>
+            <div>
+              <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors flex items-center gap-1.5">
+                <span>2160p UHD HDR10+ Master</span>
+                <span class="px-1.5 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-mono font-bold">BEST</span>
+              </div>
+              <p class="text-xs text-driftwood font-mono">Dolby Vision • Atmos 7.1 • ~12.8 GB</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-primary text-xl">download</span>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-bright border border-white/10 hover:border-primary/50 flex items-center justify-between gap-3 cursor-pointer transition-all group" onclick="executeDownload('1080p')">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-surface-container text-parchment flex items-center justify-center font-bold text-xs font-mono border border-white/10">HD</span>
+            <div>
+              <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors">
+                1080p Full HD BluRay
+              </div>
+              <p class="text-xs text-driftwood font-mono">10-Bit Remux • 5.1 Surround • ~2.4 GB</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">download</span>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-bright border border-white/10 hover:border-primary/50 flex items-center justify-between gap-3 cursor-pointer transition-all group" onclick="executeDownload('720p')">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-surface-container text-driftwood flex items-center justify-center font-bold text-xs font-mono border border-white/10">SD</span>
+            <div>
+              <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors">
+                720p Fast Mobile Download
+              </div>
+              <p class="text-xs text-driftwood font-mono">HEVC / AAC • Data Saver • ~950 MB</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">download</span>
+        </div>
+      </div>
+
+      <!-- Torrent Magnet / Link Copy Row -->
+      <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
+        <button class="text-xs font-mono text-driftwood hover:text-primary flex items-center gap-1.5 transition-colors cursor-pointer" onclick="copyTorrentMagnet()">
+          <span class="material-symbols-outlined text-[16px]">link</span>
+          <span>Copy Magnet URI</span>
+        </button>
+        <span class="text-[11px] font-mono text-text-muted">Direct High-Speed CDN</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4C. HD VIDEO TRAILER CINEMA MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/90 backdrop-blur-lg hidden items-center justify-center p-4 transition-opacity" id="trailer-modal-overlay" onclick="closeTrailerModal()">
+    <div class="relative w-full max-w-4xl rounded-2xl bg-surface-container overflow-hidden shadow-2xl border border-white/10" onclick="event.stopPropagation()">
+      <div class="p-4 bg-surface-container-high border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+          <h3 class="font-serif text-lg text-parchment font-semibold" id="trailer-modal-title">Official 4K Trailer</h3>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-surface-container text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeTrailerModal()">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div class="relative w-full aspect-video bg-black">
+        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full border-0" id="trailer-iframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4D. SURPRISE ME RANDOM MOVIE PICKER MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/90 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="surprise-modal-overlay" onclick="closeSurpriseModal()">
+    <div class="relative w-full max-w-md rounded-2xl bg-surface-container p-6 shadow-2xl border border-primary/30 space-y-4 text-center" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-center w-12 h-12 mx-auto rounded-full bg-primary/20 text-primary border border-primary/40">
+        <span class="material-symbols-outlined text-2xl">casino</span>
+      </div>
+      <div>
+        <span class="font-mono text-xs uppercase text-primary font-bold">Cinexa Curated Recommendation</span>
+        <h3 class="font-serif text-2xl text-parchment font-semibold mt-1" id="surprise-movie-title">Spirited Away</h3>
+        <p class="text-xs font-mono text-driftwood mt-0.5" id="surprise-movie-meta">2001 • ★ 8.6 • Anime Masterpiece</p>
+      </div>
+
+      <div class="relative w-36 aspect-[2/3] mx-auto rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+        <img class="w-full h-full object-cover" id="surprise-movie-poster" src="" alt="Surprise Poster"/>
+      </div>
+
+      <p class="text-xs font-sans text-driftwood leading-relaxed line-clamp-2 max-w-xs mx-auto" id="surprise-movie-synopsis"></p>
+
+      <div class="flex items-center justify-center gap-3 pt-2">
+        <button class="h-10 px-5 rounded-full bg-primary text-on-primary font-sans font-bold text-xs flex items-center gap-1.5 shadow-lg hover:bg-brass-hover transition-all cursor-pointer active:scale-95" onclick="watchSurpriseMovie()">
+          <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+          <span>Watch Now</span>
+        </button>
+        <button class="h-10 px-4 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment font-sans text-xs font-medium border border-white/10 transition-colors cursor-pointer active:scale-95" onclick="triggerSurpriseMe()">
+          <span class="material-symbols-outlined text-[16px]">refresh</span>
+          <span>Roll Again</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4E. KEYBOARD SHORTCUTS CHEAT SHEET MODAL
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="shortcuts-modal-overlay" onclick="closeShortcutsModal()">
+    <div class="relative w-full max-w-md rounded-2xl bg-surface-container p-6 shadow-2xl border border-white/10 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="font-serif text-lg text-parchment font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">keyboard</span>
+          <span>Keyboard Shortcuts</span>
+        </h3>
+        <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeShortcutsModal()">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-3 text-xs font-sans">
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Instant Search</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">⌘K / Ctrl+K</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Play / Pause</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">Space / K</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Fullscreen</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">F</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Mute Video</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">M</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Next Slide</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">→</kbd>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-white/5">
+          <span class="text-driftwood">Close Modals</span>
+          <kbd class="font-mono text-[10px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-white/10 text-primary">ESC</kbd>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        5. SEARCH MODAL OVERLAY (⌘K / Ctrl+K)
@@ -725,9 +946,13 @@
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('bollywood')">Bollywood</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('telugu')">Tollywood</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="selectNavCategory('tamil')">Kollywood</a>
+        <a class="hover:text-primary transition-colors cursor-pointer flex items-center gap-1" onclick="openShortcutsModal()" title="View Keyboard Shortcuts">
+          <span class="material-symbols-outlined text-[15px]">keyboard</span>
+          <span>Shortcuts (?)</span>
+        </a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('terms')">Terms</a>
         <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('fairuse')">DMCA Notice</a>
-        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB Attribution</a>
+        <a class="hover:text-primary transition-colors cursor-pointer" onclick="openLegalModal('tmdb')">TMDB</a>
       </div>
 
       <p class="font-mono text-[11px] text-text-muted">© 2026 Cinexa. Streamed via decentralized legal embeds.</p>
