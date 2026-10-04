@@ -1248,13 +1248,8 @@ function playCurrentFilmInPlayer(target) {
   currentActiveMovie = film;
   saveWatchProgress(film, Math.floor(Math.random() * 40) + 20);
 
-  let chosenServer = 'vidsrc_pm';
-  if (typeof target === 'string' && validServers.includes(target)) {
-    chosenServer = target;
-  }
-
   if (typeof CinexaPlayer !== 'undefined') {
-    CinexaPlayer.openPlayer(film, chosenServer);
+    CinexaPlayer.openPlayer(film);
   }
 }
 
