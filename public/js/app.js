@@ -382,6 +382,13 @@ function selectNavCategory(category) {
       if (category === 'tamil') return txt.includes('tamil');
       if (category === 'hollywood') return txt.includes('hollywood');
       if (category === 'korean') return txt.includes('korean');
+      if (category === 'action') return txt.includes('action');
+      if (category === 'scifi') return txt.includes('sci-fi');
+      if (category === 'horror') return txt.includes('horror');
+      if (category === 'romance') return txt.includes('romance');
+      if (category === 'crime') return txt.includes('crime');
+      if (category === 'comedy') return txt.includes('comedy');
+      if (category === 'new') return txt.includes('latest');
       return false;
     });
     if (btn) {
@@ -426,7 +433,14 @@ function selectChip(btn, category) {
     telugu: 'section-row-telugu',
     tamil: 'section-row-tamil',
     hollywood: 'section-row-hollywood',
-    korean: 'section-row-korean'
+    korean: 'section-row-korean',
+    action: 'section-row-action',
+    scifi: 'section-row-scifi',
+    horror: 'section-row-horror',
+    romance: 'section-row-romance',
+    crime: 'section-row-crime',
+    comedy: 'section-row-comedy',
+    new: 'section-row-trending'
   };
 
   const targetId = sectionMap[category];
@@ -623,6 +637,11 @@ function clearContinueWatching() {
 function filterTrendingRows(category = 'all') {
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
 
+  const hasGenre = (m, regex) => {
+    if (!m.genres) return false;
+    return m.genres.some(g => regex.test(g));
+  };
+
   // 0. TV & Web Series
   const seriesFilms = catalog.filter(m => m.type === 'tv' || m.isSeries);
 
@@ -672,7 +691,31 @@ function filterTrendingRows(category = 'all') {
     (m.language && /^(ko|korean)$/i.test(m.language.trim())))
   );
 
-  // Trending
+  // 7. Action & Thrillers
+  const actionFilms = catalog.filter(m => hasGenre(m, /action|thriller|adventure/i));
+
+  // 8. Sci-Fi & Fantasy
+  const scifiFilms = catalog.filter(m => hasGenre(m, /sci-fi|science fiction|fantasy/i));
+
+  // 9. Horror & Mystery
+  const horrorFilms = catalog.filter(m => hasGenre(m, /horror|mystery/i));
+
+  // 10. Romance & Drama
+  const romanceFilms = catalog.filter(m => hasGenre(m, /romance|drama/i));
+
+  // 11. Crime & Suspense
+  const crimeFilms = catalog.filter(m => hasGenre(m, /crime|suspense/i));
+
+  // 12. Comedy & Fun
+  const comedyFilms = catalog.filter(m => hasGenre(m, /comedy|family/i));
+
+  // 13. Latest Releases (2024-2026)
+  const latestFilms = catalog.filter(m => {
+    const yr = parseInt(m.year) || 0;
+    return yr >= 2024;
+  });
+
+  // Trending Container
   const trendingContainer = document.getElementById('carousel-trending');
   if (trendingContainer) {
     let trendingFilms = catalog;
@@ -683,51 +726,38 @@ function filterTrendingRows(category = 'all') {
     else if (category === 'tamil') trendingFilms = tamilFilms;
     else if (category === 'korean') trendingFilms = koreanFilms;
     else if (category === 'hollywood') trendingFilms = hollywoodFilms;
+    else if (category === 'action') trendingFilms = actionFilms;
+    else if (category === 'scifi') trendingFilms = scifiFilms;
+    else if (category === 'horror') trendingFilms = horrorFilms;
+    else if (category === 'romance') trendingFilms = romanceFilms;
+    else if (category === 'crime') trendingFilms = crimeFilms;
+    else if (category === 'comedy') trendingFilms = comedyFilms;
+    else if (category === 'new') trendingFilms = latestFilms;
 
     trendingContainer.innerHTML = trendingFilms.slice(0, 16).map(m => createMovieCardHtml(m)).join('');
   }
 
-  // Dedicated TV & Web Series
-  const seriesContainer = document.getElementById('carousel-series');
-  if (seriesContainer) {
-    seriesContainer.innerHTML = seriesFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'SERIES' })).join('');
-  }
+  // Populate all carousels helper
+  const populate = (id, list, tag) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.innerHTML = list.slice(0, 16).map(m => createMovieCardHtml(m, tag ? { tag } : {})).join('');
+    }
+  };
 
-  // Dedicated Anime
-  const animeContainer = document.getElementById('carousel-anime');
-  if (animeContainer) {
-    animeContainer.innerHTML = animeFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'ANIME 4K' })).join('');
-  }
-
-  // Dedicated Bollywood
-  const bollywoodContainer = document.getElementById('carousel-bollywood');
-  if (bollywoodContainer) {
-    bollywoodContainer.innerHTML = bollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'HINDI' })).join('');
-  }
-
-  // Dedicated Telugu
-  const teluguContainer = document.getElementById('carousel-telugu');
-  if (teluguContainer) {
-    teluguContainer.innerHTML = teluguFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TELUGU' })).join('');
-  }
-
-  // Dedicated Tamil
-  const tamilContainer = document.getElementById('carousel-tamil');
-  if (tamilContainer) {
-    tamilContainer.innerHTML = tamilFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'TAMIL' })).join('');
-  }
-
-  // Dedicated Hollywood
-  const hollywoodContainer = document.getElementById('carousel-hollywood');
-  if (hollywoodContainer) {
-    hollywoodContainer.innerHTML = hollywoodFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: '4K UHD' })).join('');
-  }
-
-  // Dedicated Korean
-  const koreanContainer = document.getElementById('carousel-korean');
-  if (koreanContainer) {
-    koreanContainer.innerHTML = koreanFilms.slice(0, 16).map(m => createMovieCardHtml(m, { tag: 'K-CINEMA' })).join('');
-  }
+  populate('carousel-series', seriesFilms, 'SERIES');
+  populate('carousel-anime', animeFilms, 'ANIME 4K');
+  populate('carousel-bollywood', bollywoodFilms, 'HINDI');
+  populate('carousel-telugu', teluguFilms, 'TELUGU');
+  populate('carousel-tamil', tamilFilms, 'TAMIL');
+  populate('carousel-hollywood', hollywoodFilms, '4K UHD');
+  populate('carousel-korean', koreanFilms, 'K-CINEMA');
+  populate('carousel-action', actionFilms, 'ACTION');
+  populate('carousel-scifi', scifiFilms, 'SCI-FI');
+  populate('carousel-horror', horrorFilms, 'HORROR');
+  populate('carousel-romance', romanceFilms, 'ROMANCE');
+  populate('carousel-crime', crimeFilms, 'CRIME');
+  populate('carousel-comedy', comedyFilms, 'COMEDY');
 
   // Numbered Top 10 Critics
   const numberedContainer = document.getElementById('carousel-numbered');

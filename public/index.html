@@ -265,6 +265,27 @@
           <span class="material-symbols-outlined text-[15px]">casino</span>
           <span>Surprise Me</span>
         </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'new')">
+          🆕 Latest (2024 - 2026)
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'action')">
+          🔥 Action &amp; Thrillers
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'scifi')">
+          🌌 Sci-Fi &amp; Fantasy
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'horror')">
+          👻 Horror &amp; Mystery
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'romance')">
+          💖 Romance &amp; Drama
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'crime')">
+          🧠 Crime &amp; Suspense
+        </button>
+        <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'comedy')">
+          😂 Comedy &amp; Fun
+        </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'series')">
           📺 TV &amp; Web Series
         </button>
@@ -272,7 +293,7 @@
           🎌 Anime &amp; Animation
         </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'bollywood')">
-          🇮🇳 Bollywood &amp; Hindi
+          🇮🇳 Bollywood (Hindi)
         </button>
         <button class="chip-item whitespace-nowrap h-9 px-5 rounded-full font-sans text-xs text-driftwood hover:text-parchment hover:bg-surface-container border border-white/10 transition-all cursor-pointer" onclick="selectChip(this, 'telugu')">
           🇮🇳 Tollywood (Telugu)
@@ -466,6 +487,114 @@
             </div>
           </div>
           <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-korean"></div>
+        </section>
+
+        <!-- 9. Action & Thrillers -->
+        <section class="w-full space-y-4" id="section-row-action">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🔥 High-Octane Action &amp; Thrillers
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-action', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-action', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-action"></div>
+        </section>
+
+        <!-- 10. Sci-Fi & Fantasy -->
+        <section class="w-full space-y-4" id="section-row-scifi">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🌌 Mind-Bending Sci-Fi &amp; Fantasy
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-scifi', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-scifi', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-scifi"></div>
+        </section>
+
+        <!-- 11. Horror & Mystery -->
+        <section class="w-full space-y-4" id="section-row-horror">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              👻 Spine-Chilling Horror &amp; Mystery
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-horror', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-horror', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-horror"></div>
+        </section>
+
+        <!-- 12. Romance & Drama -->
+        <section class="w-full space-y-4" id="section-row-romance">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              💖 Heartfelt Romance &amp; Emotional Dramas
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-romance', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-romance', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-romance"></div>
+        </section>
+
+        <!-- 13. Crime & Suspense -->
+        <section class="w-full space-y-4" id="section-row-crime">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              🧠 Crime, Underworld &amp; Suspense Thrillers
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-crime', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-crime', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-crime"></div>
+        </section>
+
+        <!-- 14. Comedy & Fun -->
+        <section class="w-full space-y-4" id="section-row-comedy">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
+              😂 Feel-Good Comedy &amp; Fun
+            </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-comedy', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-comedy', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-comedy"></div>
         </section>
       </div>
 
