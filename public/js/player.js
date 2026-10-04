@@ -1,15 +1,17 @@
 /**
  * CINEXA: Master 4K Video Player & Multi-Language Dubbing Engine
  * Features:
- * - 6 High-Speed 4K/1080p Streaming Servers with Auto-Failover
+ * - 8 High-Speed 4K/1080p Streaming Servers with Auto-Failover (Embed.su, VidLink, MultiEmbed, VidSrc VIP, AutoEmbed, 2Embed, VidSrc Cloud, Local)
  * - Multi-Language Audio & Dubbing (Hindi, Tamil, Telugu, English, Korean, Japanese, French, Spanish)
  * - Subtitle Language Selection & Real-Time Sync Controller ([-0.5s] [0.0s] [+0.5s])
- * - Local 4K Master with Automatic Cloud Failover
+ * - 1-Click "🔄 Next Server" Auto-Switching to fix any unplayable streams immediately
  */
+
+const SERVER_ORDER = ['embedsu', 'vidlink', 'multiaudio', 'vidsrc_vip', 'vidsrc_to', 'autoembed', 'twoembed', 'vidsrc_me'];
 
 const CinexaPlayer = {
   currentMovie: null,
-  currentServer: 'vidlink',
+  currentServer: 'embedsu',
   currentAudio: 'original',
   currentSubtitle: 'en',
   subtitleOffset: 0.0,
@@ -39,28 +41,27 @@ const CinexaPlayer = {
     if (this.videoEl) {
       this.videoEl.onerror = () => {
         console.warn('Local stream unavailable, falling back to 4K cloud server...');
-        this.switchServer('vidlink');
+        this.switchServer('embedsu');
       };
     }
   },
 
-  openPlayer(movie, server = 'vidlink') {
+  openPlayer(movie, server = 'embedsu') {
     if (!this.modal) this.init();
     this.currentMovie = movie || {
-      id: '15859',
-      tmdbId: 15859,
-      slug: 'a-moment-to-remember',
-      title: 'A Moment to Remember',
-      year: '2004',
-      country: 'South Korea'
+      id: 'dune-part-two',
+      tmdbId: 693134,
+      slug: 'dune-part-two',
+      title: 'Dune: Part Two',
+      year: '2024'
     };
 
-    // If it's A Moment to Remember and local stream exists, default to local, otherwise vidlink
-    const isLocalFilm = this.currentMovie.slug === 'a-moment-to-remember' || 
-                        this.currentMovie.id === '15859' || 
-                        (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'));
+    const isLocalFilm = (this.currentMovie.slug === 'a-moment-to-remember' || 
+                         this.currentMovie.id === '15859' || 
+                         (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
+                        server === 'local';
     
-    this.currentServer = isLocalFilm && server === 'local' ? 'local' : server;
+    this.currentServer = isLocalFilm ? 'local' : server;
     this.currentAudio = 'original';
     this.subtitleOffset = 0.0;
 
@@ -89,18 +90,28 @@ const CinexaPlayer = {
     }
   },
 
+  nextServer() {
+    const currentIndex = SERVER_ORDER.indexOf(this.currentServer);
+    const nextIndex = (currentIndex + 1) % SERVER_ORDER.length;
+    const nextSrv = SERVER_ORDER[nextIndex];
+    this.switchServer(nextSrv);
+  },
+
   switchServer(server) {
     this.currentServer = server;
     this.updateControlsUI();
     this.loadStreamSource();
     if (typeof showToast === 'function') {
       const serverNames = {
-        vidlink: 'Server 1 (VidLink 4K Ultra)',
-        multiaudio: 'Server 2 (Multi-Audio & Dubbed)',
-        vidsrc_cc: 'Server 3 (VidSrc CC Edge)',
-        autoembed: 'Server 4 (AutoEmbed CDN)',
-        vidsrc_xyz: 'Server 5 (VidSrc Cloud)',
-        local: 'Server 6 (Cinexa 4K Master)'
+        embedsu: 'Server 1 (Embed.su 4K Ultra Fast)',
+        vidlink: 'Server 2 (VidLink Pro 4K)',
+        multiaudio: 'Server 3 (Multi-Audio & Dubbed)',
+        vidsrc_vip: 'Server 4 (VidSrc VIP 4K)',
+        vidsrc_to: 'Server 5 (VidSrc To Cloud)',
+        autoembed: 'Server 6 (AutoEmbed Fast CDN)',
+        twoembed: 'Server 7 (2Embed Cinema)',
+        vidsrc_me: 'Server 8 (VidSrc ME)',
+        local: 'Server 9 (Cinexa 4K Master)'
       };
       showToast(`Switched to ${serverNames[server] || server}`);
     }
@@ -126,9 +137,9 @@ const CinexaPlayer = {
       showToast(`🎧 Audio Track Set: ${audioLabels[audioLang] || audioLang}`);
     }
 
-    // When dubbing is requested, ensure we route through MultiEmbed or VidSrc CC which supports multi-track audio
+    // When dubbing is requested, automatically prioritize MultiEmbed or EmbedSU which support multi-audio streams
     if (['hindi', 'tamil', 'telugu', 'spanish', 'french'].includes(audioLang)) {
-      if (this.currentServer !== 'multiaudio' && this.currentServer !== 'vidsrc_cc') {
+      if (this.currentServer !== 'multiaudio' && this.currentServer !== 'embedsu') {
         this.currentServer = 'multiaudio';
         this.updateControlsUI();
       }
@@ -250,7 +261,7 @@ const CinexaPlayer = {
   loadStreamSource() {
     if (!this.currentMovie) return;
 
-    const tmdbId = this.currentMovie.tmdbId || this.currentMovie.id || '15859';
+    const tmdbId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
     const isLocalFilm = (this.currentMovie.slug === 'a-moment-to-remember' || 
                          this.currentMovie.id === '15859' || 
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember'))) && 
@@ -268,28 +279,37 @@ const CinexaPlayer = {
       return;
     }
 
-    // External Cloud Multi-Server Streams
+    // Multi-Server Cloud Stream Matrix
     let streamUrl = '';
 
     switch (this.currentServer) {
+      case 'embedsu':
+        streamUrl = `https://embed.su/embed/movie/${tmdbId}`;
+        break;
       case 'vidlink':
         streamUrl = `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
         break;
       case 'multiaudio':
         streamUrl = `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
         break;
-      case 'vidsrc_cc':
-        streamUrl = `https://vidsrc.cc/v2/embed/movie/${tmdbId}?autoPlay=true`;
+      case 'vidsrc_vip':
+        streamUrl = `https://vidsrc.vip/embed/movie/${tmdbId}`;
+        break;
+      case 'vidsrc_to':
+        streamUrl = `https://vidsrc.to/embed/movie/${tmdbId}`;
         break;
       case 'autoembed':
         streamUrl = `https://autoembed.co/movie/tmdb/${tmdbId}`;
         break;
-      case 'vidsrc_xyz':
-        streamUrl = `https://vidsrc.xyz/embed/movie/${tmdbId}`;
+      case 'twoembed':
+        streamUrl = `https://www.2embed.skin/embed/movie/${tmdbId}`;
+        break;
+      case 'vidsrc_me':
+        streamUrl = `https://vidsrc.me/embed/movie?tmdb=${tmdbId}`;
         break;
       case 'local':
       default:
-        streamUrl = `https://vidlink.pro/movie/${tmdbId}?primaryColor=ecc077&secondaryColor=ede6d6&iconColor=ecc077&title=true&poster=true&autoplay=true`;
+        streamUrl = `https://embed.su/embed/movie/${tmdbId}`;
     }
 
     if (this.videoEl) {
@@ -305,7 +325,7 @@ const CinexaPlayer = {
   downloadFilm(quality = '4k') {
     if (!this.currentMovie) return;
     const movie = this.currentMovie;
-    const tmdbId = movie.tmdbId || movie.id || '15859';
+    const tmdbId = movie.tmdbId || movie.id || '693134';
     const isLocalFilm = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || (movie.title && movie.title.toLowerCase().includes('moment to remember'));
 
     if (isLocalFilm) {
@@ -317,7 +337,7 @@ const CinexaPlayer = {
       document.body.removeChild(link);
     } else {
       const downloadUrls = {
-        '4k': `https://vidlink.pro/movie/${tmdbId}`,
+        '4k': `https://embed.su/embed/movie/${tmdbId}`,
         '1080p': `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`,
         '720p': `https://autoembed.co/movie/tmdb/${tmdbId}`
       };
@@ -338,7 +358,7 @@ function downloadFilmDirect(slugOrId, quality = '4k') {
     const found = catalog.find(m => m.slug === slugOrId || m.id === slugOrId);
     if (found) film = found;
   }
-  if (!film) film = { id: '15859', slug: 'a-moment-to-remember', title: 'A Moment to Remember' };
+  if (!film) film = { id: 'dune-part-two', tmdbId: 693134, slug: 'dune-part-two', title: 'Dune: Part Two' };
 
   CinexaPlayer.currentMovie = film;
   CinexaPlayer.downloadFilm(quality);

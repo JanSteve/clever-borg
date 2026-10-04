@@ -834,6 +834,10 @@
           <h2 class="player-movie-title" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="player-header-actions">
+          <button class="player-btn-download flex items-center gap-1.5" onclick="CinexaPlayer.nextServer()" title="Switch to another 4K server if stream is slow or buffering">
+            <span class="material-symbols-outlined text-[16px]">swap_horiz</span>
+            <span>Switch Server</span>
+          </button>
           <button class="player-btn-download" onclick="CinexaPlayer.downloadFilm('4k')" title="Download 4K UHD Master">
             <span class="material-symbols-outlined text-[16px]">download</span>
             <span>Download 4K</span>
@@ -856,11 +860,14 @@
         <div class="player-control-group">
           <span class="group-label">⚡ Fast Servers:</span>
           <div class="player-pill-cluster">
-            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 1 (VidLink 4K)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 2 (Multi-Audio &amp; Dubbed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_cc" onclick="CinexaPlayer.switchServer('vidsrc_cc')">Server 3 (VidSrc CC)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 4 (AutoEmbed)</button>
-            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_xyz" onclick="CinexaPlayer.switchServer('vidsrc_xyz')">Server 5 (VidSrc Cloud)</button>
+            <button class="player-pill-btn stream-server-btn active cursor-pointer" data-server="embedsu" onclick="CinexaPlayer.switchServer('embedsu')">Server 1 (Embed.su 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidlink" onclick="CinexaPlayer.switchServer('vidlink')">Server 2 (VidLink Pro 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="multiaudio" onclick="CinexaPlayer.switchServer('multiaudio')">Server 3 (Multi-Audio &amp; Dubbed)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_vip" onclick="CinexaPlayer.switchServer('vidsrc_vip')">Server 4 (VidSrc VIP 4K)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_to" onclick="CinexaPlayer.switchServer('vidsrc_to')">Server 5 (VidSrc To Cloud)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="autoembed" onclick="CinexaPlayer.switchServer('autoembed')">Server 6 (AutoEmbed CDN)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="twoembed" onclick="CinexaPlayer.switchServer('twoembed')">Server 7 (2Embed Cinema)</button>
+            <button class="player-pill-btn stream-server-btn cursor-pointer" data-server="vidsrc_me" onclick="CinexaPlayer.switchServer('vidsrc_me')">Server 8 (VidSrc ME)</button>
           </div>
         </div>
 
