@@ -15,9 +15,12 @@ const CinexaPlayer = {
   loadingTimer: null,
   serverIndex: 0,
   servers: [
-    { id: 'vidsrc_to', name: 'Server 1 (VidSrc 4K)', movie: id => `https://vidsrc.to/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}` },
-    { id: 'vidlink', name: 'Server 2 (VidLink Pro)', movie: id => `https://vidlink.pro/movie/${id}`, tv: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}` },
-    { id: 'twoembed_cc', name: 'Server 3 (2Embed Cinema)', movie: id => `https://www.2embed.cc/embed/${id}`, tv: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` }
+    { id: 'vidlink', name: 'Server 1 (VidLink Pro 4K)', movie: id => `https://vidlink.pro/movie/${id}`, tv: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}` },
+    { id: 'vidsrc_to', name: 'Server 2 (VidSrc 4K)', movie: id => `https://vidsrc.to/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}` },
+    { id: 'vidsrc_cc', name: 'Server 3 (VidSrc CC Fast)', movie: id => `https://vidsrc.cc/v2/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}` },
+    { id: 'autoembed', name: 'Server 4 (AutoEmbed CDN)', movie: id => `https://player.autoembed.cc/embed/movie/${id}`, tv: (id, s, e) => `https://player.autoembed.cc/embed/tv/${id}/${s}/${e}` },
+    { id: 'twoembed_cc', name: 'Server 5 (2Embed Cinema)', movie: id => `https://www.2embed.cc/embed/${id}`, tv: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` },
+    { id: 'multiembed', name: 'Server 6 (Multi-Audio VIP)', movie: id => `https://multiembed.mov/?video_id=${id}&tmdb=1`, tv: (id, s, e) => `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}` }
   ],
 
   init() {
