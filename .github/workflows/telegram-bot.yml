@@ -2,8 +2,8 @@ name: Auto Telegram Movie Poster
 
 on:
   schedule:
-    # Runs automatically every 10 minutes non-stop
-    - cron: '*/10 * * * *'
+    # Auto-triggers every 3 hours to start the next 3-hour batch of 10-min drops
+    - cron: '0 */3 * * *'
   workflow_dispatch: # Allows manual 1-click trigger button in GitHub Actions tab
 
 jobs:
@@ -21,8 +21,21 @@ jobs:
       - name: Generate Global SEO Sitemap & Index
         run: node scripts/generate-sitemap.js
 
-      - name: Run Telegram Channel Auto-Poster & Viral SEO Engine
+      - name: Run Guaranteed 10-Minute Continuous Auto-Poster Loop
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-        run: node scripts/telegram-autoposter.js
+        run: |
+          echo "🚀 Starting 10-Minute Continuous Drop Engine (18 drops over 3 hours)..."
+          for i in {1..18}; do
+            echo "=================================================="
+            echo "📢 POSTING TELEGRAM DROP #$i at $(date -u)"
+            echo "=================================================="
+            node scripts/telegram-autoposter.js || true
+            
+            if [ $i -lt 18 ]; then
+              echo "⏳ Sleeping for 10 minutes (600 seconds) until next drop..."
+              sleep 600
+            fi
+          done
+          echo "✅ Completed 3-hour continuous drop batch (18 posts)!"
