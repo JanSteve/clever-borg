@@ -25,13 +25,19 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_SUBREDDIT: ${{ secrets.REDDIT_SUBREDDIT }}
         run: |
           echo "🚀 Starting 10-Minute Continuous Drop Engine (18 drops over 3 hours)..."
           for i in {1..18}; do
             echo "=================================================="
-            echo "📢 POSTING TELEGRAM DROP #$i at $(date -u)"
+            echo "📢 POSTING TELEGRAM & REDDIT DROP #$i at $(date -u)"
             echo "=================================================="
             node scripts/telegram-autoposter.js || true
+            node scripts/reddit-autoposter.js || true
             
             if [ $i -lt 18 ]; then
               echo "⏳ Sleeping for 10 minutes (600 seconds) until next drop..."
