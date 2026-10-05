@@ -1692,15 +1692,53 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-function handleHashNavigation() {
+function handleDeepLinks() {
+  // 1. Support query parameters (?play=, ?details=, ?q=, ?watch=)
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const playParam = urlParams.get('play') || urlParams.get('watch');
+    const detailsParam = urlParams.get('details') || urlParams.get('info');
+    const queryParam = urlParams.get('q') || urlParams.get('search');
+
+    if (playParam) {
+      setTimeout(() => {
+        playCurrentFilmInPlayer(playParam);
+      }, 200);
+      return;
+    }
+
+    if (detailsParam) {
+      setTimeout(() => {
+        openFilmDetails(detailsParam);
+      }, 200);
+      return;
+    }
+
+    if (queryParam) {
+      setTimeout(() => {
+        openModal('results');
+        const input = document.getElementById('modal-search-input');
+        if (input) {
+          input.value = queryParam;
+          handleModalSearch(queryParam);
+        }
+      }, 300);
+      return;
+    }
+  } catch (e) {}
+
+  // 2. Support hash routes (#movie/slug, #play/slug)
   const hash = window.location.hash;
-  if (hash.startsWith('#movie/')) {
-    const slug = hash.replace('#movie/', '');
+  if (hash.startsWith('#movie/') || hash.startsWith('#film/')) {
+    const slug = hash.replace(/#(movie|film)\//, '');
     if (slug) openFilmDetails(slug);
+  } else if (hash.startsWith('#play/')) {
+    const slug = hash.replace('#play/', '');
+    if (slug) playCurrentFilmInPlayer(slug);
   }
 }
 
-window.addEventListener('hashchange', handleHashNavigation);
+window.addEventListener('hashchange', handleDeepLinks);
 
 // =========================================================================
 // 10. VIRAL "WATCH WITH FRIENDS" & MONETAG REVENUE ENGINE
@@ -1789,7 +1827,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDiscoverCatalog();
   filterTrendingRows('all');
   renderContinueWatchingRow();
-  handleHashNavigation();
+  handleDeepLinks();
 
   // Register PWA Service Worker
   if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
