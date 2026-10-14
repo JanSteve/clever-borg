@@ -2123,3 +2123,152 @@ button:active, .chip-item:active, .cursor-pointer:active {
 .movie-card:hover .aspect-\[2\/3\], .group.cursor-pointer:hover .aspect-\[2\/3\] {
   box-shadow: 0 12px 30px -4px rgba(236, 192, 119, 0.25), 0 0 0 1.5px rgba(236, 192, 119, 0.5);
 }
+
+/* ==========================================================================
+   Top 10 Stylized Rank Numbers (Netflix Signature Style)
+   ========================================================================== */
+.top-10-item {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.top-10-rank {
+  font-family: 'Newsreader', 'Fraunces', Georgia, serif;
+  font-size: 7.5rem;
+  line-height: 0.75;
+  font-weight: 900;
+  color: #09151a;
+  -webkit-text-stroke: 3.5px #ecc077;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+  letter-spacing: -0.06em;
+  margin-right: -24px;
+  z-index: 5;
+  user-select: none;
+  pointer-events: none;
+  transition: transform 0.3s ease, -webkit-text-stroke 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .top-10-rank {
+    font-size: 5.5rem;
+    line-height: 0.8;
+    -webkit-text-stroke: 2.5px #ecc077;
+    margin-right: -16px;
+  }
+}
+
+.top-10-item:hover .top-10-rank {
+  transform: scale(1.05);
+  -webkit-text-stroke: 4px #d8b272;
+}
+
+/* ==========================================================================
+   Interactive Auth Modal & Floating Profile Menu
+   ========================================================================== */
+.auth-input {
+  width: 100%;
+  background: rgba(9, 21, 26, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #ede6d6;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #ecc077;
+  background: rgba(15, 33, 38, 0.95);
+  box-shadow: 0 0 0 3px rgba(236, 192, 119, 0.15);
+}
+
+.profile-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 260px;
+  background: rgba(17, 29, 34, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(236, 192, 119, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(236, 192, 119, 0.08);
+  padding: 8px;
+  z-index: 50;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.carousel-paddle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(9, 21, 26, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ede6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+}
+
+.carousel-paddle.paddle-left {
+  left: 8px;
+}
+
+.carousel-paddle.paddle-right {
+  right: 8px;
+}
+
+.carousel-group:hover .carousel-paddle {
+  opacity: 1;
+}
+
+.carousel-paddle:hover {
+  background: #ecc077;
+  color: #041015;
+  border-color: #ecc077;
+  transform: translateY(-50%) scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .profile-dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 64px;
+    right: 12px;
+    left: auto;
+    width: min(320px, calc(100vw - 24px));
+    z-index: 60;
+  }
+}
+
+/* Fluid Mobile Touch Gestures & Horizontal Smooth Momentum */
+[id^="carousel-"],
+.no-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+

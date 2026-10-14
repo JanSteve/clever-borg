@@ -113,8 +113,9 @@
     };
   </script>
 
-  <!-- Player Modal & Custom Overlay Styles -->
-  <link rel="stylesheet" href="css/player.css?v=3.0">
+  <!-- Cinexa Editorial Design System & Video Player Styles -->
+  <link rel="stylesheet" href="css/styles.css?v=4.0">
+  <link rel="stylesheet" href="css/player.css?v=4.0">
 
   <style>
     body {
@@ -214,6 +215,53 @@
         <button aria-label="Open My Library" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-driftwood hover:text-primary transition-colors cursor-pointer border border-white/10 active:scale-95" onclick="switchMainScreen('library')" title="My Library / Watchlist">
           <span class="material-symbols-outlined text-[18px] sm:text-[20px]">bookmark</span>
         </button>
+
+        <!-- Firebase Authentication Button (Logged Out) -->
+        <button id="navbar-auth-btn" class="flex items-center gap-1.5 h-9 sm:h-10 px-3.5 sm:px-4 rounded-full bg-surface-container hover:bg-surface-container-high border border-primary/40 hover:border-primary text-parchment hover:text-primary transition-all cursor-pointer shadow-sm active:scale-95 text-xs font-semibold" onclick="openAuthModal('signin')">
+          <span class="material-symbols-outlined text-[18px] text-primary">account_circle</span>
+          <span class="hidden sm:inline">Sign In</span>
+        </button>
+
+        <!-- Authenticated Profile Menu (Dropdown) -->
+        <div class="relative hidden" id="navbar-profile-container">
+          <button class="flex items-center gap-2 h-9 sm:h-10 pl-2 pr-3 rounded-full bg-surface-container hover:bg-surface-container-high border border-primary/40 text-parchment transition-all cursor-pointer shadow-sm active:scale-95" onclick="toggleProfileDropdown()">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs overflow-hidden shrink-0" id="navbar-user-avatar">
+              <span class="text-[11px] font-mono">CX</span>
+            </div>
+            <span class="text-xs font-medium max-w-[80px] sm:max-w-[110px] truncate" id="navbar-user-name">User</span>
+            <span class="material-symbols-outlined text-driftwood text-base">expand_more</span>
+          </button>
+
+          <!-- Dropdown Card -->
+          <div class="profile-dropdown-menu hidden" id="profile-dropdown-menu">
+            <div class="p-3 border-b border-white/10 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-sm font-semibold text-parchment truncate" id="profile-dropdown-name">VIP Member</span>
+                <span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary font-mono text-[9px] font-bold">4K VIP</span>
+              </div>
+              <p class="font-sans text-[11px] text-driftwood truncate" id="profile-dropdown-email">viewer@cinexa.tv</p>
+            </div>
+            <div class="py-1">
+              <a class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-white/5 text-xs text-parchment transition-colors cursor-pointer" onclick="toggleProfileDropdown(false); switchMainScreen('library');">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[18px]">bookmark</span>
+                  <span>My Watchlist</span>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-surface-bright text-[10px] font-mono text-driftwood" id="profile-watchlist-count">0</span>
+              </a>
+              <a class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 text-xs text-parchment transition-colors cursor-pointer" onclick="toggleProfileDropdown(false); switchMainScreen('discover'); document.getElementById('section-continue-watching')?.scrollIntoView({behavior: 'smooth'});">
+                <span class="material-symbols-outlined text-primary text-[18px]">history</span>
+                <span>Continue Watching</span>
+              </a>
+            </div>
+            <div class="pt-1 border-t border-white/10">
+              <button class="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-500/10 text-xs text-red-400 hover:text-red-300 transition-colors cursor-pointer" onclick="handleUserSignOut()">
+                <span class="material-symbols-outlined text-[18px]">logout</span>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -265,11 +313,30 @@
             Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.
           </p>
 
-          <!-- Clean Action Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button class="w-full sm:w-auto h-11 sm:h-12 px-7 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center justify-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
+          <!-- Clean Action Buttons (Netflix & HBO Max Caliber) -->
+          <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
+            <!-- Watch Now Primary CTA -->
+            <button class="h-11 sm:h-12 px-6 sm:px-8 rounded-full bg-primary text-on-primary font-sans font-bold text-sm flex items-center justify-center gap-2 shadow-xl hover:bg-brass-hover transition-all active:scale-95 cursor-pointer" id="slide-btn-play" onclick="playSlideMovie()">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
               <span>Watch Now</span>
+            </button>
+
+            <!-- More Info / Details Button -->
+            <button class="h-11 sm:h-12 px-5 sm:px-6 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/15 text-parchment font-sans font-semibold text-sm flex items-center justify-center gap-2 shadow-md hover:border-primary/50 transition-all active:scale-95 cursor-pointer" onclick="openSlideDossier()">
+              <span class="material-symbols-outlined text-[18px]">info</span>
+              <span>More Info</span>
+            </button>
+
+            <!-- Watchlist Toggle CTA -->
+            <button class="h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-surface-container hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-primary font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer" id="slide-watchlist-btn" onclick="toggleSlideWatchlist()" title="Add to My Watchlist">
+              <span class="material-symbols-outlined text-[18px]" id="slide-watchlist-icon">bookmark_add</span>
+              <span id="slide-watchlist-text">Watchlist</span>
+            </button>
+
+            <!-- Official HD Trailer CTA -->
+            <button class="h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-surface-container/70 hover:bg-surface-container-high border border-white/10 text-driftwood hover:text-parchment font-sans font-medium text-sm flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer" onclick="watchSlideTrailer()" title="Watch Official 4K Trailer">
+              <span class="material-symbols-outlined text-[18px]">play_circle</span>
+              <span class="hidden xs:inline">Trailer</span>
             </button>
           </div>
         </div>
@@ -374,7 +441,17 @@
               <span class="material-symbols-outlined text-primary text-[26px]">history</span>
               <span>Continue Watching</span>
             </h3>
-            <button class="text-xs font-mono text-driftwood hover:text-primary transition-colors cursor-pointer" onclick="clearContinueWatching()">Clear All</button>
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1.5">
+                <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-continue-watching', -1)">
+                  <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                </button>
+                <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-continue-watching', 1)">
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                </button>
+              </div>
+              <button class="text-xs font-mono text-driftwood hover:text-primary transition-colors cursor-pointer" onclick="clearContinueWatching()">Clear All</button>
+            </div>
           </div>
           <div class="flex items-start gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 -mx-2 px-2 snap-x snap-mandatory" id="carousel-continue-watching"></div>
         </section>
@@ -421,6 +498,14 @@
             <h3 class="font-serif text-2xl sm:text-3xl text-parchment font-semibold">
               🏆 Top 10 Critics' Choice
             </h3>
+            <div class="flex items-center gap-1.5">
+              <button aria-label="Previous" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-numbered', -1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button aria-label="Next" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 text-driftwood hover:text-parchment hover:border-primary transition-colors cursor-pointer" onclick="scrollRow('carousel-numbered', 1)">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
           </div>
           <div class="flex items-start gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-2 -mx-2 px-2 snap-x snap-mandatory" id="carousel-numbered"></div>
         </section>
@@ -892,6 +977,24 @@
           </div>
           <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">download</span>
         </div>
+
+        <div class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-bright border border-white/10 hover:border-primary/50 flex items-center justify-between gap-3 cursor-pointer transition-all group" onclick="copyTorrentMagnet()">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-xs font-mono border border-purple-500/40">🧲</span>
+            <div>
+              <div class="text-sm font-semibold text-parchment group-hover:text-primary transition-colors">
+                Copy 4K Magnet Torrent URI
+              </div>
+              <p class="text-xs text-driftwood font-mono">Use with qBittorrent, Transmission, or Seedbox</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-driftwood group-hover:text-primary text-xl">content_copy</span>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-center gap-2 text-emerald-300 text-xs font-mono">
+        <span class="material-symbols-outlined text-emerald-400 text-base">verified</span>
+        <span>100% Virus-Free Verified Stream Links. No scammy popups or adware.</span>
       </div>
     </div>
   </div>
@@ -984,6 +1087,102 @@
   </div>
 
   <!-- =========================================================================
+       4F. FIREBASE AUTHENTICATION MODAL (Official Google & Email Auth /firebase-auth-basics)
+       ========================================================================= -->
+  <div class="fixed inset-0 z-50 bg-[#0E1A1F]/90 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity" id="auth-modal-overlay" onclick="closeAuthModal()">
+    <div class="relative w-full max-w-md rounded-2xl bg-surface-container p-6 sm:p-7 shadow-2xl border border-primary/30 space-y-5" onclick="event.stopPropagation()">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-white/10 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[22px]">account_circle</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl sm:text-2xl text-parchment font-semibold">Cinexa Cinema</h3>
+            <p class="text-xs font-mono text-driftwood">Sync Watchlist &amp; Personal Vault</p>
+          </div>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-surface-container-high text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="closeAuthModal()">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Auth Error Notification Banner -->
+      <div id="auth-error-banner" class="hidden p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-red-200 text-xs flex items-center gap-2">
+        <span class="material-symbols-outlined text-red-400 text-base shrink-0">error</span>
+        <span id="auth-error-text" class="flex-1">An authentication error occurred.</span>
+      </div>
+
+      <!-- Tab Switcher: Sign In vs Create Account -->
+      <div class="grid grid-cols-2 p-1 rounded-xl bg-surface-container-high border border-white/5 text-xs font-semibold">
+        <button id="auth-tab-signin" class="py-2 rounded-lg bg-primary text-on-primary font-bold transition-all cursor-pointer" onclick="switchAuthTab('signin')">
+          Sign In
+        </button>
+        <button id="auth-tab-signup" class="py-2 rounded-lg text-driftwood hover:text-parchment transition-all cursor-pointer" onclick="switchAuthTab('signup')">
+          Create Account
+        </button>
+      </div>
+
+      <!-- Google 1-Click Fast Sign In -->
+      <button type="button" class="w-full h-11 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-parchment font-sans font-semibold text-xs flex items-center justify-center gap-2.5 transition-all cursor-pointer active:scale-95 shadow-sm hover:border-primary/40" onclick="handleGoogleSignIn()">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="flex-1 h-px bg-white/10"></div>
+        <span class="font-mono text-[10px] text-driftwood uppercase">or with email</span>
+        <div class="flex-1 h-px bg-white/10"></div>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="auth-signin-form" class="space-y-3" onsubmit="handleEmailSignIn(event)">
+        <div class="space-y-1">
+          <label class="block font-mono text-[11px] text-driftwood">Email Address</label>
+          <input type="email" id="auth-email" required class="auth-input" placeholder="viewer@cinexa.tv" autocomplete="username"/>
+        </div>
+        <div class="space-y-1">
+          <label class="block font-mono text-[11px] text-driftwood">Password</label>
+          <input type="password" id="auth-password" required class="auth-input" placeholder="••••••••" autocomplete="current-password"/>
+        </div>
+        <button type="submit" id="btn-submit-signin" class="w-full h-11 rounded-xl bg-primary text-on-primary font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center shadow-lg hover:bg-brass-hover transition-all active:scale-95 cursor-pointer mt-2">
+          Sign In
+        </button>
+      </form>
+
+      <!-- Create Account Form -->
+      <form id="auth-signup-form" class="space-y-3 hidden" onsubmit="handleEmailSignUp(event)">
+        <div class="space-y-1">
+          <label class="block font-mono text-[11px] text-driftwood">Full Name / Display Name</label>
+          <input type="text" id="auth-reg-name" required class="auth-input" placeholder="Alex Rivers" autocomplete="name"/>
+        </div>
+        <div class="space-y-1">
+          <label class="block font-mono text-[11px] text-driftwood">Email Address</label>
+          <input type="email" id="auth-reg-email" required class="auth-input" placeholder="viewer@cinexa.tv" autocomplete="email"/>
+        </div>
+        <div class="space-y-1">
+          <label class="block font-mono text-[11px] text-driftwood">Password (at least 6 characters)</label>
+          <input type="password" id="auth-reg-password" required minlength="6" class="auth-input" placeholder="••••••••" autocomplete="new-password"/>
+        </div>
+        <button type="submit" id="btn-submit-signup" class="w-full h-11 rounded-xl bg-primary text-on-primary font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center shadow-lg hover:bg-brass-hover transition-all active:scale-95 cursor-pointer mt-2">
+          Create Account
+        </button>
+      </form>
+
+      <!-- Security Trust Footer -->
+      <div class="pt-3 border-t border-white/5 flex items-center justify-center gap-1.5 text-[11px] font-mono text-driftwood">
+        <span class="material-symbols-outlined text-[14px] text-primary">verified_user</span>
+        <span>Secure authentication powered by Firebase Auth. No spam.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
        5. SEARCH MODAL OVERLAY (⌘K / Ctrl+K)
        ========================================================================= -->
   <div class="fixed inset-0 z-50 bg-[#0E1A1F]/85 backdrop-blur-md hidden items-start justify-center pt-16 sm:pt-20 px-3 sm:px-4 transition-opacity" id="command-modal-overlay" onclick="closeModal()">
@@ -1009,22 +1208,33 @@
           <div class="flex items-center gap-2 flex-wrap">
             <span id="player-active-server-badge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-sm transition-all duration-300">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span id="player-current-server-name">Server 1 (VidSrc 4K)</span>
+              <span id="player-current-server-name">Server 1 (VidLink Pro 4K)</span>
             </span>
             <span class="text-[10px] font-mono text-driftwood hidden md:inline">• 4K UHD Master</span>
           </div>
           <h2 class="player-movie-title truncate font-serif text-sm sm:text-xl font-semibold text-parchment mt-1" id="player-movie-title">Dune: Part Two (2024)</h2>
         </div>
         <div class="player-header-actions flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <button class="player-btn-download flex items-center gap-1.5 text-xs px-2.5 sm:px-3 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="CinexaPlayer.nextServer()" title="Switch to Alternate 4K Stream">
+          <!-- Theater Mode Toggle -->
+          <button class="w-8 h-8 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="CinexaPlayer.toggleTheaterMode()" title="Toggle Theater Mode (T)">
+            <span class="material-symbols-outlined text-[17px]">aspect_ratio</span>
+          </button>
+          <!-- Fullscreen Toggle -->
+          <button class="w-8 h-8 rounded-full bg-surface-container-high hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center transition-colors cursor-pointer" onclick="CinexaPlayer.toggleFullscreen()" title="Toggle Fullscreen (F)">
+            <span class="material-symbols-outlined text-[17px]">fullscreen</span>
+          </button>
+          <!-- Switch Server Button -->
+          <button class="player-btn-download flex items-center gap-1.5 text-xs px-2.5 sm:px-3 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="CinexaPlayer.nextServer()" title="Switch to Alternate 4K Stream (S)">
             <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
             <span class="hidden xs:inline">Switch Server</span>
             <span class="inline xs:hidden">Switch</span>
           </button>
+          <!-- Share Button -->
           <button class="flex items-center gap-1.5 text-xs px-2.5 sm:px-3 py-1.5 rounded-full bg-surface-container-high text-driftwood hover:text-primary border border-white/10 hover:border-primary/40 active:scale-95 transition-all cursor-pointer font-semibold shadow-sm" onclick="openShareModal(currentActiveMovie)" title="Watch Together / Share with Friends">
             <span class="material-symbols-outlined text-[15px]">group</span>
             <span class="hidden sm:inline">Share</span>
           </button>
+          <!-- Close Player Button -->
           <button class="close-player-btn w-8 h-8 rounded-full bg-white/10 hover:bg-primary hover:text-on-primary text-parchment flex items-center justify-center text-sm font-bold transition-all cursor-pointer active:scale-95 shrink-0" id="close-player-btn" onclick="CinexaPlayer.closePlayer()" title="Close Player (ESC)">✕</button>
         </div>
       </div>
@@ -1034,7 +1244,17 @@
         <!-- Floating Server Switch Flash Toast -->
         <div id="player-server-switch-toast" class="absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-[#041015]/95 backdrop-blur-md border border-primary/60 text-parchment px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 font-mono text-xs font-bold transition-all duration-300 opacity-0 pointer-events-none -translate-y-2">
           <span class="material-symbols-outlined text-primary text-base animate-spin">sync</span>
-          <span id="player-server-switch-toast-text">Switched to Server 1 (VidSrc 4K)</span>
+          <span id="player-server-switch-toast-text">Switched to Server 1 (VidLink Pro 4K)</span>
+        </div>
+
+        <!-- Failover Watchdog Helper Pill (Appears if stream takes > 8s) -->
+        <div id="player-failover-helper" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 bg-[#041015]/95 backdrop-blur-md border border-amber-500/50 text-parchment px-4 py-2 rounded-full shadow-2xl hidden items-center gap-2.5 font-sans text-xs transition-all duration-300">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span class="text-driftwood">Stream slow or buffering?</span>
+          <button class="font-mono text-primary font-bold hover:underline cursor-pointer flex items-center gap-1" onclick="CinexaPlayer.nextServer()">
+            <span id="player-failover-helper-btn-text">Try Server 2</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </button>
         </div>
 
         <!-- Live Loading & Connecting Overlay -->
@@ -1044,7 +1264,7 @@
             <span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-primary text-lg" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           </div>
           <div class="space-y-1">
-            <p class="text-xs font-mono font-bold text-primary uppercase tracking-wider" id="player-loading-server-text">⚡ Connecting to Server 1 (VidSrc 4K)...</p>
+            <p class="text-xs font-mono font-bold text-primary uppercase tracking-wider" id="player-loading-server-text">⚡ Connecting to Server 1 (VidLink Pro 4K)...</p>
             <p class="text-[11px] font-sans text-driftwood">Instant high-speed playback • Dolby surround</p>
           </div>
         </div>
@@ -1068,7 +1288,7 @@
                 <span class="material-symbols-outlined text-primary text-base">dns</span>
                 <span>Active Server:</span>
               </span>
-              <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidSrc 4K)</span>
+              <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidLink Pro 4K)</span>
             </div>
             <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md" onclick="CinexaPlayer.nextServer()">
               <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
@@ -1076,17 +1296,26 @@
             </button>
           </div>
 
-          <!-- Direct Server Select Buttons (Responsive Grid) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full pt-1" id="player-servers-list">
+          <!-- Direct Server Select Buttons (Responsive 6-Server Grid) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full pt-1" id="player-servers-list">
             <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 border border-primary bg-primary text-on-primary shadow-sm flex items-center justify-center gap-1.5" data-server-index="0" onclick="CinexaPlayer.switchServer(0)">
               <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
-              <span>Server 1 (VidSrc 4K)</span>
+              <span>Server 1 (VidLink Pro 4K)</span>
             </button>
             <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="1" onclick="CinexaPlayer.switchServer(1)">
-              <span>Server 2 (VidLink Pro)</span>
+              <span>Server 2 (VidSrc 4K Master)</span>
             </button>
             <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="2" onclick="CinexaPlayer.switchServer(2)">
-              <span>Server 3 (2Embed Cinema)</span>
+              <span>Server 3 (VidSrc CC Fast)</span>
+            </button>
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="3" onclick="CinexaPlayer.switchServer(3)">
+              <span>Server 4 (AutoEmbed CDN)</span>
+            </button>
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="4" onclick="CinexaPlayer.switchServer(4)">
+              <span>Server 5 (2Embed Cinema)</span>
+            </button>
+            <button class="server-pill-btn w-full px-3 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer active:scale-95 border border-white/10 bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment flex items-center justify-center gap-1.5" data-server-index="5" onclick="CinexaPlayer.switchServer(5)">
+              <span>Server 6 (Multi-Audio VIP)</span>
             </button>
           </div>
 
@@ -1173,28 +1402,35 @@
        10. MOBILE BOTTOM NAVIGATION DOCK (Touch-Friendly Native UX)
        ========================================================================= -->
   <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#071318]/95 backdrop-blur-2xl border-t border-white/10 px-2 py-1.5 flex items-center justify-around shadow-2xl safe-area-bottom" id="mobile-nav-dock">
-    <button class="flex flex-col items-center gap-0.5 text-primary focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="switchMainScreen('discover'); window.scrollTo({top: 0, behavior: 'smooth'})" id="mobile-nav-home">
-      <span class="material-symbols-outlined text-[22px]">home</span>
+    <button class="flex flex-col items-center gap-0.5 text-primary focus:outline-none transition-transform active:scale-90 px-2.5 py-1 cursor-pointer" onclick="switchMainScreen('discover'); window.scrollTo({top: 0, behavior: 'smooth'})" id="mobile-nav-home">
+      <span class="material-symbols-outlined text-[20px]">home</span>
       <span class="text-[10px] font-sans font-bold tracking-tight">Browse</span>
     </button>
-    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="openModal('results')" id="mobile-nav-search">
-      <span class="material-symbols-outlined text-[22px]">search</span>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-2.5 py-1 cursor-pointer" onclick="openModal('results')" id="mobile-nav-search">
+      <span class="material-symbols-outlined text-[20px]">search</span>
       <span class="text-[10px] font-sans font-semibold tracking-tight">Search</span>
     </button>
-    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="triggerSurpriseMe()" id="mobile-nav-surprise">
-      <span class="material-symbols-outlined text-[22px] text-primary">casino</span>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-2.5 py-1 cursor-pointer" onclick="triggerSurpriseMe()" id="mobile-nav-surprise">
+      <span class="material-symbols-outlined text-[20px] text-primary">casino</span>
       <span class="text-[10px] font-sans font-semibold tracking-tight">Surprise</span>
     </button>
-    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-3 py-1 cursor-pointer" onclick="switchMainScreen('library')" id="mobile-nav-library">
-      <span class="material-symbols-outlined text-[22px]">bookmark</span>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-2.5 py-1 cursor-pointer" onclick="switchMainScreen('library')" id="mobile-nav-library">
+      <span class="material-symbols-outlined text-[20px]">bookmark</span>
       <span class="text-[10px] font-sans font-semibold tracking-tight">Library</span>
+    </button>
+    <button class="flex flex-col items-center gap-0.5 text-driftwood hover:text-parchment focus:outline-none transition-transform active:scale-90 px-2.5 py-1 cursor-pointer" onclick="if (typeof CinexaAuth !== 'undefined' && CinexaAuth.isAuthenticated()) { toggleProfileDropdown(); } else { openAuthModal('signin'); }" id="mobile-nav-account">
+      <span class="material-symbols-outlined text-[20px]">account_circle</span>
+      <span class="text-[10px] font-sans font-semibold tracking-tight">Sign In</span>
     </button>
   </nav>
 
-  <!-- Core Scripts -->
-  <script src="js/movies-data.js?v=3.0"></script>
-  <script src="js/tmdb-service.js?v=3.0"></script>
-  <script src="js/player.js?v=3.0"></script>
-  <script src="js/app.js?v=3.0"></script>
+  <!-- Firebase Authentication SDK (Compat for official web client per firebase-auth-basics skill) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="js/auth.js?v=4.0"></script>
+  <script src="js/movies-data.js?v=4.0"></script>
+  <script src="js/tmdb-service.js?v=4.0"></script>
+  <script src="js/player.js?v=4.0"></script>
+  <script src="js/app.js?v=4.0"></script>
 </body>
 </html>

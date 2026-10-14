@@ -12,101 +12,52 @@
 (function () {
   'use strict';
 
-  // 1. Configurable Monetization Settings
+  // 1. Monetization Settings - Intrusion Disabled for Safe Viewing
   const AD_CONFIG = {
-    // Set to true to enable background ad rotation (like cineby.my)
-    enableAdRotation: true,
-    cooldownMs: 15000, // 15 seconds between pop/network actions
-    firstClickArmed: false, // First click is safe for user
+    enableAdRotation: false,
+    cooldownMs: 60000,
+    firstClickArmed: false,
     lastFiredTime: 0,
     currentNetworkIndex: 0,
-    
-    // Configurable Ad Network Scripts / Fallbacks
-    networks: [
-      {
-        name: 'Adsterra Native / Direct',
-        type: 'banner',
-        action: function() {
-          console.log('[AdManager] Adsterra direct impression armed');
-        }
-      },
-      {
-        name: 'Monetag Smart Zone',
-        type: 'smart',
-        action: function() {
-          console.log('[AdManager] Monetag smart impression armed');
-        }
-      },
-      {
-        name: 'VPN Affiliate High-CPM',
-        type: 'affiliate',
-        action: function() {
-          console.log('[AdManager] Affiliate impression recorded');
-        }
-      }
-    ]
+    networks: []
   };
 
-  // 2. Smart Click Rotation (Cineby style with cooldown)
-  let hasFirstClicked = false;
-  document.addEventListener('click', (e) => {
-    // Do not trigger ads on player back button or critical navigation
-    if (e.target.closest('#player-back-btn') || e.target.closest('.search-box') || e.target.closest('#ad-sticky-close')) {
-      return;
-    }
+  // Clickjacking and popunder listeners disabled for security and safe user experience
 
-    if (!hasFirstClicked) {
-      hasFirstClicked = true;
-      console.log('[NovaFlix Ads] First click passed. Monetization system armed.');
-      return;
-    }
-
-    const now = Date.now();
-    if (now - AD_CONFIG.lastFiredTime < AD_CONFIG.cooldownMs) {
-      return;
-    }
-
-    AD_CONFIG.lastFiredTime = now;
-    const currentNet = AD_CONFIG.networks[AD_CONFIG.currentNetworkIndex];
-    if (currentNet && typeof currentNet.action === 'function') {
-      currentNet.action();
-    }
-    AD_CONFIG.currentNetworkIndex = (AD_CONFIG.currentNetworkIndex + 1) % AD_CONFIG.networks.length;
-  });
 
   // 3. Push Notification Opt-in Banner (Huge recurring traffic driver for streaming sites)
   function initPushOptIn() {
-    const isDismissed = localStorage.getItem('novaflix_push_dismissed');
+    const isDismissed = localStorage.getItem('cinexa_push_dismissed') || localStorage.getItem('novaflix_push_dismissed');
     if (isDismissed) return;
 
     setTimeout(() => {
-      if (document.getElementById('novaflix-push-modal')) return;
+      if (document.getElementById('cinexa-push-modal')) return;
 
       const pushModal = document.createElement('div');
-      pushModal.id = 'novaflix-push-modal';
+      pushModal.id = 'cinexa-push-modal';
       pushModal.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         max-width: 360px;
-        background: rgba(15, 23, 42, 0.95);
+        background: rgba(17, 29, 34, 0.96);
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(6, 182, 212, 0.4);
+        border: 1px solid rgba(236, 192, 119, 0.4);
         border-radius: 12px;
         padding: 16px 20px;
         z-index: 99999;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(6, 182, 212, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(236, 192, 119, 0.2);
         animation: slideInRight 0.4s ease;
       `;
 
       pushModal.innerHTML = `
         <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="font-size: 24px; background: rgba(0, 242, 254, 0.15); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(0, 242, 254, 0.3);">🔔</div>
+          <div style="font-size: 24px; background: rgba(236, 192, 119, 0.15); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(236, 192, 119, 0.3);">🔔</div>
           <div style="flex: 1;">
-            <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 4px;">Get New 4K Movie Releases</div>
-            <div style="font-size: 12px; color: #94a3b8; line-height: 1.4;">Receive alerts when new Hollywood blockbusters, Indian cinema, and 4K movies drop on Cinexa.</div>
+            <div style="font-size: 14px; font-weight: 800; color: #ede6d6; margin-bottom: 4px;">Get New 4K Movie Releases</div>
+            <div style="font-size: 12px; color: #a9a596; line-height: 1.4;">Receive alerts when new Hollywood blockbusters, Indian cinema, and 4K movies drop on Cinexa.</div>
             <div style="display: flex; gap: 8px; margin-top: 12px;">
-              <button id="btn-push-allow" style="background: linear-gradient(135deg, #00f2fe, #8b5cf6); color: #08090d; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;">Enable Alerts</button>
+              <button id="btn-push-allow" style="background: #ecc077; color: #422c00; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer;">Enable Alerts</button>
               <button id="btn-push-later" style="background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">Later</button>
             </div>
           </div>

@@ -34,6 +34,13 @@
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 160, 91, 0.1);
   display: flex;
   flex-direction: column;
+  transition: max-width 0.3s ease, max-height 0.3s ease;
+}
+
+.player-container.theater-mode {
+  max-width: 98vw;
+  max-height: 98vh;
+  border-radius: 12px;
 }
 
 .player-header {

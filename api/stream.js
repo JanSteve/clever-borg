@@ -9,9 +9,9 @@ module.exports = (req, res) => {
 
   if (!fs.existsSync(filePath)) {
     res.setHeader('Content-Type', 'application/json');
-    return res.status(200).json({ 
+    return res.status(404).json({ 
       status: 'cloud_streaming', 
-      message: 'File streamed via NovaFlix Global CDN',
+      message: 'File streamed via Cinexa Global CDN',
       requested: requestedFile
     });
   }

@@ -1,11 +1,13 @@
 /**
- * CINEXA: Master 4K Video Player, TV Series Controller & Multi-Language Dubbing Engine
+ * CINEXA: Master 4K Video Player & TV Series Controller
  * Features:
- * - 8 High-Speed 4K/1080p Streaming Servers with Auto-Failover (VidLink, MultiEmbed, VidSrc CC, VidSrc XYZ, AutoEmbed, 2Embed, Embed.su, VidSrc VIP)
+ * - 6 High-Speed 4K/1080p Streaming Servers with Auto-Failover (VidLink, VidSrc 4K, VidSrc CC, AutoEmbed, 2Embed, MultiEmbed)
  * - Complete TV Series & Web Series Season/Episode Navigation with 1-Click Jump
- * - Multi-Language Audio & Dubbing (Hindi, Tamil, Telugu, English, Korean, Japanese, French, Spanish)
- * - Subtitle Language Selection & Real-Time Sync Controller ([-0.5s] [0.0s] [+0.5s])
- * - 1-Click "🔄 Next Server" Auto-Switching + "🚀 CineHD Mirror" Direct Play Link
+ * - Failover Watchdog & Auto-Switch Helper when stream buffers
+ * - Theatre Mode & Native Fullscreen Controller
+ * - Keyboard Shortcuts (ESC, F, S, N, P, Space)
+ * - Seamless Progress Saving to Personal "Continue Watching" Vault
+ * - Zero Scammy Ad Redirects or Malware Links
  */
 
 const CinexaPlayer = {
@@ -13,10 +15,13 @@ const CinexaPlayer = {
   currentSeason: 1,
   currentEpisode: 1,
   loadingTimer: null,
+  failoverTimer: null,
   serverIndex: 0,
+  isTheaterMode: false,
+
   servers: [
     { id: 'vidlink', name: 'Server 1 (VidLink Pro 4K)', movie: id => `https://vidlink.pro/movie/${id}`, tv: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}` },
-    { id: 'vidsrc_to', name: 'Server 2 (VidSrc 4K)', movie: id => `https://vidsrc.to/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}` },
+    { id: 'vidsrc_to', name: 'Server 2 (VidSrc 4K Master)', movie: id => `https://vidsrc.to/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}` },
     { id: 'vidsrc_cc', name: 'Server 3 (VidSrc CC Fast)', movie: id => `https://vidsrc.cc/v2/embed/movie/${id}`, tv: (id, s, e) => `https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}` },
     { id: 'autoembed', name: 'Server 4 (AutoEmbed CDN)', movie: id => `https://player.autoembed.cc/embed/movie/${id}`, tv: (id, s, e) => `https://player.autoembed.cc/embed/tv/${id}/${s}/${e}` },
     { id: 'twoembed_cc', name: 'Server 5 (2Embed Cinema)', movie: id => `https://www.2embed.cc/embed/${id}`, tv: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` },
@@ -25,6 +30,7 @@ const CinexaPlayer = {
 
   init() {
     this.modal = document.getElementById('player-modal');
+    this.container = document.querySelector('.player-container');
     this.titleEl = document.getElementById('player-movie-title');
     this.videoEl = document.getElementById('custom-video-player');
     this.iframeEl = document.getElementById('video-iframe');
@@ -37,7 +43,7 @@ const CinexaPlayer = {
       this.closeBtn.onclick = () => this.closePlayer();
     }
 
-    // Close on backdrop click
+    // Close on backdrop click outside container
     if (this.modal) {
       this.modal.onclick = (e) => {
         if (e.target === this.modal) {
@@ -46,10 +52,11 @@ const CinexaPlayer = {
       };
     }
 
-    // Attach iframe onload to gracefully dismiss loading overlay
+    // Dismiss loading overlay when iframe loads
     if (this.iframeEl) {
       this.iframeEl.addEventListener('load', () => {
         this.hideLoading();
+        this.clearFailoverTimer();
       });
     }
 
@@ -60,8 +67,55 @@ const CinexaPlayer = {
       };
     }
 
-    // Render initial server list UI
+    // Global Keyboard Navigation for Player
+    document.addEventListener('keydown', (e) => {
+      if (!this.isOpen()) return;
+
+      // Don't trigger if user is typing in an input
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      if (e.key === 'Escape') {
+        this.closePlayer();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        this.toggleFullscreen();
+      } else if (e.key === 't' || e.key === 'T') {
+        e.preventDefault();
+        this.toggleTheaterMode();
+      } else if (e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        this.nextServer();
+      } else if (e.key === 'n' || e.key === 'N') {
+        const isTV = this.currentMovie && (this.currentMovie.type === 'tv' || this.currentMovie.isSeries);
+        if (isTV) {
+          e.preventDefault();
+          this.nextEpisode();
+        }
+      } else if (e.key === 'p' || e.key === 'P') {
+        const isTV = this.currentMovie && (this.currentMovie.type === 'tv' || this.currentMovie.isSeries);
+        if (isTV) {
+          e.preventDefault();
+          this.prevEpisode();
+        }
+      } else if (e.key === ' ' || e.key === 'k' || e.key === 'K') {
+        if (this.videoEl && this.videoEl.style.display !== 'none') {
+          e.preventDefault();
+          if (this.videoEl.paused) this.videoEl.play().catch(() => {});
+          else this.videoEl.pause();
+        }
+      } else if (e.key === '?') {
+        e.preventDefault();
+        if (typeof showToast === 'function') {
+          showToast('⌨ Shortcuts: [F] Fullscreen • [T] Theater • [S] Switch Server • [N] Next Ep • [P] Prev Ep • [ESC] Close');
+        }
+      }
+    });
+
     this.renderServerListUI();
+  },
+
+  isOpen() {
+    return this.modal && this.modal.classList.contains('active');
   },
 
   switchServer(index) {
@@ -116,7 +170,6 @@ const CinexaPlayer = {
       btnLabelEl.innerText = `Switch (${nextSrv.name.split(' (')[0]})`;
     }
 
-    // Ensure server list buttons are dynamically rendered and updated for all browsers
     this.renderServerListUI();
 
     if (isManualSwitch) {
@@ -126,35 +179,6 @@ const CinexaPlayer = {
 
   renderServerListUI() {
     let container = document.getElementById('player-servers-list');
-    if (!container) {
-      const controlsTray = document.querySelector('.player-controls-tray') || document.querySelector('.player-container');
-      if (controlsTray) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'p-3 sm:p-4 rounded-xl bg-surface-container-high/90 border border-primary/25 space-y-2.5 my-2';
-        wrapper.innerHTML = `
-          <div class="flex items-center justify-between gap-2 flex-wrap">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-xs font-semibold text-parchment flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-primary text-base">dns</span>
-                <span>Active Server:</span>
-              </span>
-              <span id="player-tray-server-badge" class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">Server 1 (VidSrc 4K)</span>
-            </div>
-            <button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold text-xs hover:bg-brass-hover transition-colors shrink-0 cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md" onclick="CinexaPlayer.nextServer()">
-              <span class="material-symbols-outlined text-[15px]">swap_horiz</span>
-              <span id="player-switch-btn-label">Next Server</span>
-            </button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full pt-1" id="player-servers-list"></div>
-          <p class="font-sans text-driftwood text-[11px] leading-relaxed pt-1.5 border-t border-white/5">
-            <span class="text-primary font-semibold">💡 Stream Notice:</span> If this server takes time to load or buffers, tap any server button above or click <strong class="text-primary underline cursor-pointer hover:text-white" onclick="CinexaPlayer.nextServer()">Next Server</strong> to switch stream.
-          </p>
-        `;
-        controlsTray.appendChild(wrapper);
-        container = document.getElementById('player-servers-list');
-      }
-    }
-
     if (!container) return;
 
     container.innerHTML = this.servers.map((srv, idx) => {
@@ -207,16 +231,80 @@ const CinexaPlayer = {
       this.loadingOverlay.style.pointerEvents = 'auto';
     }
 
-    // Dismiss overlay automatically after 2.5s max
+    // Dismiss overlay automatically after 3s max
     this.loadingTimer = setTimeout(() => {
       this.hideLoading();
-    }, 2500);
+    }, 3000);
+
+    // Failover helper trigger after 8s if user hasn't received video stream
+    this.startFailoverWatchdog();
   },
 
   hideLoading() {
     if (this.loadingOverlay) {
       this.loadingOverlay.style.opacity = '0';
       this.loadingOverlay.style.pointerEvents = 'none';
+    }
+  },
+
+  startFailoverWatchdog() {
+    this.clearFailoverTimer();
+    this.failoverTimer = setTimeout(() => {
+      const helper = document.getElementById('player-failover-helper');
+      if (helper) {
+        const nextIdx = (this.serverIndex + 1) % this.servers.length;
+        const btnText = document.getElementById('player-failover-helper-btn-text') || helper.querySelector('button span');
+        if (btnText) btnText.innerText = `Try Server ${nextIdx + 1}`;
+        helper.classList.remove('hidden');
+        helper.classList.add('flex');
+      }
+    }, 8000);
+  },
+
+  clearFailoverTimer() {
+    if (this.failoverTimer) clearTimeout(this.failoverTimer);
+    const helper = document.getElementById('player-failover-helper');
+    if (helper) {
+      helper.classList.add('hidden');
+      helper.classList.remove('flex');
+    }
+  },
+
+  toggleTheaterMode() {
+    this.isTheaterMode = !this.isTheaterMode;
+    if (!this.container) this.container = document.querySelector('.player-container');
+    if (this.container) {
+      if (this.isTheaterMode) {
+        this.container.classList.add('theater-mode');
+        this.container.style.maxWidth = '100vw';
+        this.container.style.maxHeight = '98vh';
+      } else {
+        this.container.classList.remove('theater-mode');
+        this.container.style.maxWidth = '1240px';
+        this.container.style.maxHeight = '94vh';
+      }
+    }
+    if (typeof showToast === 'function') {
+      showToast(this.isTheaterMode ? '🎭 Theater Mode Enabled' : 'Standard Player Size');
+    }
+  },
+
+  toggleFullscreen() {
+    const wrapper = document.querySelector('.video-wrapper') || this.container;
+    if (!wrapper) return;
+
+    if (!document.fullscreenElement) {
+      if (wrapper.requestFullscreen) {
+        wrapper.requestFullscreen().catch(() => {});
+      } else if (wrapper.webkitRequestFullscreen) {
+        wrapper.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
     }
   },
 
@@ -230,7 +318,7 @@ const CinexaPlayer = {
       year: '2024'
     };
 
-    this.serverIndex = 0; // default to #1 verified master stream
+    this.serverIndex = 0; // default to Server 1
     this.currentSeason = parseInt(season) || 1;
     this.currentEpisode = parseInt(episode) || 1;
 
@@ -241,6 +329,15 @@ const CinexaPlayer = {
 
     if (this.modal) {
       this.modal.classList.add('active');
+    }
+
+    // Save to user's Continue Watching list automatically!
+    if (typeof saveWatchProgress === 'function') {
+      const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
+      const progressLabel = isTV 
+        ? `S${this.currentSeason}:E${this.currentEpisode} (Playing)` 
+        : 'In Progress';
+      saveWatchProgress(this.currentMovie, 30, progressLabel);
     }
   },
 
@@ -284,13 +381,13 @@ const CinexaPlayer = {
     let seasonBtns = '';
     for (let s = 1; s <= maxSeasons; s++) {
       const activeClass = (s === this.currentSeason) ? 'active font-bold bg-primary text-on-primary' : 'text-driftwood';
-      seasonBtns += `<button class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer text-xs px-3 py-1 rounded-full border border-white/10" onclick="CinexaPlayer.setSeason(${s})">Season ${s}</button>`;
+      seasonBtns += `<button type="button" class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer text-xs px-3 py-1 rounded-full border border-white/10" onclick="CinexaPlayer.setSeason(${s})">Season ${s}</button>`;
     }
 
     let episodeBtns = '';
     for (let e = 1; e <= epsInSeason; e++) {
       const activeClass = (e === this.currentEpisode) ? 'active font-bold bg-primary text-on-primary' : 'text-driftwood';
-      episodeBtns += `<button class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer text-xs px-2.5 py-1 rounded-full border border-white/10" onclick="CinexaPlayer.setEpisode(${e})">Ep ${e}</button>`;
+      episodeBtns += `<button type="button" class="player-pill-btn ${activeClass} active:scale-95 cursor-pointer text-xs px-2.5 py-1 rounded-full border border-white/10" onclick="CinexaPlayer.setEpisode(${e})">Ep ${e}</button>`;
     }
 
     container.innerHTML = `
@@ -301,8 +398,8 @@ const CinexaPlayer = {
             <div class="player-pill-cluster flex items-center gap-1 shrink-0">${seasonBtns}</div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button class="player-pill-btn text-xs active:scale-95 cursor-pointer px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment border border-white/10" onclick="CinexaPlayer.prevEpisode()" title="Previous Episode">⏮ Prev Ep</button>
-            <button class="player-pill-btn text-xs bg-primary/20 text-primary border border-primary/40 active:scale-95 cursor-pointer px-2.5 py-1 rounded-full hover:bg-primary hover:text-on-primary font-semibold" onclick="CinexaPlayer.nextEpisode()" title="Next Episode">Next Ep ⏭</button>
+            <button type="button" class="player-pill-btn text-xs active:scale-95 cursor-pointer px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-bright text-driftwood hover:text-parchment border border-white/10" onclick="CinexaPlayer.prevEpisode()" title="Previous Episode">⏮ Prev</button>
+            <button type="button" class="player-pill-btn text-xs bg-primary/20 text-primary border border-primary/40 active:scale-95 cursor-pointer px-2.5 py-1 rounded-full hover:bg-primary hover:text-on-primary font-semibold" onclick="CinexaPlayer.nextEpisode()" title="Next Episode">Next ⏭</button>
           </div>
         </div>
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
@@ -358,6 +455,7 @@ const CinexaPlayer = {
 
   closePlayer() {
     if (this.loadingTimer) clearTimeout(this.loadingTimer);
+    this.clearFailoverTimer();
 
     if (this.videoEl) {
       this.videoEl.pause();
@@ -376,10 +474,6 @@ const CinexaPlayer = {
 
     const rawId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
     const tmdbId = String(rawId).replace(/[^0-9]/g, '') || '693134';
-    const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
-    const s = this.currentSeason || 1;
-    const e = this.currentEpisode || 1;
-
     const isLocalFilm = (this.currentMovie.slug === 'a-moment-to-remember' || 
                          this.currentMovie.id === '15859' || 
                          (this.currentMovie.title && this.currentMovie.title.toLowerCase().includes('moment to remember')));
@@ -389,8 +483,7 @@ const CinexaPlayer = {
       if (this.videoEl) {
         this.videoEl.style.display = 'block';
         this.videoEl.src = '/api/stream?file=0918%20(1).mp4';
-        this.videoEl.play().catch(err => {
-          console.warn('Local playback fallback to 4K stream...');
+        this.videoEl.play().catch(() => {
           this.loadCloudStream();
         });
       }
@@ -400,11 +493,28 @@ const CinexaPlayer = {
     this.loadCloudStream();
   },
 
+  getMovieTmdbId(movie) {
+    if (!movie) return '693134';
+    if (movie.tmdbId && /^\d+$/.test(String(movie.tmdbId).trim())) {
+      return String(movie.tmdbId).trim();
+    }
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => 
+      (m.slug && movie.slug && m.slug === movie.slug) ||
+      (m.id && movie.id && String(m.id) === String(movie.id)) ||
+      (m.title && movie.title && m.title.toLowerCase() === movie.title.toLowerCase())
+    );
+    if (found && found.tmdbId) {
+      return String(found.tmdbId).replace(/[^0-9]/g, '') || '693134';
+    }
+    const digitsOnly = String(movie.tmdbId || movie.id || '').replace(/[^0-9]/g, '');
+    return digitsOnly || '693134';
+  },
+
   loadCloudStream() {
     if (!this.currentMovie) return;
 
-    const rawId = this.currentMovie.tmdbId || this.currentMovie.id || '693134';
-    const tmdbId = String(rawId).replace(/[^0-9]/g, '') || '693134';
+    const tmdbId = this.getMovieTmdbId(this.currentMovie);
     const isTV = this.currentMovie.type === 'tv' || this.currentMovie.isSeries;
     const s = this.currentSeason || 1;
     const e = this.currentEpisode || 1;
@@ -429,7 +539,7 @@ const CinexaPlayer = {
   downloadFilm(quality = '4k') {
     if (!this.currentMovie) return;
     const movie = this.currentMovie;
-    const tmdbId = movie.tmdbId || movie.id || '693134';
+    const tmdbId = this.getMovieTmdbId(movie);
     const isLocalFilm = movie.slug === 'a-moment-to-remember' || movie.id === '15859' || (movie.title && movie.title.toLowerCase().includes('moment to remember'));
 
     if (isLocalFilm) {
@@ -449,11 +559,11 @@ const CinexaPlayer = {
         '720p': isTV ? `https://autoembed.co/tv/tmdb/${tmdbId}-${s}-${e}` : `https://autoembed.co/movie/tmdb/${tmdbId}`
       };
       const url = downloadUrls[quality] || downloadUrls['4k'];
-      window.open(url, '_blank');
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     if (typeof showToast === 'function') {
-      showToast(`⬇ Starting Stream & Download for "${movie.title}"`);
+      showToast(`⬇ Opening Stream & Download Hub for "${movie.title}"`);
     }
   }
 };

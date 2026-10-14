@@ -1,0 +1,17 @@
+{
+  "auth": {
+    "providers": {
+      "anonymous": true,
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Cinexa Cinema",
+        "supportEmail": "support@cinexa-films.vercel.app",
+        "authorizedRedirectUris": [
+          "https://cinexa-films.firebaseapp.com/__/auth/handler",
+          "https://cinexa-films.vercel.app",
+          "http://localhost:3000"
+        ]
+      }
+    }
+  }
+}

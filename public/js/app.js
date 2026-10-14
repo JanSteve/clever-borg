@@ -24,6 +24,116 @@ let currentDownloadMovie = null;
 let currentSurpriseMovie = null;
 let watchlistSet = new Set(['15859', 'dune-part-two', 'past-lives', 'spirited-away', 'jawan', 'kalki-2898-ad', 'leo']);
 let toastTimer = null;
+let isProfileDropdownOpen = false;
+
+// Initialize user watchlist from authenticated storage
+function initWatchlistFromStorage() {
+  if (typeof CinexaAuth !== 'undefined' && CinexaAuth.getUserWatchlist) {
+    watchlistSet = new Set(CinexaAuth.getUserWatchlist());
+  } else {
+    try {
+      const saved = localStorage.getItem('cinexa_watchlist_guest');
+      if (saved) watchlistSet = new Set(JSON.parse(saved));
+    } catch (e) {}
+  }
+}
+
+function persistWatchlist() {
+  if (typeof CinexaAuth !== 'undefined' && CinexaAuth.setUserWatchlist) {
+    CinexaAuth.setUserWatchlist(watchlistSet);
+  } else {
+    try {
+      localStorage.setItem('cinexa_watchlist_guest', JSON.stringify(Array.from(watchlistSet)));
+    } catch (e) {}
+  }
+  syncWatchlistUI();
+}
+
+function isMovieInWatchlist(movieOrId) {
+  if (!movieOrId) return false;
+  if (typeof movieOrId === 'string' || typeof movieOrId === 'number') {
+    const key = String(movieOrId);
+    if (watchlistSet.has(key)) return true;
+    const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+    const found = catalog.find(m => m.id === key || m.slug === key);
+    if (found) {
+      return (found.id && watchlistSet.has(found.id)) || (found.slug && watchlistSet.has(found.slug));
+    }
+    return false;
+  }
+  return (movieOrId.id && watchlistSet.has(movieOrId.id)) || (movieOrId.slug && watchlistSet.has(movieOrId.slug));
+}
+
+function syncWatchlistUI() {
+  // Update slide watchlist button
+  const slide = getCurrentSlideMovie();
+  const slideBtn = document.getElementById('slide-watchlist-btn');
+  const slideBtnText = document.getElementById('slide-watchlist-text');
+  const slideBtnIcon = document.getElementById('slide-watchlist-icon');
+  if (slide) {
+    const isSlideSaved = isMovieInWatchlist(slide);
+    if (slideBtnText) slideBtnText.innerText = isSlideSaved ? 'In Watchlist' : 'Watchlist';
+    if (slideBtnIcon) {
+      slideBtnIcon.innerText = isSlideSaved ? 'bookmark_added' : 'bookmark_add';
+      slideBtnIcon.style.fontVariationSettings = isSlideSaved ? "'FILL' 1" : "'FILL' 0";
+    }
+    if (slideBtn) {
+      if (isSlideSaved) {
+        slideBtn.classList.add('border-primary', 'text-primary');
+      } else {
+        slideBtn.classList.remove('border-primary', 'text-primary');
+      }
+    }
+  }
+
+  // Update details watchlist button
+  const detailsBtn = document.getElementById('details-watchlist-btn');
+  const detailsText = document.getElementById('details-watchlist-text');
+  const detailsIcon = document.getElementById('details-watchlist-icon');
+  if (currentActiveMovie) {
+    const isDetSaved = isMovieInWatchlist(currentActiveMovie);
+    if (detailsText) detailsText.innerText = isDetSaved ? 'In Watchlist' : 'Watchlist';
+    if (detailsIcon) {
+      detailsIcon.innerText = isDetSaved ? 'bookmark_added' : 'bookmark_add';
+      detailsIcon.style.fontVariationSettings = isDetSaved ? "'FILL' 1" : "'FILL' 0";
+    }
+  }
+
+  // Update card bookmark buttons
+  document.querySelectorAll('[data-watchlist-id]').forEach(btn => {
+    const id = btn.getAttribute('data-watchlist-id');
+    const isSaved = isMovieInWatchlist(id);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon) {
+      icon.innerText = isSaved ? 'bookmark' : 'bookmark_border';
+      icon.style.fontVariationSettings = isSaved ? "'FILL' 1" : "'FILL' 0";
+    }
+    if (isSaved) {
+      btn.classList.add('text-primary');
+    } else {
+      btn.classList.remove('text-primary');
+    }
+  });
+
+  // Update watchlist count badges in profile menu
+  const countBadge = document.getElementById('profile-watchlist-count');
+  if (countBadge) {
+    countBadge.innerText = String(watchlistSet.size);
+  }
+
+  // If viewing library screen, refresh grid
+  if (currentScreen === 'library') {
+    renderLibraryGrid();
+  }
+}
+
+// Global sync hook called on auth state changes
+window.syncUserWatchlistState = function() {
+  initWatchlistFromStorage();
+  syncWatchlistUI();
+  renderContinueWatchingRow();
+};
+
 
 // =========================================================================
 // 1. FEATURED HERO SLIDESHOW DATA & ENGINE
@@ -33,6 +143,7 @@ const FEATURED_SLIDES = [
   {
     id: 'dune-part-two',
     slug: 'dune-part-two',
+    tmdbId: 693134,
     title: 'Dune: Part Two',
     categoryLabel: '✨ Top Recommendation',
     year: '2024',
@@ -52,6 +163,7 @@ const FEATURED_SLIDES = [
   {
     id: 'oppenheimer',
     slug: 'oppenheimer',
+    tmdbId: 872585,
     title: 'Oppenheimer',
     categoryLabel: '⚡ Current Trending',
     year: '2023',
@@ -71,6 +183,7 @@ const FEATURED_SLIDES = [
   {
     id: 'spirited-away',
     slug: 'spirited-away',
+    tmdbId: 129,
     title: 'Spirited Away',
     categoryLabel: '🎌 Studio Ghibli Masterpiece',
     year: '2001',
@@ -90,6 +203,7 @@ const FEATURED_SLIDES = [
   {
     id: 'kalki-2898-ad',
     slug: 'kalki-2898-ad',
+    tmdbId: 801688,
     title: 'Kalki 2898 AD',
     categoryLabel: '🇮🇳 Epic Blockbuster',
     year: '2024',
@@ -109,6 +223,7 @@ const FEATURED_SLIDES = [
   {
     id: 'parasite',
     slug: 'parasite',
+    tmdbId: 496243,
     title: 'Parasite',
     categoryLabel: '🏆 Palme d\'Or & Oscar Winner',
     year: '2019',
@@ -128,6 +243,7 @@ const FEATURED_SLIDES = [
   {
     id: 'interstellar',
     slug: 'interstellar',
+    tmdbId: 157336,
     title: 'Interstellar',
     categoryLabel: '🔥 People\'s Favorite',
     year: '2014',
@@ -306,17 +422,15 @@ function openSlideDossier() {
 function toggleSlideWatchlist() {
   const slide = getCurrentSlideMovie();
   const id = slide.slug || slide.id;
-  const btnText = document.getElementById('slide-watchlist-text');
 
   if (watchlistSet.has(id)) {
     watchlistSet.delete(id);
-    if (btnText) btnText.innerText = 'Watchlist';
     showToast(`Removed "${slide.title}" from Watchlist.`);
   } else {
     watchlistSet.add(id);
-    if (btnText) btnText.innerText = 'In Watchlist';
     showToast(`Added "${slide.title}" to Watchlist.`);
   }
+  persistWatchlist();
 }
 
 // =========================================================================
@@ -547,7 +661,7 @@ function createMovieCardHtml(m, options = {}) {
           ${isSeries ? '<span class="font-sans text-[9px] px-1.5 py-0.5 rounded-full bg-primary/20 text-primary uppercase border border-primary/30 font-bold">TV</span>' : ''}
         </div>
 
-        <button aria-label="Save to Watchlist" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+        <button aria-label="Save to Watchlist" data-watchlist-id="${id}" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
           <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
         </button>
 
@@ -588,11 +702,19 @@ function createMovieCardHtml(m, options = {}) {
 
 const WATCH_PROGRESS_KEY = 'cinexa_continue_watching';
 
+function getActiveProgressKey() {
+  if (typeof CinexaAuth !== 'undefined' && CinexaAuth.getProgressKey) {
+    return CinexaAuth.getProgressKey();
+  }
+  return WATCH_PROGRESS_KEY;
+}
+
 function saveWatchProgress(movie, percent = 45, timeRemaining = '1h 12m left') {
   if (!movie) return;
   const id = movie.slug || movie.id;
+  const key = getActiveProgressKey();
   try {
-    let list = JSON.parse(localStorage.getItem(WATCH_PROGRESS_KEY) || '[]');
+    let list = JSON.parse(localStorage.getItem(key) || '[]');
     list = list.filter(item => item.id !== id);
     list.unshift({
       id: id,
@@ -604,13 +726,15 @@ function saveWatchProgress(movie, percent = 45, timeRemaining = '1h 12m left') {
       timeRemaining: timeRemaining,
       savedAt: Date.now()
     });
-    localStorage.setItem(WATCH_PROGRESS_KEY, JSON.stringify(list.slice(0, 10)));
+    localStorage.setItem(key, JSON.stringify(list.slice(0, 10)));
+    renderContinueWatchingRow();
   } catch (e) {}
 }
 
 function getContinueWatchingList() {
+  const key = getActiveProgressKey();
   try {
-    const list = JSON.parse(localStorage.getItem(WATCH_PROGRESS_KEY) || '[]');
+    const list = JSON.parse(localStorage.getItem(key) || '[]');
     if (list.length > 0) return list;
   } catch (e) {}
   // Default sample records if fresh visitor
@@ -661,8 +785,9 @@ function renderContinueWatchingRow() {
 }
 
 function clearContinueWatching() {
+  const key = getActiveProgressKey();
   try {
-    localStorage.removeItem(WATCH_PROGRESS_KEY);
+    localStorage.removeItem(key);
     const section = document.getElementById('section-continue-watching');
     if (section) section.classList.add('hidden');
     showToast('Continue Watching history cleared.');
@@ -814,32 +939,45 @@ function filterTrendingRows(category = 'all') {
       const safeTitle = (m.title || 'Film').replace(/'/g, "\\'");
       const id = m.slug || m.id;
 
+      const isSaved = watchlistSet.has(id);
       return `
-        <div class="group relative flex-shrink-0 flex items-end snap-start cursor-pointer" onclick="openFilmBySlug('${id}')">
-          <span class="font-serif text-[75px] sm:text-[110px] font-normal leading-none text-transparent select-none pointer-events-none -mr-4 sm:-mr-6 -mb-2 z-0 tracking-tight" style="-webkit-text-stroke: 1.5px #A9A596; opacity: 0.5;">
+        <div class="top-10-item group relative flex-shrink-0 snap-start cursor-pointer transition-all duration-300" onclick="openFilmBySlug('${id}')">
+          <span class="top-10-rank">
             ${num}
           </span>
-          <div class="relative w-[130px] sm:w-[170px] z-10">
-            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-md group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-2xl transition-all duration-300">
+          <div class="relative w-[140px] sm:w-[180px] z-10">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container border border-white/10 shadow-lg group-hover:-translate-y-1.5 group-hover:border-primary/50 group-hover:shadow-2xl transition-all duration-300">
               <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${poster}" onerror="handlePosterError(this, '${safeTitle}', '${m.year || '4K'}')" alt="${m.title}" loading="lazy"/>
-              <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-                <button class="h-6 px-2 rounded-full bg-primary text-on-primary font-sans text-[10px] font-bold flex items-center gap-1 shadow-sm hover:bg-brass-hover" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
-                  <span class="material-symbols-outlined text-[12px]">play_arrow</span>
-                  <span>Play</span>
+              
+              <button aria-label="Save to Watchlist" data-watchlist-id="${id}" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-primary transition-colors cursor-pointer z-10 ${isSaved ? 'text-primary' : ''}" onclick="event.stopPropagation(); toggleSlideWatchlistById('${id}', '${safeTitle}');">
+                <span class="material-symbols-outlined text-[15px]" style="${isSaved ? "font-variation-settings: 'FILL' 1;" : ""}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
+              </button>
+
+              <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+                <button class="h-7 px-2.5 rounded-full bg-primary text-on-primary font-sans text-[11px] font-bold flex items-center gap-1 shadow-sm hover:bg-brass-hover transition-colors" onclick="event.stopPropagation(); playCurrentFilmInPlayer('${id}')">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  <span>Watch</span>
                 </button>
-                <button aria-label="Download 4K" class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); openDownloadModal('${id}')">
-                  <span class="material-symbols-outlined text-[12px]">download</span>
-                </button>
+                <div class="flex items-center gap-1">
+                  <button aria-label="Download 4K" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Download 4K" onclick="event.stopPropagation(); openDownloadModal('${id}')">
+                    <span class="material-symbols-outlined text-[14px]">download</span>
+                  </button>
+                  <button aria-label="Details" class="w-7 h-7 rounded-full bg-surface-bright flex items-center justify-center text-on-surface hover:text-primary transition-colors" title="Details" onclick="event.stopPropagation(); openFilmDetails('${id}')">
+                    <span class="material-symbols-outlined text-[14px]">info</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="mt-1.5 space-y-0.5">
+            <div class="mt-2 space-y-0.5">
               <h4 class="font-sans text-xs font-semibold text-parchment truncate group-hover:text-primary transition-colors">${m.title}</h4>
               <div class="flex items-center gap-1.5 font-mono text-[10px] text-driftwood">
                 <span>${m.year || '2024'}</span>
                 <span class="text-white/20">•</span>
                 <span class="text-primary font-medium flex items-center gap-0.5">
-                  <span class="material-symbols-outlined text-[10px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
+                  <span class="material-symbols-outlined text-[11px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> ${score}
                 </span>
+                <span class="text-white/20">•</span>
+                <span class="text-tertiary text-[10px] uppercase font-bold">TOP 10</span>
               </div>
             </div>
           </div>
@@ -1006,7 +1144,7 @@ function renderLibraryGrid() {
   if (!container) return;
 
   const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
-  const savedMovies = catalog.filter(m => watchlistSet.has(m.slug || m.id));
+  const savedMovies = catalog.filter(m => (m.id && watchlistSet.has(m.id)) || (m.slug && watchlistSet.has(m.slug)));
 
   if (savedMovies.length === 0) {
     container.innerHTML = `
@@ -1063,13 +1201,20 @@ function renderLibraryGrid() {
 }
 
 function toggleSlideWatchlistById(id, title) {
-  if (watchlistSet.has(id)) {
+  const catalog = (typeof KOREAN_MOVIES_CATALOG !== 'undefined') ? KOREAN_MOVIES_CATALOG : [];
+  const found = catalog.find(m => m.id === id || m.slug === id);
+  const altId = found ? (found.slug === id ? found.id : found.slug) : null;
+
+  if (watchlistSet.has(id) || (altId && watchlistSet.has(altId))) {
     watchlistSet.delete(id);
-    showToast(`Removed "${title}" from Watchlist.`);
+    if (altId) watchlistSet.delete(altId);
+    showToast(`Removed "${title || 'Film'}" from Watchlist.`);
   } else {
     watchlistSet.add(id);
-    showToast(`Added "${title}" to Watchlist.`);
+    if (altId) watchlistSet.add(altId);
+    showToast(`Added "${title || 'Film'}" to Watchlist.`);
   }
+  persistWatchlist();
 }
 
 // =========================================================================
@@ -1215,20 +1360,18 @@ function openFilmBySlug(slug) {
 }
 
 function toggleDetailsWatchlist() {
-  const text = document.getElementById('details-watchlist-text');
   const id = currentActiveMovie ? (currentActiveMovie.slug || currentActiveMovie.id) : '';
   const title = currentActiveMovie ? currentActiveMovie.title : 'Film';
 
   if (!id) return;
   if (watchlistSet.has(id)) {
     watchlistSet.delete(id);
-    if (text) text.innerText = 'Watchlist';
     showToast(`Removed "${title}" from Watchlist.`);
   } else {
     watchlistSet.add(id);
-    if (text) text.innerText = 'In Watchlist';
     showToast(`Added "${title}" to Watchlist.`);
   }
+  persistWatchlist();
 }
 
 function playCurrentDetailsMovie() {
@@ -1260,6 +1403,17 @@ function playCurrentFilmInPlayer(target) {
 
   if (!film) {
     film = currentDetailsMovie || currentActiveMovie || getCurrentSlideMovie();
+  }
+
+  if (film && !film.tmdbId) {
+    const enriched = catalog.find(m => 
+      (m.slug && film.slug && m.slug === film.slug) || 
+      (m.id && film.id && String(m.id) === String(film.id)) ||
+      (m.title && film.title && m.title.toLowerCase() === film.title.toLowerCase())
+    );
+    if (enriched && enriched.tmdbId) {
+      film = { ...enriched, ...film, tmdbId: enriched.tmdbId };
+    }
   }
 
   if (!film || !film.tmdbId) {
@@ -1294,6 +1448,18 @@ function openDownloadModal(slugOrId) {
     );
   }
   if (!film) film = currentDetailsMovie || currentActiveMovie || getCurrentSlideMovie();
+
+  if (film && !film.tmdbId) {
+    const enriched = catalog.find(m => 
+      (m.slug && film.slug && m.slug === film.slug) || 
+      (m.id && film.id && String(m.id) === String(film.id)) ||
+      (m.title && film.title && m.title.toLowerCase() === film.title.toLowerCase())
+    );
+    if (enriched && enriched.tmdbId) {
+      film = { ...enriched, ...film, tmdbId: enriched.tmdbId };
+    }
+  }
+
   currentDownloadMovie = film;
 
   const overlay = document.getElementById('download-modal-overlay');
@@ -1324,15 +1490,19 @@ function closeDownloadModal() {
 function executeDownload(quality = '4k') {
   const film = currentDownloadMovie || currentActiveMovie || getCurrentSlideMovie();
   closeDownloadModal();
-  showToast(`⚡ Connecting to Ultra High-Speed 4K CDN for "${film.title}"...`);
-  // Monetag Direct Link integration for website downloads
-  window.open('https://omg10.com/4/11952303', '_blank');
+  showToast(`⚡ Connecting to 4K Master CDN for "${film.title}"...`);
+  if (typeof CinexaPlayer !== 'undefined') {
+    CinexaPlayer.currentMovie = film;
+    CinexaPlayer.downloadFilm(quality);
+  }
 }
 
 function copyTorrentMagnet() {
   const film = currentDownloadMovie || currentActiveMovie || getCurrentSlideMovie();
   const safeName = encodeURIComponent((film.title || 'Movie') + '.' + (film.year || '2024') + '.2160p.UHD.HDR.x265-CINEXA');
-  const magnet = `magnet:?xt=urn:btih:dune24kcinexauhdmaster718293847291&dn=${safeName}&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce`;
+  const rawSeed = String((film.tmdbId ? 'tmdb' + film.tmdbId : '') + (film.slug || film.id || 'cinexa')).replace(/[^a-zA-Z0-9]/g, '');
+  const btihHash = (rawSeed + 'cinexauhdmaster4k2026').padEnd(40, '0').slice(0, 40).toLowerCase();
+  const magnet = `magnet:?xt=urn:btih:${btihHash}&dn=${safeName}&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce`;
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(magnet).then(() => {
@@ -1519,7 +1689,9 @@ function _renderModalSearchResults(val) {
       (m.title && m.title.toLowerCase().includes(q)) ||
       (m.director && m.director.toLowerCase().includes(q)) ||
       (m.country && m.country.toLowerCase().includes(q)) ||
-      (m.genres && m.genres.some(g => typeof g === 'string' && g.toLowerCase().includes(q)))
+      (m.genres && m.genres.some(g => typeof g === 'string' && g.toLowerCase().includes(q))) ||
+      (Array.isArray(m.cast) && m.cast.some(c => typeof c === 'string' && c.toLowerCase().includes(q))) ||
+      (typeof m.cast === 'string' && m.cast.toLowerCase().includes(q))
     );
   }
 
@@ -1808,21 +1980,190 @@ function shareToPlatform(platform) {
   }
 }
 
-// Smart 24-hour rate-limited Monetag Direct Link revenue trigger
-function triggerSmartMonetagAd() {
-  try {
-    const lastAd = localStorage.getItem('cinexa_last_ad_ts');
-    const now = Date.now();
-    // Trigger once every 12-24 hours max
-    if (!lastAd || (now - parseInt(lastAd)) > 12 * 60 * 60 * 1000) {
-      localStorage.setItem('cinexa_last_ad_ts', String(now));
-      window.open('https://omg10.com/4/11952303', '_blank');
-    }
-  } catch (e) {}
+// =========================================================================
+// 10. FIREBASE AUTH MODAL & PROFILE CONTROLLER (/firebase-auth-basics)
+// =========================================================================
+
+let currentAuthTab = 'signin';
+
+function openAuthModal(tab = 'signin') {
+  currentAuthTab = tab;
+  const overlay = document.getElementById('auth-modal-overlay');
+  const errorEl = document.getElementById('auth-error-banner');
+  if (errorEl) errorEl.classList.add('hidden');
+
+  switchAuthTab(tab);
+
+  if (overlay) {
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+    const firstInput = document.getElementById(tab === 'signin' ? 'auth-email' : 'auth-reg-name');
+    if (firstInput) setTimeout(() => firstInput.focus(), 100);
+  }
 }
+
+function closeAuthModal() {
+  const overlay = document.getElementById('auth-modal-overlay');
+  if (overlay) {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+}
+
+function switchAuthTab(tab) {
+  currentAuthTab = tab;
+  const signinForm = document.getElementById('auth-signin-form');
+  const signupForm = document.getElementById('auth-signup-form');
+  const signinTabBtn = document.getElementById('auth-tab-signin');
+  const signupTabBtn = document.getElementById('auth-tab-signup');
+  const errorEl = document.getElementById('auth-error-banner');
+  if (errorEl) errorEl.classList.add('hidden');
+
+  if (tab === 'signin') {
+    if (signinForm) signinForm.classList.remove('hidden');
+    if (signupForm) signupForm.classList.add('hidden');
+    if (signinTabBtn) {
+      signinTabBtn.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+      signinTabBtn.classList.remove('text-driftwood');
+    }
+    if (signupTabBtn) {
+      signupTabBtn.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+      signupTabBtn.classList.add('text-driftwood');
+    }
+  } else {
+    if (signupForm) signupForm.classList.remove('hidden');
+    if (signinForm) signinForm.classList.add('hidden');
+    if (signupTabBtn) {
+      signupTabBtn.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+      signupTabBtn.classList.remove('text-driftwood');
+    }
+    if (signinTabBtn) {
+      signinTabBtn.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+      signinTabBtn.classList.add('text-driftwood');
+    }
+  }
+}
+
+function showAuthError(message) {
+  const errorEl = document.getElementById('auth-error-banner');
+  const errorText = document.getElementById('auth-error-text');
+  if (errorEl && errorText) {
+    errorText.innerText = message;
+    errorEl.classList.remove('hidden');
+  }
+}
+
+async function handleEmailSignIn(e) {
+  if (e) e.preventDefault();
+  const email = (document.getElementById('auth-email') || {}).value;
+  const pass = (document.getElementById('auth-password') || {}).value;
+  const submitBtn = document.getElementById('btn-submit-signin');
+
+  if (!email || !pass) {
+    showAuthError('Please enter both your email address and password.');
+    return;
+  }
+
+  try {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Signing in...';
+    }
+    await CinexaAuth.signInWithEmail(email.trim(), pass);
+    closeAuthModal();
+    const u = CinexaAuth.getUser();
+    showToast(`Welcome back, ${u ? u.displayName : 'VIP Member'}!`);
+  } catch (err) {
+    const msg = CinexaAuth.getErrorMessage(err);
+    showAuthError(msg);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Sign In';
+    }
+  }
+}
+
+async function handleEmailSignUp(e) {
+  if (e) e.preventDefault();
+  const name = (document.getElementById('auth-reg-name') || {}).value;
+  const email = (document.getElementById('auth-reg-email') || {}).value;
+  const pass = (document.getElementById('auth-reg-password') || {}).value;
+  const submitBtn = document.getElementById('btn-submit-signup');
+
+  if (!email || !pass) {
+    showAuthError('Please enter email and a password of at least 6 characters.');
+    return;
+  }
+
+  try {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Creating account...';
+    }
+    await CinexaAuth.signUpWithEmail(email.trim(), pass, name.trim());
+    closeAuthModal();
+    const u = CinexaAuth.getUser();
+    showToast(`Account created! Welcome to Cinexa, ${u ? u.displayName : 'VIP Member'}.`);
+  } catch (err) {
+    const msg = CinexaAuth.getErrorMessage(err);
+    showAuthError(msg);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Create Account';
+    }
+  }
+}
+
+async function handleGoogleSignIn() {
+  try {
+    const user = await CinexaAuth.signInWithGoogle();
+    closeAuthModal();
+    showToast(`Signed in with Google as ${user.displayName}!`);
+  } catch (err) {
+    const msg = CinexaAuth.getErrorMessage(err);
+    showAuthError(msg);
+  }
+}
+
+async function handleUserSignOut() {
+  toggleProfileDropdown(false);
+  await CinexaAuth.signOut();
+  showToast('Signed out of Cinexa.');
+}
+
+function toggleProfileDropdown(forceState) {
+  const menu = document.getElementById('profile-dropdown-menu');
+  if (!menu) return;
+
+  if (typeof forceState === 'boolean') {
+    isProfileDropdownOpen = forceState;
+  } else {
+    isProfileDropdownOpen = !isProfileDropdownOpen;
+  }
+
+  if (isProfileDropdownOpen) {
+    menu.classList.remove('hidden');
+  } else {
+    menu.classList.add('hidden');
+  }
+}
+
+// Close profile dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  const profileContainer = document.getElementById('navbar-profile-container');
+  if (profileContainer && !profileContainer.contains(e.target)) {
+    toggleProfileDropdown(false);
+  }
+});
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
+  initWatchlistFromStorage();
+  if (typeof CinexaAuth !== 'undefined' && CinexaAuth.init) {
+    CinexaAuth.init();
+  }
   initFeaturedSlideshow();
   renderDiscoverCatalog();
   filterTrendingRows('all');

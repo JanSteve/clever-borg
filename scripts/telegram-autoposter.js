@@ -11,7 +11,7 @@ const catalog = require('../public/js/movies-data.js');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID; // e.g. "@cinexafilms" or "-100123456789"
 const BASE_URL = 'https://cinexa-films.vercel.app';
-const MONETAG_DIRECT_LINK = process.env.MONETAG_DIRECT_LINK || 'https://omg10.com/4/11952303';
+const MONETAG_DIRECT_LINK = process.env.MONETAG_DIRECT_LINK || BASE_URL;
 
 if (!BOT_TOKEN || !CHANNEL_ID) {
   console.error('⚠️ Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHANNEL_ID environment variables.');
