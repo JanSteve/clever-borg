@@ -2170,9 +2170,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderContinueWatchingRow();
   handleDeepLinks();
 
-  // Register PWA Service Worker
+  // Register PWA Service Worker with automatic update check
   if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('/sw.js').then((reg) => {
+      if (reg) reg.update().catch(() => {});
+    }).catch(() => {});
   }
 
   const toastUndo = document.getElementById('toast-undo');
